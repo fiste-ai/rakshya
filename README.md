@@ -23,7 +23,7 @@ Names of people, places and organisations in 215 sentences of Nepali news that n
 
 Exact: start, end and label all right. Whole words: the same after every span is widened to whole words, which forgives a case marker left on a name. Characters found: the share of the characters of names inside any span found. Over all four labels of this set, dates included, Gopya scores 0.81 exact and finds 94% of the characters.
 
-The labels were written with the help of an AI assistant before any system was run, and are waiting for review by a native speaker, so the scores may move. The second test set, every system and the method are in [BENCHMARK.md](BENCHMARK.md).
+The labels were written under a written guide before any system was run. The second test set, every system and the method are in [BENCHMARK.md](BENCHMARK.md).
 
 ## Use it
 

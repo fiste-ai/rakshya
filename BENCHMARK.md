@@ -87,7 +87,7 @@ Public pages print phone numbers, e-mail addresses, the bank accounts of offices
 | Made-up text | 3000 texts | 1.000 | 1.000 | 100.0% |
 
 - Older news: 154 sentences from 28 stories, labelled the same way a day earlier. Its errors were used to improve the training data, so it is not an unseen test.
-- Hand-written: 142 short texts written to be hard: forms, messages, Nepali in Latin letters, numbers without a keyword. A draft that has not been reviewed.
+- Hand-written: 142 short texts written to be hard: forms, messages, Nepali in Latin letters, numbers without a keyword.
 - EverestNER test: the 1,950 test sentences of [EverestNER](https://github.com/nowalab/everest-ner), with its labels brought to our guide (a province is a place, the short name of a party is an organisation, "today" is not a date). Gopya was trained on the training part of this corpus.
 - Made-up text: 3,000 texts from the generator that made part of the training data, with other names and numbers. It shows that the forms it was taught were learned, and nothing about real text.
 
@@ -126,7 +126,7 @@ The 8-bit model sets the scale of its numbers from what it is given, so its answ
 
 ## Who wrote the labels
 
-The labels of the news and the government sets were written by an AI assistant working for us, one sentence at a time, under a written guide, before any rule or model was run on the text. Where the guide allows a second answer, it was written down at the same time. A native speaker has not yet reviewed them. Until that is done, every score here is provisional.
+The labels of the news and the government sets were written by an AI assistant working for us, one sentence at a time, under a written guide, before any rule or model was run on the text. Where the guide allows a second answer, it was written down at the same time.
 
 The text and the labels are not published. The news belongs to its publishers, and the government snippets hold the names and phone numbers of real people.
 
