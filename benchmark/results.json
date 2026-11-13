@@ -1,0 +1,2621 @@
+{
+ "version": "0.1",
+ "date": "2026-11-13",
+ "note": "Scores of Gopya and of published models on two test sets of real Nepali text. See BENCHMARK.md for what each number means.",
+ "sets": {
+  "news": {
+   "sentences": 215,
+   "articles": 43,
+   "outlets": 15,
+   "spans": {
+    "LOCATION": 193,
+    "PERSON": 99,
+    "ORGANIZATION": 65,
+    "DATE": 22
+   },
+   "second_readings": 32
+  },
+  "government": {
+   "snippets": 75,
+   "sites": 71,
+   "spans": {
+    "DATE": 95,
+    "PHONE": 80,
+    "LOCATION": 63,
+    "PERSON": 61,
+    "ORGANIZATION": 47,
+    "EMAIL": 31,
+    "BANK_ACCOUNT": 11,
+    "PAN": 3,
+    "VEHICLE_PLATE": 1,
+    "CITIZENSHIP_NO": 1
+   },
+   "second_readings": 36
+  }
+ },
+ "systems": [
+  {
+   "name": "Gopya 0.1",
+   "maker": "Fiste AI",
+   "link": "https://huggingface.co/fiste-ai/gopya",
+   "weights": 34400000,
+   "read": "per token",
+   "news": {
+    "names": {
+     "p": 0.8125,
+     "r": 0.8011,
+     "f1": 0.8068,
+     "word_f1": 0.835,
+     "overlap_f1": 0.8886,
+     "chars_found": 0.9329,
+     "chars_right": 0.9546,
+     "gold": 357,
+     "pred": 352,
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.79,
+       "gold": 193,
+       "chars_found": 0.903
+      },
+      "ORGANIZATION": {
+       "f1": 0.732,
+       "gold": 65,
+       "chars_found": 0.935
+      },
+      "PERSON": {
+       "f1": 0.89,
+       "gold": 99,
+       "chars_found": 0.981
+      }
+     },
+     "interval": [
+      0.758,
+      0.854
+     ]
+    },
+    "names_second_answers": {
+     "p": 0.8409,
+     "r": 0.8362,
+     "f1": 0.8385,
+     "word_f1": 0.8584,
+     "overlap_f1": 0.8938,
+     "chars_found": 0.9386,
+     "chars_right": 0.9604,
+     "gold": 354,
+     "pred": 352,
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.84,
+       "gold": 188,
+       "chars_found": 0.913
+      },
+      "ORGANIZATION": {
+       "f1": 0.764,
+       "gold": 67,
+       "chars_found": 0.937
+      },
+      "PERSON": {
+       "f1": 0.89,
+       "gold": 99,
+       "chars_found": 0.981
+      }
+     },
+     "interval": [
+      0.787,
+      0.885
+     ]
+    },
+    "all": {
+     "p": 0.8204,
+     "r": 0.8074,
+     "f1": 0.8138,
+     "word_f1": 0.8404,
+     "overlap_f1": 0.895,
+     "chars_found": 0.936,
+     "chars_right": 0.9565,
+     "gold": 379,
+     "pred": 373,
+     "per_label": {
+      "DATE": {
+       "f1": 0.93,
+       "gold": 22,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.79,
+       "gold": 193,
+       "chars_found": 0.903
+      },
+      "ORGANIZATION": {
+       "f1": 0.732,
+       "gold": 65,
+       "chars_found": 0.935
+      },
+      "PERSON": {
+       "f1": 0.89,
+       "gold": 99,
+       "chars_found": 0.981
+      }
+     },
+     "interval": [
+      0.766,
+      0.86
+     ]
+    },
+    "all_second_answers": {
+     "p": 0.8472,
+     "r": 0.8404,
+     "f1": 0.8438,
+     "word_f1": 0.8625,
+     "overlap_f1": 0.8999,
+     "chars_found": 0.9414,
+     "chars_right": 0.962,
+     "gold": 376,
+     "pred": 373,
+     "per_label": {
+      "DATE": {
+       "f1": 0.93,
+       "gold": 22,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.84,
+       "gold": 188,
+       "chars_found": 0.913
+      },
+      "ORGANIZATION": {
+       "f1": 0.764,
+       "gold": 67,
+       "chars_found": 0.937
+      },
+      "PERSON": {
+       "f1": 0.89,
+       "gold": 99,
+       "chars_found": 0.981
+      }
+     },
+     "interval": [
+      0.796,
+      0.885
+     ]
+    }
+   },
+   "government": {
+    "names": {
+     "p": 0.4601,
+     "r": 0.5731,
+     "f1": 0.5104,
+     "word_f1": 0.599,
+     "overlap_f1": 0.7604,
+     "chars_found": 0.9449,
+     "chars_right": 0.7621,
+     "gold": 171,
+     "pred": 213,
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.489,
+       "gold": 63,
+       "chars_found": 0.9
+      },
+      "ORGANIZATION": {
+       "f1": 0.452,
+       "gold": 47,
+       "chars_found": 0.944
+      },
+      "PERSON": {
+       "f1": 0.58,
+       "gold": 61,
+       "chars_found": 0.98
+      }
+     },
+     "interval": [
+      0.414,
+      0.602
+     ]
+    },
+    "names_second_answers": {
+     "p": 0.493,
+     "r": 0.5966,
+     "f1": 0.5398,
+     "word_f1": 0.6324,
+     "overlap_f1": 0.7866,
+     "chars_found": 0.9508,
+     "chars_right": 0.7783,
+     "gold": 176,
+     "pred": 213,
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.519,
+       "gold": 67,
+       "chars_found": 0.911
+      },
+      "ORGANIZATION": {
+       "f1": 0.517,
+       "gold": 48,
+       "chars_found": 0.955
+      },
+      "PERSON": {
+       "f1": 0.58,
+       "gold": 61,
+       "chars_found": 0.98
+      }
+     },
+     "interval": [
+      0.438,
+      0.634
+     ]
+    },
+    "all": {
+     "p": 0.6322,
+     "r": 0.6997,
+     "f1": 0.6643,
+     "word_f1": 0.7488,
+     "overlap_f1": 0.845,
+     "chars_found": 0.9521,
+     "chars_right": 0.8439,
+     "gold": 393,
+     "pred": 435,
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.667,
+       "gold": 11,
+       "chars_found": 0.844
+      },
+      "DATE": {
+       "f1": 0.757,
+       "gold": 95,
+       "chars_found": 0.928
+      },
+      "EMAIL": {
+       "f1": 0.906,
+       "gold": 31,
+       "chars_found": 1.0
+      },
+      "ID": {
+       "f1": 0.471,
+       "gold": 4,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.489,
+       "gold": 63,
+       "chars_found": 0.9
+      },
+      "ORGANIZATION": {
+       "f1": 0.452,
+       "gold": 47,
+       "chars_found": 0.944
+      },
+      "PERSON": {
+       "f1": 0.58,
+       "gold": 61,
+       "chars_found": 0.98
+      },
+      "PHONE": {
+       "f1": 0.857,
+       "gold": 80,
+       "chars_found": 0.972
+      },
+      "PLATE": {
+       "f1": 0.667,
+       "gold": 1,
+       "chars_found": 1.0
+      }
+     },
+     "interval": [
+      0.604,
+      0.718
+     ]
+    },
+    "all_second_answers": {
+     "p": 0.6552,
+     "r": 0.7143,
+     "f1": 0.6835,
+     "word_f1": 0.7698,
+     "overlap_f1": 0.8581,
+     "chars_found": 0.9571,
+     "chars_right": 0.853,
+     "gold": 399,
+     "pred": 435,
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.667,
+       "gold": 11,
+       "chars_found": 0.844
+      },
+      "DATE": {
+       "f1": 0.785,
+       "gold": 96,
+       "chars_found": 0.94
+      },
+      "EMAIL": {
+       "f1": 0.906,
+       "gold": 31,
+       "chars_found": 1.0
+      },
+      "ID": {
+       "f1": 0.471,
+       "gold": 4,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.519,
+       "gold": 67,
+       "chars_found": 0.911
+      },
+      "ORGANIZATION": {
+       "f1": 0.517,
+       "gold": 48,
+       "chars_found": 0.955
+      },
+      "PERSON": {
+       "f1": 0.58,
+       "gold": 61,
+       "chars_found": 0.98
+      },
+      "PHONE": {
+       "f1": 0.857,
+       "gold": 80,
+       "chars_found": 0.972
+      },
+      "PLATE": {
+       "f1": 0.667,
+       "gold": 1,
+       "chars_found": 1.0
+      }
+     },
+     "interval": [
+      0.624,
+      0.735
+     ]
+    }
+   }
+  },
+  {
+   "name": "XLM-R base NER HRL",
+   "maker": "Davlan",
+   "link": "https://huggingface.co/Davlan/xlm-roberta-base-ner-hrl",
+   "weights": 277459977,
+   "read": "per token",
+   "news": {
+    "names": {
+     "p": 0.7051,
+     "r": 0.7031,
+     "f1": 0.7041,
+     "word_f1": 0.8079,
+     "chars_found": 0.8918,
+     "chars_right": 0.9515,
+     "interval": [
+      0.634,
+      0.767
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.729,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.439,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.818,
+       "gold": 99
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.7528,
+     "r": 0.7383,
+     "f1": 0.7455,
+     "word_f1": 0.8484,
+     "chars_found": 0.905,
+     "chars_right": 0.957,
+     "interval": [
+      0.686,
+      0.808
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.762,
+       "gold": 197
+      },
+      "ORGANIZATION": {
+       "f1": 0.576,
+       "gold": 67
+      },
+      "PERSON": {
+       "f1": 0.818,
+       "gold": 99
+      }
+     }
+    },
+    "all": {
+     "p": 0.7051,
+     "r": 0.6623,
+     "f1": 0.683,
+     "word_f1": 0.7837,
+     "chars_found": 0.8507,
+     "chars_right": 0.9515,
+     "interval": [
+      0.611,
+      0.745
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.0,
+       "gold": 22
+      },
+      "LOCATION": {
+       "f1": 0.729,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.439,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.818,
+       "gold": 99
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.7528,
+     "r": 0.6961,
+     "f1": 0.7233,
+     "word_f1": 0.8232,
+     "chars_found": 0.8629,
+     "chars_right": 0.957,
+     "interval": [
+      0.659,
+      0.786
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.0,
+       "gold": 22
+      },
+      "LOCATION": {
+       "f1": 0.762,
+       "gold": 197
+      },
+      "ORGANIZATION": {
+       "f1": 0.576,
+       "gold": 67
+      },
+      "PERSON": {
+       "f1": 0.818,
+       "gold": 99
+      }
+     }
+    }
+   },
+   "government": {
+    "names": {
+     "p": 0.5825,
+     "r": 0.6608,
+     "f1": 0.6192,
+     "word_f1": 0.7014,
+     "chars_found": 0.9018,
+     "chars_right": 0.8852,
+     "interval": [
+      0.541,
+      0.696
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.573,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.49,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.774,
+       "gold": 61
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.6237,
+     "r": 0.6954,
+     "f1": 0.6576,
+     "word_f1": 0.7391,
+     "chars_found": 0.9039,
+     "chars_right": 0.894,
+     "interval": [
+      0.574,
+      0.732
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.617,
+       "gold": 69
+      },
+      "ORGANIZATION": {
+       "f1": 0.568,
+       "gold": 44
+      },
+      "PERSON": {
+       "f1": 0.774,
+       "gold": 61
+      }
+     }
+    },
+    "all": {
+     "p": 0.5825,
+     "r": 0.2875,
+     "f1": 0.385,
+     "word_f1": 0.4361,
+     "chars_found": 0.4277,
+     "chars_right": 0.8936,
+     "interval": [
+      0.318,
+      0.454
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.0,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.573,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.49,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.774,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.6237,
+     "r": 0.3056,
+     "f1": 0.4102,
+     "word_f1": 0.461,
+     "chars_found": 0.4304,
+     "chars_right": 0.9024,
+     "interval": [
+      0.344,
+      0.478
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.0,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.617,
+       "gold": 69
+      },
+      "ORGANIZATION": {
+       "f1": 0.568,
+       "gold": 44
+      },
+      "PERSON": {
+       "f1": 0.774,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    }
+   }
+  },
+  {
+   "name": "EU PII anonymisation",
+   "maker": "bards.ai",
+   "link": "https://huggingface.co/bardsai/eu-pii-anonimization-multilang",
+   "weights": 277506117,
+   "read": "per token",
+   "news": {
+    "names": {
+     "p": 0.6307,
+     "r": 0.7031,
+     "f1": 0.6649,
+     "word_f1": 0.8265,
+     "chars_found": 0.9684,
+     "chars_right": 0.8888,
+     "interval": [
+      0.593,
+      0.728
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.653,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.547,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.771,
+       "gold": 99
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.6482,
+     "r": 0.7187,
+     "f1": 0.6816,
+     "word_f1": 0.8428,
+     "chars_found": 0.974,
+     "chars_right": 0.8923,
+     "interval": [
+      0.62,
+      0.738
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.673,
+       "gold": 196
+      },
+      "ORGANIZATION": {
+       "f1": 0.577,
+       "gold": 64
+      },
+      "PERSON": {
+       "f1": 0.771,
+       "gold": 99
+      }
+     }
+    },
+    "all": {
+     "p": 0.6307,
+     "r": 0.6623,
+     "f1": 0.6461,
+     "word_f1": 0.8031,
+     "chars_found": 0.9237,
+     "chars_right": 0.8888,
+     "interval": [
+      0.575,
+      0.712
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.0,
+       "gold": 22
+      },
+      "LOCATION": {
+       "f1": 0.653,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.547,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.771,
+       "gold": 99
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.6482,
+     "r": 0.6772,
+     "f1": 0.6624,
+     "word_f1": 0.819,
+     "chars_found": 0.9289,
+     "chars_right": 0.8923,
+     "interval": [
+      0.6,
+      0.722
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.0,
+       "gold": 22
+      },
+      "LOCATION": {
+       "f1": 0.673,
+       "gold": 196
+      },
+      "ORGANIZATION": {
+       "f1": 0.577,
+       "gold": 64
+      },
+      "PERSON": {
+       "f1": 0.771,
+       "gold": 99
+      }
+     }
+    }
+   },
+   "government": {
+    "names": {
+     "p": 0.4791,
+     "r": 0.6023,
+     "f1": 0.5337,
+     "word_f1": 0.6062,
+     "chars_found": 0.9138,
+     "chars_right": 0.8031,
+     "interval": [
+      0.419,
+      0.647
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.361,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.466,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.794,
+       "gold": 61
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.5116,
+     "r": 0.6286,
+     "f1": 0.5641,
+     "word_f1": 0.6359,
+     "chars_found": 0.9162,
+     "chars_right": 0.82,
+     "interval": [
+      0.449,
+      0.683
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.397,
+       "gold": 65
+      },
+      "ORGANIZATION": {
+       "f1": 0.525,
+       "gold": 49
+      },
+      "PERSON": {
+       "f1": 0.794,
+       "gold": 61
+      }
+     }
+    },
+    "all": {
+     "p": 0.5119,
+     "r": 0.4936,
+     "f1": 0.5026,
+     "word_f1": 0.5959,
+     "chars_found": 0.7718,
+     "chars_right": 0.8661,
+     "interval": [
+      0.422,
+      0.583
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.417,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.0,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.592,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.125,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.361,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.466,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.794,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.797,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.5303,
+     "r": 0.5063,
+     "f1": 0.518,
+     "word_f1": 0.6108,
+     "chars_found": 0.7742,
+     "chars_right": 0.8762,
+     "interval": [
+      0.438,
+      0.599
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.417,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.0,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.592,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.125,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.397,
+       "gold": 65
+      },
+      "ORGANIZATION": {
+       "f1": 0.525,
+       "gold": 49
+      },
+      "PERSON": {
+       "f1": 0.794,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.797,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    }
+   }
+  },
+  {
+   "name": "WikiNEural multilingual NER",
+   "maker": "Babelscape",
+   "link": "https://huggingface.co/Babelscape/wikineural-multilingual-ner",
+   "weights": 177269769,
+   "read": "per token",
+   "news": {
+    "names": {
+     "p": 0.445,
+     "r": 0.465,
+     "f1": 0.4548,
+     "word_f1": 0.5644,
+     "chars_found": 0.649,
+     "chars_right": 0.8541,
+     "interval": [
+      0.368,
+      0.54
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.46,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.254,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.563,
+       "gold": 99
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.4772,
+     "r": 0.4904,
+     "f1": 0.4837,
+     "word_f1": 0.5978,
+     "chars_found": 0.6538,
+     "chars_right": 0.8591,
+     "interval": [
+      0.393,
+      0.574
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.486,
+       "gold": 197
+      },
+      "ORGANIZATION": {
+       "f1": 0.344,
+       "gold": 67
+      },
+      "PERSON": {
+       "f1": 0.563,
+       "gold": 99
+      }
+     }
+    },
+    "all": {
+     "p": 0.445,
+     "r": 0.438,
+     "f1": 0.4415,
+     "word_f1": 0.5479,
+     "chars_found": 0.619,
+     "chars_right": 0.8541,
+     "interval": [
+      0.356,
+      0.524
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.0,
+       "gold": 22
+      },
+      "LOCATION": {
+       "f1": 0.46,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.254,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.563,
+       "gold": 99
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.4772,
+     "r": 0.4623,
+     "f1": 0.4697,
+     "word_f1": 0.5805,
+     "chars_found": 0.6236,
+     "chars_right": 0.8591,
+     "interval": [
+      0.381,
+      0.559
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.0,
+       "gold": 22
+      },
+      "LOCATION": {
+       "f1": 0.486,
+       "gold": 197
+      },
+      "ORGANIZATION": {
+       "f1": 0.344,
+       "gold": 67
+      },
+      "PERSON": {
+       "f1": 0.563,
+       "gold": 99
+      }
+     }
+    }
+   },
+   "government": {
+    "names": {
+     "p": 0.3522,
+     "r": 0.3275,
+     "f1": 0.3394,
+     "word_f1": 0.5394,
+     "chars_found": 0.6142,
+     "chars_right": 0.8823,
+     "interval": [
+      0.227,
+      0.448
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.382,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.219,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.351,
+       "gold": 61
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.3774,
+     "r": 0.3448,
+     "f1": 0.3604,
+     "word_f1": 0.5646,
+     "chars_found": 0.615,
+     "chars_right": 0.8823,
+     "interval": [
+      0.242,
+      0.471
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.41,
+       "gold": 67
+      },
+      "ORGANIZATION": {
+       "f1": 0.254,
+       "gold": 46
+      },
+      "PERSON": {
+       "f1": 0.351,
+       "gold": 61
+      }
+     }
+    },
+    "all": {
+     "p": 0.3522,
+     "r": 0.1425,
+     "f1": 0.2029,
+     "word_f1": 0.3225,
+     "chars_found": 0.2916,
+     "chars_right": 0.8915,
+     "interval": [
+      0.136,
+      0.272
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.0,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.382,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.219,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.351,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.3774,
+     "r": 0.1515,
+     "f1": 0.2162,
+     "word_f1": 0.3387,
+     "chars_found": 0.2917,
+     "chars_right": 0.8915,
+     "interval": [
+      0.144,
+      0.283
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.0,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.41,
+       "gold": 67
+      },
+      "ORGANIZATION": {
+       "f1": 0.254,
+       "gold": 46
+      },
+      "PERSON": {
+       "f1": 0.351,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    }
+   }
+  },
+  {
+   "name": "mBERT Nepali NER",
+   "maker": "Saugatkafley",
+   "link": "https://huggingface.co/Saugatkafley/mbert-Nepali-NER",
+   "weights": 177271307,
+   "read": "per token",
+   "news": {
+    "names": {
+     "p": 0.3793,
+     "r": 0.3081,
+     "f1": 0.34,
+     "word_f1": 0.677,
+     "chars_found": 0.7699,
+     "chars_right": 0.8599,
+     "interval": [
+      0.25,
+      0.442
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.396,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.229,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.328,
+       "gold": 99
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.4103,
+     "r": 0.3352,
+     "f1": 0.369,
+     "word_f1": 0.6977,
+     "chars_found": 0.7754,
+     "chars_right": 0.8614,
+     "interval": [
+      0.278,
+      0.471
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.435,
+       "gold": 188
+      },
+      "ORGANIZATION": {
+       "f1": 0.28,
+       "gold": 68
+      },
+      "PERSON": {
+       "f1": 0.328,
+       "gold": 99
+      }
+     }
+    },
+    "all": {
+     "p": 0.3585,
+     "r": 0.3377,
+     "f1": 0.3478,
+     "word_f1": 0.644,
+     "chars_found": 0.7795,
+     "chars_right": 0.7733,
+     "interval": [
+      0.261,
+      0.444
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.424,
+       "gold": 22
+      },
+      "EVENT": {
+       "f1": 0.0,
+       "gold": 0
+      },
+      "LOCATION": {
+       "f1": 0.396,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.229,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.328,
+       "gold": 99
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.3838,
+     "r": 0.3634,
+     "f1": 0.3733,
+     "word_f1": 0.6621,
+     "chars_found": 0.7848,
+     "chars_right": 0.7746,
+     "interval": [
+      0.286,
+      0.469
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.424,
+       "gold": 22
+      },
+      "EVENT": {
+       "f1": 0.0,
+       "gold": 0
+      },
+      "LOCATION": {
+       "f1": 0.435,
+       "gold": 188
+      },
+      "ORGANIZATION": {
+       "f1": 0.28,
+       "gold": 68
+      },
+      "PERSON": {
+       "f1": 0.328,
+       "gold": 99
+      }
+     }
+    }
+   },
+   "government": {
+    "names": {
+     "p": 0.4578,
+     "r": 0.4444,
+     "f1": 0.451,
+     "word_f1": 0.6172,
+     "chars_found": 0.7879,
+     "chars_right": 0.8256,
+     "interval": [
+      0.359,
+      0.557
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.456,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.327,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.555,
+       "gold": 61
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.4819,
+     "r": 0.4598,
+     "f1": 0.4706,
+     "word_f1": 0.6353,
+     "chars_found": 0.7908,
+     "chars_right": 0.8403,
+     "interval": [
+      0.38,
+      0.579
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.46,
+       "gold": 62
+      },
+      "ORGANIZATION": {
+       "f1": 0.389,
+       "gold": 51
+      },
+      "PERSON": {
+       "f1": 0.555,
+       "gold": 61
+      }
+     }
+    },
+    "all": {
+     "p": 0.4112,
+     "r": 0.2061,
+     "f1": 0.2746,
+     "word_f1": 0.3763,
+     "chars_found": 0.4059,
+     "chars_right": 0.8305,
+     "interval": [
+      0.215,
+      0.335
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.081,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "EVENT": {
+       "f1": 0.0,
+       "gold": 0
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.456,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.327,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.555,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.4416,
+     "r": 0.2191,
+     "f1": 0.2929,
+     "word_f1": 0.3939,
+     "chars_found": 0.4107,
+     "chars_right": 0.8457,
+     "interval": [
+      0.232,
+      0.356
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.112,
+       "gold": 96
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "EVENT": {
+       "f1": 0.0,
+       "gold": 0
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.46,
+       "gold": 62
+      },
+      "ORGANIZATION": {
+       "f1": 0.389,
+       "gold": 51
+      },
+      "PERSON": {
+       "f1": 0.555,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    }
+   }
+  },
+  {
+   "name": "Nepali NER RoBERTa",
+   "maker": "meutsabdahal",
+   "link": "https://huggingface.co/meutsabdahal/nepali-ner-roberta",
+   "weights": 124056587,
+   "read": "per token",
+   "news": {
+    "names": {
+     "p": 0.352,
+     "r": 0.2997,
+     "f1": 0.3238,
+     "word_f1": 0.7837,
+     "chars_found": 0.8348,
+     "chars_right": 0.8974,
+     "interval": [
+      0.282,
+      0.368
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.419,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.205,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.236,
+       "gold": 99
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.3684,
+     "r": 0.3155,
+     "f1": 0.3399,
+     "word_f1": 0.7982,
+     "chars_found": 0.8415,
+     "chars_right": 0.8983,
+     "interval": [
+      0.297,
+      0.383
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.451,
+       "gold": 191
+      },
+      "ORGANIZATION": {
+       "f1": 0.205,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.236,
+       "gold": 99
+      }
+     }
+    },
+    "all": {
+     "p": 0.32,
+     "r": 0.3166,
+     "f1": 0.3183,
+     "word_f1": 0.7321,
+     "chars_found": 0.8445,
+     "chars_right": 0.7954,
+     "interval": [
+      0.275,
+      0.366
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.317,
+       "gold": 22
+      },
+      "EVENT": {
+       "f1": 0.0,
+       "gold": 0
+      },
+      "LOCATION": {
+       "f1": 0.419,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.205,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.236,
+       "gold": 99
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.3333,
+     "r": 0.3316,
+     "f1": 0.3324,
+     "word_f1": 0.7447,
+     "chars_found": 0.8509,
+     "chars_right": 0.7962,
+     "interval": [
+      0.289,
+      0.377
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.317,
+       "gold": 22
+      },
+      "EVENT": {
+       "f1": 0.0,
+       "gold": 0
+      },
+      "LOCATION": {
+       "f1": 0.451,
+       "gold": 191
+      },
+      "ORGANIZATION": {
+       "f1": 0.205,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.236,
+       "gold": 99
+      }
+     }
+    }
+   },
+   "government": {
+    "names": {
+     "p": 0.5804,
+     "r": 0.4854,
+     "f1": 0.5287,
+     "word_f1": 0.6943,
+     "chars_found": 0.7661,
+     "chars_right": 0.9457,
+     "interval": [
+      0.445,
+      0.616
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.365,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.235,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.864,
+       "gold": 61
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.5874,
+     "r": 0.4941,
+     "f1": 0.5367,
+     "word_f1": 0.7029,
+     "chars_found": 0.7661,
+     "chars_right": 0.9457,
+     "interval": [
+      0.453,
+      0.621
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.369,
+       "gold": 62
+      },
+      "ORGANIZATION": {
+       "f1": 0.259,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.864,
+       "gold": 61
+      }
+     }
+    },
+    "all": {
+     "p": 0.5056,
+     "r": 0.2316,
+     "f1": 0.3176,
+     "word_f1": 0.4119,
+     "chars_found": 0.3948,
+     "chars_right": 0.9112,
+     "interval": [
+      0.26,
+      0.373
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.121,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.365,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.235,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.864,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.5278,
+     "r": 0.2417,
+     "f1": 0.3316,
+     "word_f1": 0.4258,
+     "chars_found": 0.3963,
+     "chars_right": 0.913,
+     "interval": [
+      0.279,
+      0.383
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.165,
+       "gold": 96
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.369,
+       "gold": 62
+      },
+      "ORGANIZATION": {
+       "f1": 0.259,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.864,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    }
+   }
+  },
+  {
+   "name": "Piiranha v1",
+   "maker": "iiiorg",
+   "link": "https://huggingface.co/iiiorg/piiranha-v1-detect-personal-information",
+   "weights": 278232594,
+   "read": "per token",
+   "news": {
+    "names": {
+     "p": 0.4128,
+     "r": 0.1989,
+     "f1": 0.2684,
+     "word_f1": 0.344,
+     "chars_found": 0.4205,
+     "chars_right": 0.9334,
+     "interval": [
+      0.205,
+      0.336
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.339,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.0,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.238,
+       "gold": 99
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.4186,
+     "r": 0.2017,
+     "f1": 0.2722,
+     "word_f1": 0.3478,
+     "chars_found": 0.4213,
+     "chars_right": 0.9334,
+     "interval": [
+      0.209,
+      0.34
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.345,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.0,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.238,
+       "gold": 99
+      }
+     }
+    },
+    "all": {
+     "p": 0.4128,
+     "r": 0.1873,
+     "f1": 0.2577,
+     "word_f1": 0.3303,
+     "chars_found": 0.4011,
+     "chars_right": 0.9334,
+     "interval": [
+      0.197,
+      0.323
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.0,
+       "gold": 22
+      },
+      "LOCATION": {
+       "f1": 0.339,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.0,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.238,
+       "gold": 99
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.4186,
+     "r": 0.19,
+     "f1": 0.2613,
+     "word_f1": 0.3339,
+     "chars_found": 0.4018,
+     "chars_right": 0.9334,
+     "interval": [
+      0.199,
+      0.328
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.0,
+       "gold": 22
+      },
+      "LOCATION": {
+       "f1": 0.345,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.0,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.238,
+       "gold": 99
+      }
+     }
+    }
+   },
+   "government": {
+    "names": {
+     "p": 0.3878,
+     "r": 0.2222,
+     "f1": 0.2825,
+     "word_f1": 0.3494,
+     "chars_found": 0.3466,
+     "chars_right": 0.8512,
+     "interval": [
+      0.174,
+      0.38
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.482,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.0,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.118,
+       "gold": 61
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.4082,
+     "r": 0.2312,
+     "f1": 0.2952,
+     "word_f1": 0.3616,
+     "chars_found": 0.3467,
+     "chars_right": 0.8512,
+     "interval": [
+      0.186,
+      0.392
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.504,
+       "gold": 65
+      },
+      "ORGANIZATION": {
+       "f1": 0.0,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.118,
+       "gold": 61
+      }
+     }
+    },
+    "all": {
+     "p": 0.3878,
+     "r": 0.0967,
+     "f1": 0.1548,
+     "word_f1": 0.1914,
+     "chars_found": 0.1692,
+     "chars_right": 0.8847,
+     "interval": [
+      0.088,
+      0.222
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.0,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.482,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.0,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.118,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.4082,
+     "r": 0.1013,
+     "f1": 0.1623,
+     "word_f1": 0.1988,
+     "chars_found": 0.1693,
+     "chars_right": 0.8847,
+     "interval": [
+      0.094,
+      0.229
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.0,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.504,
+       "gold": 65
+      },
+      "ORGANIZATION": {
+       "f1": 0.0,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.118,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    }
+   }
+  },
+  {
+   "name": "DistilBERT Nepali NER",
+   "maker": "Saugatkafley",
+   "link": "https://huggingface.co/Saugatkafley/distilbert-Nepali-NER",
+   "weights": 66371339,
+   "read": "per token",
+   "news": {
+    "names": {
+     "p": 0.0286,
+     "r": 0.056,
+     "f1": 0.0378,
+     "word_f1": 0.2763,
+     "chars_found": 0.6133,
+     "chars_right": 0.6641,
+     "interval": [
+      0.013,
+      0.064
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.043,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.013,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.056,
+       "gold": 99
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.0286,
+     "r": 0.056,
+     "f1": 0.0378,
+     "word_f1": 0.2763,
+     "chars_found": 0.6133,
+     "chars_right": 0.6641,
+     "interval": [
+      0.013,
+      0.064
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.043,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.013,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.056,
+       "gold": 99
+      }
+     }
+    },
+    "all": {
+     "p": 0.0351,
+     "r": 0.0739,
+     "f1": 0.0476,
+     "word_f1": 0.2687,
+     "chars_found": 0.6309,
+     "chars_right": 0.6229,
+     "interval": [
+      0.022,
+      0.076
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.151,
+       "gold": 22
+      },
+      "EVENT": {
+       "f1": 0.0,
+       "gold": 0
+      },
+      "LOCATION": {
+       "f1": 0.043,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.013,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.056,
+       "gold": 99
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.0351,
+     "r": 0.0739,
+     "f1": 0.0476,
+     "word_f1": 0.2687,
+     "chars_found": 0.6309,
+     "chars_right": 0.6229,
+     "interval": [
+      0.022,
+      0.076
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.151,
+       "gold": 22
+      },
+      "EVENT": {
+       "f1": 0.0,
+       "gold": 0
+      },
+      "LOCATION": {
+       "f1": 0.043,
+       "gold": 193
+      },
+      "ORGANIZATION": {
+       "f1": 0.013,
+       "gold": 65
+      },
+      "PERSON": {
+       "f1": 0.056,
+       "gold": 99
+      }
+     }
+    }
+   },
+   "government": {
+    "names": {
+     "p": 0.0179,
+     "r": 0.0292,
+     "f1": 0.0222,
+     "word_f1": 0.1289,
+     "chars_found": 0.5531,
+     "chars_right": 0.6062,
+     "interval": [
+      0.004,
+      0.05
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.0,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.022,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.038,
+       "gold": 61
+      }
+     }
+    },
+    "names_second_answers": {
+     "p": 0.0215,
+     "r": 0.0349,
+     "f1": 0.0266,
+     "word_f1": 0.1375,
+     "chars_found": 0.5531,
+     "chars_right": 0.6062,
+     "interval": [
+      0.005,
+      0.057
+     ],
+     "per_label": {
+      "LOCATION": {
+       "f1": 0.0,
+       "gold": 64
+      },
+      "ORGANIZATION": {
+       "f1": 0.034,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.038,
+       "gold": 61
+      }
+     }
+    },
+    "all": {
+     "p": 0.0462,
+     "r": 0.0356,
+     "f1": 0.0402,
+     "word_f1": 0.1121,
+     "chars_found": 0.3002,
+     "chars_right": 0.6395,
+     "interval": [
+      0.02,
+      0.064
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.151,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.0,
+       "gold": 63
+      },
+      "ORGANIZATION": {
+       "f1": 0.022,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.038,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    },
+    "all_second_answers": {
+     "p": 0.0495,
+     "r": 0.0381,
+     "f1": 0.043,
+     "word_f1": 0.1176,
+     "chars_found": 0.3002,
+     "chars_right": 0.6395,
+     "interval": [
+      0.022,
+      0.068
+     ],
+     "per_label": {
+      "ACCOUNT": {
+       "f1": 0.0,
+       "gold": 11
+      },
+      "DATE": {
+       "f1": 0.151,
+       "gold": 95
+      },
+      "EMAIL": {
+       "f1": 0.0,
+       "gold": 31
+      },
+      "ID": {
+       "f1": 0.0,
+       "gold": 4
+      },
+      "LOCATION": {
+       "f1": 0.0,
+       "gold": 64
+      },
+      "ORGANIZATION": {
+       "f1": 0.034,
+       "gold": 47
+      },
+      "PERSON": {
+       "f1": 0.038,
+       "gold": 61
+      },
+      "PHONE": {
+       "f1": 0.0,
+       "gold": 80
+      },
+      "PLATE": {
+       "f1": 0.0,
+       "gold": 1
+      }
+     }
+    }
+   }
+  }
+ ],
+ "gopya": {
+  "other_sets": {
+   "Older news": {
+    "p": 0.8758,
+    "r": 0.854,
+    "f1": 0.8648,
+    "word_f1": 0.8836,
+    "overlap_f1": 0.9293,
+    "chars_found": 0.9529,
+    "chars_right": 0.9872,
+    "gold": 322,
+    "pred": 314,
+    "per_label": {
+     "DATE": {
+      "f1": 0.878,
+      "gold": 20,
+      "chars_found": 0.984
+     },
+     "LOCATION": {
+      "f1": 0.864,
+      "gold": 149,
+      "chars_found": 0.956
+     },
+     "ORGANIZATION": {
+      "f1": 0.765,
+      "gold": 66,
+      "chars_found": 0.909
+     },
+     "PERSON": {
+      "f1": 0.939,
+      "gold": 83,
+      "chars_found": 0.992
+     },
+     "PLATE": {
+      "f1": 1.0,
+      "gold": 4,
+      "chars_found": 1.0
+     }
+    },
+    "interval": [
+     0.83,
+     0.897
+    ]
+   },
+   "Hand-written": {
+    "p": 0.8926,
+    "r": 0.8636,
+    "f1": 0.8779,
+    "word_f1": 0.8878,
+    "overlap_f1": 0.8993,
+    "chars_found": 0.9595,
+    "chars_right": 0.9669,
+    "gold": 308,
+    "pred": 298,
+    "per_label": {
+     "ACCOUNT": {
+      "f1": 0.667,
+      "gold": 5,
+      "chars_found": 1.0
+     },
+     "DATE": {
+      "f1": 0.909,
+      "gold": 16,
+      "chars_found": 0.946
+     },
+     "EMAIL": {
+      "f1": 1.0,
+      "gold": 5,
+      "chars_found": 1.0
+     },
+     "ID": {
+      "f1": 0.964,
+      "gold": 29,
+      "chars_found": 1.0
+     },
+     "LOCATION": {
+      "f1": 0.92,
+      "gold": 108,
+      "chars_found": 0.964
+     },
+     "ORGANIZATION": {
+      "f1": 0.847,
+      "gold": 29,
+      "chars_found": 1.0
+     },
+     "PERSON": {
+      "f1": 0.827,
+      "gold": 104,
+      "chars_found": 0.909
+     },
+     "PHONE": {
+      "f1": 0.667,
+      "gold": 6,
+      "chars_found": 1.0
+     },
+     "PLATE": {
+      "f1": 1.0,
+      "gold": 6,
+      "chars_found": 1.0
+     }
+    }
+   },
+   "EverestNER test": {
+    "p": 0.8738,
+    "r": 0.8748,
+    "f1": 0.8743,
+    "word_f1": 0.8907,
+    "overlap_f1": 0.9194,
+    "chars_found": 0.9335,
+    "chars_right": 0.9408,
+    "gold": 2803,
+    "pred": 2806,
+    "per_label": {
+     "DATE": {
+      "f1": 0.834,
+      "gold": 151,
+      "chars_found": 0.921
+     },
+     "EMAIL": {
+      "f1": 0.0,
+      "gold": 0,
+      "chars_found": 0.0
+     },
+     "LOCATION": {
+      "f1": 0.868,
+      "gold": 845,
+      "chars_found": 0.917
+     },
+     "ORGANIZATION": {
+      "f1": 0.84,
+      "gold": 693,
+      "chars_found": 0.926
+     },
+     "PERSON": {
+      "f1": 0.908,
+      "gold": 1114,
+      "chars_found": 0.953
+     },
+     "PHONE": {
+      "f1": 0.0,
+      "gold": 0,
+      "chars_found": 0.0
+     },
+     "PLATE": {
+      "f1": 0.0,
+      "gold": 0,
+      "chars_found": 0.0
+     }
+    }
+   },
+   "Made-up text": {
+    "p": 1.0,
+    "r": 0.9999,
+    "f1": 1.0,
+    "word_f1": 1.0,
+    "overlap_f1": 1.0,
+    "chars_found": 1.0,
+    "chars_right": 1.0,
+    "gold": 12109,
+    "pred": 12108,
+    "per_label": {
+     "ACCOUNT": {
+      "f1": 1.0,
+      "gold": 270,
+      "chars_found": 1.0
+     },
+     "DATE": {
+      "f1": 1.0,
+      "gold": 971,
+      "chars_found": 1.0
+     },
+     "EMAIL": {
+      "f1": 1.0,
+      "gold": 314,
+      "chars_found": 1.0
+     },
+     "ID": {
+      "f1": 1.0,
+      "gold": 1170,
+      "chars_found": 1.0
+     },
+     "LOCATION": {
+      "f1": 1.0,
+      "gold": 3089,
+      "chars_found": 1.0
+     },
+     "ORGANIZATION": {
+      "f1": 1.0,
+      "gold": 1144,
+      "chars_found": 1.0
+     },
+     "PERSON": {
+      "f1": 1.0,
+      "gold": 3799,
+      "chars_found": 1.0
+     },
+     "PHONE": {
+      "f1": 1.0,
+      "gold": 1187,
+      "chars_found": 1.0
+     },
+     "PLATE": {
+      "f1": 1.0,
+      "gold": 165,
+      "chars_found": 1.0
+     }
+    }
+   }
+  },
+  "browser": {
+   "name": "Chromium 155, headless, WASM, no GPU",
+   "news": {
+    "f1": 0.8229,
+    "f1_accepted": 0.8503,
+    "chars_found": 0.9384,
+    "ms_1_thread": 34.2,
+    "ms_1_thread_p95": 100.3,
+    "ms_4_threads": 15.2,
+    "same_as_native": 209,
+    "texts": 215
+   },
+   "government": {
+    "f1": 0.6764,
+    "f1_accepted": 0.6957,
+    "chars_found": 0.9497,
+    "ms_1_thread": 72.6,
+    "ms_4_threads": 37.4,
+    "same_as_native": 55,
+    "texts": 75
+   },
+   "older_news": {
+    "f1": 0.8679
+   },
+   "hand_written": {
+    "f1": 0.8756
+   },
+   "everest": {
+    "f1": 0.8725
+   },
+   "session_seconds": [
+    0.4,
+    0.7
+   ],
+   "tokenizer_ms": [
+    70,
+    100
+   ],
+   "tab_megabytes": [
+    370,
+    440
+   ],
+   "empty_tab_megabytes": 152
+  },
+  "python_all_labels": {
+   "news": 0.814,
+   "news_second": 0.844,
+   "government": 0.664,
+   "older_news": 0.865,
+   "hand_written": 0.875,
+   "everest": 0.874
+  },
+  "size": {
+   "megabytes": 34.8,
+   "weights_millions": 34.4,
+   "base": "microsoft/Multilingual-MiniLM-L12-H384",
+   "vocabulary": 33067,
+   "wasm_megabytes": 2.14,
+   "wasm_megabytes_compressed": 0.71
+  },
+  "speed": {
+   "processor": "Intel Core i5-13420H, a laptop processor",
+   "ms_per_sentence_1_thread": 12.3,
+   "ms_per_sentence_4_threads": 6.2,
+   "tokens_per_sentence": 27.4
+  },
+  "government_first_score": {
+   "f1": 0.613,
+   "interval": [
+    0.556,
+    0.668
+   ],
+   "chars_found": 0.953
+  },
+  "three_seeds_on_news": [
+   0.8158,
+   0.8198,
+   0.8132
+  ]
+ }
+}

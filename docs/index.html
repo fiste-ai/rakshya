@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gopya: Nepali PII detection in the browser, by Fiste AI</title>
+  <meta name="description" content="Gopya (गोप्य) finds personal data in Nepali text: names, places, phone numbers, citizenship numbers and more. A 35 MB model that runs in your browser, so the text never leaves the page. By Fiste AI.">
+  <link rel="canonical" href="https://fiste-ai.github.io/gopya/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Fiste AI">
+  <meta name="keywords" content="Gopya, गोप्य, Nepali PII detection, Nepali named entity recognition, redaction, anonymisation, Fiste AI">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // Light or dark: what the reader chose last time, or else what their system uses. Set before anything is drawn.
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("theme"); } catch (error) {}
+      if (theme !== "light" && theme !== "dark") {
+        theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fiste AI">
+  <meta property="og:title" content="Gopya: Nepali PII detection in the browser">
+  <meta property="og:description" content="Finds names, places, phone numbers and identity numbers in Nepali text. A 35 MB model that runs in your browser.">
+  <meta property="og:url" content="https://fiste-ai.github.io/gopya/">
+  <meta property="og:image" content="https://fiste-ai.github.io/assets/og-fiste.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/mark.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/avatar.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+Devanagari:wght@500;700&family=Noto+Serif+Devanagari:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script src="/assets/site.js" defer></script>
+  <style>
+    /* The demo: a box to write in, the text with what was found, and the text with it taken out. */
+    .demo textarea { display: block; width: 100%; min-height: 9.5rem; padding: 14px 16px; border: 1px solid var(--line); border-radius: 6px;
+                     background: var(--paper); color: var(--ink); font: 400 18px/1.7 var(--deva-sans); resize: vertical; }
+    .demo textarea:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+    .demo .row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 14px 0 6px; font: 500 15px/1.4 var(--sans); }
+    .demo button { padding: 10px 16px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink);
+                   font: 600 15px/1 var(--sans); cursor: pointer; }
+    .demo button:hover:not(:disabled) { border-color: var(--brand); color: var(--brand); }
+    .demo button:disabled { opacity: .55; cursor: default; }
+    .demo button.go { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+    .demo button.go:hover:not(:disabled) { border-color: var(--brand); background: var(--brand); color: var(--on-brand); }
+    .demo .told { color: var(--ink-3); }
+    .demo h3 { margin: 22px 0 8px; font: 600 14px/1 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+    .demo .out { min-height: 3.4rem; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper-2);
+                 font: 400 18px/1.9 var(--deva-sans); white-space: pre-wrap; overflow-wrap: anywhere; }
+    .demo mark { padding: 1px 5px; border-radius: 4px; background: var(--brand-soft); color: var(--ink); box-shadow: inset 0 -2px 0 var(--brand); }
+    .demo mark[data-kind="number"] { box-shadow: inset 0 -2px 0 var(--edge); }
+    .demo mark small { margin-left: 6px; font: 600 11px/1 var(--sans); letter-spacing: .03em; color: var(--ink-3); }
+    .kinds { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 6px 28px;
+             font: 400 17px/1.5 var(--serif); }
+    .kinds b { font: 600 13px/1 var(--mono); color: var(--ink-2); }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the page</a>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Fiste AI home"><img class="on-light" src="/assets/mark.svg" alt="" width="57" height="32"><img class="on-dark" src="/assets/mark-dark.svg" alt="" width="57" height="32">Fiste AI</a>
+      <nav aria-label="Main">
+        <a href="/#models">Models</a>
+        <a href="#try">Try it</a>
+        <a href="#benchmark">Benchmark</a>
+        <a href="#use">Use it</a>
+        <a href="https://huggingface.co/fiste-ai/gopya" rel="noopener">Hugging Face</a>
+        <a href="https://github.com/fiste-ai/gopya" rel="noopener">GitHub</a>
+        <button class="theme" type="button" aria-label="Use the dark theme" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M12 3.75a8.25 8.25 0 0 1 0 16.5z" fill="currentColor"/></svg></button>
+        <a class="cta keep" href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="hero">
+      <div class="wrap">
+        <div>
+          <p class="kicker"><b>Released</b> &nbsp;/&nbsp; Nepali PII detection</p>
+          <h1 lang="ne">गोप्य<small lang="en">Gopya, personal data found in Nepali text.</small></h1>
+          <p class="lede">Paste a message, a form or a news story. Gopya marks the names, places, phone numbers and identity numbers in it, and it does so inside your browser.</p>
+          <div class="actions">
+            <a class="btn" href="#try">Try it here <span aria-hidden="true">&darr;</span></a>
+            <a class="more" href="https://huggingface.co/fiste-ai/gopya" rel="noopener">Get the model</a>
+            <a class="more" href="https://github.com/fiste-ai/gopya" rel="noopener">Code</a>
+          </div>
+        </div>
+        <div class="plate">
+          <p class="state"><span class="dot" aria-hidden="true"></span>Version 0.1, 13 November 2026</p>
+          <dl class="glance">
+            <div><dt>35 MB</dt><dd>the whole model, small enough for a web page</dd></div>
+            <div><dt>94%</dt><dd>of the personal data in Nepali news it had not seen, counted in characters</dd></div>
+          </dl>
+          <p class="fine">Free for research and other non-commercial use. It misses some personal data, so read the result before you rely on it.</p>
+        </div>
+      </div>
+      <div class="range" aria-hidden="true"></div>
+    </div>
+
+    <div class="wrap">
+      <section class="section demo" id="try" aria-labelledby="try-title">
+        <h2 class="label" id="try-title">Try it</h2>
+        <p class="note">The model and the rules run in this page. Your text is not sent anywhere.</p>
+        <textarea id="text" lang="ne" spellcheck="false" aria-label="Text to check">मेरो नाम सुजन श्रेष्ठ हो, म पोखरा महानगरपालिका-८ मा बस्छु। नागरिकता नं. २७-०१-७५-०५६७८, फोन ९८४१२३४५६७, इमेल sujan.shrestha@example.com। हिजो नबिल बैंकको खाता नम्बर ०१२००१७५००४५६ मा पैसा आयो।</textarea>
+        <div class="row">
+          <button class="go" id="go" type="button" disabled>Find personal data</button>
+          <button id="sample" type="button">Another example</button>
+          <span class="told" id="status" role="status">Loading the model, 35 MB&hellip;</span>
+        </div>
+        <h3>Found</h3>
+        <div class="out" id="marked" lang="ne"></div>
+        <h3>With it taken out</h3>
+        <div class="out" id="redacted" lang="ne"></div>
+      </section>
+
+      <section class="section" id="finds" aria-labelledby="finds-title">
+        <h2 class="label" id="finds-title">What it finds</h2>
+        <ul class="kinds">
+          <li><b>PERSON</b> names of people</li>
+          <li><b>LOCATION</b> places and addresses</li>
+          <li><b>ORGANIZATION</b> offices, companies, parties</li>
+          <li><b>DATE</b> days, months and years</li>
+          <li><b>PHONE</b> mobile and landline numbers</li>
+          <li><b>EMAIL</b> e-mail addresses</li>
+          <li><b>CITIZENSHIP_NO</b> citizenship certificate numbers</li>
+          <li><b>NATIONAL_ID</b> national identity numbers</li>
+          <li><b>PAN</b> permanent account numbers</li>
+          <li><b>PASSPORT_NO</b> passport numbers</li>
+          <li><b>LICENSE_NO</b> driving licence numbers</li>
+          <li><b>VOTER_ID</b> voter card numbers</li>
+          <li><b>BANK_ACCOUNT</b> bank account numbers</li>
+          <li><b>VEHICLE_PLATE</b> number plates</li>
+        </ul>
+        <p class="note">It reads Devanagari and Nepali written in Latin letters, with digits of either kind. It was tested mostly on Devanagari.</p>
+      </section>
+
+      <section class="section" id="benchmark" aria-labelledby="benchmark-title">
+        <h2 class="label" id="benchmark-title">Benchmark</h2>
+        <p class="note">Names of people, places and organisations in 215 sentences from 43 Nepali news stories of November 2026, which no system had seen. Higher is better.</p>
+<div class="scroll"><table class="scores">
+<thead><tr><th>Model</th><th>Weights</th><th>Exact</th><th>Whole words</th><th>Characters found</th></tr></thead>
+<tbody>
+<tr class="ours"><th scope="row"><a href="https://huggingface.co/fiste-ai/gopya" rel="noopener">Gopya 0.1</a></th><td>34M</td><td><b>0.81</b></td><td><b>0.83</b></td><td>93%</td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/Davlan/xlm-roberta-base-ner-hrl" rel="noopener">XLM-R base NER HRL</a> <small>Davlan</small></th><td>277M</td><td>0.70</td><td>0.81</td><td>89%</td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/bardsai/eu-pii-anonimization-multilang" rel="noopener">EU PII anonymisation</a> <small>bards.ai</small></th><td>278M</td><td>0.66</td><td><b>0.83</b></td><td><b>97%</b></td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/Babelscape/wikineural-multilingual-ner" rel="noopener">WikiNEural multilingual NER</a> <small>Babelscape</small></th><td>177M</td><td>0.45</td><td>0.56</td><td>65%</td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/Saugatkafley/mbert-Nepali-NER" rel="noopener">mBERT Nepali NER</a> <small>Saugatkafley</small></th><td>177M</td><td>0.34</td><td>0.68</td><td>77%</td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/meutsabdahal/nepali-ner-roberta" rel="noopener">Nepali NER RoBERTa</a> <small>meutsabdahal</small></th><td>124M</td><td>0.32</td><td>0.78</td><td>83%</td></tr>
+</tbody>
+</table></div>
+        <p class="note">Exact: start, end and label all right. Whole words: the same after every span is widened to whole words, which forgives a case marker left on a name. Characters found: the share of the characters of names inside any span found.</p>
+        <p class="note">The labels were written with the help of an AI assistant and are waiting for a review by a native speaker, so the scores may move. Every system, the second test set and the method are in the <a href="https://github.com/fiste-ai/gopya/blob/main/BENCHMARK.md" rel="noopener">full benchmark</a>.</p>
+      </section>
+
+      <section class="section" id="use" aria-labelledby="use-title">
+        <h2 class="label" id="use-title">Use it</h2>
+        <p class="note">In Python, with no graphics card:</p>
+        <div class="term">
+          <div class="term-bar"><span>Python</span><button class="copy" type="button" data-copy="#commands">Copy</button></div>
+<pre><code id="commands"># pip install onnxruntime tokenizers numpy huggingface_hub
+import sys
+from huggingface_hub import snapshot_download
+folder = snapshot_download("fiste-ai/gopya")
+sys.path.insert(0, folder)
+from gopya import Gopya
+
+pii = Gopya(folder)
+pii.redact("मेरो नाम सीता थापा हो, फोन ९८४१२३४५६७।")
+# मेरो नाम [PERSON_1] हो, फोन [PHONE_1]।</code></pre>
+        </div>
+        <p class="note">In a web page, load <code>web/gopya.js</code> from the <a href="https://huggingface.co/fiste-ai/gopya" rel="noopener">model page</a>; this page is the example. Weights CC BY-NC 4.0, code MIT. It is a helper and not a guarantee: on news it misses about 6 in 100 characters of personal data, and more on text that is unlike news.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>Fiste AI, made in Nepal. &copy; 2026</p>
+      <nav aria-label="Footer">
+        <a href="/shravya/">Shravya</a>
+        <a href="/suseli/">Suseli</a>
+        <a href="/gopya/">Gopya</a>
+        <a href="/contact/">Contact</a>
+        <a href="https://huggingface.co/fiste-ai" rel="noopener">Hugging Face</a>
+        <a href="https://github.com/fiste-ai" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script type="module">
+    const RUNTIME = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/";
+    const query = new URLSearchParams(location.search);
+    const model = query.get("model") || "https://huggingface.co/fiste-ai/gopya/resolve/main";
+    const $ = (id) => document.getElementById(id);
+    const samples = [
+      $("text").value,
+      "काठमाडौं महानगरपालिका-१० बानेश्वरकी सीता कुमारी थापाले २०८१ असार १५ मा राहदानीका लागि निवेदन दिइन्। सम्पर्क: ९८०१२३४५६७।",
+      "Mero naam Ramesh Adhikari ho. Mobile 9801234567 ma call garnu, gadi ko number Ba 12 Pa 3456 ho.",
+      "स्थायी लेखा नम्बर ३०१२३४५६७ भएको हिमाल ट्रेडर्सका सञ्चालक विकास गुरुङले ललितपुरको पुल्चोकमा नयाँ शाखा खोलेका छन्।",
+    ];
+    const numbers = new Set(["PHONE", "EMAIL", "CITIZENSHIP_NO", "NATIONAL_ID", "PAN", "PASSPORT_NO", "LICENSE_NO", "VOTER_ID", "BANK_ACCOUNT", "VEHICLE_PLATE", "DATE"]);
+    let detector, megabytes, shown = 0;
+
+    async function show() {
+      const text = $("text").value;
+      const started = performance.now();
+      const { spans, redacted } = await detector.detect(text);
+      const elapsed = performance.now() - started;
+      const marked = $("marked");
+      marked.textContent = "";
+      let last = 0;
+      for (const span of spans) {
+        marked.append(text.slice(last, span.start));
+        const mark = document.createElement("mark");
+        mark.dataset.kind = numbers.has(span.label) ? "number" : "name";
+        mark.textContent = text.slice(span.start, span.end);
+        const label = document.createElement("small");
+        label.textContent = span.label;
+        mark.append(label);
+        marked.append(mark);
+        last = span.end;
+      }
+      marked.append(text.slice(last));
+      $("redacted").textContent = redacted;
+      $("status").textContent = `${spans.length} found in ${elapsed.toFixed(0)} ms, in this page. Model ${megabytes} MB.`;
+    }
+
+    try {
+      const [ort, { load }] = await Promise.all([import(RUNTIME + "ort.wasm.min.mjs"), import("./gopya.js")]);
+      detector = await load({ ort, model, runtime: RUNTIME, threads: 1 });
+      megabytes = (detector.timing.model_bytes / 1e6).toFixed(0);
+      $("go").disabled = false;
+      $("go").addEventListener("click", show);
+      $("sample").addEventListener("click", () => {
+        shown = (shown + 1) % samples.length;
+        $("text").value = samples[shown];
+        show();
+      });
+      await show();
+    } catch (error) {
+      $("status").textContent = "The model could not be loaded: " + (error.message || error);
+    }
+  </script>
+</body>
+</html>
