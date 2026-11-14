@@ -1,15 +1,15 @@
 //! Command line for checking this build against the Python code.
 //!
-//!     gopya rules                       text lines in, spans out
-//!     gopya segments                    text lines in, piece ranges out
-//!     gopya encode TOKENIZER TAGGER     text lines in, token ids and character ranges out
-//!     gopya spans TOKENIZER TAGGER      text with the tag and trim of every token in, spans out
+//!     rakshya rules                       text lines in, spans out
+//!     rakshya segments                    text lines in, piece ranges out
+//!     rakshya encode TOKENIZER TAGGER     text lines in, token ids and character ranges out
+//!     rakshya spans TOKENIZER TAGGER      text with the tag and trim of every token in, spans out
 //!
 //! Every input line is a JSON object with "text"; `spans` also needs "tag_ids" and "trims".
 //! Every output line is JSON. TOKENIZER and TAGGER are tokenizer.json and tagger.json of a model.
 
-use gopya::tagger::Tagger;
-use gopya::{rules, spans};
+use rakshya::tagger::Tagger;
+use rakshya::{rules, spans};
 use serde::Deserialize;
 use std::io::{self, BufRead, Write};
 
@@ -51,7 +51,7 @@ fn main() {
                 let (_, offsets) = tagger.encode(&line.text).expect("encode");
                 serde_json::to_string(&tagger.spans(&line.text, &offsets, &line.tag_ids, &line.trims))
             }
-            _ => panic!("usage: gopya rules | segments | encode TOKENIZER TAGGER | spans TOKENIZER TAGGER"),
+            _ => panic!("usage: rakshya rules | segments | encode TOKENIZER TAGGER | spans TOKENIZER TAGGER"),
         };
         writeln!(out, "{}", answer.unwrap()).unwrap();
     }

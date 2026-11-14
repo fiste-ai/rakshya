@@ -1,4 +1,4 @@
-//! Character spans from token tags. See `gopya/spans.py`.
+//! Character spans from token tags. See `rakshya/spans.py`.
 
 use crate::Span;
 use regex::Regex;
@@ -7,8 +7,12 @@ use std::sync::OnceLock;
 pub const SENTENCE_END: &str = "।?!";
 pub const SPACE: &str = " \t\r\n\u{a0}";
 const NAMES: [&str; 3] = ["PERSON", "LOCATION", "ORGANIZATION"];
-const NUMBERS: [&str; 8] =
-    ["CITIZENSHIP_NO", "NATIONAL_ID", "PAN", "PASSPORT_NO", "LICENSE_NO", "VOTER_ID", "BANK_ACCOUNT", "PHONE"];
+#[rustfmt::skip]
+const NUMBERS: [&str; 9] = [
+    "CITIZENSHIP_NO", "NATIONAL_ID", "TAX_ID", "PASSPORT_NO", "LICENSE_NO", "VOTER_ID", "BANK_ACCOUNT", "CARD_NUMBER", "PHONE",
+];
+/// Release 0.1 called the tax number PAN. A model that still does is read under the new name.
+const ALIASES: [(&str, &str); 1] = [("PAN", "TAX_ID")];
 
 /// A Latin or a Devanagari digit.
 pub fn is_digit(ch: char) -> bool {
@@ -160,6 +164,10 @@ pub fn plausible(value: &[char], label: &str) -> bool {
     match label {
         "VEHICLE_PLATE" => digits >= 2 && value.iter().any(|&ch| in_word(ch)),
         "DATE" => digits > 0 && !(value.contains(&':') && value.iter().all(|&ch| is_digit(ch) || ch == ':')),
+        "ID_NUMBER" => digits >= 2,
+        "IP_ADDRESS" => digits > 0 && (value.contains(&'.') || value.contains(&':')),
+        "UPI_ID" => value.contains(&'@'),
+        "SECRET" | "USERNAME" => value.len() >= 3,
         _ => true,
     }
 }
@@ -243,4 +251,20 @@ pub fn redact(text: &[char], spans: &[Span]) -> String {
     }
     out.extend(text[last..].iter());
     out
+}
+
+/// The current name of a label.
+pub fn canonical(label: &str) -> &str {
+    ALIASES.iter().find(|(old, _)| *old == label).map_or(label, |(_, new)| new)
+}
+
+/// The tags of a model with these labels. A label under an old name is read under its current one.
+pub fn tag_names(labels: &[String]) -> Vec<String> {
+    let mut tags = vec!["O".to_string()];
+    for label in labels {
+        let label = canonical(label);
+        tags.push(format!("B-{label}"));
+        tags.push(format!("I-{label}"));
+    }
+    tags
 }

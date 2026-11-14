@@ -1,0 +1,32 @@
+{
+  "name": "rakshya",
+  "version": "0.2.0",
+  "description": "Find personal information in Nepali, romanised Nepali and English text: rules and a small tagger, runs in the browser.",
+  "type": "module",
+  "main": "rakshya.js",
+  "exports": {
+    ".": "./rakshya.js"
+  },
+  "files": [
+    "rakshya.js",
+    "pkg/rakshya.js",
+    "pkg/rakshya_bg.wasm"
+  ],
+  "peerDependencies": {
+    "onnxruntime-web": ">=1.20.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fiste-ai/rakshya.git"
+  },
+  "homepage": "https://github.com/fiste-ai/rakshya",
+  "keywords": [
+    "nepali",
+    "pii",
+    "privacy",
+    "redaction",
+    "wasm",
+    "onnx"
+  ]
+}

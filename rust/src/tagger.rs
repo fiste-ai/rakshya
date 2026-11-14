@@ -1,6 +1,6 @@
-//! The tokenizer and the step from the model's output to spans. See `gopya/tagger.py`.
+//! The tokenizer and the step from the model's output to spans. See `rakshya/tagger.py`.
 
-use crate::spans::{clean_offsets, decode, tidy, to_word_start};
+use crate::spans::{clean_offsets, decode, tag_names, tidy, to_word_start};
 use crate::Span;
 use serde::Deserialize;
 use tokenizers::{Tokenizer, TruncationParams};
@@ -13,7 +13,7 @@ struct Meta {
 
 pub struct Tagger {
     tokenizer: Tokenizer,
-    /// "O", then "B-" and "I-" for each label, in the order of the model's outputs.
+    /// "O", then "B-" and "I-" for each label under its current name, in the order of the model's outputs.
     pub tags: Vec<String>,
     pub max_trim: usize,
 }
@@ -37,12 +37,7 @@ impl Tagger {
         tokenizer.with_truncation(Some(truncation)).map_err(|e| e.to_string())?;
         tokenizer.with_padding(None);
         let meta: Meta = serde_json::from_str(tagger_json).map_err(|e| e.to_string())?;
-        let mut tags = vec!["O".to_string()];
-        for label in &meta.labels {
-            tags.push(format!("B-{label}"));
-            tags.push(format!("I-{label}"));
-        }
-        Ok(Tagger { tokenizer, tags, max_trim: meta.max_trim })
+        Ok(Tagger { tokenizer, tags: tag_names(&meta.labels), max_trim: meta.max_trim })
     }
 
     /// Token ids and the character range of each token.

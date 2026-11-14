@@ -1,18 +1,18 @@
-/* @ts-self-types="./gopya.d.ts" */
+/* @ts-self-types="./rakshya.d.ts" */
 
 /**
  * The tokenizer and labels of one model.
  */
-export class Gopya {
+export class Rakshya {
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        GopyaFinalization.unregister(this);
+        RakshyaFinalization.unregister(this);
         return ptr;
     }
     free() {
         const ptr = this.__destroy_into_raw();
-        wasm.__wbg_gopya_free(ptr, 0);
+        wasm.__wbg_rakshya_free(ptr, 0);
     }
     /**
      * `tokenizer_json` and `tagger_json` are the text of those two files in the model folder.
@@ -31,12 +31,12 @@ export class Gopya {
             if (ptr0) { wasm.__wbindgen_free(ptr0, len0 * 1, 1); }
             throw e;
         }
-        const ret = wasm.gopya_new(ptr0, len0, ptr1, len1);
+        const ret = wasm.rakshya_new(ptr0, len0, ptr1, len1);
         if (ret[2]) {
             throw takeFromExternrefTable0(ret[1]);
         }
         this.__wbg_ptr = ret[0];
-        GopyaFinalization.register(this, this.__wbg_ptr, this);
+        RakshyaFinalization.register(this, this.__wbg_ptr, this);
         return this;
     }
     /**
@@ -47,11 +47,11 @@ export class Gopya {
     start(text) {
         const ptr0 = passStringToWasm0(text, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.gopya_start(this.__wbg_ptr, ptr0, len0);
+        const ret = wasm.rakshya_start(this.__wbg_ptr, ptr0, len0);
         return Run.__wrap(ret);
     }
 }
-if (Symbol.dispose) Gopya.prototype[Symbol.dispose] = Gopya.prototype.free;
+if (Symbol.dispose) Rakshya.prototype[Symbol.dispose] = Rakshya.prototype.free;
 
 /**
  * One text on its way through the model, piece by piece.
@@ -218,13 +218,13 @@ function __wbg_get_imports() {
     };
     return {
         __proto__: null,
-        "./gopya_bg.js": import0,
+        "./rakshya_bg.js": import0,
     };
 }
 
-const GopyaFinalization = (typeof FinalizationRegistry === 'undefined')
+const RakshyaFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
-    : new FinalizationRegistry(ptr => wasm.__wbg_gopya_free(ptr, 1));
+    : new FinalizationRegistry(ptr => wasm.__wbg_rakshya_free(ptr, 1));
 const RunFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_run_free(ptr, 1));
@@ -454,7 +454,7 @@ async function __wbg_init_once(module_or_path) {
     }
 
     if (module_or_path === undefined) {
-        module_or_path = new URL('gopya_bg.wasm', import.meta.url);
+        module_or_path = new URL('rakshya_bg.wasm', import.meta.url);
     }
     const imports = __wbg_get_imports();
 

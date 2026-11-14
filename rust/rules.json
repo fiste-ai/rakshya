@@ -14,8 +14,28 @@
    "(?i)(?:^|[^a-z])(?P<kw>राष्ट्रिय\\s*परिचय\\s*पत्र(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|रा\\.?\\s*प\\.?\\s*नं[.॰]?|rastriya\\s*parichaya?\\s*patra(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|national\\s*id(?:entity)?(?:\\s*card)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ni[nd]\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9])"
   ],
   [
-   "PAN",
+   "NATIONAL_ID",
+   "(?i)(?:^|[^a-z])(?P<kw>aa?dha?ar(?:\\s*card)?(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?|आधार(?:\\s*कार्ड)?(?:\\s*(?:(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|संख्या))?|uid(?:ai)?(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9x*]{4}[- ]?[0-9x*]{4}[- ]?[0-9]{4})"
+  ],
+  [
+   "NATIONAL_ID",
+   "(?i)(?:^|[^a-z])(?P<kw>(?:ssn|social\\s*security)(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9x*]{3}[- ]?[0-9x*]{2}[- ]?[0-9]{4})"
+  ],
+  [
+   "TAX_ID",
    "(?i)(?:^|[^a-z])(?P<kw>(?:पान|प्यान)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|स्थायी\\s*लेखा\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:भ्याट|मू\\.?\\s*अ\\.?\\s*कर\\s*दर्ता)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|pan(?:\\s*card)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|vat\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9]{9})"
+  ],
+  [
+   "TAX_ID",
+   "(?i)(?:^|[^a-z])(?P<kw>pan(?:\\s*card)?(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?|पैन(?:\\s*कार्ड)?(?:\\s*(?:(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|संख्या))?)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[a-z]{5} ?[0-9]{4} ?[a-z])"
+  ],
+  [
+   "TAX_ID",
+   "(?i)(?:^|[^a-z])(?P<kw>gst(?:in)?(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?|जीएसटी(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9]{2}[a-z]{5}[0-9]{4}[a-z][0-9a-z]z[0-9a-z])"
+  ],
+  [
+   "TAX_ID",
+   "(?i)(?:^|[^a-z])(?P<kw>(?:ein|tin|tax(?:payer)?\\s*id(?:entification)?)(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9]{2}-?[0-9]{7})"
   ],
   [
    "PASSPORT_NO",
@@ -26,47 +46,79 @@
    "(?i)(?:^|[^a-z])(?P<kw>(?:सवारी\\s*)?चालक\\s*अनुमति\\s*पत्र(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ला[इई]सेन्स(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:driving\\s*)?licen[sc]e(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:laisens|lisence|dl)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9]{2}-[0-9]{2,3}-[0-9]{6,8}|[0-9]{10,12})"
   ],
   [
+   "LICENSE_NO",
+   "(?i)(?:^|[^a-z])(?P<kw>(?:driving\\s*|driver'?s\\s*)?licen[sc]e(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?|dl\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ड्राइविंग\\s*लाइसेंस(?:\\s*(?:(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|संख्या))?)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[a-z]{2}[- ]?[0-9]{2}[- ]?[0-9]{4}[- ]?[0-9]{7}|[a-z]{1,2}[0-9]{6,14})"
+  ],
+  [
    "VOTER_ID",
    "(?i)(?:^|[^a-z])(?P<kw>मतदाता(?:\\s*परिचय\\s*पत्र)?(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|mat[a]?data(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|voter(?:'s)?(?:\\s*id)?(?:\\s*card)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9]{6,12})"
   ],
   [
+   "VOTER_ID",
+   "(?i)(?:^|[^a-z])(?P<kw>(?:epic|voter(?:'s)?\\s*id(?:\\s*card)?|मतदाता\\s*पहचान\\s*पत्र)(?:\\s*(?:(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|संख्या))?)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[a-z]{3}[0-9]{7})"
+  ],
+  [
    "BANK_ACCOUNT",
-   "(?i)(?:^|[^a-z])(?P<kw>(?:बैंक\\s*)?खाता(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|khata(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:bank\\s*)?(?:account|acc(?:t|ount)?|a/c|ac)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9](?:-?[0-9]){8,19})"
+   "(?i)(?:^|[^a-z])(?P<kw>(?:बैंक\\s*)?खाता(?:\\s*को|\\s*ko)?\\s*(?:(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|संख्या)|khata(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:bank\\s*)?(?:account|acc(?:t|ount)?|a/c|ac)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9](?:-?[0-9]){6,19})"
+  ],
+  [
+   "CARD_NUMBER",
+   "(?i)(?:^|[^a-z])(?P<kw>(?:credit|debit|atm|visa|master|payment|क्रेडिट|डेबिट|एटीएम)\\s*(?:card|कार्ड)(?:\\s*(?:(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|संख्या))?|(?:card|कार्ड)\\s*(?:(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|संख्या))(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9x*]{4}(?:[- ]?[0-9x*]{2,6}){2,4})"
+  ],
+  [
+   "UPI_ID",
+   "(?i)(?:^|[^a-z])(?P<kw>(?:upi|vpa|यूपीआई|युपिआई)(?:\\s*(?:id|आईडी|आइडी))?|(?:gpay|google\\s*pay|phonepe|paytm|bhim)(?:\\s*(?:upi|(?:id|आईडी|आइडी)))?)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[a-z0-9][a-z0-9._-]{1,63}@[a-z][a-z0-9]{1,30})"
   ]
  ],
  "weak": [
   [
    "CITIZENSHIP_NO",
-   "(?i)(?:^|[^a-z])(?P<kw>नागरिकता|naga?rika?ta|citizenship)(?P<gap>[\\s:=#.\\-)\\]]{0,4})(?P<val>[0-9]{1,8}(?:[-/][0-9]{1,8}){0,4})"
+   "(?i)(?:^|[^a-z])(?P<kw>नागरिकता|naga?rika?ta|citizenship)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>[0-9]{1,8}(?:[-/][0-9]{1,8}){0,4})"
   ],
   [
    "NATIONAL_ID",
-   "(?i)(?:^|[^a-z])(?P<kw>nin|nid|national\\s*id|राष्ट्रिय\\s*परिचय\\s*पत्र)(?P<gap>[\\s:=#.\\-)\\]]{0,4})(?P<val>[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9])"
+   "(?i)(?:^|[^a-z])(?P<kw>nin|nid|national\\s*id|राष्ट्रिय\\s*परिचय\\s*पत्र)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9])"
   ],
   [
-   "PAN",
-   "(?i)(?:^|[^a-z])(?P<kw>pan|vat)(?P<gap>[\\s:=#.\\-)\\]]{0,4})(?P<val>[0-9]{9})"
+   "TAX_ID",
+   "(?i)(?:^|[^a-z])(?P<kw>pan|vat)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>[0-9]{9})"
   ],
   [
    "PASSPORT_NO",
-   "(?i)(?:^|[^a-z])(?P<kw>passport|राहदानी|पासपोर्ट)(?P<gap>[\\s:=#.\\-)\\]]{0,4})(?P<val>[a-z]{1,2}[0-9]{6,8}|[0-9]{7,9})"
+   "(?i)(?:^|[^a-z])(?P<kw>passport|राहदानी|पासपोर्ट)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>[a-z]{1,2}[0-9]{6,8}|[0-9]{7,9})"
   ],
   [
    "LICENSE_NO",
-   "(?i)(?:^|[^a-z])(?P<kw>licen[sc]e|ला[इई]सेन्स)(?P<gap>[\\s:=#.\\-)\\]]{0,4})(?P<val>[0-9]{2}-[0-9]{2,3}-[0-9]{6,8}|[0-9]{10,12})"
+   "(?i)(?:^|[^a-z])(?P<kw>licen[sc]e|ला[इई]सेन्स)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>[0-9]{2}-[0-9]{2,3}-[0-9]{6,8}|[0-9]{10,12})"
   ],
   [
    "VOTER_ID",
-   "(?i)(?:^|[^a-z])(?P<kw>voter\\s*id)(?P<gap>[\\s:=#.\\-)\\]]{0,4})(?P<val>[0-9]{6,12})"
+   "(?i)(?:^|[^a-z])(?P<kw>voter\\s*id)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>[0-9]{6,12})"
   ],
   [
    "BANK_ACCOUNT",
-   "(?i)(?:^|[^a-z])(?P<kw>a/c|account|खाता)(?P<gap>[\\s:=#.\\-)\\]]{0,4})(?P<val>[0-9](?:-?[0-9]){8,19})"
+   "(?i)(?:^|[^a-z])(?P<kw>a/c|account|खाता)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>[0-9](?:-?[0-9]){6,19})"
+  ],
+  [
+   "SECRET",
+   "(?i)(?:^|[^a-z])(?P<kw>(?:otp|ओटीपी|one[- ]?time\\s*(?:password|passcode|code|pin)|verification\\s*code|login\\s*code)(?:\\s*(?:code|कोड|(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)))?(?:\\s+for\\s+[a-z]+)?)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>[0-9]{4,8})"
+  ],
+  [
+   "SECRET",
+   "(?i)(?:^|[^a-z])(?P<kw>m-?pin|t-?pin|atm\\s*pin|cvv2?|cvc2?|security\\s*code)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>[0-9]{3,6})"
+  ],
+  [
+   "SECRET",
+   "(?i)(?:^|[^a-z])(?P<kw>pin|पिन)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>[0-9]{4})"
+  ],
+  [
+   "ID_NUMBER",
+   "(?i)(?:^|[^a-z])(?P<kw>(?:employee|emp|staff|कर्मचारी)(?:(?:\\s*(?:(?:id|आईडी|आइडी)|code|संकेत))?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|\\s*(?:(?:id|आईडी|आइडी)|code))|(?:student|विद्यार्थी|छात्र)(?:(?:\\s*(?:(?:id|आईडी|आइडी)|code|संकेत))?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|\\s*(?:(?:id|आईडी|आइडी)|code))|(?:roll|रोल|symbol|सिम्बोल|enrol?lment|registration|reg\\.?|रजिष्ट्रेसन)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:customer|client|consumer|subscriber|member(?:ship)?|ग्राहक|सदस्यता)(?:(?:\\s*(?:(?:id|आईडी|आइडी)|code|संकेत))?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|\\s*(?:(?:id|आईडी|आइडी)|code))|(?:patient|बिरामी)(?:(?:\\s*(?:(?:id|आईडी|आइडी)|code|संकेत))?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|\\s*(?:(?:id|आईडी|आइडी)|code))|(?:mrn|medical\\s*record)(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?|(?:policy|बीमालेख|insurance)(?:(?:\\s*(?:(?:id|आईडी|आइडी)|code|संकेत))?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|\\s*(?:(?:id|आईडी|आइडी)|code))|imei(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?)(?P<gap>(?:\\s+is\\s+|[\\s:=#.\\-)\\]]{0,4}))(?P<val>(?:[a-z]{1,8}[-/]?){0,3}[0-9](?:[-/]?[a-z0-9]){2,22})"
   ]
  ],
- "any_keyword": "(?i)(?:नागरिकता(?:\\s*प्रमाण\\s*पत्र)?(?:\\s*को|\\s*ko)?\\s*\\(?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ना\\.?\\s*प्र\\.?\\s*(?:प\\.?\\s*)?नं[.॰]?|naga?rika?ta(?:\\s*praman\\s*patra)?(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|citizenship(?:\\s*certificate)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ctzn?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|राष्ट्रिय\\s*परिचय\\s*पत्र(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|रा\\.?\\s*प\\.?\\s*नं[.॰]?|rastriya\\s*parichaya?\\s*patra(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|national\\s*id(?:entity)?(?:\\s*card)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ni[nd]\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:पान|प्यान)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|स्थायी\\s*लेखा\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:भ्याट|मू\\.?\\s*अ\\.?\\s*कर\\s*दर्ता)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|pan(?:\\s*card)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|vat\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:राहदानी|पासपोर्ट)(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:passport|rahadani)(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:सवारी\\s*)?चालक\\s*अनुमति\\s*पत्र(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ला[इई]सेन्स(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:driving\\s*)?licen[sc]e(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:laisens|lisence|dl)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|मतदाता(?:\\s*परिचय\\s*पत्र)?(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|mat[a]?data(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|voter(?:'s)?(?:\\s*id)?(?:\\s*card)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:बैंक\\s*)?खाता(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|khata(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:bank\\s*)?(?:account|acc(?:t|ount)?|a/c|ac)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))",
+ "any_keyword": "(?i)(?:^|[^a-z])(?:नागरिकता(?:\\s*प्रमाण\\s*पत्र)?(?:\\s*को|\\s*ko)?\\s*\\(?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ना\\.?\\s*प्र\\.?\\s*(?:प\\.?\\s*)?नं[.॰]?|naga?rika?ta(?:\\s*praman\\s*patra)?(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|citizenship(?:\\s*certificate)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ctzn?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|राष्ट्रिय\\s*परिचय\\s*पत्र(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|रा\\.?\\s*प\\.?\\s*नं[.॰]?|rastriya\\s*parichaya?\\s*patra(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|national\\s*id(?:entity)?(?:\\s*card)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ni[nd]\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:पान|प्यान)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|स्थायी\\s*लेखा\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:भ्याट|मू\\.?\\s*अ\\.?\\s*कर\\s*दर्ता)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|pan(?:\\s*card)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|vat\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:राहदानी|पासपोर्ट)(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:passport|rahadani)(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:सवारी\\s*)?चालक\\s*अनुमति\\s*पत्र(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|ला[इई]सेन्स(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:driving\\s*)?licen[sc]e(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:laisens|lisence|dl)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|dl\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|मतदाता(?:\\s*परिचय\\s*पत्र)?(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|mat[a]?data(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|voter(?:'s)?(?:\\s*id)?(?:\\s*card)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|khata(?:\\s*को|\\s*ko)?\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#)|(?:bank\\s*)?(?:account|acc(?:t|ount)?|a/c|ac)\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))(?:$|[^a-z])",
  "after_year": "\\s*साल",
- "phone_gated": "(?i)(?:^|[^a-z])(?P<kw>(?:फोन|टेलिफोन|मोबाइल|मोबाईल|सम्पर्क)(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?|(?:मो|टे|फो)\\.?\\s*नं[.॰]?|(?:phone|mobile|mob|cell|tel|telephone|contact|whatsapp|viber|sampark)(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>\\+?[0-9](?:[- ]?[0-9]){6,13})",
+ "phone_gated": "(?i)(?:^|[^a-z])(?P<kw>(?:फोन|फ़ोन|टेलिफोन|मोबाइल|मोबाईल|सम्पर्क|संपर्क|दूरभाष|टोल\\s*फ्र[ीि]|नोटिस\\s*बोर्ड)(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?|(?:मो|टे|फो)\\.?\\s*नं[.॰]?|(?:phone|mobile|mob|cell|tel|telephone|contact|whatsapp|viber|sampark|fax|toll[\\s-]*free|notice\\s*board)(?:\\s*(?:नम्बर|नंबर|नम्वर|नं[.॰]?|न[.॰]|number|num\\.?|no\\.?|nambar|namber|#))?)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>\\+?[0-9](?:[- ]?[0-9]){6,13})",
  "mobile": "(?P<cc>(?:\\+|00)?977[- ]?)?(?P<n>9[678][0-9](?:[- ]?[0-9]){7})",
  "mobile_prefix": "9(?:6[0-3]|7[0-24-6]|8[0-24-68])",
  "fixed_line": "(?:1[0-6][0-9]|99[02-6])[0-9]{5}|(?:2[13-79]|3[135-8]|4[146-9]|5[135-7]|6[13-9]|7[15-9]|8[1-46-9]|9[1-7])[2-6][0-9]{5}",
@@ -74,6 +126,131 @@
  "landline": "0(?P<area>[0-9]{1,2})[- ](?P<rest>[0-9]{6,7})",
  "email": "(?i:[a-z0-9][a-z0-9._%+-]*@[a-z0-9-]+(?:\\.[a-z0-9-]+)*)\\.(?:[A-Z][a-z]+|[a-z]{2,}|[A-Z]{2,})",
  "license_shape": "[0-9]{2}-[0-9]{2}-[0-9]{8}",
+ "glued_phone": "(?i)(?P<n>(?:977-?)?9[678][0-9](?:-?[0-9]){7}|0[0-9]{1,2}-[0-9]{6,7})[a-z]",
+ "sentence_break": "[a-z]{4}\\.\\s+[A-Z]",
+ "symbol": "(?i)symbol|सिम्बोल",
+ "national": {
+  "977": [
+   8,
+   10
+  ],
+  "91": [
+   10,
+   10
+  ],
+  "1": [
+   10,
+   10
+  ],
+  "44": [
+   9,
+   10
+  ],
+  "61": [
+   9,
+   9
+  ],
+  "971": [
+   8,
+   9
+  ],
+  "974": [
+   8,
+   8
+  ],
+  "966": [
+   8,
+   9
+  ],
+  "965": [
+   8,
+   8
+  ],
+  "973": [
+   8,
+   8
+  ],
+  "968": [
+   8,
+   8
+  ],
+  "60": [
+   8,
+   10
+  ],
+  "82": [
+   8,
+   10
+  ],
+  "81": [
+   9,
+   10
+  ],
+  "86": [
+   10,
+   11
+  ],
+  "880": [
+   8,
+   10
+  ],
+  "92": [
+   9,
+   10
+  ],
+  "94": [
+   9,
+   9
+  ],
+  "975": [
+   7,
+   8
+  ],
+  "49": [
+   7,
+   11
+  ],
+  "33": [
+   9,
+   9
+  ],
+  "65": [
+   8,
+   8
+  ],
+  "852": [
+   8,
+   8
+  ],
+  "66": [
+   8,
+   9
+  ],
+  "972": [
+   8,
+   9
+  ],
+  "351": [
+   9,
+   9
+  ],
+  "48": [
+   9,
+   9
+  ],
+  "40": [
+   9,
+   9
+  ],
+  "357": [
+   8,
+   8
+  ],
+  "7": [
+   10,
+   10
+  ]
+ },
  "numeric_dates": [
   [
    "(?P<y>[0-9]{4})(?P<s1>[-/.])(?P<a>[0-9]{1,2})(?P<s2>[-/.])(?P<b>[0-9]{1,2})",
@@ -84,23 +261,164 @@
    "dmy"
   ]
  ],
- "date_gated": "(?i)(?:^|[^a-z])(?P<kw>जन्म\\s*मित[िी]|जन्ममित[िी]|मित[िी]|date\\s*of\\s*birth|d\\.?o\\.?b\\.?|janma\\s*miti|miti|date)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9]{1,4}[-/.][0-9]{1,2}[-/.][0-9]{1,4})",
+ "date_gated": "(?i)(?:^|[^a-z])(?P<kw>जन्म\\s*मित[िी]|जन्ममित[िी]|मित[िी]|जन्म\\s*तिथि|जन्मतिथि|दिनांक|तारीख|date\\s*of\\s*birth|d\\.?o\\.?b\\.?|janma\\s*miti|miti|date)(?P<gap>(?:[^0-9a-z।\\n?!][^0-9।\\n?!]{0,40}?)?)(?P<val>[0-9]{1,4}[-/.][0-9]{1,2}[-/.][0-9]{1,4})",
  "word_dates": [
-  "(?i)(?:(?:[वब]ि\\.?\\s*सं?\\.?|[वब]िक्रम\\s*सम्वत्?|सन्|ई\\.?\\s*सं\\.?|b\\.?s\\.?|a\\.?d\\.?)\\s*)?(?P<y>[0-9]{4})\\s*(?:साल\\s*)?(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|जुन|मे|मार्ग|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)\\s*(?:महिना(?:को)?\\s*)?(?P<d>[0-9]{1,2})",
-  "(?i)(?:(?:[वब]ि\\.?\\s*सं?\\.?|[वब]िक्रम\\s*सम्वत्?|सन्|ई\\.?\\s*सं\\.?|b\\.?s\\.?|a\\.?d\\.?)\\s*)?(?P<y>[0-9]{4})\\s*(?:साल\\s*)?(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)",
-  "(?i)(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|जुन|मे|मार्ग|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)\\s*(?P<d>[0-9]{1,2})(?:st|nd|rd|th)?(?:\\s*(?:गते|तारिख))?\\s*,?\\s*(?P<y>[0-9]{4})",
-  "(?i)(?P<d>[0-9]{1,2})(?:st|nd|rd|th)?\\s*(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|जुन|मे|मार्ग|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)\\s*,?\\s*(?P<y>[0-9]{4})",
-  "(?i)(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)\\s*,?\\s*(?P<y>[0-9]{4})",
-  "(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर)\\s*(?P<d>[0-9]{1,2})",
+  "(?i)(?:(?:[वब]ि\\.?\\s*सं?\\.?|[वब]िक्रम\\s*सम्वत्?|सन्|ई\\.?\\s*सं\\.?|b\\.?s\\.?|a\\.?d\\.?)\\s*)?(?P<y>[0-9]{4})\\s*(?:साल\\s*)?(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|फरवरी|फ़रवरी|अप्रैल|सितंबर|सितम्बर|अक्टूबर|अक्तूबर|नवंबर|नवम्बर|दिसंबर|दिसम्बर|जुन|जून|मे|मई|मार्ग|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)\\s*(?:महिना(?:को)?\\s*)?(?P<d>[0-9]{1,2})",
+  "(?i)(?:(?:[वब]ि\\.?\\s*सं?\\.?|[वब]िक्रम\\s*सम्वत्?|सन्|ई\\.?\\s*सं\\.?|b\\.?s\\.?|a\\.?d\\.?)\\s*)?(?P<y>[0-9]{4})\\s*(?:साल\\s*)?(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|फरवरी|फ़रवरी|अप्रैल|सितंबर|सितम्बर|अक्टूबर|अक्तूबर|नवंबर|नवम्बर|दिसंबर|दिसम्बर|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)",
+  "(?i)(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|फरवरी|फ़रवरी|अप्रैल|सितंबर|सितम्बर|अक्टूबर|अक्तूबर|नवंबर|नवम्बर|दिसंबर|दिसम्बर|जुन|जून|मे|मई|मार्ग|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)\\s*(?P<d>[0-9]{1,2})(?:st|nd|rd|th)?(?:\\s*(?:गते|तारिख))?\\s*,?\\s*(?P<y>[0-9]{4})",
+  "(?i)(?P<d>[0-9]{1,2})(?:st|nd|rd|th)?\\s*(?:of\\s+)?(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|फरवरी|फ़रवरी|अप्रैल|सितंबर|सितम्बर|अक्टूबर|अक्तूबर|नवंबर|नवम्बर|दिसंबर|दिसम्बर|जुन|जून|मे|मई|मार्ग|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)\\s*,?\\s*(?P<y>[0-9]{4})",
+  "(?i)(?:(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|फरवरी|फ़रवरी|अप्रैल|सितंबर|सितम्बर|अक्टूबर|अक्तूबर|नवंबर|नवम्बर|दिसंबर|दिसम्बर|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)|मे|मई|जून)\\s*,?\\s*(?P<y>[0-9]{4})",
+  "(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|फरवरी|फ़रवरी|अप्रैल|सितंबर|सितम्बर|अक्टूबर|अक्तूबर|नवंबर|नवम्बर|दिसंबर|दिसम्बर)\\s*(?P<d>[0-9]{1,2})",
   "(?i)(?:(?:[वब]ि\\.?\\s*सं?\\.?|[वब]िक्रम\\s*सम्वत्?|सन्|ई\\.?\\s*सं\\.?|b\\.?s\\.?|a\\.?d\\.?)\\s*)(?P<y>[0-9]{4})(?:\\s*साल)?",
-  "(?P<y>[0-9]{4})\\s*साल"
+  "(?P<y>[0-9]{4})\\s*साल",
+  "(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec)\\.?\\s(?P<d>[0-9]{1,2})(?:st|nd|rd|th)?",
+  "(?P<d>[0-9]{1,2})(?:st|nd|rd|th)?\\s(?:of\\s)?(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec)"
  ],
- "day_month": "(?P<d>[0-9]{1,2})\\s*(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर)",
+ "day_month": "(?P<d>[0-9]{1,2})\\s*(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|फरवरी|फ़रवरी|अप्रैल|सितंबर|सितम्बर|अक्टूबर|अक्तूबर|नवंबर|नवम्बर|दिसंबर|दिसम्बर)",
  "month_suffix": "(?:मा|को|का|की|देखि|सम्म|बाट|लाई|मै|कै|भित्र|अघि|पछि|तिर)+",
  "plates": [
-  "(?:मे|को|स|ज|बा|ना|ग|लु|ध|रा|भे|क|से|म)\\.?\\s?[0-9]{1,2}\\s?(?:क|च|प|ख|ज|फ|ग|झ|ब|घ|ञ|य)\\.?\\s?[0-9]{1,4}",
-  "(?i)(?:bhe|dha|me|ko|sa|ja|ba|na|ga|lu|ra|ka|se|ma)\\.?\\s?[0-9]{1,2}\\s?(?:kha|cha|pha|jha|gha|nya|ka|pa|ja|fa|ga|ba|ya)\\.?\\s?[0-9]{1,4}",
-  "(?:(?:कोशी|मधेश|बागमती|गण्डकी|लुम्बिनी|कर्णाली|सुदूरपश्चिम|सुदुरपश्चिम)\\s*प्रदेश|प्रदेश\\s*(?:नं\\.?\\s*)?[1-7]|(?:बा|को|म|ग|लु|क|सु)\\.\\s?प्र\\.)\\s*-?\\s*[0-9]{2}\\s*-\\s*[0-9]{3}\\s*(?:क|च|प|ख|ज|फ|ग|झ|ब|घ|ञ|य)\\.?\\s?[0-9]{1,4}",
-  "(?i)(?:koshi|madhesh|bagmati|gandaki|lumbini|karnali|sudurpashchim|sudurpaschim)\\s+[a-k][0-9]?\\s+[a-z]{2}\\s+[0-9]{1,4}"
- ]
+  "(?:मे|को|स|ज|बा|ना|ग|लु|ध|रा|भे|क|से|म)\\.? ?[0-9]{1,2} ?(?:क|च|प|ख|ज|फ|ग|झ|ब|घ|ञ|य)\\.? ?[0-9]{1,4}",
+  "(?i)(?:bhe|dha|me|ko|sa|ja|ba|na|ga|lu|ra|ka|se|ma)\\.? ?[0-9]{1,2} ?(?:kha|cha|pha|jha|gha|nya|ka|pa|ja|fa|ga|ba|ya)\\.? ?[0-9]{1,4}",
+  "(?:(?:कोशी|मधेश|बागमती|गण्डकी|लुम्बिनी|कर्णाली|सुदूरपश्चिम|सुदुरपश्चिम) *प्रदेश|प्रदेश *(?:नं\\.? *)?[1-7]|(?:बा|को|म|ग|लु|क|सु)\\. ?प्र\\.) *-? *[0-9]{2} *- *[0-9]{3} *(?:क|च|प|ख|ज|फ|ग|झ|ब|घ|ञ|य)\\.? ?[0-9]{1,4}",
+  "(?i)(?:koshi|madhesh|bagmati|gandaki|lumbini|karnali|sudurpashchim|sudurpaschim) +[a-k][0-9]? +[a-z]{2} +[0-9]{1,4}"
+ ],
+ "shapes": [
+  [
+   "PHONE",
+   "plus_phone",
+   2,
+   "\\+[1-9][0-9]{0,2}(?:[- .]?\\(?[0-9]{1,5}\\)?){1,6}"
+  ],
+  [
+   "PHONE",
+   "number",
+   3,
+   "(?:\\+|00)91[- ]?[6-9][0-9]{4}[- ]?[0-9]{5}"
+  ],
+  [
+   "PHONE",
+   "number",
+   3,
+   "1660[- ]?0[1-9][- ]?[0-9]{5}|1618[- ]0[0-9]{1,2}[- ][0-9]{6,7}"
+  ]
+ ],
+ "mark_shapes": [
+  [
+   "CARD_NUMBER",
+   "card",
+   2,
+   "[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}(?: [0-9]{3})?|[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}(?:-[0-9]{3})?|[0-9]{4} [0-9]{6} [0-9]{5}|[0-9]{4}-[0-9]{6}-[0-9]{5}|[0-9]{13,19}"
+  ],
+  [
+   "CARD_NUMBER",
+   "word",
+   3,
+   "(?:[Xx*•]{4}[- ]?){3}[0-9]{4}|[0-9]{4}[- ]?[0-9]{2}[Xx*•]{2}[- ]?[Xx*•]{4}[- ]?[0-9]{4}"
+  ],
+  [
+   "URL",
+   "url",
+   0,
+   "(?i)(?:https?://|ftp://|www\\.)[a-z0-9\\-._~:/?#\\[\\]@!$&'()*+,;=%]+"
+  ],
+  [
+   "URL",
+   "domain",
+   2,
+   "(?i)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?){0,4}\\.(?:(?:com|org|net|edu|gov|mil|co|ac|nic|res|name|info)\\.[a-z]{2}|com|org|net|edu|gov|mil|int)(?:[/?#][a-z0-9\\-._~:/?#\\[\\]@!$&'()*+,;=%]*)?"
+  ],
+  [
+   "URL",
+   "path_domain",
+   2,
+   "(?i)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?){0,4}\\.(?:online|store|info|link|page|site|shop|blog|news|com|org|net|edu|gov|mil|int|app|dev|xyz|biz|np|in|uk|us|au|ca|de|fr|jp|cn|ru|br|bd|pk|lk|bt|sg|hk|nz|za|ae|ch|nl|se|es|eu|me|ly|be|io|ai|co|gg|tv|cc|to)/[a-z0-9\\-._~:/?#\\[\\]@!$&'()*+,;=%]+"
+  ],
+  [
+   "USERNAME",
+   "handle",
+   2,
+   "@[A-Za-z0-9_](?:[A-Za-z0-9_.]{0,28}[A-Za-z0-9_])?"
+  ],
+  [
+   "UPI_ID",
+   "upi",
+   2,
+   "(?i)[a-z0-9][a-z0-9._-]{1,63}@(?:jupiteraxis|centralbank|okhdfcbank|barodampay|yesbankltd|freecharge|indianbank|timecosmos|wahdfcbank|okbizaxis|unionbank|idfcfirst|syndicate|hdfcbank|axisbank|postbank|citigold|idfcbank|superyes|naviaxis|tapicici|okicici|federal|yesbank|bandhan|indbank|waicici|pingpay|abfspay|equitas|pockets|myicici|imobile|allbank|okaxis|ptaxis|pthdfc|airtel|aubank|waaxis|csbpay|oksbi|paytm|ptyes|ptsbi|icici|kotak|indus|ikwik|slice|wasbi|yapl|rapl|axis|cnrb|uboi|idbi|hsbc|citi|idfc|mahb|cbin|cboi|nsdl|ratn|utbi|vijb|andb|barb|ybl|ibl|axl|upi|apl|sbi|pnb|fbl|jio|dbs|rbl|kvb|tmb|dlb|boi|uco|iob|psb|jkb|kbl|mbk|sib|dcb|obc)"
+  ],
+  [
+   "SECRET",
+   "key",
+   2,
+   "(?:AKIA|ASIA)[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{36,255}|github_pat_[A-Za-z0-9_]{22,255}|glpat-[A-Za-z0-9_-]{20,64}|sk-[A-Za-z0-9_-]{20,255}|(?:sk|pk|rk)_(?:live|test)_[0-9A-Za-z]{16,255}|xox[abeprs]-[A-Za-z0-9-]{10,255}|AIza[0-9A-Za-z_-]{35}|ya29\\.[0-9A-Za-z_-]{20,255}|hf_[A-Za-z0-9]{30,64}|npm_[A-Za-z0-9]{36}|SG\\.[A-Za-z0-9_-]{16,32}\\.[A-Za-z0-9_-]{16,64}|[0-9]{8,10}:AA[A-Za-z0-9_-]{33}|eyJ[A-Za-z0-9_-]{8,}\\.eyJ[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}|-----BEGIN [A-Z ]{0,30}PRIVATE KEY-----[\\s\\S]*?-----END [A-Z ]{0,30}PRIVATE KEY-----"
+  ],
+  [
+   "BANK_ACCOUNT",
+   "iban",
+   2,
+   "[A-Z]{2}[0-9]{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,3})?"
+  ],
+  [
+   "IP_ADDRESS",
+   "ipv4",
+   2,
+   "[0-9]{1,3}(?:\\.[0-9]{1,3}){3}"
+  ],
+  [
+   "IP_ADDRESS",
+   "ipv6",
+   2,
+   "(?i)(?:[0-9a-f]{1,4}:){7}[0-9a-f]{1,4}|(?:[0-9a-f]{1,4}:){1,7}:(?:[0-9a-f]{1,4}(?::[0-9a-f]{1,4}){0,6})?|::(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4}"
+  ],
+  [
+   "PHONE",
+   "number",
+   3,
+   "(?:\\+?1[- .]?)?(?:\\([2-9][0-9]{2}\\) ?|[2-9][0-9]{2}[- .])[2-9][0-9]{2}[- .][0-9]{4}"
+  ],
+  [
+   "NATIONAL_ID",
+   "ssn",
+   3,
+   "(?P<a>[0-9]{3})-(?P<g>[0-9]{2})-(?P<s>[0-9]{4})"
+  ],
+  [
+   "TAX_ID",
+   "word",
+   3,
+   "[0-3][0-9][A-Z]{3}[ABCFGHJLPT][A-Z][0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]"
+  ],
+  [
+   "TAX_ID",
+   "word",
+   3,
+   "[A-Z]{3}[ABCFGHJLPT][A-Z][0-9]{4}[A-Z]"
+  ],
+  [
+   "VEHICLE_PLATE",
+   "word",
+   3,
+   "(?:AN|AP|AR|AS|BR|CG|CH|DD|DL|DN|GA|GJ|HP|HR|JH|JK|KA|KL|LA|LD|MH|ML|MN|MP|MZ|NL|OD|OR|PB|PY|RJ|SK|TG|TN|TR|TS|UA|UK|UP|WB)[- ]?[0-9]{1,2}(?:[A-Z][- ])?[- ]?[A-Z]{1,3}[- ]?[0-9]{4}"
+  ],
+  [
+   "LICENSE_NO",
+   "word",
+   3,
+   "(?:AN|AP|AR|AS|BR|CG|CH|DD|DL|DN|GA|GJ|HP|HR|JH|JK|KA|KL|LA|LD|MH|ML|MN|MP|MZ|NL|OD|OR|PB|PY|RJ|SK|TG|TN|TR|TS|UA|UK|UP|WB)[- ]?[0-9]{2}[- ]?(?:19|20)[0-9]{2}[- ]?[0-9]{7}"
+  ],
+  [
+   "ID_NUMBER",
+   "mac",
+   3,
+   "(?i)[0-9a-f]{2}(?::[0-9a-f]{2}){5}|[0-9a-f]{2}(?:-[0-9a-f]{2}){5}"
+  ]
+ ],
+ "not_ip": "(?i)[^a-z](?:version|ver|v|build|release|firmware|kernel|patch|section|sec|clause|article|chapter|table|figure|fig|संस्करण|दफा|धारा|उपदफा|बुँदा|अनुसूची|तालिका|खण्ड|परिच्छेद)[\\s.:#-]*$",
+ "clock": "(?i)[0-9]{1,2}(?:[:.][0-9]{2})?(?:am|pm)",
+ "domain": "(?i)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?){0,4}\\.(?:(?:com|org|net|edu|gov|mil|co|ac|nic|res|name|info)\\.[a-z]{2}|com|org|net|edu|gov|mil|int)(?:[/?#][a-z0-9\\-._~:/?#\\[\\]@!$&'()*+,;=%]*)?",
+ "secret_gated": "(?i)(?:^|[^a-z])(?P<kw>password|passwd|pwd|passcode|पासवर्ड|पासवोर्ड|secret(?:[ _-]?key)?|api[ _-]?key|apikey|access[ _-]?(?:key|token)|auth(?:orization)?[ _-]?token|client[ _-]?secret|token)(?P<gap>\\s*[:=]\\s*|\\s+is\\s*:?\\s+)(?P<val>\\\"[^\\\"\\n]{3,80}\\\"|'[^'\\n]{3,80}'|[^\\s\\\"'<>]{3,80})",
+ "not_secret": "(?i)(?:required|incorrect|invalid|expired|wrong|reset|changed|missing|empty|null|none|nil|true|false|string|optional|hidden|redacted|unknown|your|the|not|and|for|n/a|[*x.•-]+|<[^>]*>?|\\[[^\\]]*\\]?|\\{[^}]*\\}?)",
+ "bearer": "(?:^|[^A-Za-z])[Bb]earer\\s+(?P<val>[A-Za-z0-9._~+/=-]{16,})",
+ "otp_before": "(?i)(?P<val>[0-9]{4,8})\\s+is\\s+(?:your|the)\\s+(?:otp|one[- ]?time|verification|login|security)",
+ "username_gated": "(?i)(?:^|[^a-z])(?P<kw>(?:user\\s*name|username|user\\s*id|userid|uname|login\\s*id|युजरनेम|यूजरनेम|प्रयोगकर्ता\\s*नाम)(?P<gap>\\s*[:=]\\s*)|(?:user|usr|login)=)(?P<val>@?[a-z0-9_][a-z0-9._-]{2,63})",
+ "social_gated": "(?i)(?:^|[^a-z])(?P<kw>instagram|insta|ig|twitter|telegram|tiktok|snapchat|discord|github|skype|facebook|fb)(?:\\s*(?:id|handle|username))?(?P<gap>\\s*[:=]\\s*)(?P<val>@?[a-z0-9_][a-z0-9._-]{2,31})"
 }

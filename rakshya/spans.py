@@ -7,12 +7,12 @@ range. Nepali case markers attach to the word, so a span often ends inside a tok
 
 import unicodedata
 
+from .labels import NAMES, NUMBERS, canonical
+
 STARTS = "BSU"
 MAX_TRIM = 8
 SENTENCE_END = "।?!"
 SPACE = " \t\r\n\u00a0"
-NAMES = ("PERSON", "LOCATION", "ORGANIZATION")
-NUMBERS = ("CITIZENSHIP_NO", "NATIONAL_ID", "PAN", "PASSPORT_NO", "LICENSE_NO", "VOTER_ID", "BANK_ACCOUNT", "PHONE")
 
 
 def is_digit(ch):
@@ -225,10 +225,12 @@ def plausible(value, label):
     """False for a span that cannot be personal data of the kind its label names, nor of another kind.
 
     The tagger sometimes labels a piece of a year or a time as an identifier or a date. No
-    number in the label set has fewer than four digits; a number plate has two or more and
+    number in `NUMBERS` has fewer than four digits; a number plate has two or more and
     a letter; a date has a digit and is more than a time of day. A number with the wrong
     count of digits for its label is kept, because it may be an identifier of another kind
-    and dropping it would leave it in the text.
+    and dropping it would leave it in the text. The other checks are as loose: an identity
+    number of another kind has two digits, an address of a machine has a digit and a dot or
+    a colon, a payment address has an "@", and a secret or a user name is not a single letter.
     """
     digits = sum(is_digit(ch) for ch in value)
     if label in NUMBERS:
@@ -237,6 +239,14 @@ def plausible(value, label):
         return digits >= 2 and any(in_word(ch) for ch in value)
     if label == "DATE":
         return digits > 0 and not (":" in value and all(is_digit(ch) or ch == ":" for ch in value))
+    if label == "ID_NUMBER":
+        return digits >= 2
+    if label == "IP_ADDRESS":
+        return digits > 0 and ("." in value or ":" in value)
+    if label == "UPI_ID":
+        return "@" in value
+    if label in ("SECRET", "USERNAME"):
+        return len(value) >= 3
     return True
 
 
@@ -305,16 +315,17 @@ def redact(text, spans):
 
 
 def tag_names(labels):
-    return ["O"] + [f"{prefix}-{label}" for label in labels for prefix in "BI"]
+    """The tags of a model with these labels. A label under an old name is read under its current one."""
+    return ["O"] + [f"{prefix}-{canonical(label)}" for label in labels for prefix in "BI"]
 
 
 def predict_spans(run, tags, tokenizer, texts, max_tokens=6000, max_length=512, batch=64):
     """Cut `texts` into pieces, tokenize them in batches of similar length and read the spans off the model.
 
-    With `batch=1` every piece is run on its own. The 8-bit model sets the scale of its
-    activations from the whole batch, so what it finds in a piece can change with the
-    pieces beside it; alone, a piece always gives the same answer, and the same one as in
-    the browser, which runs one piece at a time.
+    With `batch=1` every piece is run on its own, as the browser runs it. The 8-bit file of
+    release 0.1 set the scale of its activations from the whole batch, so what it found in a
+    piece could change with the pieces beside it. The file of 0.2 rounds only the weights and
+    has no such dependence, but the released runtime still runs the pieces one by one.
 
     `run(input_ids, attention_mask)` takes two integer arrays and returns, for every token,
     the index of its tag and its trim, as nested lists. Returns (plain, trimmed): the spans

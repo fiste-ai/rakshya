@@ -47,17 +47,17 @@ pub fn find(text: &str) -> String {
 
 /// The tokenizer and labels of one model.
 #[wasm_bindgen]
-pub struct Gopya {
+pub struct Rakshya {
     tagger: Rc<Tagger>,
 }
 
 #[wasm_bindgen]
-impl Gopya {
+impl Rakshya {
     /// `tokenizer_json` and `tagger_json` are the text of those two files in the model folder.
     #[wasm_bindgen(constructor)]
-    pub fn new(tokenizer_json: &str, tagger_json: &str) -> Result<Gopya, JsError> {
+    pub fn new(tokenizer_json: &str, tagger_json: &str) -> Result<Rakshya, JsError> {
         let tagger = Tagger::new(tokenizer_json.as_bytes(), tagger_json).map_err(|e| JsError::new(&e))?;
-        Ok(Gopya { tagger: Rc::new(tagger) })
+        Ok(Rakshya { tagger: Rc::new(tagger) })
     }
 
     /// Begin work on one text: run the rules and cut the text into pieces for the model.

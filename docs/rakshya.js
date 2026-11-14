@@ -3,8 +3,8 @@
 //
 //   const dist = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/";
 //   const ort = await import(dist + "ort.wasm.min.mjs");
-//   import { load } from "./gopya.js";
-//   const detector = await load({ ort, model: "https://huggingface.co/fiste-ai/gopya/resolve/main", runtime: dist });
+//   import { load } from "./rakshya.js";
+//   const detector = await load({ ort, model: "https://huggingface.co/fiste-ai/rakshya/resolve/main", runtime: dist });
 //   const { spans, redacted } = await detector.detect("मेरो नाम ... हो");
 //
 // `model` is the address of a folder with tokenizer.json, tagger.json and onnx/model_quantized.onnx, and
@@ -14,7 +14,7 @@
 // A span is { start, end, label, source }; start and end index the JavaScript string, and
 // source is "rule" or "tagger".
 
-import init, { Gopya, failure, find } from "./pkg/gopya.js";
+import init, { Rakshya, failure, find } from "./pkg/rakshya.js";
 
 export async function load({ ort, model, runtime, threads = 1 }) {
   const started = performance.now();
@@ -25,7 +25,7 @@ export async function load({ ort, model, runtime, threads = 1 }) {
     fetch(`${model}/onnx/model_quantized.onnx`).then((r) => r.arrayBuffer()),
   ]);
   const fetched = performance.now();
-  const gopya = new Gopya(tokenizer, tagger);
+  const rakshya = new Rakshya(tokenizer, tagger);
   const tokenizerReady = performance.now();
   ort.env.wasm.wasmPaths = runtime;
   ort.env.wasm.numThreads = threads;
@@ -41,19 +41,19 @@ export async function load({ ort, model, runtime, threads = 1 }) {
     model_bytes: weights.byteLength,
     tokenizer_bytes: tokenizer.length,
   };
-  return new Detector(ort, gopya, session, timing);
+  return new Detector(ort, rakshya, session, timing);
 }
 
 class Detector {
-  constructor(ort, gopya, session, timing) {
+  constructor(ort, rakshya, session, timing) {
     this.ort = ort;
-    this.gopya = gopya;
+    this.rakshya = rakshya;
     this.session = session;
     this.timing = timing;
   }
 
   async detect(text) {
-    const run = this.gopya.start(text);
+    const run = this.rakshya.start(text);
     try {
       for (let i = 0; i < run.count; i++) {
         const ids = run.encode(i);
