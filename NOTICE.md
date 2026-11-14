@@ -1,5 +1,7 @@
 # Third-party notices
 
+The code in this repository is under the MIT License (`LICENSE`). The model weights are not in this repository: they are at https://huggingface.co/fiste-ai/rakshya and https://huggingface.co/fiste-ai/rakshya-server under the Creative Commons Attribution-NonCommercial 4.0 International licence (CC BY-NC 4.0). The label files in `benchmark/labels/` are under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). What follows are the notices of what these were made from.
+
 ## The model
 
 Rakshya is fine-tuned from Multilingual-MiniLM-L12-H384 by Microsoft (https://huggingface.co/microsoft/Multilingual-MiniLM-L12-H384), with its vocabulary cut to the 48,000 pieces that Nepali, Hindi and English text use most. That model is released under the MIT License, and the notice below stays with copies and substantial portions of it.

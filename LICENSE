@@ -15,10 +15,3 @@ THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRI
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
-
-This licence covers the code in this repository: the Python package `rakshya/`, the Rust source in `rust/` and the
-page and browser module in `docs/`.
-
-The model weights are not in this repository. They are at https://huggingface.co/fiste-ai/rakshya and
-https://huggingface.co/fiste-ai/rakshya-server under the Creative Commons Attribution-NonCommercial 4.0
-International licence (CC BY-NC 4.0). See `NOTICE.md`.

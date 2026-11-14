@@ -35,7 +35,35 @@ The news comes from news sites of Nepal and, for Hindi, of India; the web pages 
 
 The labels follow a written guide, [ANNOTATION.md](ANNOTATION.md). Each set was labelled three times by an AI assistant (Claude), in separate runs that saw the guide and the texts and neither each other's labels nor the output of any system. The differences were settled against the guide, and the reason for each was written down. "Agreement of three passes" is the mean F1 between pairs of passes.
 
-The text is not published: the news belongs to its publishers, and the pages and comments hold the names and phone numbers of real people.
+The text is not published: the news belongs to its publishers, and the pages and comments hold the names and phone numbers of real people. The labels are published, without the text.
+
+## The test labels
+
+[`benchmark/labels/`](benchmark/labels) has one file for each test set. For every text it gives where the text came from, its length, the SHA-256 of its UTF-8 bytes and the labelled spans as character ranges. Where the guide accepts a second reading of a text, that reading is there as well, under `also`. A range counts Unicode code points, and its end is exclusive.
+
+[`benchmark/rebuild.py`](benchmark/rebuild.py) puts the labels back on texts that you have obtained. It keeps a text only when its hash matches, so a text that has changed is left out and named.
+
+| Set | Label file | Texts | Where the texts are |
+|---|---|---|---|
+| News, Nepali | [`real-news-v2.json`](benchmark/labels/real-news-v2.json) | 175 | news articles, each named by its address |
+| Web pages, Nepali | [`real-web-v0.json`](benchmark/labels/real-web-v0.json) | 88 | web pages, each named by its address, with the range of the piece |
+| Government pages, Nepali | [`real-gov-v1.json`](benchmark/labels/real-gov-v1.json) | 71 | [voidash/previllage-nepal-gov-corpus](https://huggingface.co/datasets/voidash/previllage-nepal-gov-corpus), `data/documents.parquet` at revision `004ce5f` |
+| Comments, Nepali in Latin letters | [`real-roman-v0.json`](benchmark/labels/real-roman-v0.json) | 300 | [Boredoom17/Nepali-Flow-Roman](https://huggingface.co/datasets/Boredoom17/Nepali-Flow-Roman), `nepali_corpus_roman.parquet` at revision `347cf23` |
+| News, English | [`real-en-v0.json`](benchmark/labels/real-en-v0.json) | 108 | news articles, each named by its address |
+| Web pages, English | [`real-enweb-v0.json`](benchmark/labels/real-enweb-v0.json) | 80 | web pages, each named by its address, with the range of the piece |
+| News, Hindi | [`real-hi-v0.json`](benchmark/labels/real-hi-v0.json) | 60 | news articles, each named by its address |
+
+The government pages and the comments were cut from public datasets, each fixed by its revision, so these two sets come back exactly: 371 of the 882 texts.
+
+```
+pip install pyarrow
+curl -LO https://huggingface.co/datasets/voidash/previllage-nepal-gov-corpus/resolve/004ce5f80a21746c9d4788434b33896f97ecc860/data/documents.parquet
+python benchmark/rebuild.py benchmark/labels/real-gov-v1.json --parquet documents.parquet
+curl -LO https://huggingface.co/datasets/Boredoom17/Nepali-Flow-Roman/resolve/347cf23f7084f7991c93329a27f9d4df01ba6ba5/nepali_corpus_roman.parquet
+python benchmark/rebuild.py benchmark/labels/real-roman-v0.json --parquet nepali_corpus_roman.parquet
+```
+
+Web pages and news articles change or go away, so the other five sets may not come back in full; the script says which texts it found. The label files are under CC BY 4.0.
 
 ## Results on all labels
 

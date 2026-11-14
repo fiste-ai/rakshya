@@ -67,6 +67,7 @@ It finds `PERSON`, `LOCATION`, `ORGANIZATION`, `DATE`, `PHONE`, `EMAIL`, `URL`, 
 | `docs/` | The demo page and the browser module `rakshya.js` |
 | `BENCHMARK.md`, `benchmark/results.json` | Every score, and what it means |
 | `ANNOTATION.md` | The guide the test labels follow: what is marked, and where a span starts and ends |
+| `benchmark/labels/`, `benchmark/rebuild.py` | The labels of the seven test sets as character ranges, without the text, and a script that puts them back on texts you have obtained. Two of the sets come back exactly from public datasets |
 
 To build the browser module again: `cd rust && cargo build --release --target wasm32-unknown-unknown --lib`, then `wasm-bindgen --target web --out-dir ../docs/pkg target/wasm32-unknown-unknown/release/rakshya.wasm` with wasm-bindgen 0.2.130.
 
@@ -79,4 +80,4 @@ To build the browser module again: `cd rust && cargo build --release --target wa
 - Identity numbers are tested mostly on made-up text. Public pages print phone numbers, e-mail addresses and the bank accounts of offices; they do not print citizenship, passport or licence numbers.
 - The test sets are small, and each comes from one kind of source.
 
-Code MIT, weights CC BY-NC 4.0; see `LICENSE` and `NOTICE.md`. Part of the training data is for non-commercial use, so there is no commercial licence for this version. Questions: [contact us](https://fiste-ai.github.io/contact/) or open an issue.
+Code MIT, weights CC BY-NC 4.0, test labels CC BY 4.0; see `LICENSE` and `NOTICE.md`. Part of the training data is for non-commercial use, so there is no commercial licence for this version. Questions: [contact us](https://fiste-ai.github.io/contact/) or open an issue.
