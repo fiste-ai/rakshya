@@ -50,12 +50,20 @@
                    font: 600 15px/1 var(--sans); cursor: pointer; }
     .demo button:hover:not(:disabled) { border-color: var(--brand); color: var(--brand); }
     .demo button:disabled { opacity: .55; cursor: default; }
-    .demo button.go { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+    .demo button.go { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-width: 12.5em;
+                      border-color: var(--ink); background: var(--ink); color: var(--paper); font-variant-numeric: tabular-nums; }
+    .demo button.busy:disabled { opacity: .88; cursor: progress; }
+    .demo .spin { display: none; flex: none; width: 13px; height: 13px; border: 2px solid currentColor; border-right-color: transparent;
+                  border-radius: 50%; animation: turn .8s linear infinite; }
+    .demo button.busy .spin { display: block; }
+    @keyframes turn { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .demo .spin { animation-duration: 2.4s; } }
     .demo button.go:hover:not(:disabled) { border-color: var(--brand); background: var(--brand); color: var(--on-brand); }
     .demo .told { color: var(--ink-3); }
     .demo h3 { margin: 22px 0 8px; font: 600 14px/1 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
     .demo .out { min-height: 3.4rem; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper-2);
                  font: 400 18px/1.9 var(--deva-sans); white-space: pre-wrap; overflow-wrap: anywhere; }
+    .demo .out:empty::before { content: attr(data-empty); color: var(--ink-3); font: 400 15px/1.9 var(--sans); }
     .demo mark { padding: 1px 5px; border-radius: 4px; background: var(--brand-soft); color: var(--ink); box-shadow: inset 0 -2px 0 var(--brand); }
     .demo mark[data-kind="number"] { box-shadow: inset 0 -2px 0 var(--edge); }
     .demo mark[data-kind="number"] small { color: var(--ink-2); }
@@ -115,14 +123,14 @@
         <p class="note">The model and the rules run in this page. Your text is not sent anywhere.</p>
         <textarea id="text" lang="ne" spellcheck="false" aria-label="Text to check">मेरो नाम सुजन श्रेष्ठ हो, म पोखरा महानगरपालिका-८ मा बस्छु। नागरिकता नं. २७-०१-७५-०५६७८, फोन ९८४१२३४५६७, इमेल sujan.shrestha@example.com। हिजो नबिल बैंकको खाता नम्बर ०१२००१७५००४५६ मा पैसा आयो।</textarea>
         <div class="row">
-          <button class="go" id="go" type="button" disabled>Find personal data</button>
+          <button class="go busy" id="go" type="button" disabled aria-busy="true"><span class="spin" aria-hidden="true"></span><span id="go-label">Loading</span></button>
           <button id="sample" type="button">Another example</button>
-          <span class="told" id="status" role="status">Loading the model, 41 MB&hellip;</span>
+          <span class="told" id="status" role="status">Loading the model, 41 MB. Your browser keeps it for the next visit.</span>
         </div>
         <h3>Found</h3>
-        <div class="out" id="marked" lang="ne"></div>
+        <div class="out" id="marked" lang="ne" data-empty="Press the button, and what is found is marked here."></div>
         <h3>With it taken out</h3>
-        <div class="out" id="redacted" lang="ne"></div>
+        <div class="out" id="redacted" lang="ne" data-empty="The same text, with what was found taken out."></div>
       </section>
 
       <section class="section" id="finds" aria-labelledby="finds-title">
@@ -209,7 +217,12 @@ pii.redact("मेरो नाम सीता थापा हो, फोन �
     const RUNTIME = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/";
     const query = new URLSearchParams(location.search);
     const model = query.get("model") || "https://huggingface.co/fiste-ai/rakshya/resolve/v0.2";
+    const WEIGHTS = model + "/onnx/model_quantized.onnx";
+    // The size of the published file. A model named in the address has another size, which a trial may give.
+    const BYTES = query.get("model") ? Number(query.get("bytes")) || 0 : 40757461;
+    const STORE = "rakshya-model-v0.2";
     const $ = (id) => document.getElementById(id);
+    const go = $("go"), label = $("go-label");
     const samples = [
       $("text").value,
       "Mero naam Ramesh Adhikari ho. Mobile 9801234567 ma call garnu, gadi ko number Ba 12 Pa 3456 ho.",
@@ -220,45 +233,148 @@ pii.redact("मेरो नाम सीता थापा हो, फोन �
     const names = new Set(["PERSON", "LOCATION", "ORGANIZATION"]);
     let detector, megabytes, shown = 0;
 
-    async function show() {
-      const text = $("text").value;
-      const started = performance.now();
-      const { spans, redacted } = await detector.detect(text);
-      const elapsed = performance.now() - started;
-      const marked = $("marked");
-      marked.textContent = "";
-      let last = 0;
-      for (const span of spans) {
-        marked.append(text.slice(last, span.start));
-        const mark = document.createElement("mark");
-        mark.dataset.kind = names.has(span.label) ? "name" : "number";
-        mark.textContent = text.slice(span.start, span.end);
-        const label = document.createElement("small");
-        label.textContent = span.label;
-        mark.append(label);
-        marked.append(mark);
-        last = span.end;
-      }
-      marked.append(text.slice(last));
-      $("redacted").textContent = redacted;
-      $("status").textContent = `${spans.length} found in ${elapsed.toFixed(0)} ms, in this page. Model ${megabytes} MB.`;
+    // The button says what the page is doing: a turning mark and a word while it works, its own name when it waits.
+    function busy(word) {
+      go.disabled = true;
+      go.classList.add("busy");
+      go.setAttribute("aria-busy", "true");
+      label.textContent = word;
+    }
+    function waiting(word) {
+      go.disabled = false;
+      go.classList.remove("busy");
+      go.removeAttribute("aria-busy");
+      label.textContent = word;
+    }
+    function told(text) {
+      $("status").textContent = text;
     }
 
-    try {
-      const [ort, { load }] = await Promise.all([import(RUNTIME + "ort.wasm.min.mjs"), import("./rakshya.js")]);
-      detector = await load({ ort, model, runtime: RUNTIME, threads: 1 });
-      megabytes = (detector.timing.model_bytes / 1e6).toFixed(0);
-      $("go").disabled = false;
-      $("go").addEventListener("click", show);
-      $("sample").addEventListener("click", () => {
-        shown = (shown + 1) % samples.length;
-        $("text").value = samples[shown];
-        show();
-      });
-      await show();
-    } catch (error) {
-      $("status").textContent = "The model could not be loaded: " + (error.message || error);
+    // The module fetches the weights itself. Its request is answered from here, so that the button can say how far
+    // the download is and so that the file stays with the browser: it is fetched on the first visit only.
+    async function weights(fetch) {
+      let store = null;
+      if (BYTES) {
+        try {
+          store = await caches.open(STORE);
+          for (const name of await caches.keys()) {
+            if (name.startsWith("rakshya-model-") && name !== STORE) caches.delete(name);   // the file of an older version
+          }
+          const kept = await store.match(WEIGHTS);
+          if (kept) {
+            const bytes = await kept.arrayBuffer();
+            if (bytes.byteLength === BYTES) return new Response(bytes);
+            await store.delete(WEIGHTS);
+          }
+        } catch (error) {
+          store = null;   // a browser or a window that keeps nothing: fetch it as usual
+        }
+      }
+      const response = await fetch(WEIGHTS);
+      if (!response.ok) throw new Error(`the model file answered ${response.status}`);
+      if (!response.body) return response;
+      const total = Number(response.headers.get("content-length")) || BYTES;
+      const reader = response.body.getReader();
+      const parts = [];
+      let loaded = 0, percent = -1;
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        parts.push(value);
+        loaded += value.byteLength;
+        const now = total ? Math.min(99, Math.floor(100 * loaded / total)) : Math.floor(loaded / 1e6);
+        if (now !== percent) {
+          percent = now;
+          label.textContent = total ? `Loading ${now}%` : `Loading ${now} MB`;
+        }
+      }
+      if (total && loaded !== total) throw new Error("the download of the model stopped early");
+      const bytes = new Uint8Array(loaded);
+      let at = 0;
+      for (const part of parts) {
+        bytes.set(part, at);
+        at += part.byteLength;
+      }
+      if (store && loaded === BYTES) {
+        try {
+          await store.put(WEIGHTS, new Response(bytes, { headers: { "content-type": "application/octet-stream" } }));
+        } catch (error) {}   // no room to keep it: it is fetched again next time
+      }
+      label.textContent = "Starting";
+      return new Response(bytes);
     }
+
+    // Nothing is read until the button is pressed.
+    async function show() {
+      const text = $("text").value;
+      if (!text.trim()) {
+        told("Write or paste a text first.");
+        return;
+      }
+      go.disabled = true;
+      const slow = setTimeout(() => busy("Finding"), 250);   // a long text takes a moment
+      try {
+        const started = performance.now();
+        const { spans, redacted } = await detector.detect(text);
+        const elapsed = performance.now() - started;
+        const marked = $("marked");
+        marked.textContent = "";
+        let last = 0;
+        for (const span of spans) {
+          marked.append(text.slice(last, span.start));
+          const mark = document.createElement("mark");
+          mark.dataset.kind = names.has(span.label) ? "name" : "number";
+          mark.textContent = text.slice(span.start, span.end);
+          const kind = document.createElement("small");
+          kind.textContent = span.label;
+          mark.append(kind);
+          marked.append(mark);
+          last = span.end;
+        }
+        marked.append(text.slice(last));
+        $("redacted").textContent = redacted;
+        told(`${spans.length} found in ${elapsed.toFixed(0)} ms, in this page. Model ${megabytes} MB.`);
+      } catch (error) {
+        told("This text could not be read: " + (error.message || error));
+      } finally {
+        clearTimeout(slow);
+        waiting("Find personal data");
+      }
+    }
+
+    async function start() {
+      busy("Loading");
+      told(`Loading the model, 41 MB. Your browser keeps it for the next visit.`);
+      const native = window.fetch, plain = native.bind(window);
+      try {
+        // Asked for now, so that it is there when the model starts and the two downloads do not wait for each other.
+        plain(RUNTIME + "ort-wasm-simd-threaded.wasm").then((answer) => answer.arrayBuffer()).catch(() => {});
+        const [ort, { load }] = await Promise.all([import(RUNTIME + "ort.wasm.min.mjs"), import("./rakshya.js")]);
+        window.fetch = (input, init) => (input === WEIGHTS ? weights(plain) : plain(input, init));
+        try {
+          detector = await load({ ort, model, runtime: RUNTIME, threads: 1 });
+        } finally {
+          window.fetch = native;
+        }
+        megabytes = (detector.timing.model_bytes / 1e6).toFixed(0);
+        go.onclick = show;
+        waiting("Find personal data");
+        told(`Ready. The model, ${megabytes} MB, runs in this page.`);
+      } catch (error) {
+        go.onclick = start;
+        waiting("Try again");
+        told("The model could not be loaded: " + (error.message || error));
+      }
+    }
+
+    $("sample").addEventListener("click", () => {
+      shown = (shown + 1) % samples.length;
+      $("text").value = samples[shown];
+      $("marked").textContent = "";
+      $("redacted").textContent = "";
+      if (detector) told("Press the button to find what is in this example.");
+    });
+    start();
   </script>
 </body>
 </html>
