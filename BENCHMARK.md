@@ -255,43 +255,43 @@ Short texts written by hand to be hard: forms, messages, numbers without a keywo
 
 The test parts of public sets. Rakshya was trained on the training parts of these sets, or on samples of them, so they say that what was taught was learned. Each is scored on the labels it marks.
 
-| Test set | Language | Texts | Rakshya 0.2 | Rakshya 0.2 server |
-|---|---|---|---|---|
-| `everestner, names` | ne | 1,950 | 0.867 | 0.872 |
-| `everestner, our labels` | ne | 1,950 | 0.883 | 0.889 |
-| `danfe` | ne | 2,299 | 0.767 | 0.783 |
-| `indicphi-ne` | ne | 787 | 0.983 | 0.989 |
-| `conll03` | en | 3,453 | 0.908 | 0.918 |
-| `wnut17` | en | 1,293 | 0.544 | 0.575 |
-| `btc` | en | 2,000 | 0.796 | 0.813 |
-| `fewnerd` | en | 3,000 | 0.777 | 0.790 |
-| `tab` | en | 1,806 | 0.960 | 0.962 |
-| `nemotron` | en | 6,875 | 0.960 | 0.967 |
-| `indicphi-en` | en | 697 | 0.961 | 0.967 |
-| `maskara-real` | en | 2,600 | 0.949 | 0.955 |
-| `hiner` | hi | 3,999 | 0.906 | 0.912 |
-| `indicphi-hi` | hi | 752 | 0.982 | 0.986 |
+| Test set | Language | Texts | Rakshya 0.2 | Rakshya 0.2 server | Best published system we ran |
+|---|---|---|---|---|---|
+| `everestner, names` | ne | 1,950 | 0.867 | 0.872 | XLM-R large, CoNLL-2003 0.647 |
+| `everestner, our labels` | ne | 1,950 | 0.883 | 0.889 | XLM-R large, CoNLL-2003 0.646 |
+| `danfe` | ne | 2,299 | 0.767 | 0.783 | XLM-R large, CoNLL-2003 0.582 |
+| `indicphi-ne` | ne | 787 | 0.983 | 0.989 | IndicPHI MuRIL 0.854 |
+| `conll03` | en | 3,453 | 0.908 | 0.918 | XLM-R base NER HRL 0.903 |
+| `wnut17` | en | 1,293 | 0.544 | 0.575 | WikiNEuRal multilingual NER 0.459 |
+| `btc` | en | 2,000 | 0.796 | 0.813 | GLiNER multi PII 0.597 |
+| `fewnerd` | en | 3,000 | 0.777 | 0.790 | XLM-R large, CoNLL-2003 0.741 |
+| `tab` | en | 1,806 | 0.960 | 0.962 | CBX Indic PII 58M 0.784 |
+| `nemotron` | en | 6,875 | 0.960 | 0.967 | PII Redactor small 0.915 |
+| `indicphi-en` | en | 697 | 0.961 | 0.967 | IndicPHI MuRIL 0.812 |
+| `maskara-real` | en | 2,600 | 0.949 | 0.955 | Chitragupta 0.822 |
+| `hiner` | hi | 3,999 | 0.906 | 0.912 | XLM-R large, CoNLL-2003 0.780 |
+| `indicphi-hi` | hi | 752 | 0.982 | 0.986 | IndicPHI MuRIL 0.848 |
 
 Public sets of which nothing was used for training:
 
-| Test set | Language | Texts | Rakshya 0.2 | Rakshya 0.2 server |
-|---|---|---|---|---|
-| `classer-ne` | ne | 1,000 | 0.547 | 0.572 |
-| `spy-legal` | en | 1,000 | 0.446 | 0.451 |
-| `spy-medical` | en | 1,000 | 0.450 | 0.455 |
-| `gretel` | en | 5,000 | 0.778 | 0.800 |
-| `ai4privacy-en` | en | 3,000 | 0.798 | 0.797 |
-| `indicpiidetx-en` | en | 897 | 0.897 | 0.909 |
-| `ylemis-en` | en | 5,269 | 0.953 | 0.950 |
-| `redactionbench` | en | 200 | masks 76%, 57% of it rightly | masks 80%, 57% of it rightly |
-| `ai4privacy-hi` | hi | 2,000 | 0.798 | 0.783 |
-| `indicpiidetx-hi` | hi | 304 | 0.845 | 0.872 |
-| `indicpiidetx-hi-latn` | hi-latn | 303 | 0.814 | 0.843 |
-| `ylemis-hi` | hi | 1,621 | 0.928 | 0.979 |
-| `ylemis-mixed` | hi-en | 946 | 0.949 | 0.919 |
-| `naamapadam-hi` | hi | 864 | 0.794 | 0.795 |
+| Test set | Language | Texts | Rakshya 0.2 | Rakshya 0.2 server | Best published system we ran |
+|---|---|---|---|---|---|
+| `classer-ne` | ne | 1,000 | 0.547 | 0.572 | AWED-PII-Protector 0.889 |
+| `spy-legal` | en | 1,000 | 0.446 | 0.451 | EU PII anonymisation v3 0.508 |
+| `spy-medical` | en | 1,000 | 0.450 | 0.455 | EU PII anonymisation v3 0.518 |
+| `gretel` | en | 5,000 | 0.778 | 0.800 | PII Redactor small 0.874 |
+| `ai4privacy-en` | en | 3,000 | 0.798 | 0.797 | PII Redactor small 0.905 |
+| `indicpiidetx-en` | en | 897 | 0.897 | 0.909 | CBX Indic PII 58M 0.934 |
+| `ylemis-en` | en | 5,269 | 0.953 | 0.950 | CBX Indic PII 58M 0.894 |
+| `redactionbench` | en | 200 | masks 76%, 57% of it rightly | masks 80%, 57% of it rightly | Chitragupta masks 84%, 73% of it rightly |
+| `ai4privacy-hi` | hi | 2,000 | 0.798 | 0.783 | EU PII anonymisation v3 0.913 |
+| `indicpiidetx-hi` | hi | 304 | 0.845 | 0.872 | CBX Indic PII 58M 0.891 |
+| `indicpiidetx-hi-latn` | hi-latn | 303 | 0.814 | 0.843 | CBX Indic PII 58M 0.903 |
+| `ylemis-hi` | hi | 1,621 | 0.928 | 0.979 | CBX Indic PII 58M 0.900 |
+| `ylemis-mixed` | hi-en | 946 | 0.949 | 0.919 | EU PII anonymisation v3 0.882 |
+| `naamapadam-hi` | hi | 864 | 0.794 | 0.795 | XLM-R large, CoNLL-2003 0.800 |
 
-Most of these sets are made by a generator, each with its own labels and its own habit of where a span ends.
+A published system may have been trained on a set of these tables. Most of them are made by a generator, and a model does well on the generator it was trained on.
 
 ## In the browser
 
