@@ -30,7 +30,7 @@ Exact means that start, end and label are all right. The table has Rakshya, the 
 
 On [NepPIIBench](https://huggingface.co/datasets/fiste-ai/nepiibench), 380 held-out paragraphs with character offsets for 19 kinds of personal data, Rakshya 1.0 has a character F1 of 0.983 and an F1 of exact spans of 0.953. It learned from the training part of the same collection, most of which is published as [NepPIICorpus](https://huggingface.co/datasets/fiste-ai/nepiicorpus), and no other system did, so this is a score on the kind of text it was trained for.
 
-On 180 further cases, a set of their own that no version of Rakshya learned from, it gets 0.951 at the level of seven kinds that every system can be scored on. Rakshya 0.2 gets 0.921 there, and the best of the other published systems, EU PII anonymisation v3 of bards.ai, 0.727.
+On 180 further cases of our own, a separate set that no version of Rakshya learned from, it gets 0.951 at the level of seven kinds that every system can be scored on. Rakshya 0.2 gets 0.921 there, and the best of the other published systems, EU PII anonymisation v3 of bards.ai, 0.727.
 
 ## Use it
 

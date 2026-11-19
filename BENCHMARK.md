@@ -198,7 +198,7 @@ Rakshya on its own 19 labels of personal data. `with label` requires the label t
 
 ## The 180 cases
 
-180 further cases, 60 in each of the three languages, with 365 marked items of 12 kinds. They are a set of their own, made apart from the practical paragraphs and in another format, and no version of Rakshya learned from them. They were read once.
+180 further cases of our own, 60 in each of the three languages, with 365 marked items of 12 kinds. They are a separate set, made apart from the practical paragraphs and in another format, and no version of Rakshya learned from them. They were read once.
 
 Every system at the level of seven kinds, each published system read in the way that scores best for it on this set:
 
