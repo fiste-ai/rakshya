@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rakshya: personal data found in Nepali and English text, in the browser. By Fiste AI</title>
-  <meta name="description" content="Rakshya (रक्षा) finds personal data in Nepali and English text: names, places, phone numbers, citizenship numbers and more. A 41 MB model that runs in your browser, so the text never leaves the page. By Fiste AI.">
+  <title>Rakshya: personal data found in Nepali, Hindi and English text, in the browser. By Fiste AI</title>
+  <meta name="description" content="Rakshya (रक्षा) finds personal data in Nepali, Hindi and English text: names, places, phone numbers, citizenship numbers and more. A 41 MB model that runs in your browser, so the text never leaves the page. By Fiste AI.">
   <link rel="canonical" href="https://fiste-ai.github.io/rakshya/">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Fiste AI">
@@ -25,8 +25,8 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Fiste AI">
-  <meta property="og:title" content="Rakshya: personal data found in Nepali and English text, in the browser">
-  <meta property="og:description" content="Finds names, places, phone numbers and identity numbers in Nepali and English text. A 41 MB model that runs in your browser.">
+  <meta property="og:title" content="Rakshya: personal data found in Nepali, Hindi and English text, in the browser">
+  <meta property="og:description" content="Finds names, places, phone numbers and identity numbers in Nepali, Hindi and English text. A 41 MB model that runs in your browser.">
   <meta property="og:url" content="https://fiste-ai.github.io/rakshya/">
   <meta property="og:image" content="https://fiste-ai.github.io/assets/og-fiste.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -95,9 +95,9 @@
     <div class="hero">
       <div class="wrap">
         <div>
-          <p class="kicker"><b>Released</b> &nbsp;/&nbsp; PII detection for Nepali and English</p>
-          <h1 lang="ne">रक्षा<small lang="en">Rakshya, personal data found in Nepali and English text.</small></h1>
-          <p class="lede">Paste a message, a form or a news story, in Devanagari, in Nepali written in Latin letters, or in English. Rakshya marks the names, places, phone numbers and identity numbers in it, and it does so inside your browser.</p>
+          <p class="kicker"><b>Released</b> &nbsp;/&nbsp; PII detection for Nepali, Hindi and English</p>
+          <h1 lang="ne">रक्षा<small lang="en">Rakshya, personal data found in Nepali, Hindi and English text.</small></h1>
+          <p class="lede">Paste a message, a form or a news story, in Nepali or Hindi written in Devanagari, in Nepali written in Latin letters, or in English. Rakshya marks the names, places, phone numbers and identity numbers in it, and it does so inside your browser.</p>
           <div class="actions">
             <a class="btn" href="#try">Try it here <span aria-hidden="true">&darr;</span></a>
             <a class="more" href="https://huggingface.co/fiste-ai/rakshya" rel="noopener">Get the model</a>
@@ -105,11 +105,11 @@
           </div>
         </div>
         <div class="plate">
-          <p class="state"><span class="dot" aria-hidden="true"></span>Version 0.2, 14 November 2026</p>
+          <p class="state"><span class="dot" aria-hidden="true"></span>Version 1.0, 18 November 2026</p>
           <dl class="glance">
             <div><dt>41 MB</dt><dd>the whole model, small enough for a web page</dd></div>
             <div><dt>96%</dt><dd>of the personal data in Nepali news it had not seen, counted in characters</dd></div>
-            <div><dt>21</dt><dd>kinds of personal data, from names to number plates</dd></div>
+            <div><dt>25</dt><dd>labels, from names to number plates</dd></div>
           </dl>
           <p class="fine">Free for research and other non-commercial use. It misses some personal data, so read the result before you rely on it.</p>
         </div>
@@ -136,49 +136,53 @@
       <section class="section" id="finds" aria-labelledby="finds-title">
         <h2 class="label" id="finds-title">What it finds</h2>
         <ul class="kinds">
-          <li><b>PERSON</b> names of people</li>
-          <li><b>LOCATION</b> places and addresses</li>
-          <li><b>ORGANIZATION</b> offices, companies, parties</li>
-          <li><b>DATE</b> days, months and years, in both calendars</li>
-          <li><b>PHONE</b> mobile and landline numbers</li>
-          <li><b>EMAIL</b> e-mail addresses</li>
+          <li><b>PERSON</b> names of people, including a surname or given name used alone later</li>
+          <li><b>LOCATION</b> places named for themselves: country, province, district, city, ward, tole</li>
+          <li><b>ORGANIZATION</b> offices, companies, schools, banks, hospitals, parties</li>
+          <li><b>DATE</b> dates that are not dates of birth, in both calendars</li>
+          <li><b>ADDRESS</b> where a person lives, owns land or receives deliveries, as one span</li>
+          <li><b>DOB</b> dates of birth</li>
+          <li><b>PHONE</b> personal and direct work phone numbers</li>
+          <li><b>EMAIL</b> personal and named work e-mail addresses</li>
           <li><b>URL</b> web addresses</li>
-          <li><b>USERNAME</b> handles and login names</li>
-          <li><b>IP_ADDRESS</b> IPv4 and IPv6 addresses</li>
-          <li><b>CITIZENSHIP_NO</b> citizenship certificate numbers</li>
-          <li><b>NATIONAL_ID</b> national identity numbers, Aadhaar, SSN</li>
-          <li><b>TAX_ID</b> PAN and VAT numbers, GSTIN</li>
-          <li><b>PASSPORT_NO</b> passport numbers</li>
-          <li><b>LICENSE_NO</b> driving licence numbers</li>
-          <li><b>VOTER_ID</b> voter card numbers</li>
-          <li><b>ID_NUMBER</b> employee, student, patient and other numbers of a person</li>
-          <li><b>BANK_ACCOUNT</b> bank account numbers and IBAN</li>
-          <li><b>CARD_NUMBER</b> payment card numbers</li>
-          <li><b>UPI_ID</b> payment addresses</li>
-          <li><b>VEHICLE_PLATE</b> number plates</li>
-          <li><b>SECRET</b> passwords, keys, tokens and one-time codes</li>
+          <li><b>DIGITAL_SECRET</b> client IP addresses, device identifiers, logins and social handles, passwords, keys, profile links</li>
+          <li><b>NATIONAL_ID</b> citizenship numbers, Aadhaar, SSN, NINO, SIN and similar</li>
+          <li><b>TAX_ID</b> Nepal PAN, India PAN, ITIN, UTR, TFN</li>
+          <li><b>PASSPORT</b> passport numbers</li>
+          <li><b>DRIVER_LICENSE</b> driving licence numbers</li>
+          <li><b>VOTER_ID</b> voter and election identity numbers</li>
+          <li><b>BANK_ACCOUNT</b> bank accounts, IBAN, DEMAT and BOID numbers</li>
+          <li><b>CREDIT_CARD</b> debit and credit card numbers</li>
+          <li><b>PAYMENT_ID</b> UPI handles, wallet identities, payment handles, personal crypto addresses</li>
+          <li><b>MEDICAL_ID</b> patient, hospital record and health insurance numbers</li>
+          <li><b>EMPLOYEE_STUDENT_ID</b> staff, provident fund, permit, university registration and symbol numbers</li>
+          <li><b>PROPERTY_UTILITY_ID</b> plot, sheet, survey, ration card, electricity, water and fibre consumer numbers</li>
+          <li><b>VEHICLE_ID</b> number plates of private vehicles, chassis and VIN</li>
+          <li><b>ID_NUMBER</b> any other number that names one person</li>
+          <li><b>OFFICE_PHONE</b> phone numbers of offices, helplines and public services</li>
+          <li><b>OFFICE_EMAIL</b> shared and institutional mailboxes</li>
         </ul>
-        <p class="note">It reads Devanagari, Nepali written in Latin letters and English, with digits of either kind. Hindi is experimental. What has a fixed form, such as a phone number or a number plate, is found by rules; names and the numbers that need their context are found by the model.</p>
+        <p class="note">It reads Devanagari, Nepali written in Latin letters, Hindi and English, with digits of either kind. What has a fixed form, such as a phone number or a number plate, is found by rules; names and the numbers that need their context are found by the model.</p>
       </section>
 
       <section class="section" id="benchmark" aria-labelledby="benchmark-title">
         <h2 class="label" id="benchmark-title">Benchmark</h2>
-        <p class="note">882 real texts in seven test sets that no system had seen: news, web pages, government pages and comments. The number is the F1 of exact spans over every kind of personal data in a set. Higher is better.</p>
+        <p class="note">1,034 real texts in seven test sets: news, web pages, government pages and comments. None of them is in any training data we used, and their labels were fixed before any system was run on them. The number is the F1 of exact spans over every kind of personal data in a set. Higher is better.</p>
 <div class="scroll"><table class="scores">
-<thead><tr><th>System</th><th>Weights</th><th>News (ne)</th><th>Web (ne)</th><th>Government (ne)</th><th>Comments (ne, Latin)</th><th>News (en)</th><th>Web (en)</th><th>News (hi)</th><th>Mean</th></tr></thead>
+<thead><tr><th>System</th><th>News (ne)</th><th>Web (ne)</th><th>Government (ne)</th><th>Comments (ne, Latin)</th><th>News (en)</th><th>Web (en)</th><th>News (hi)</th><th>Mean</th></tr></thead>
 <tbody>
-<tr class="ours"><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya" rel="noopener">Rakshya 0.2</a></th><td>40M</td><td><b>0.878</b></td><td>0.802</td><td>0.731</td><td><b>0.529</b></td><td>0.803</td><td>0.703</td><td><b>0.804</b></td><td>0.750</td></tr>
-<tr class="ours"><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya-server" rel="noopener">Rakshya 0.2 server</a></th><td>278M</td><td>0.870</td><td><b>0.815</b></td><td><b>0.740</b></td><td>0.520</td><td><b>0.813</b></td><td><b>0.740</b></td><td>0.800</td><td><b>0.757</b></td></tr>
-<tr><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya/tree/v0.1" rel="noopener">Gopya 0.1</a></th><td>34M</td><td>0.855</td><td>0.683</td><td>0.636</td><td>0.233</td><td>0.729</td><td>0.563</td><td>0.725</td><td>0.632</td></tr>
-<tr><th scope="row"><a href="https://huggingface.co/bardsai/eu-pii-anonimization-multilang" rel="noopener">EU PII anonymisation</a> <small>bards.ai</small></th><td>278M</td><td>0.647</td><td>0.601</td><td>0.409</td><td>0.253</td><td>0.787</td><td>0.530</td><td>0.727</td><td>0.565</td></tr>
-<tr><th scope="row"><a href="https://huggingface.co/Davlan/xlm-roberta-base-ner-hrl" rel="noopener">XLM-R base NER HRL</a> <small>Davlan</small></th><td>277M</td><td>0.660</td><td>0.617</td><td>0.267</td><td>0.302</td><td>0.772</td><td>0.498</td><td>0.712</td><td>0.547</td></tr>
-<tr><th scope="row"><a href="https://huggingface.co/FacebookAI/xlm-roberta-large-finetuned-conll03-english" rel="noopener">XLM-R large, CoNLL-2003</a> <small>FacebookAI</small></th><td>559M</td><td>0.651</td><td>0.574</td><td>0.200</td><td>0.265</td><td>0.783</td><td>0.481</td><td>0.760</td><td>0.531</td></tr>
-<tr><th scope="row"><a href="https://huggingface.co/bardsai/eu-pii-anonimization-multilang-v3" rel="noopener">EU PII anonymisation v3</a> <small>bards.ai</small></th><td>308M</td><td>0.144</td><td>0.704</td><td>0.328</td><td>0.162</td><td>0.605</td><td>0.709</td><td>0.528</td><td>0.454</td></tr>
-<tr><th scope="row"><a href="https://huggingface.co/Wismut/nym-pii-multilingual" rel="noopener">Nym PII multilingual</a> <small>Wismut</small></th><td>308M</td><td>0.427</td><td>0.420</td><td>0.301</td><td>0.252</td><td>0.655</td><td>0.478</td><td>0.595</td><td>0.447</td></tr>
+<tr class="ours"><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya" rel="noopener">Rakshya 1.0</a></th><td><b>0.914</b></td><td><b>0.933</b></td><td><b>0.943</b></td><td><b>0.858</b></td><td><b>0.924</b></td><td><b>0.915</b></td><td><b>0.855</b></td><td><b>0.906</b></td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya/tree/v0.2" rel="noopener">Rakshya 0.2</a></th><td>0.889</td><td>0.816</td><td>0.863</td><td>0.524</td><td>0.892</td><td>0.790</td><td>0.797</td><td>0.796</td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya/tree/v0.1" rel="noopener">Gopya 0.1</a></th><td>0.849</td><td>0.727</td><td>0.704</td><td>0.218</td><td>0.724</td><td>0.638</td><td>0.789</td><td>0.664</td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/bardsai/eu-pii-anonimization-multilang" rel="noopener">EU PII anonymisation</a> <small>bards.ai</small></th><td>0.718</td><td>0.597</td><td>0.506</td><td>0.264</td><td>0.817</td><td>0.460</td><td>0.757</td><td>0.588</td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/Davlan/xlm-roberta-base-ner-hrl" rel="noopener">XLM-R base NER HRL</a> <small>Davlan</small></th><td>0.775</td><td>0.566</td><td>0.353</td><td>0.269</td><td>0.855</td><td>0.499</td><td>0.762</td><td>0.583</td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/FacebookAI/xlm-roberta-large-finetuned-conll03-english" rel="noopener">XLM-R large, CoNLL-2003</a> <small>FacebookAI</small></th><td>0.764</td><td>0.552</td><td>0.302</td><td>0.280</td><td>0.852</td><td>0.498</td><td>0.802</td><td>0.578</td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/plingampally/meridianpii-hi-v2" rel="noopener">MeridianPII Hindi v2</a> <small>plingampally</small></th><td>0.601</td><td>0.494</td><td>0.272</td><td>0.203</td><td>0.635</td><td>0.430</td><td>0.631</td><td>0.467</td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/Wismut/nym-pii-multilingual" rel="noopener">Nym PII multilingual</a> <small>Wismut</small></th><td>0.390</td><td>0.452</td><td>0.336</td><td>0.274</td><td>0.672</td><td>0.519</td><td>0.578</td><td>0.460</td></tr>
 </tbody>
 </table></div>
-        <p class="note">Of the 25 published systems we ran, none scores higher than Rakshya 0.2 on Nepali news, Nepali web pages, government pages, romanised comments, English news and Hindi news. Ahead of it is EU PII anonymisation v3 on English web pages (0.709 against 0.703).</p>
-        <p class="note">Exact means that start, end and label are all right. The table has Rakshya, its first release and the 5 published systems with the highest mean. All 25 systems, the scores by kind and the method are in the <a href="https://github.com/fiste-ai/rakshya/blob/main/BENCHMARK.md" rel="noopener">full benchmark</a>.</p>
+        <p class="note">None of the 25 published systems we ran scores higher than Rakshya 1.0 on any of the seven sets.</p>
+        <p class="note">Exact means that start, end and label are all right. The table has Rakshya, the two releases before it and the 5 published systems with the highest mean. All 25 published systems, the scores by kind and the method are in the <a href="https://github.com/fiste-ai/rakshya/blob/main/BENCHMARK.md" rel="noopener">full benchmark</a>.</p>
       </section>
 
       <section class="section" id="use" aria-labelledby="use-title">
@@ -193,7 +197,7 @@ pii = Rakshya()
 pii.redact("मेरो नाम सीता थापा हो, फोन ९८४१२३४५६७।")
 # मेरो नाम [PERSON_1] हो, फोन [PHONE_1]।</code></pre>
         </div>
-        <p class="note">From a shell, <code>rakshya "some text"</code> does the same. In a web page, load <code>rakshya.js</code> as the <a href="https://github.com/fiste-ai/rakshya#use-it" rel="noopener">README</a> shows; this page is the example. A larger model for servers is at <a href="https://huggingface.co/fiste-ai/rakshya-server" rel="noopener">fiste-ai/rakshya-server</a>. Weights CC BY-NC 4.0, code MIT. It is a helper and not a guarantee: in Nepali news it misses about 4 in 100 characters of personal data, and more on text that is unlike news.</p>
+        <p class="note">From a shell, <code>rakshya "some text"</code> does the same. In a web page, load <code>rakshya.js</code> as the <a href="https://github.com/fiste-ai/rakshya#use-it" rel="noopener">README</a> shows; this page is the example. Weights CC BY-NC 4.0, code MIT. It is a helper and not a guarantee: in Nepali news it misses about 4 in 100 characters of personal data, and more on text that is unlike news.</p>
       </section>
     </div>
   </main>
@@ -216,11 +220,11 @@ pii.redact("मेरो नाम सीता थापा हो, फोन �
   <script type="module">
     const RUNTIME = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/";
     const query = new URLSearchParams(location.search);
-    const model = query.get("model") || "https://huggingface.co/fiste-ai/rakshya/resolve/v0.2";
+    const model = query.get("model") || "https://huggingface.co/fiste-ai/rakshya/resolve/v1.0";
     const WEIGHTS = model + "/onnx/model_quantized.onnx";
     // The size of the published file. A model named in the address has another size, which a trial may give.
-    const BYTES = query.get("model") ? Number(query.get("bytes")) || 0 : 40757461;
-    const STORE = "rakshya-model-v0.2";
+    const BYTES = query.get("model") ? Number(query.get("bytes")) || 0 : 40755973;
+    const STORE = "rakshya-model-v1.0";
     const $ = (id) => document.getElementById(id);
     const go = $("go"), label = $("go-label");
     const samples = [

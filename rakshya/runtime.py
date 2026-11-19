@@ -7,6 +7,9 @@
     pii = Rakshya("folder")              # or a folder with tokenizer.json, tagger.json and the ONNX file
     pii.find("मेरो नाम सीता थापा हो")    # [(start, end, label), ...] in characters of the text
     pii.redact("मेरो नाम सीता थापा हो")  # the text with a placeholder such as [PERSON_1] for each one
+    pii.redact(text, labels="personal")  # personal data only: places, organisations, dates and web addresses stay,
+                                         # and so do the phone number and mailbox of an office and a masked number
+    pii.find(text, labels=["PERSON", "PHONE"])   # or the labels that are wanted, by name
 
 Needs numpy, onnxruntime and tokenizers, and huggingface_hub when no folder is given. The rules find what has a fixed form: phone
 numbers, e-mail addresses, dates, number plates and the numbers that a keyword names. The
@@ -25,6 +28,8 @@ import numpy
 import onnxruntime
 from tokenizers import Tokenizer
 
+from .kinds import final, personal
+from .labels import LABELS
 from .rules import find as find_by_rule
 from .spans import merge, predict_spans, redact, tag_names
 
@@ -61,6 +66,7 @@ class Rakshya:
         meta = json.loads((folder / "tagger.json").read_text(encoding="utf-8"))
         self.labels = meta["labels"]
         self.tags = tag_names(self.labels)
+        self.fit = bool(meta.get("fit"))   # a model folder says whether its tags are read as a sequence that fits together
         options = onnxruntime.SessionOptions()
         options.intra_op_num_threads = threads
         # A released folder names its ONNX file; a folder of the development code holds the 8-bit file under this name.
@@ -80,21 +86,36 @@ class Rakshya:
     def _run(self, input_ids, attention_mask):
         logits, trims = self.session.run(["logits", "trim_logits"],
                                          {"input_ids": input_ids, "attention_mask": attention_mask})
-        return logits.argmax(-1).tolist(), trims.argmax(-1).tolist()
+        return (logits if self.fit else logits.argmax(-1).tolist()), trims.argmax(-1).tolist()
 
-    def find_all(self, texts):
-        """For each text, its spans as sorted (start, end, label) with character offsets.
+    def find_all(self, texts, labels="all"):
+        """For each text, its spans as sorted (start, end, label) with character offsets and the labels of 1.0 (`rakshya.labels.LABELS`).
+
+        `labels` says what is given out. "all": every label. "personal": personal data only, which leaves places,
+        organisations, dates and web addresses, the phone number and the mailbox of an office or a helpline, and
+        a number that is already masked. Or the names of the labels that are wanted.
 
         A long text is read a few sentences at a time, and every piece is run on its own, so a text gets
         the same answer whatever is passed beside it.
         """
         texts = list(texts)
-        _, tagged = predict_spans(self._run, self.tags, self._encode, texts, batch=1)
-        return [merge(spans, find_by_rule(text)) for spans, text in zip(tagged, texts)]
+        if labels not in ("all", "personal"):
+            wanted = set(labels)
+            if isinstance(labels, str) or wanted - set(LABELS):
+                raise ValueError(f"labels is \"all\", \"personal\" or names among {LABELS}, not {labels!r}")
+        _, tagged = predict_spans(self._run, self.tags, self._encode, texts, batch=1, fit=self.fit)
+        out = []
+        for spans, text in zip(tagged, texts):
+            found = merge(spans, find_by_rule(text))
+            if labels == "personal":
+                out.append(personal(text, found))
+            else:
+                out.append([span for span in final(text, found) if labels == "all" or span[2] in wanted])
+        return out
 
-    def find(self, text):
-        return self.find_all([text])[0]
+    def find(self, text, labels="all"):
+        return self.find_all([text], labels)[0]
 
-    def redact(self, text):
+    def redact(self, text, labels="all"):
         """The text with each span replaced by its label and a number; equal text gets the same number."""
-        return redact(text, self.find(text))
+        return redact(text, self.find(text, labels))

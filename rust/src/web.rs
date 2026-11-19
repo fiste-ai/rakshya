@@ -2,7 +2,7 @@
 //! `text.slice(start, end)` in JavaScript gives the span.
 
 use crate::tagger::Tagger;
-use crate::{rules, spans, Span};
+use crate::{kinds, rules, spans, Span};
 use std::cell::RefCell;
 use std::rc::Rc;
 use wasm_bindgen::prelude::*;
@@ -115,27 +115,49 @@ impl Run {
         self.tagged.extend(found.into_iter().map(|(start, end, label)| (start + shift, end + shift, label)));
     }
 
-    fn merged(&self) -> Vec<Span> {
+    /// What is given out: every label of 1.0, or with "personal" personal data only, which leaves places,
+    /// organisations, dates and web addresses, the phone number and the mailbox of an office, and a number that
+    /// is already masked.
+    fn given(&self, labels: &str) -> Vec<Span> {
         let mut tagged = self.tagged.clone();
         tagged.sort();
-        spans::merge(&tagged, &self.rules)
+        let merged = spans::merge(&tagged, &self.rules);
+        if labels == "personal" {
+            kinds::personal(&self.chars, &merged)
+        } else {
+            kinds::all(&self.chars, &merged)
+        }
     }
 
-    /// Everything found, as JSON `[[start, end, label, source], ...]`; source is "rule" or "tagger".
-    pub fn finish(&self) -> String {
-        let found: Vec<(u32, u32, String, &str)> = self
-            .merged()
+    fn listed(&self, found: Vec<Span>) -> String {
+        let found: Vec<(u32, u32, String, &str)> = found
             .into_iter()
             .map(|span| {
-                let source = if self.rules.contains(&span) { "rule" } else { "tagger" };
+                // The edges say where a span comes from; its label may be the finer one that the model gave.
+                let source = if self.rules.iter().any(|rule| rule.0 == span.0 && rule.1 == span.1) { "rule" } else { "tagger" };
                 (self.map[span.0], self.map[span.1], span.2, source)
             })
             .collect();
         serde_json::to_string(&found).unwrap()
     }
 
+    /// Everything found, as JSON `[[start, end, label, source], ...]`; source is "rule" or "tagger".
+    pub fn finish(&self) -> String {
+        self.listed(self.given("all"))
+    }
+
+    /// What is found under a profile, "all" or "personal", in the form of `finish`.
+    pub fn finish_as(&self, labels: &str) -> String {
+        self.listed(self.given(labels))
+    }
+
     /// The text with every found item replaced by a placeholder such as `[PERSON_1]`.
     pub fn redacted(&self) -> String {
-        spans::redact(&self.chars, &self.merged())
+        spans::redact(&self.chars, &self.given("all"))
+    }
+
+    /// The text with what a profile finds replaced, "all" or "personal".
+    pub fn redacted_as(&self, labels: &str) -> String {
+        spans::redact(&self.chars, &self.given(labels))
     }
 }

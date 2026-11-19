@@ -112,6 +112,25 @@ export class Run {
         }
     }
     /**
+     * What is found under a profile, "all" or "personal", in the form of `finish`.
+     * @param {string} labels
+     * @returns {string}
+     */
+    finish_as(labels) {
+        let deferred2_0;
+        let deferred2_1;
+        try {
+            const ptr0 = passStringToWasm0(labels, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+            const len0 = WASM_VECTOR_LEN;
+            const ret = wasm.run_finish_as(this.__wbg_ptr, ptr0, len0);
+            deferred2_0 = ret[0];
+            deferred2_1 = ret[1];
+            return getStringFromWasm0(ret[0], ret[1]);
+        } finally {
+            wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
+        }
+    }
+    /**
      * Give back the model's two outputs for piece `i`: `logits` and `trim_logits`.
      * @param {number} i
      * @param {Float32Array | number[]} logits
@@ -146,6 +165,25 @@ export class Run {
             return getStringFromWasm0(ret[0], ret[1]);
         } finally {
             wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
+        }
+    }
+    /**
+     * The text with what a profile finds replaced, "all" or "personal".
+     * @param {string} labels
+     * @returns {string}
+     */
+    redacted_as(labels) {
+        let deferred2_0;
+        let deferred2_1;
+        try {
+            const ptr0 = passStringToWasm0(labels, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+            const len0 = WASM_VECTOR_LEN;
+            const ret = wasm.run_redacted_as(this.__wbg_ptr, ptr0, len0);
+            deferred2_0 = ret[0];
+            deferred2_1 = ret[1];
+            return getStringFromWasm0(ret[0], ret[1]);
+        } finally {
+            wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
         }
     }
 }

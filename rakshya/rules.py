@@ -138,7 +138,8 @@ GATED = [
       rf"(?:customer|client|consumer|subscriber|member(?:ship)?|ग्राहक|सदस्यता)(?:{CODE})",
       rf"(?:patient|बिरामी)(?:{CODE})", rf"(?:mrn|medical\s*record)(?:\s*{NUM})?",
       rf"(?:policy|बीमालेख|insurance)(?:{CODE})", rf"imei(?:\s*{NUM})?"],
-     r"(?:[a-z]{1,8}[-/]?){0,3}[0-9](?:[-/]?[a-z0-9]){2,22}"),
+     # A full stop joins two groups of figures: the customer number of the electricity authority is "021.08.319kha".
+     r"(?:[a-z]{1,8}[-/]?){0,3}[0-9](?:[-/]?[a-z0-9]|\.[0-9]){2,22}"),
 ]
 
 PHONE_KEYWORDS = [
@@ -164,8 +165,27 @@ LATIN_MONTH = ("january|february|march|april|june|july|august|september|october|
                "chaitra|chait")
 NAMED = rf"(?:{BS_MONTH}|{AD_MONTH}|{LATIN_MONTH})"
 MONTH = rf"(?:{BS_MONTH}|{AD_MONTH}|{LOOSE_MONTH}|{LATIN_MONTH})"
-ERA = r"(?:(?:[वब]ि\.?\s*सं?\.?|[वब]िक्रम\s*सम्वत्?|सन्|ई\.?\s*सं\.?|b\.?s\.?|a\.?d\.?)\s*)"
+# The space inside a date is never a line break: a page gives each line a block of its own, and a day at the end
+# of one line with a year at the start of the next are two cells ("१८ असार" above "२०८०").
+SP = r"[^\S\n\r]"
+# The word for the era is part of the date (docs/annotation.md). The ones in Devanagari may also stand before a date
+# in figures or one that starts with the day; "ad" and "bs" before those would be the end of a word ("road 12 March 2020").
+ERA_WORD = rf"(?:[वब]ि\.?{SP}*सं?\.?|(?:(?:[वब]िक्रम|शक){SP}*)?(?:सम्[वब]त्?|संवत्?)|सन्|ई\.?{SP}*सं\.?)"
+ERA_BEFORE = rf"(?:{ERA_WORD}{SP}*)"
+ERA = rf"(?:(?:{ERA_WORD}|b\.?s\.?|a\.?d\.?){SP}*)"
+# The era after a date in Latin letters: "9th Baisakh, 2083 B.S". Without its full stops it is in capitals,
+# or "the March 5, 2020 ad" would be a date with its era.
+ERA_AFTER = re.compile(rf"{SP}*(?:[Bb]\.[Ss]\.?|[Aa]\.[Dd]\.?|BS|AD)")
+# The era at the end of what stands between a keyword and a date: "मिति वि.सं. २०६८/०४/१६".
+ERA_END = re.compile(rf"{ERA_WORD}{SP}*$")
+# The time of day that a page prints after the date of a post. What stands against its minutes starts a cell of its
+# own: "Post date04/16/2024 - 12:24२०८० बैशाख १ गतेदेखि".
+TIME = re.compile(r"[0-9]{1,2}:[0-9]{2}")
+# A year before the word for a decade is not a date: "सन् १९९० को दशकमा".
+DECADE = re.compile(rf"{SP}*(?:को|का|के){SP}*दशक")
 TH = r"(?:st|nd|rd|th)?"
+# In news the year of the Bikram era is also written with its last three figures: "०८० साउन १२".
+YEAR = r"(?P<y>[0-9]{4}|0[5-9][0-9])"
 
 ZONE = "मे|को|स|ज|बा|ना|ग|लु|ध|रा|भे|क|से|म"
 CLASS = "क|च|प|ख|ज|फ|ग|झ|ब|घ|ञ|य"
@@ -199,40 +219,69 @@ WEAK = [(label, _gated(near, value, NEAR)) for label, _, near, value in GATED if
 # and 630154836" the bare "PAN" does not stop the first number from being the citizenship number.
 ANY_KEYWORD = re.compile(r"(?i)(?:^|[^a-z])(?:" + "|".join(
     k for _, far, _, _ in GATED for k in far if k.endswith((NUM, "नं[.॰]?"))) + r")(?:$|[^a-z])")
-PHONE_GATED = _gated(PHONE_KEYWORDS, r"\+?[0-9](?:[- ]?[0-9]){6,13}", FAR)
+# A plus sign written before a number is part of it, also with a space between the two: "+ 977-1-4412345".
+PHONE_GATED = _gated(PHONE_KEYWORDS, r"(?:\+ ?)?[0-9](?:[- ]?[0-9]){6,13}", FAR)
 
-MOBILE = re.compile(r"(?P<cc>(?:\+|00)?977[- ]?)?(?P<n>9[678][0-9](?:[- ]?[0-9]){7})")
-LANDLINE_INTL = re.compile(r"(?:\+|00)977[- ]?(?P<area>[0-9]{1,2})[- ]?(?P<rest>[0-9]{6,7})")
-LANDLINE = re.compile(r"0(?P<area>[0-9]{1,2})[- ](?P<rest>[0-9]{6,7})")
+# The country code may stand in brackets, with the plus inside or before them, and a hyphen with a space may follow
+# it: "(+977) 01-4412345", "+(977) 061-520123", "+977- 9841234567". After it the area code is often written with the
+# zero it has inside the country, or in brackets: "+977 01 4412345", "+977-(021)-520123". Before a landline the bare
+# code needs a hyphen or a space after it ("977-1-4412345"): eleven figures in a row that begin with 977 may be
+# any number.
+MARKED = r"(?:\+ ?\(977\)|\((?:\+|00)?977\)|(?:\+ ?|00)977)"
+CODE_977 = rf"(?:{MARKED}[- ]{{0,3}}|977[- ]{{1,3}})"
+JOIN = r"(?: ?- ?| )"   # between the area code and the number: a hyphen, a space, or a hyphen with a space beside it
+MOBILE = re.compile(rf"(?P<cc>(?:{MARKED}|977)[- ]{{0,3}})?(?P<n>9[678][0-9](?:[- ]?[0-9]){{7}})")
+LANDLINES = [
+    re.compile(rf"{CODE_977}0?(?P<area>[0-9]{{1,2}}){JOIN}?(?P<rest>[0-9]{{6,7}})"),
+    re.compile(rf"{CODE_977}\(0?(?P<area>[0-9]{{1,2}})\)[- ]{{0,3}}(?P<rest>[0-9]{{6,7}})"),
+    # Inside the country: "01-4412345", "01- 4412345", "(061) 520123", and with a plus that a page puts before it.
+    re.compile(rf"\+?0(?P<area>[0-9]{{1,2}}){JOIN}(?P<rest>[0-9]{{6,7}})"),
+    re.compile(r"\+?\(0(?P<area>[0-9]{1,2})\)[- ]{0,3}(?P<rest>[0-9]{6,7})"),
+]
 # The last part of the address is in one case, or capitalised. Text copied from a web page can run
 # the next label on to an address ("...comPhone"); the address then ends before "Phone".
-EMAIL = re.compile(r"(?i:[a-z0-9][a-z0-9._%+-]*@[a-z0-9-]+(?:\.[a-z0-9-]+)*)\.(?:[A-Z][a-z]+|[a-z]{2,}|[A-Z]{2,})")
+# The part before the "@" may hold Latin letters with their marks ("lucía.márquez@"): without them the address
+# began in the middle of the name. Letters of other scripts stay outside, since a page runs a Devanagari word
+# against an address more often than an address begins with one.
+EMAIL = re.compile(r"(?i:[a-z0-9À-ÖØ-öø-ɏ][a-z0-9À-ÖØ-öø-ɏ._%+-]*@[a-z0-9-]+(?:\.[a-z0-9-]+)*)\.(?:[A-Z][a-z]+|[a-z]{2,}|[A-Z]{2,})")
 # A phone number written against the address that follows it: "9841234567ram.thapa@example.com".
+# One more number in a list of phone numbers: "4412345, 4412346 / 4412347".
+NEXT_PHONE = re.compile(r"\s*[,/|]\s*(?P<n>[0-9]{6,10})")
 GLUED_PHONE = re.compile(r"(?i)(?P<n>(?:977-?)?9[678][0-9](?:-?[0-9]){7}|0[0-9]{1,2}-[0-9]{6,7})[a-z]")
 LICENSE_SHAPE = re.compile(r"[0-9]{2}-[0-9]{2}-[0-9]{8}")
 
 NUMERIC_DATES = [
-    (re.compile(r"(?P<y>[0-9]{4})(?P<s1>[-/.])(?P<a>[0-9]{1,2})(?P<s2>[-/.])(?P<b>[0-9]{1,2})"), "ymd"),
+    (re.compile(rf"{ERA_BEFORE}?(?P<y>[0-9]{{4}})(?P<s1>[-/.])(?P<a>[0-9]{{1,2}})(?P<s2>[-/.])(?P<b>[0-9]{{1,2}})"), "ymd"),
     (re.compile(r"(?P<a>[0-9]{1,2})(?P<s1>[-/.])(?P<b>[0-9]{1,2})(?P<s2>[-/.])(?P<y>[0-9]{4})"), "dmy"),
 ]
 DATE_GATED = _gated(DATE_KEYWORDS, r"[0-9]{1,4}[-/.][0-9]{1,2}[-/.][0-9]{1,4}", FAR)
+# A date as a table prints it: the year, then month and day with two digits each. Text taken from a web page runs
+# the cells of a table together, so the next cell may stand against the date: "2079-05-262079-05-26", "2077-04-2207 जेष्ठ".
+# The year in a copyright line, and the second year where the line gives two: "© 2026", "Copyright © 1967 - 2026",
+# "© Example School, 2024", "प्रतिलिपि अधिकार २०२६".
+COPYRIGHT = re.compile(r"(?i)(?:©|copyright|प्रतिलिपि\s*अधिकार)(?P<gap>[^0-9\n।?!]{0,45}?)(?P<val>(?:19|20)[0-9]{2})"
+                       r"(?:\s*-\s*(?P<to>(?:19|20)[0-9]{2}))?")
+WHOLE_DATE = re.compile(r"(?P<y>(?:19|20)[0-9]{2})(?P<s1>[-/.])(?:0[1-9]|1[0-2])(?P<s2>[-/.])(?:0[1-9]|[12][0-9]|3[0-2])")
 WORD_DATES = [
-    re.compile(rf"(?i){ERA}?(?P<y>[0-9]{{4}})\s*(?:साल\s*)?{MONTH}\s*(?:महिना(?:को)?\s*)?(?P<d>[0-9]{{1,2}})"),
-    re.compile(rf"(?i){ERA}?(?P<y>[0-9]{{4}})\s*(?:साल\s*)?{NAMED}"),
-    re.compile(rf"(?i){MONTH}\s*(?P<d>[0-9]{{1,2}}){TH}(?:\s*(?:गते|तारिख))?\s*,?\s*(?P<y>[0-9]{{4}})"),
-    re.compile(rf"(?i)(?P<d>[0-9]{{1,2}}){TH}\s*(?:of\s+)?{MONTH}\s*,?\s*(?P<y>[0-9]{{4}})"),
+    # After the year a comma may stand ("२०८३, वैशाख १७"), and after the day in a date that starts with it ("12, Feb 2026").
+    re.compile(rf"(?i){ERA}?{YEAR},?{SP}*(?:साल{SP}*)?{MONTH}{SP}*(?:महिना(?:को)?{SP}*)?(?P<d>[0-9]{{1,2}})"),
+    re.compile(rf"(?i){ERA}?(?P<y>[0-9]{{4}}){SP}*(?:साल{SP}*)?(?P<m>{NAMED})"),
+    re.compile(rf"(?i){MONTH}{SP}*(?P<d>[0-9]{{1,2}}){TH}(?:{SP}*(?:गते|तारिख))?{SP}*,?{SP}*{YEAR}"),
+    re.compile(rf"(?i){ERA_BEFORE}?(?P<d>[0-9]{{1,2}}){TH},?{SP}*(?:of{SP}+)?{MONTH}{SP}*,?{SP}*{YEAR}"),
     # मे, मई and जून before a year are months. जुन is not taken: "जुन २०१७ को तुलनामा" says "which, compared to 2017".
-    re.compile(rf"(?i)(?:{NAMED}|मे|मई|जून)\s*,?\s*(?P<y>[0-9]{{4}})"),
-    re.compile(rf"(?:{BS_MONTH}|{AD_MONTH})\s*(?P<d>[0-9]{{1,2}})"),
-    re.compile(rf"(?i){ERA}(?P<y>[0-9]{{4}})(?:\s*साल)?"),
-    re.compile(r"(?P<y>[0-9]{4})\s*साल"),
+    re.compile(rf"(?i)(?:{NAMED}|मे|मई|जून){SP}*,?{SP}*(?P<y>[0-9]{{4}})"),
+    re.compile(rf"(?:{BS_MONTH}|{AD_MONTH}){SP}*(?P<d>[0-9]{{1,2}})"),
+    re.compile(rf"(?i){ERA}(?P<y>[0-9]{{4}})(?:{SP}*साल)?"),
+    re.compile(rf"(?P<y>[0-9]{{4}}){SP}*साल"),
+    # The end of a month, with or without its year: "असोज मसान्त", "२०८१ चैत्र मसान्त".
+    re.compile(rf"(?:{ERA}?(?P<y>[0-9]{{4}}){SP}*(?:साल{SP}*)?)?(?:{BS_MONTH}){SP}*मसान्त"),
     # An English month with a capital and a day, without a year: "March 5", "5th of March".
-    re.compile(rf"(?:{ENGLISH_MONTH})\.?\s(?P<d>[0-9]{{1,2}}){TH}"),
-    re.compile(rf"(?P<d>[0-9]{{1,2}}){TH}\s(?:of\s)?(?:{ENGLISH_MONTH})"),
+    re.compile(rf"(?:{ENGLISH_MONTH})\.?{SP}(?P<d>[0-9]{{1,2}}){TH}"),
+    re.compile(rf"(?P<d>[0-9]{{1,2}}){TH}{SP}(?:of{SP})?(?:{ENGLISH_MONTH})"),
 ]
 # A day before its month and no year, as in a dateline: "२६ कात्तिक, काठमाडौं". The month must
 # end its word or carry only case markers, or "५ पुस्तक" (five books) would be a date in पुस.
-DAY_MONTH = re.compile(rf"(?P<d>[0-9]{{1,2}})\s*(?:{BS_MONTH}|{AD_MONTH})")
+DAY_MONTH = re.compile(rf"(?P<d>[0-9]{{1,2}}){SP}*(?:{BS_MONTH}|{AD_MONTH})")
 MONTH_SUFFIX = re.compile(r"(?:मा|को|का|की|देखि|सम्म|बाट|लाई|मै|कै|भित्र|अघि|पछि|तिर)+")
 
 PLATES = [
@@ -375,17 +424,60 @@ def _letter(ch):
     return "a" <= ch.lower() <= "z" and ch.isascii()
 
 
-def _alone(text, start, end):
-    """True when the number at [start, end) is not a piece of a longer number."""
-    before = text[start - 1] if start else " "
+def _alone(text, start, end, cells=(), listed=False):
+    """True when the number at [start, end) is not a piece of a longer number.
+
+    `cells` are positions where a cell of a table ends: what starts there starts a number of its own. With
+    `listed` a slash and a digit may follow: after a phone number a slash brings the next number of a list, or
+    the endings of further numbers ("4412345/46/47").
+    """
+    before = text[start - 1] if start and start not in cells else " "
     after = text[end] if end < len(text) else " "
     if _digit(before) or _digit(after):
         return False
-    if after in "-/" and end + 1 < len(text) and _digit(text[end + 1]):
+    if after in ("-" if listed else "-/") and end + 1 < len(text) and _digit(text[end + 1]):
         return False
     if before in "-/" and start > 1 and _digit(text[start - 2]):
         return False
     return True
+
+
+def _next_cell(text, end):
+    """True when the digits against the end of a date are the next cell of a table and not the rest of a longer number.
+
+    The next cell is another whole date, a day or another small number (one or two digits), or a year (four digits
+    that begin with 19 or 20). "2080-05-0123-45" is the number of a letter and "2023-10-123456" that of an order.
+    """
+    stop = end
+    while stop < len(text) and _digit(text[stop]):
+        stop += 1
+    if text[stop:stop + 1] in ("-", "/") and _digit(text[stop + 1:stop + 2] or " "):
+        m = WHOLE_DATE.match(text, end)
+        return bool(m and m.group("s1") == m.group("s2"))
+    return stop - end <= 2 or (stop - end == 4 and text[end:end + 2] in ("19", "20"))
+
+
+def _whole_dates(text):
+    """Dates written year-month-day that stand against a neighbouring cell of a table, and where every such date ends.
+
+    Returns (dates, cells): the dates as (start, end) that the other date rules would pass over, because digits
+    stand against them, and the positions where a whole date ends. What starts at such a position starts a cell of
+    its own. A date with a hyphen or a slash and more digits on either side is a piece of a longer number.
+    """
+    out, cells = [], set()
+    for m in WHOLE_DATE.finditer(text):
+        start, end = m.span()
+        before = text[start - 1] if start and start not in cells else " "
+        after = text[end] if end < len(text) else " "
+        if (m.group("s1") != m.group("s2") or _digit(before)
+                or (before in "-/" and start > 1 and _digit(text[start - 2]))
+                or (after in "-/" and end + 1 < len(text) and _digit(text[end + 1]))
+                or (_digit(after) and not _next_cell(text, end))):
+            continue
+        if _digit(after) or start in cells:
+            out.append((start, end))
+        cells.add(end)
+    return out, cells
 
 
 def _word_start(text, start, latin):
@@ -450,6 +542,11 @@ def _ids(text):
                     if SYMBOL.match(m.group("kw")) and text[end:end + 1] == " " and "A" <= text[end + 1:end + 2] <= "Z" \
                             and not _wordy(text[end + 2:end + 3] or " "):
                         end += 2
+                    # The one Devanagari letter that ends a number written in groups with full stops belongs to it:
+                    # "०२१.०८.३१९ख", also with a case marker against it ("...३१९खको"). A word written against the
+                    # number does not ("...३१९को").
+                    if "." in text[start:end] and "क" <= text[end:end + 1] <= "ह" and _ends_word(text, end + 1):
+                        end += 1
                 if label == "SECRET" and text[end:end + 1] == " " and _digit(text[end + 1:end + 2] or " "):
                     continue   # the first group of a longer number
                 if label == "CARD_NUMBER" and not (_digits(value) >= 4 and 12 <= sum(c not in "- " for c in value) <= 19):
@@ -460,15 +557,32 @@ def _ids(text):
 
 
 def _phones(text):
+    found = list(_single_phones(text))
+    yield from found
+    # A bare number of six to ten digits after a phone number and a comma, a slash or a bar is one more of the list.
+    ends = [end for _, end, _, _ in found]
+    k = 0
+    while k < len(ends):
+        m = NEXT_PHONE.match(text, ends[k])
+        if m:
+            start, end = m.span("n")
+            after = text[end] if end < len(text) else " "
+            if not (_digit(after) or _letter(after) or (after == "-" and _digit(text[end + 1:end + 2] or " "))) and end not in ends:
+                yield start, end, "PHONE", (2, 0)
+                ends.append(end)
+        k += 1
+
+
+def _single_phones(text):
     for m in MOBILE.finditer(text):
         number = m.group("n")
         start = m.start("cc") if m.group("cc") else m.start("n")
-        if (_alone(text, start, m.end()) and MOBILE_PREFIX.match(number)
+        if (_alone(text, start, m.end(), listed=True) and MOBILE_PREFIX.match(number)
                 and len(number) - _digits(number) <= 3 and not (start and text[start - 1] == "+")):
             yield start, m.end(), "PHONE", (2, 0)
-    for pattern in (LANDLINE_INTL, LANDLINE):
+    for pattern in LANDLINES:
         for m in pattern.finditer(text):
-            if _alone(text, m.start(), m.end()) and FIXED_LINE.fullmatch(m.group("area") + m.group("rest")):
+            if _alone(text, m.start(), m.end(), listed=True) and FIXED_LINE.fullmatch(m.group("area") + m.group("rest")):
                 yield m.start(), m.end(), "PHONE", (2, 0)
     for m in PHONE_GATED.finditer(text):
         start, end = m.span("val")
@@ -476,34 +590,94 @@ def _phones(text):
             end -= 2   # a single digit after a space is the next cell of a table, not the end of the number
         if m.group("gap") and _letter(m.group("gap")[-1]):
             continue   # the end of a longer token: "TXN7576964714"
-        if _alone(text, start, end) and not ANY_KEYWORD.search(m.group("gap")):
+        if _alone(text, start, end, listed=True) and not ANY_KEYWORD.search(m.group("gap")):
             yield start, end, "PHONE", (2, len(m.group("gap")))
 
 
+def _ends(text, end):
+    """True when no digit follows position `end`, nor a hyphen or a slash with a digit behind it."""
+    after = text[end] if end < len(text) else " "
+    return not (_digit(after) or (after in "-/" and end + 1 < len(text) and _digit(text[end + 1])))
+
+
+def _with_era(text, end):
+    """The end of a date with the era that follows it in Latin letters, where that is a word of its own."""
+    m = ERA_AFTER.match(text, end)
+    after = text[m.end()] if m and m.end() < len(text) else " "
+    return m.end() if m and not (_letter(after) or _digit(after)) else end
+
+
+def _runs_on(text, start, end):
+    """True when the letters against the year that ends a date may be the next word of a page that runs its cells
+    together ("March 7, 2016by Admin", "April 19, 2026Notice"): the date has a space or a comma inside, so it is no
+    code ("MAR2021A"), and what follows is not the "s" of a decade ("2010s")."""
+    inside, after = text[start:end], text[end:end + 2]
+    return (" " in inside or "," in inside) and not (after[:1] in "sS" and not _letter(after[1:2] or " "))
+
+
+def _gated_date(value):
+    """False for figures after a keyword that are no date as they stand: a year has a day or a month at its other
+    end, and "2076-03-1014" is a date with the next cell of a table run on to it."""
+    parts = value.replace("/", "-").replace(".", "-").split("-")
+    return len(parts[0]) < 3 or len(parts[-1]) < 3
+
+
 def _dates(text):
+    whole, cells = _whole_dates(text)
+    for start, end in whole:
+        yield start, end, "DATE", (4, 0)
+    for m in TIME.finditer(text):
+        if not (m.start() and _digit(text[m.start() - 1])):
+            cells.add(m.end())
+    for m in COPYRIGHT.finditer(text):
+        last = "to" if m.group("to") else "val"
+        if _ends(text, m.end(last)):
+            yield m.start("val"), m.end("val"), "DATE", (4, 0)
+            if m.group("to"):
+                yield m.start("to"), m.end("to"), "DATE", (4, 0)
     for pattern, order in NUMERIC_DATES:
         for m in pattern.finditer(text):
             if (m.group("s1") == m.group("s2") and _alone(text, m.start(), m.end())
                     and _plausible_date(int(m.group("y")), int(m.group("a")), int(m.group("b")), order)):
-                yield m.start(), m.end(), "DATE", (4, 0)
+                yield m.start(), _with_era(text, m.end()), "DATE", (4, 0)
     for m in DATE_GATED.finditer(text):
         start, end = m.span("val")
-        if _alone(text, start, end):
-            yield start, end, "DATE", (3, len(m.group("gap")))
+        gap = m.group("gap")
+        era = ERA_END.search(gap)
+        if era:
+            start -= len(gap) - era.start()
+        if _alone(text, start, end) and _gated_date(text[m.start("val"):end]):
+            yield start, end, "DATE", (3, len(gap))
     for pattern in WORD_DATES:
         for m in pattern.finditer(text):
             groups = m.groupdict()
-            year = int(groups.get("y") or 2000)
+            start, end = m.span()
+            short = len(groups.get("y") or "") == 3
+            year = int(groups.get("y") or 2000) + (2000 if short else 0)
             day = int(groups.get("d") or 1)
-            first = text[m.start()]
-            after = text[m.end()] if m.end() < len(text) else " "
-            if (1900 <= year <= 2099 and 1 <= day <= 32 and _alone(text, m.start(), m.end())
-                    and _word_start(text, m.start(), first.isascii())
-                    and not _letter(after)):
-                yield m.start(), m.end(), "DATE", (4, 0)
+            closes = groups.get("y") is not None and m.end("y") == end   # the year ends the date
+            after = text[end] if end < len(text) else " "
+            # A date that starts with a word is not the rest of the number before it ("2026April 19, 2026"), and a
+            # capital after a small letter starts a word on a page that runs its cells together ("jhapaApril 19").
+            own = cells if _digit(text[start]) else {*cells, start}
+            capital = start and "A" <= text[start] <= "Z" and "a" <= text[start - 1] <= "z"
+            if not (1900 <= year <= 2099 and 1 <= day <= 32 and _alone(text, start, end, own)
+                    and (capital or _word_start(text, start, text[start].isascii()))):
+                continue
+            if _letter(after) and not (closes and _runs_on(text, start, end)):
+                continue
+            if closes and DECADE.match(text, end):
+                continue
+            if groups.get("m") and m.end("m") == end:
+                # A month that ends the date ends its word or carries only case markers, as after a day: in
+                # "२००४ साल भाद्रकृष्ण अष्टमी" the month names a lunar day and the date is the year.
+                rest = _rest_of_word(text, end)
+                if rest and not MONTH_SUFFIX.fullmatch(rest):
+                    continue
+            yield start, _with_era(text, end) if closes else end, "DATE", (4, 0)
     for m in DAY_MONTH.finditer(text):
         rest = _rest_of_word(text, m.end())
-        if (1 <= int(m.group("d")) <= 32 and _alone(text, m.start(), m.end())
+        if (1 <= int(m.group("d")) <= 32 and _alone(text, m.start(), m.end(), cells)
                 and (not rest or MONTH_SUFFIX.fullmatch(rest))):
             yield m.start(), m.end(), "DATE", (4, 0)
 
@@ -602,6 +776,23 @@ def _card_issuer(d):
 def _wordy(ch):
     """A Latin letter or a digit."""
     return _letter(ch) or _digit(ch)
+
+
+# Case markers that are written against the word before them, in Nepali and in Hindi.
+AFTER_A_WORD = ("को", "का", "की", "के", "ले", "मा", "लाई", "बाट", "सँग", "में", "से", "पर")
+
+
+def _devanagari(ch):
+    """A Devanagari letter or sign."""
+    return "\u0900" <= ch <= "\u097f"
+
+
+def _ends_word(text, at):
+    """True when no Devanagari letter or sign stands at `at`, or a case marker does and the word ends after it."""
+    if not _devanagari(text[at:at + 1] or " "):
+        return True
+    return any(text.startswith(marker, at) and not _devanagari(text[at + len(marker):at + len(marker) + 1] or " ")
+               for marker in AFTER_A_WORD)
 
 
 def _apart(text, start, end, also=""):
@@ -754,8 +945,9 @@ def _host_end(value):
 def _check_url(text, start, end):
     if start and _wordy(text[start - 1]) and text[start:start + 4].lower() == "www.":
         return None   # "http" may be written against the word before it; "www." inside a word is no address
-    again = min([i for i in (text.find("http://", start + 4, end), text.find("https://", start + 4, end)) if i > 0] or [end])
-    stop = start + _trim_address(text[start:again])   # a second address may be written against the first
+    # A second address may be written against the first, and a page that shortens an address ends it with three dots.
+    again = min([i for i in (text.find(word, start + 4, end) for word in ("http://", "https://", "...")) if i > 0] or [end])
+    stop = start + _trim_address(text[start:again])
     stop = start + _host_end(text[start:stop])
     return (start, stop) if "." in text[start:stop] and stop - start > 6 else None
 
@@ -902,16 +1094,22 @@ def tables():
         "mobile": MOBILE.pattern,
         "mobile_prefix": MOBILE_PREFIX.pattern,
         "fixed_line": FIXED_LINE.pattern,
-        "landline_intl": LANDLINE_INTL.pattern,
-        "landline": LANDLINE.pattern,
+        "landlines": [pattern.pattern for pattern in LANDLINES],
         "email": EMAIL.pattern,
         "license_shape": LICENSE_SHAPE.pattern,
         "glued_phone": GLUED_PHONE.pattern,
+        "next_phone": NEXT_PHONE.pattern,
         "sentence_break": SENTENCE_BREAK.pattern,
         "symbol": SYMBOL.pattern,
         "national": {code: list(limits) for code, limits in NATIONAL.items()},
         "numeric_dates": [[pattern.pattern, order] for pattern, order in NUMERIC_DATES],
         "date_gated": DATE_GATED.pattern,
+        "era_after": ERA_AFTER.pattern,
+        "era_end": ERA_END.pattern,
+        "decade": DECADE.pattern,
+        "time": TIME.pattern,
+        "whole_date": WHOLE_DATE.pattern,
+        "copyright": COPYRIGHT.pattern,
         "word_dates": [pattern.pattern for pattern in WORD_DATES],
         "day_month": DAY_MONTH.pattern,
         "month_suffix": MONTH_SUFFIX.pattern,

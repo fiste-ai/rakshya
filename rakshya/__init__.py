@@ -1,5 +1,5 @@
 """Rakshya: find personal information in Nepali, romanised Nepali and English text. See `runtime.py`."""
-__version__ = "0.2"
+__version__ = "1.0"
 
 from .runtime import Rakshya  # noqa: E402
 

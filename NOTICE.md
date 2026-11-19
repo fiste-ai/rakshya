@@ -1,10 +1,10 @@
-# Third-party notices
+The code in this repository is under the MIT License (`LICENSE`). The model weights are not in this repository: they are at https://huggingface.co/fiste-ai/rakshya under the Creative Commons Attribution-NonCommercial 4.0 International licence (CC BY-NC 4.0). The label files in `benchmark/labels/` are under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). What follows are the notices of what these were made from.
 
-The code in this repository is under the MIT License (`LICENSE`). The model weights are not in this repository: they are at https://huggingface.co/fiste-ai/rakshya and https://huggingface.co/fiste-ai/rakshya-server under the Creative Commons Attribution-NonCommercial 4.0 International licence (CC BY-NC 4.0). The label files in `benchmark/labels/` are under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). What follows are the notices of what these were made from.
+# Third-party notices
 
 ## The model
 
-Rakshya is fine-tuned from Multilingual-MiniLM-L12-H384 by Microsoft (https://huggingface.co/microsoft/Multilingual-MiniLM-L12-H384), with its vocabulary cut to the 48,000 pieces that Nepali, Hindi and English text use most. That model is released under the MIT License, and the notice below stays with copies and substantial portions of it.
+Rakshya is fine-tuned from nreimers/mMiniLMv2-L12-H384-distilled-from-XLMR-Large (https://huggingface.co/nreimers/mMiniLMv2-L12-H384-distilled-from-XLMR-Large), a MiniLMv2 distillation of XLM-R Large built with microsoft/unilm (https://github.com/microsoft/unilm/tree/master/minilm), with its vocabulary cut to the 48,000 pieces that Nepali, Hindi and English text use most. XLM-R and MiniLMv2 are released under the MIT License, and the notice below stays with copies and substantial portions of the work.
 
 MIT License
 
@@ -24,31 +24,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 
-The server model of Rakshya is fine-tuned from XLM-RoBERTa base by Facebook AI (https://huggingface.co/FacebookAI/xlm-roberta-base). That model is released under the MIT License, and the notice below stays with copies and substantial portions of it.
-
-MIT License
-
-Copyright (c) Facebook, Inc. and its affiliates.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-documentation files (the "Software"), to deal in the Software without restriction, including without limitation
-the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
-to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of
-the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
-CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.
-
 ## Training data
 
-Rakshya was trained on text made up by a generator of ours, in which every person, number and address is invented,
-and on the public sets below. None of them is redistributed here. Two are for non-commercial use and one is for
-research use, which is why the Rakshya weights are non-commercial.
+Rakshya 1.0 was trained on text written for this project, in which every person, number and address is invented,
+on the training part of the practical corpus released as NepPIICorpus
+(https://huggingface.co/datasets/fiste-ai/nepiicorpus), and on the public sets below. The development part of that
+corpus was used to choose and check settings, and its test part, published as NepPIIBench
+(https://huggingface.co/datasets/fiste-ai/nepiibench), was not read before the models were picked. None of the
+public sets is redistributed here. Two are for non-commercial use and one is for research use, which is why the
+Rakshya weights are non-commercial.
 
 | Set | Language | Terms |
 |---|---|---|
@@ -68,10 +52,16 @@ Sentences of EverestNER, DanfeNER and HiNER were also used a second time with th
 places put in, taken from ParaNames (https://github.com/bltlab/paranames, built from Wikidata), and sentences of
 EverestNER and DanfeNER a third time rewritten in Latin letters.
 
-The generator takes the names of provinces, districts and local levels from nepali-canonical
-(https://github.com/ritushishir/nepali-canonical), licensed under CC BY 4.0.
+The practical corpus adds Nepali, Hindi and English paragraphs in institutional registers, with character-offset
+labels for the 19 personal labels. Every person, number and address in it is invented, and no paragraph is taken
+from a real person or a real document.
 
-The small model also learned from real text without labels, which the server model labelled first: comments on videos (https://huggingface.co/datasets/Boredoom17/Nepali-Flow-Roman, CC BY 4.0), pages of Nepali government sites
+Some training targets are the probability outputs of larger teacher models: XLM-R large, MuRIL and mDeBERTa-v3,
+each trained on the labelled text and on the public sets above.
+
+Place names come from nepali-canonical (https://github.com/ritushishir/nepali-canonical), licensed under CC BY 4.0.
+
+The small model also learned from real text without labels, labelled by the larger teacher models: comments on videos (https://huggingface.co/datasets/Boredoom17/Nepali-Flow-Roman, CC BY 4.0), pages of Nepali government sites
 (https://huggingface.co/datasets/voidash/previllage-nepal-gov-corpus, CC BY 4.0 for the compilation) and news
 (https://huggingface.co/datasets/thegauravgiri/nepali-news-dataset, MIT for the compilation). The rights in the comments, pages and articles stay with their authors and publishers, and the text is not redistributed.
 

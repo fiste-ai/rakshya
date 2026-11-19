@@ -29,16 +29,22 @@ struct Tables {
     mobile: String,
     mobile_prefix: String,
     fixed_line: String,
-    landline_intl: String,
-    landline: String,
+    landlines: Vec<String>,
     email: String,
     license_shape: String,
     glued_phone: String,
+    next_phone: String,
     sentence_break: String,
     symbol: String,
     national: HashMap<String, (usize, usize)>,
     numeric_dates: Vec<(String, String)>,
     date_gated: String,
+    era_after: String,
+    era_end: String,
+    decade: String,
+    time: String,
+    whole_date: String,
+    copyright: String,
     word_dates: Vec<String>,
     day_month: String,
     month_suffix: String,
@@ -78,15 +84,23 @@ struct Rules {
     mobile: Regex,
     mobile_prefix: Regex,
     fixed_line: Regex,
-    landlines: [Regex; 2],
+    landlines: Vec<Regex>,
     email: Regex,
     license_shape: Regex,
     glued_phone: Regex,
+    next_phone: Regex,
     sentence_break: Regex,
     symbol: Regex,
     national: HashMap<String, (usize, usize)>,
     numeric_dates: Vec<(Regex, bool)>,
     date_gated: Regex,
+    era_after: Regex,
+    era_end: Regex,
+    decade: Regex,
+    time: Regex,
+    whole_date: Regex,
+    whole_date_here: Regex,
+    copyright: Regex,
     word_dates: Vec<Regex>,
     day_month: Regex,
     month_suffix: Regex,
@@ -153,15 +167,23 @@ fn rules() -> &'static Rules {
             mobile: compile(&t.mobile),
             mobile_prefix: at_start(&t.mobile_prefix),
             fixed_line: whole(&t.fixed_line),
-            landlines: [compile(&t.landline_intl), compile(&t.landline)],
+            landlines: t.landlines.iter().map(|p| compile(p)).collect(),
             email: compile(&t.email),
             license_shape: compile(&t.license_shape),
             glued_phone: compile(&t.glued_phone),
+            next_phone: at_start(&t.next_phone),
             sentence_break: compile(&t.sentence_break),
             symbol: at_start(&t.symbol),
             national: t.national,
             numeric_dates: t.numeric_dates.iter().map(|(p, order)| (compile(p), order == "dmy")).collect(),
             date_gated: compile(&t.date_gated),
+            era_after: at_start(&t.era_after),
+            era_end: compile(&t.era_end),
+            decade: at_start(&t.decade),
+            time: compile(&t.time),
+            whole_date: compile(&t.whole_date),
+            whole_date_here: at_start(&t.whole_date),
+            copyright: compile(&t.copyright),
             word_dates: t.word_dates.iter().map(|p| compile(p)).collect(),
             day_month: compile(&t.day_month),
             month_suffix: whole(&t.month_suffix),
@@ -236,6 +258,13 @@ impl Text {
 
 type Candidate = (usize, usize, &'static str, (u8, usize));
 
+/// True when `value` is figures only, in Latin or Devanagari, and begins as a mobile number of Nepal does.
+pub fn mobile_with_more(value: &str) -> bool {
+    let r = rules();
+    let figures: String = value.chars().map(|ch| *r.fold.get(&ch).unwrap_or(&ch)).collect();
+    figures.chars().all(digit) && r.mobile_prefix.is_match(&figures)
+}
+
 fn digit(ch: char) -> bool {
     ch.is_ascii_digit()
 }
@@ -253,20 +282,90 @@ fn number(caps: &Captures, name: &str, default: i64) -> i64 {
 }
 
 /// True when the number at start..end is not a piece of a longer number.
+/// Case markers that are written against the word before them, in Nepali and in Hindi.
+const AFTER_A_WORD: [&str; 12] = ["को", "का", "की", "के", "ले", "मा", "लाई", "बाट", "सँग", "में", "से", "पर"];
+
+/// A Devanagari letter or sign.
+fn devanagari(ch: char) -> bool {
+    ('\u{900}'..='\u{97f}').contains(&ch)
+}
+
+/// True when no Devanagari letter or sign stands at `at`, or a case marker does and the word ends after it.
+fn ends_word(t: &Text, at: usize) -> bool {
+    if !devanagari(t.at(at)) {
+        return true;
+    }
+    AFTER_A_WORD.iter().any(|marker| {
+        let chars: Vec<char> = marker.chars().collect();
+        at + chars.len() <= t.chars.len() && t.chars[at..at + chars.len()] == chars[..] && !devanagari(t.at(at + chars.len()))
+    })
+}
+
 fn alone(t: &Text, start: usize, end: usize) -> bool {
+    alone_in(t, start, end, &[], false)
+}
+
+/// As `alone`. `cells` are positions where a cell of a table ends: what starts there starts a number of its
+/// own. With `listed` a slash and a digit may follow, as after a phone number in a list.
+fn alone_in(t: &Text, start: usize, end: usize, cells: &[usize], listed: bool) -> bool {
     let n = t.chars.len();
-    let before = if start > 0 { t.chars[start - 1] } else { ' ' };
+    let before = if start > 0 && !cells.contains(&start) { t.chars[start - 1] } else { ' ' };
     let after = if end < n { t.chars[end] } else { ' ' };
     if digit(before) || digit(after) {
         return false;
     }
-    if (after == '-' || after == '/') && end + 1 < n && digit(t.chars[end + 1]) {
+    if (after == '-' || (after == '/' && !listed)) && end + 1 < n && digit(t.chars[end + 1]) {
         return false;
     }
     if (before == '-' || before == '/') && start > 1 && digit(t.chars[start - 2]) {
         return false;
     }
     true
+}
+
+/// True when no digit follows position `end`, nor a hyphen or a slash with a digit behind it.
+fn ends(t: &Text, end: usize) -> bool {
+    let after = t.at(end);
+    !(digit(after) || ((after == '-' || after == '/') && end + 1 < t.chars.len() && digit(t.chars[end + 1])))
+}
+
+/// True when the digits against the end of a date are the next cell of a table and not the rest of a longer number.
+fn next_cell(t: &Text, end: usize) -> bool {
+    let n = t.chars.len();
+    let mut stop = end;
+    while stop < n && digit(t.chars[stop]) {
+        stop += 1;
+    }
+    let after = t.at(stop);
+    if stop < n && (after == '-' || after == '/') && digit(t.at(stop + 1)) {
+        return rules().whole_date_here.captures(t.slice(end, n)).map_or(false, |caps| caps["s1"] == caps["s2"]);
+    }
+    stop - end <= 2 || (stop - end == 4 && matches!(t.slice(end, end + 2), "19" | "20"))
+}
+
+/// Dates written year-month-day that stand against a neighbouring cell of a table, and where every such date ends.
+fn whole_dates(t: &Text) -> (Vec<(usize, usize)>, Vec<usize>) {
+    let n = t.chars.len();
+    let mut out = Vec::new();
+    let mut cells: Vec<usize> = Vec::new();
+    for caps in rules().whole_date.captures_iter(&t.utf8) {
+        let (start, end) = t.range(caps.get(0).unwrap());
+        let before = if start > 0 && !cells.contains(&start) { t.chars[start - 1] } else { ' ' };
+        let after = t.at(end);
+        if caps["s1"] != caps["s2"]
+            || digit(before)
+            || ((before == '-' || before == '/') && start > 1 && digit(t.chars[start - 2]))
+            || ((after == '-' || after == '/') && end + 1 < n && digit(t.chars[end + 1]))
+            || (digit(after) && !next_cell(t, end))
+        {
+            continue;
+        }
+        if digit(after) || cells.contains(&start) {
+            out.push((start, end));
+        }
+        cells.push(end);
+    }
+    (out, cells)
 }
 
 /// True when the match does not begin inside a word of its own script.
@@ -294,6 +393,38 @@ fn rest_of_word(t: &Text, end: usize) -> &str {
 fn plausible_date(year: i64, a: i64, b: i64, day_first: bool) -> bool {
     let month_first = (1..=12).contains(&a) && (1..=32).contains(&b);
     (1900..=2099).contains(&year) && (month_first || (day_first && (1..=12).contains(&b) && (1..=32).contains(&a)))
+}
+
+/// The end of a date with the era that follows it in Latin letters, where that is a word of its own.
+fn with_era(t: &Text, end: usize) -> usize {
+    match rules().era_after.find(t.slice(end, t.chars.len())) {
+        Some(m) => {
+            let stop = t.index[t.bytes[end] + m.end()];
+            let after = t.at(stop);
+            if letter(after) || digit(after) {
+                end
+            } else {
+                stop
+            }
+        }
+        None => end,
+    }
+}
+
+/// True when the letters against the year that ends a date may be the next word of a page that runs its cells
+/// together ("March 7, 2016by Admin"): the date has a space or a comma inside, so it is no code, and what
+/// follows is not the "s" of a decade.
+fn runs_on(t: &Text, start: usize, end: usize) -> bool {
+    let inside = t.slice(start, end);
+    let first = t.at(end);
+    (inside.contains(' ') || inside.contains(',')) && !((first == 's' || first == 'S') && !letter(t.at(end + 1)))
+}
+
+/// False for figures after a keyword that are no date as they stand: a year has a day or a month at its other
+/// end, and "2076-03-1014" is a date with the next cell of a table run on to it.
+fn gated_date(value: &str) -> bool {
+    let parts: Vec<&str> = value.split(|ch| ch == '-' || ch == '/' || ch == '.').collect();
+    parts[0].len() < 3 || parts[parts.len() - 1].len() < 3
 }
 
 fn label_of(name: &str) -> &'static str {
@@ -362,6 +493,15 @@ fn ids(t: &Text, out: &mut Vec<Candidate>) {
                     {
                         end += 2;
                     }
+                    // The one Devanagari letter that ends a number written in groups with full stops belongs to it:
+                    // "०२१.०८.३१९ख". A word written against the number does not.
+                    if t.chars[start..end].contains(&'.')
+                        && end < t.chars.len()
+                        && ('क'..='ह').contains(&t.chars[end])
+                        && ends_word(t, end + 1)
+                    {
+                        end += 1;
+                    }
                 }
                 if label == "SECRET" && end < t.chars.len() && t.chars[end] == ' ' && digit(t.at(end + 1)) {
                     continue; // the first group of a longer number
@@ -383,12 +523,34 @@ fn ids(t: &Text, out: &mut Vec<Candidate>) {
 
 fn phones(t: &Text, out: &mut Vec<Candidate>) {
     let r = rules();
+    let first = out.len();
+    single_phones(t, out);
+    // A bare number of six to ten digits after a phone number and a comma, a slash or a bar is one more of the list.
+    let mut ends: Vec<usize> = out[first..].iter().map(|candidate| candidate.1).collect();
+    let mut k = 0;
+    while k < ends.len() {
+        if let Some(caps) = r.next_phone.captures(t.slice(ends[k], t.chars.len())) {
+            let m = caps.name("n").unwrap();
+            let base = t.bytes[ends[k]];
+            let (start, end) = (t.index[base + m.start()], t.index[base + m.end()]);
+            let after = t.at(end);
+            if !(digit(after) || letter(after) || (after == '-' && digit(t.at(end + 1)))) && !ends.contains(&end) {
+                out.push((start, end, "PHONE", (2, 0)));
+                ends.push(end);
+            }
+        }
+        k += 1;
+    }
+}
+
+fn single_phones(t: &Text, out: &mut Vec<Candidate>) {
+    let r = rules();
     for caps in r.mobile.captures_iter(&t.utf8) {
         let number = caps.name("n").unwrap();
         let end = t.index[caps.get(0).unwrap().end()];
         let start = t.index[caps.name("cc").unwrap_or(number).start()];
         let text = number.as_str();
-        if alone(t, start, end)
+        if alone_in(t, start, end, &[], true)
             && r.mobile_prefix.is_match(text)
             && text.chars().count() - digits(text) <= 3
             && !(start > 0 && t.chars[start - 1] == '+')
@@ -400,7 +562,7 @@ fn phones(t: &Text, out: &mut Vec<Candidate>) {
         for caps in pattern.captures_iter(&t.utf8) {
             let (start, end) = t.range(caps.get(0).unwrap());
             let joined = format!("{}{}", &caps["area"], &caps["rest"]);
-            if alone(t, start, end) && r.fixed_line.is_match(&joined) {
+            if alone_in(t, start, end, &[], true) && r.fixed_line.is_match(&joined) {
                 out.push((start, end, "PHONE", (2, 0)));
             }
         }
@@ -414,7 +576,7 @@ fn phones(t: &Text, out: &mut Vec<Candidate>) {
         if gap.chars().last().map_or(false, letter) {
             continue; // the end of a longer token: "TXN7576964714"
         }
-        if alone(t, start, end) && !r.any_keyword.is_match(gap) {
+        if alone_in(t, start, end, &[], true) && !r.any_keyword.is_match(gap) {
             out.push((start, end, "PHONE", (2, gap.chars().count())));
         }
     }
@@ -422,6 +584,28 @@ fn phones(t: &Text, out: &mut Vec<Candidate>) {
 
 fn dates(t: &Text, out: &mut Vec<Candidate>) {
     let r = rules();
+    let (whole, mut cells) = whole_dates(t);
+    for (start, end) in whole {
+        out.push((start, end, "DATE", (4, 0)));
+    }
+    // What stands against the minutes of a time of day starts a cell of its own.
+    for m in r.time.find_iter(&t.utf8) {
+        let (start, end) = t.range(m);
+        if !(start > 0 && digit(t.chars[start - 1])) {
+            cells.push(end);
+        }
+    }
+    for caps in r.copyright.captures_iter(&t.utf8) {
+        let last = caps.name("to").or(caps.name("val")).unwrap();
+        if ends(t, t.index[last.end()]) {
+            let (start, end) = t.range(caps.name("val").unwrap());
+            out.push((start, end, "DATE", (4, 0)));
+            if let Some(to) = caps.name("to") {
+                let (start, end) = t.range(to);
+                out.push((start, end, "DATE", (4, 0)));
+            }
+        }
+    }
     for (pattern, day_first) in &r.numeric_dates {
         for caps in pattern.captures_iter(&t.utf8) {
             let (start, end) = t.range(caps.get(0).unwrap());
@@ -429,35 +613,68 @@ fn dates(t: &Text, out: &mut Vec<Candidate>) {
                 && alone(t, start, end)
                 && plausible_date(number(&caps, "y", 0), number(&caps, "a", 0), number(&caps, "b", 0), *day_first)
             {
-                out.push((start, end, "DATE", (4, 0)));
+                out.push((start, with_era(t, end), "DATE", (4, 0)));
             }
         }
     }
     for caps in r.date_gated.captures_iter(&t.utf8) {
-        let (start, end) = t.range(caps.name("val").unwrap());
-        if alone(t, start, end) {
-            out.push((start, end, "DATE", (3, caps.name("gap").unwrap().as_str().chars().count())));
+        let value = caps.name("val").unwrap();
+        let (mut start, end) = t.range(value);
+        let gap = caps.name("gap").unwrap().as_str();
+        // The era at the end of what stands between the keyword and the date is part of the date.
+        if let Some(era) = r.era_end.find(gap) {
+            start -= gap[era.start()..].chars().count();
+        }
+        if alone(t, start, end) && gated_date(value.as_str()) {
+            out.push((start, end, "DATE", (3, gap.chars().count())));
         }
     }
     for pattern in &r.word_dates {
         for caps in pattern.captures_iter(&t.utf8) {
             let (start, end) = t.range(caps.get(0).unwrap());
-            let year = number(&caps, "y", 2000);
+            let y = caps.name("y");
+            let short = y.map_or(false, |m| m.as_str().len() == 3);
+            let year = number(&caps, "y", 2000) + if short { 2000 } else { 0 };
             let day = number(&caps, "d", 1);
-            if (1900..=2099).contains(&year)
-                && (1..=32).contains(&day)
-                && alone(t, start, end)
-                && word_start(t, start, t.chars[start].is_ascii())
-                && !letter(t.at(end))
-            {
-                out.push((start, end, "DATE", (4, 0)));
+            let closes = y.map_or(false, |m| t.index[m.end()] == end); // the year ends the date
+            // A date that starts with a word is not the rest of the number before it, and a capital after a
+            // small letter starts a word on a page that runs its cells together.
+            let mut own = cells.clone();
+            if !digit(t.chars[start]) {
+                own.push(start);
             }
+            let capital = start > 0 && t.chars[start].is_ascii_uppercase() && t.chars[start - 1].is_ascii_lowercase();
+            if !((1900..=2099).contains(&year)
+                && (1..=32).contains(&day)
+                && alone_in(t, start, end, &own, false)
+                && (capital || word_start(t, start, t.chars[start].is_ascii())))
+            {
+                continue;
+            }
+            if letter(t.at(end)) && !(closes && runs_on(t, start, end)) {
+                continue;
+            }
+            if closes && r.decade.is_match(t.slice(end, t.chars.len())) {
+                continue;
+            }
+            // A month that ends the date ends its word or carries only case markers, as after a day.
+            if let Some(m) = caps.name("m") {
+                if t.index[m.end()] == end {
+                    let rest = rest_of_word(t, end);
+                    if !rest.is_empty() && !r.month_suffix.is_match(rest) {
+                        continue;
+                    }
+                }
+            }
+            out.push((start, if closes { with_era(t, end) } else { end }, "DATE", (4, 0)));
         }
     }
     for caps in r.day_month.captures_iter(&t.utf8) {
         let (start, end) = t.range(caps.get(0).unwrap());
         let rest = rest_of_word(t, end);
-        if (1..=32).contains(&number(&caps, "d", 0)) && alone(t, start, end) && (rest.is_empty() || r.month_suffix.is_match(rest))
+        if (1..=32).contains(&number(&caps, "d", 0))
+            && alone_in(t, start, end, &cells, false)
+            && (rest.is_empty() || r.month_suffix.is_match(rest))
         {
             out.push((start, end, "DATE", (4, 0)));
         }
@@ -763,8 +980,8 @@ fn check_url(t: &Text, start: usize, end: usize) -> Option<(usize, usize)> {
     if start > 0 && wordy(t.chars[start - 1]) && t.slice(start, start + 4).to_lowercase() == "www." {
         return None; // "http" may be written against the word before it; "www." inside a word is no address
     }
-    // A second address may be written against the first.
-    let again = ["http://", "https://"].iter().filter_map(|scheme| t.find(scheme, start + 4, end)).min().unwrap_or(end);
+    // A second address may be written against the first, and a page that shortens an address ends it with three dots.
+    let again = ["http://", "https://", "..."].iter().filter_map(|word| t.find(word, start + 4, end)).min().unwrap_or(end);
     let stop = start + trim_address(&t.chars[start..again]);
     let stop = start + host_end(&t.chars[start..stop]);
     (t.chars[start..stop].contains(&'.') && stop - start > 6).then_some((start, stop))

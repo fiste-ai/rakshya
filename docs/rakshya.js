@@ -6,6 +6,10 @@
 //   import { load } from "./rakshya.js";
 //   const detector = await load({ ort, model: "https://huggingface.co/fiste-ai/rakshya/resolve/main", runtime: dist });
 //   const { spans, redacted } = await detector.detect("मेरो नाम ... हो");
+//   const personal = await detector.detect(text, { labels: "personal" });
+//
+// With labels "personal" only personal data is given out: places, organisations, dates and web addresses stay,
+// and so do the phone number and the mailbox of an office and a number that is already masked.
 //
 // `model` is the address of a folder with tokenizer.json, tagger.json and onnx/model_quantized.onnx, and
 // `runtime` the address of the files of ONNX Runtime Web. With `threads` above 1 the page must be
@@ -52,7 +56,8 @@ class Detector {
     this.timing = timing;
   }
 
-  async detect(text) {
+  async detect(text, { labels = "all" } = {}) {
+    if (labels !== "all" && labels !== "personal") throw new Error(`labels is "all" or "personal", not ${labels}`);
     const run = this.rakshya.start(text);
     try {
       for (let i = 0; i < run.count; i++) {
@@ -64,8 +69,8 @@ class Detector {
         });
         run.push(i, output.logits.data, output.trim_logits.data);
       }
-      const spans = JSON.parse(run.finish()).map(([start, end, label, source]) => ({ start, end, label, source }));
-      const result = { spans, redacted: run.redacted(), pieces: run.count };
+      const spans = JSON.parse(run.finish_as(labels)).map(([start, end, label, source]) => ({ start, end, label, source }));
+      const result = { spans, redacted: run.redacted_as(labels), pieces: run.count };
       run.free();
       return result;
     } catch (error) {

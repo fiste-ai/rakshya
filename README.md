@@ -1,32 +1,36 @@
 # Rakshya (रक्षा)
 
-**Finds personal data in Nepali and English text, inside the browser. By [Fiste AI](https://fiste-ai.github.io/rakshya/).** Text in; names, places, phone numbers and identity numbers marked, or taken out. रक्षा means protection. The first release of this model was called Gopya.
+**Finds personal data in Nepali, Hindi and English text, inside the browser. By [Fiste AI](https://fiste-ai.github.io/rakshya/).** Text in; names, places, phone numbers and identity numbers marked, or taken out. रक्षा means protection. The first release of this model was called Gopya.
 
-- **Small.** 41 MB. It loads in a web page and reads a sentence in about 40 ms there, so the text can stay on the device. [Try it in your browser](https://fiste-ai.github.io/rakshya/).
-- **Three ways of writing.** Nepali in Devanagari, Nepali in Latin letters, and English as it is written in Nepal. Hindi is experimental.
+- **Small.** 41 MB. It loads in a web page and reads a sentence in about 50 ms there, so the text can stay on the device. [Try it in your browser](https://fiste-ai.github.io/rakshya/).
+- **Three languages in four kinds of writing.** Nepali in Devanagari and in Latin letters, Hindi in Devanagari, and English as it is written in Nepal.
 - **Exact.** Nepali writes case markers against a name, as in सीतालाई. Rakshya ends each span inside the word, so it takes out the name and leaves the grammar.
-- **Made for Nepal.** Citizenship, national identity, PAN, passport, licence and voter numbers, bank accounts, number plates and phone numbers, with dates in both calendars and both scripts. Beside them the kinds that are standard everywhere: cards, IP addresses, web addresses, user names, passwords and keys. 21 labels in all.
+- **Made for Nepal.** Citizenship, national identity, PAN, passport, licence and voter numbers, bank accounts, number plates and phone numbers, with dates in both calendars and both scripts. Beside them the kinds that are standard everywhere: cards, IP addresses, web addresses, user names, passwords and keys. 25 labels in all.
 
-There are two models with the same rules and labels: [fiste-ai/rakshya](https://huggingface.co/fiste-ai/rakshya), 41 MB, for browsers and phones, and [fiste-ai/rakshya-server](https://huggingface.co/fiste-ai/rakshya-server), 1.1 GB, for servers. This repository holds the code that runs them, the demo page and the benchmark.
+The model is at [fiste-ai/rakshya](https://huggingface.co/fiste-ai/rakshya) under the tag `v1.0`. This repository holds the code that runs it, the demo page and the labels of the test sets.
 
 ## Benchmark
 
-882 real texts in seven test sets that no system had seen: news, web pages, government pages and comments. The number is the F1 of exact spans over every kind of personal data in a set. Higher is better.
+1,034 real texts in seven test sets: news, web pages, government pages and comments. None of them is in any training data we used, and their labels were fixed before any system was run on them. The number is the F1 of exact spans over every kind of personal data in a set. Higher is better.
 
-| System | Weights | News (ne) | Web (ne) | Government (ne) | Comments (ne, Latin) | News (en) | Web (en) | News (hi) | Mean |
-|---|---|---|---|---|---|---|---|---|---|
-| **[Rakshya 0.2](https://huggingface.co/fiste-ai/rakshya)** | 40M | **0.878** | 0.802 | 0.731 | **0.529** | 0.803 | 0.703 | **0.804** | 0.750 |
-| **[Rakshya 0.2 server](https://huggingface.co/fiste-ai/rakshya-server)** | 278M | 0.870 | **0.815** | **0.740** | 0.520 | **0.813** | **0.740** | 0.800 | **0.757** |
-| [Gopya 0.1](https://huggingface.co/fiste-ai/rakshya/tree/v0.1) | 34M | 0.855 | 0.683 | 0.636 | 0.233 | 0.729 | 0.563 | 0.725 | 0.632 |
-| [EU PII anonymisation](https://huggingface.co/bardsai/eu-pii-anonimization-multilang) (bards.ai) | 278M | 0.647 | 0.601 | 0.409 | 0.253 | 0.787 | 0.530 | 0.727 | 0.565 |
-| [XLM-R base NER HRL](https://huggingface.co/Davlan/xlm-roberta-base-ner-hrl) (Davlan) | 277M | 0.660 | 0.617 | 0.267 | 0.302 | 0.772 | 0.498 | 0.712 | 0.547 |
-| [XLM-R large, CoNLL-2003](https://huggingface.co/FacebookAI/xlm-roberta-large-finetuned-conll03-english) (FacebookAI) | 559M | 0.651 | 0.574 | 0.200 | 0.265 | 0.783 | 0.481 | 0.760 | 0.531 |
-| [EU PII anonymisation v3](https://huggingface.co/bardsai/eu-pii-anonimization-multilang-v3) (bards.ai) | 308M | 0.144 | 0.704 | 0.328 | 0.162 | 0.605 | 0.709 | 0.528 | 0.454 |
-| [Nym PII multilingual](https://huggingface.co/Wismut/nym-pii-multilingual) (Wismut) | 308M | 0.427 | 0.420 | 0.301 | 0.252 | 0.655 | 0.478 | 0.595 | 0.447 |
+| System | News (ne) | Web (ne) | Government (ne) | Comments (ne, Latin) | News (en) | Web (en) | News (hi) | Mean |
+|---|---|---|---|---|---|---|---|---|
+| **[Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya)** | **0.914** | **0.933** | **0.943** | **0.858** | **0.924** | **0.915** | **0.855** | **0.906** |
+| [Rakshya 0.2](https://huggingface.co/fiste-ai/rakshya/tree/v0.2) | 0.889 | 0.816 | 0.863 | 0.524 | 0.892 | 0.790 | 0.797 | 0.796 |
+| [Gopya 0.1](https://huggingface.co/fiste-ai/rakshya/tree/v0.1) | 0.849 | 0.727 | 0.704 | 0.218 | 0.724 | 0.638 | 0.789 | 0.664 |
+| [EU PII anonymisation](https://huggingface.co/bardsai/eu-pii-anonimization-multilang) (bards.ai) | 0.718 | 0.597 | 0.506 | 0.264 | 0.817 | 0.460 | 0.757 | 0.588 |
+| [XLM-R base NER HRL](https://huggingface.co/Davlan/xlm-roberta-base-ner-hrl) (Davlan) | 0.775 | 0.566 | 0.353 | 0.269 | 0.855 | 0.499 | 0.762 | 0.583 |
+| [XLM-R large, CoNLL-2003](https://huggingface.co/FacebookAI/xlm-roberta-large-finetuned-conll03-english) (FacebookAI) | 0.764 | 0.552 | 0.302 | 0.280 | 0.852 | 0.498 | 0.802 | 0.578 |
+| [MeridianPII Hindi v2](https://huggingface.co/plingampally/meridianpii-hi-v2) (plingampally) | 0.601 | 0.494 | 0.272 | 0.203 | 0.635 | 0.430 | 0.631 | 0.467 |
+| [Nym PII multilingual](https://huggingface.co/Wismut/nym-pii-multilingual) (Wismut) | 0.390 | 0.452 | 0.336 | 0.274 | 0.672 | 0.519 | 0.578 | 0.460 |
 
-Of the 25 published systems we ran, none scores higher than Rakshya 0.2 on Nepali news, Nepali web pages, government pages, romanised comments, English news and Hindi news. Ahead of it is EU PII anonymisation v3 on English web pages (0.709 against 0.703).
+None of the 25 published systems we ran scores higher than Rakshya 1.0 on any of the seven sets.
 
-Exact means that start, end and label are all right. The table has Rakshya, its first release and the 5 published systems with the highest mean. All 25 systems, the scores by kind, the false alarms and the method are in [BENCHMARK.md](BENCHMARK.md).
+Exact means that start, end and label are all right. The table has Rakshya, the two releases before it and the 5 published systems with the highest mean. All 25 published systems, the scores by kind, the false alarms and the method are in [BENCHMARK.md](BENCHMARK.md).
+
+On [NepPIIBench](https://huggingface.co/datasets/fiste-ai/nepiibench), 380 held-out paragraphs with character offsets for 19 kinds of personal data, Rakshya 1.0 has a character F1 of 0.983 and an F1 of exact spans of 0.953. It learned from the training part of the same collection, most of which is published as [NepPIICorpus](https://huggingface.co/datasets/fiste-ai/nepiicorpus), and no other system did, so this is a score on the kind of text it was trained for.
+
+On 180 further cases, a set of their own that no version of Rakshya learned from, it gets 0.951 at the level of seven kinds that every system can be scored on. Rakshya 0.2 gets 0.921 there, and the best of the other published systems, EU PII anonymisation v3 of bards.ai, 0.727.
 
 ## Use it
 
@@ -34,7 +38,7 @@ Exact means that start, end and label are all right. The table has Rakshya, its 
 # pip install git+https://github.com/fiste-ai/rakshya
 from rakshya import Rakshya
 
-pii = Rakshya()        # fetches the small model once, 41 MB; Rakshya(model="server") for the large one
+pii = Rakshya()        # fetches the model once, 41 MB
 text = "मेरो नाम सीता थापा हो, फोन ९८४१२३४५६७।"
 pii.find(text)         # [(9, 18, 'PERSON'), (27, 37, 'PHONE')]
 pii.redact(text)       # मेरो नाम [PERSON_1] हो, फोन [PHONE_1]।
@@ -49,14 +53,14 @@ In a web page:
 ```js
 const dist = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/";
 const ort = await import(dist + "ort.wasm.min.mjs");
-const { load } = await import("https://cdn.jsdelivr.net/gh/fiste-ai/rakshya@v0.2/docs/rakshya.js");
-const rakshya = await load({ ort, model: "https://huggingface.co/fiste-ai/rakshya/resolve/v0.2", runtime: dist });
+const { load } = await import("https://cdn.jsdelivr.net/gh/fiste-ai/rakshya@v1.0/docs/rakshya.js");
+const rakshya = await load({ ort, model: "https://huggingface.co/fiste-ai/rakshya/resolve/v1.0", runtime: dist });
 const { spans, redacted } = await rakshya.detect("मेरो नाम सीता थापा हो, फोन ९८४१२३४५६७।");
 ```
 
 `docs/index.html` is a whole page that does this, live at [fiste-ai.github.io/rakshya](https://fiste-ai.github.io/rakshya/).
 
-It finds `PERSON`, `LOCATION`, `ORGANIZATION`, `DATE`, `PHONE`, `EMAIL`, `URL`, `USERNAME`, `IP_ADDRESS`, `CITIZENSHIP_NO`, `NATIONAL_ID`, `TAX_ID`, `PASSPORT_NO`, `LICENSE_NO`, `VOTER_ID`, `ID_NUMBER`, `BANK_ACCOUNT`, `CARD_NUMBER`, `UPI_ID`, `VEHICLE_PLATE`, `SECRET`.
+Two profiles decide what is returned. `labels="all"` returns every label; `labels="personal"` leaves places, organisations, dates and web addresses in the text, and also leaves the phone number and mailbox of an office and a number that is already masked. It finds `PERSON`, `LOCATION`, `ORGANIZATION`, `DATE`, `ADDRESS`, `DOB`, `PHONE`, `EMAIL`, `URL`, `DIGITAL_SECRET`, `NATIONAL_ID`, `TAX_ID`, `PASSPORT`, `DRIVER_LICENSE`, `VOTER_ID`, `BANK_ACCOUNT`, `CREDIT_CARD`, `PAYMENT_ID`, `MEDICAL_ID`, `EMPLOYEE_STUDENT_ID`, `PROPERTY_UTILITY_ID`, `VEHICLE_ID`, `ID_NUMBER`, `OFFICE_PHONE`, `OFFICE_EMAIL`.
 
 ## What is here
 
@@ -73,11 +77,11 @@ To build the browser module again: `cd rust && cargo build --release --target wa
 
 ## Limits
 
-- It is a helper and not a guarantee. The small model misses about 4 in 100 characters of personal data in Nepali news, 6 on web pages, 7 in English news and 31 in comments written in Latin letters. Read the result before you rely on it.
-- Nepali in Latin letters is the hardest of the three: 0.529 exact on real comments. People spell as they like there.
+- It is a helper and not a guarantee. The model finds 96 in 100 characters of personal data in Nepali news it had not seen, 98 on web pages, 98 in English news and 90 in comments written in Latin letters. Read the result before you rely on it.
+- Nepali in Latin letters is the hardest of the four: 0.858 exact on real comments. People spell as they like there.
 - Text copied out of tables is cut badly. Where one cell runs into the next, a date or a name is marked with the wrong start or end, and a row of figures can be taken for an address.
-- Hindi is experimental. On 60 texts of Hindi news the small model scores 0.804.
-- Identity numbers are tested mostly on made-up text. Public pages print phone numbers, e-mail addresses and the bank accounts of offices; they do not print citizenship, passport or licence numbers.
+- On 104 texts of Hindi news the model scores 0.855. Hindi is the newest of the languages and has the fewest test texts.
+- Identity numbers are tested mostly on paragraphs of fictional records. Public pages print phone numbers, e-mail addresses and the bank accounts of offices; they do not print citizenship, passport or licence numbers.
 - The test sets are small, and each comes from one kind of source.
 
 Code MIT, weights CC BY-NC 4.0, test labels CC BY 4.0; see `LICENSE` and `NOTICE.md`. Part of the training data is for non-commercial use, so there is no commercial licence for this version. Questions: [contact us](https://fiste-ai.github.io/contact/) or open an issue.

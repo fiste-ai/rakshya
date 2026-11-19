@@ -1,16 +1,17 @@
 cff-version: 1.2.0
 message: "If you use Rakshya or its benchmark, please cite it as below."
-title: "Rakshya: personal data detection for Nepali and English text"
+title: "Rakshya: personal data detection for Nepali, Hindi and English text"
 type: software
 authors:
   - name: "Fiste AI"
-version: "0.2"
-date-released: "2026-11-14"
+version: "1.0"
+date-released: "2026-11-18"
 url: "https://fiste-ai.github.io/rakshya/"
 repository-code: "https://github.com/fiste-ai/rakshya"
 license: MIT
 keywords:
   - Nepali
+  - Hindi
   - personal data
   - PII detection
   - redaction
