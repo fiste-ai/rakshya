@@ -43,7 +43,9 @@ On 180 further cases of our own, a separate set that no version of Rakshya learn
 from huggingface_hub import snapshot_download
 from rakshya import Rakshya
 
-pii = Rakshya(snapshot_download("fiste-ai/rakshya-lite", revision="v1.1"))
+folder = snapshot_download("fiste-ai/rakshya-lite", revision="v1.1",
+                           allow_patterns=["tagger.json", "tokenizer.json", "onnx/*"])
+pii = Rakshya(folder)
 ```
 
 In a web page, give `load` the address `https://huggingface.co/fiste-ai/rakshya-lite/resolve/v1.1` as its `model`.
