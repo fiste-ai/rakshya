@@ -4,8 +4,8 @@ title: "Rakshya: personal data detection for Nepali, Hindi and English text"
 type: software
 authors:
   - name: "Fiste AI"
-version: "1.0"
-date-released: "2026-11-18"
+version: "1.1"
+date-released: "2026-11-20"
 url: "https://fiste-ai.github.io/rakshya/"
 repository-code: "https://github.com/fiste-ai/rakshya"
 license: MIT

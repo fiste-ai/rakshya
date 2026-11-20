@@ -1,8 +1,8 @@
 {
- "version": "1.0",
- "date": "2026-11-18",
+ "version": "1.1",
+ "date": "2026-11-20",
  "note": "Scores of Rakshya and of published systems. BENCHMARK.md says what each number means.",
- "summary": "None of the 25 published systems we ran scores higher than Rakshya 1.0 on any of the seven sets.",
+ "summary": "None of the 25 published systems we ran scores higher than Rakshya 1.1 on any of the seven sets.",
  "labels_scored": [
   "DATE",
   "DIGITAL_SECRET",
@@ -15,11 +15,11 @@
   "URL"
  ],
  "groups": {
-  "one": "the seven test sets of 1.0: real text labelled before any model of 1.0 read it",
+  "one": "the seven test sets of 1.0 and 1.1: real text labelled before any model of 1.0 read it; the models of 1.0 were scored on it once, and Rakshya 1.1 once after it was fixed",
   "new": "seven older sets of the same kinds, whose scores were read while 1.0 was built"
  },
  "systems": {
-  "Rakshya 1.0": {
+  "Rakshya 1.1": {
    "maker": "Fiste AI",
    "link": "https://huggingface.co/fiste-ai/rakshya",
    "size": "40M"
@@ -27,6 +27,11 @@
   "the rules of Rakshya alone": {
    "maker": "Fiste AI",
    "link": "https://github.com/fiste-ai/rakshya#benchmark",
+   "size": ""
+  },
+  "Rakshya 1.0": {
+   "maker": "Fiste AI",
+   "link": "https://huggingface.co/fiste-ai/rakshya/tree/v1.0",
    "size": ""
   },
   "Rakshya 0.2": {
@@ -732,6 +737,150 @@
         "r": 0.917,
         "gold": 72,
         "chars_found": 1.0
+       },
+       "PHONE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       }
+      }
+     }
+    },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.9218,
+      "r": 0.9377,
+      "f1": 0.9297,
+      "word_f1": 0.9297,
+      "overlap_f1": 0.964,
+      "chars_found": 0.9845,
+      "chars_right": 0.9576,
+      "gold": 289,
+      "pred": 294,
+      "texts_with_nothing_to_mark": 55,
+      "false_alarms_per_1000_words": 4.52,
+      "share_of_them_marked": 0.073,
+      "interval": [
+       0.889,
+       0.963
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 0.971,
+        "p": 1.0,
+        "r": 0.944,
+        "gold": 18,
+        "chars_found": 0.955
+       },
+       "LOCATION": {
+        "f1": 0.951,
+        "p": 0.933,
+        "r": 0.969,
+        "gold": 130,
+        "chars_found": 0.988
+       },
+       "ORGANIZATION": {
+        "f1": 0.855,
+        "p": 0.843,
+        "r": 0.868,
+        "gold": 68,
+        "chars_found": 0.985
+       },
+       "PERSON": {
+        "f1": 0.951,
+        "p": 0.958,
+        "r": 0.944,
+        "gold": 72,
+        "chars_found": 0.984
+       },
+       "PHONE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       }
+      }
+     },
+     "first": {
+      "p": 0.9044,
+      "r": 0.917,
+      "f1": 0.9107,
+      "word_f1": 0.9107,
+      "overlap_f1": 0.9536,
+      "chars_found": 0.9844,
+      "chars_right": 0.9538,
+      "gold": 289,
+      "pred": 293,
+      "texts_with_nothing_to_mark": 55,
+      "false_alarms_per_1000_words": 4.52,
+      "share_of_them_marked": 0.073,
+      "interval": [
+       0.87,
+       0.95
+      ]
+     },
+     "names": {
+      "p": 0.9167,
+      "r": 0.937,
+      "f1": 0.9267,
+      "word_f1": 0.9267,
+      "overlap_f1": 0.9634,
+      "chars_found": 0.9859,
+      "chars_right": 0.9555,
+      "gold": 270,
+      "pred": 276,
+      "texts_with_nothing_to_mark": 60,
+      "false_alarms_per_1000_words": 5.05,
+      "share_of_them_marked": 0.083,
+      "interval": [
+       0.883,
+       0.962
+      ]
+     },
+     "fine": {
+      "p": 0.9218,
+      "r": 0.9377,
+      "f1": 0.9297,
+      "word_f1": 0.9297,
+      "overlap_f1": 0.964,
+      "chars_found": 0.9845,
+      "chars_right": 0.9576,
+      "gold": 289,
+      "pred": 294,
+      "texts_with_nothing_to_mark": 55,
+      "false_alarms_per_1000_words": 4.52,
+      "share_of_them_marked": 0.073,
+      "per_label": {
+       "DATE": {
+        "f1": 0.971,
+        "p": 1.0,
+        "r": 0.944,
+        "gold": 18,
+        "chars_found": 0.955
+       },
+       "LOCATION": {
+        "f1": 0.951,
+        "p": 0.933,
+        "r": 0.969,
+        "gold": 130,
+        "chars_found": 0.988
+       },
+       "ORGANIZATION": {
+        "f1": 0.855,
+        "p": 0.843,
+        "r": 0.868,
+        "gold": 68,
+        "chars_found": 0.985
+       },
+       "PERSON": {
+        "f1": 0.951,
+        "p": 0.958,
+        "r": 0.944,
+        "gold": 72,
+        "chars_found": 0.984
        },
        "PHONE": {
         "f1": 1.0,
@@ -4438,6 +4587,213 @@
        "PHONE": {
         "f1": 0.982,
         "p": 1.0,
+        "r": 0.964,
+        "gold": 168,
+        "chars_found": 0.966
+       },
+       "TAX_ID": {
+        "f1": 0.8,
+        "p": 1.0,
+        "r": 0.667,
+        "gold": 3,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 6,
+        "chars_found": 1.0
+       }
+      }
+     }
+    },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.9346,
+      "r": 0.9401,
+      "f1": 0.9373,
+      "word_f1": 0.9397,
+      "overlap_f1": 0.9578,
+      "chars_found": 0.9747,
+      "chars_right": 0.9698,
+      "gold": 851,
+      "pred": 856,
+      "texts_with_nothing_to_mark": 10,
+      "false_alarms_per_1000_words": 5.19,
+      "share_of_them_marked": 0.1,
+      "interval": [
+       0.917,
+       0.954
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 0.909,
+        "p": 0.909,
+        "r": 0.909,
+        "gold": 66,
+        "chars_found": 0.986
+       },
+       "DIGITAL_SECRET": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "gold": 0,
+        "chars_found": 0.0
+       },
+       "EMAIL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 59,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.932,
+        "p": 0.932,
+        "r": 0.932,
+        "gold": 206,
+        "chars_found": 0.982
+       },
+       "NUMBER": {
+        "f1": 0.4,
+        "p": 1.0,
+        "r": 0.25,
+        "gold": 8,
+        "chars_found": 0.403
+       },
+       "ORGANIZATION": {
+        "f1": 0.848,
+        "p": 0.828,
+        "r": 0.87,
+        "gold": 138,
+        "chars_found": 0.955
+       },
+       "PERSON": {
+        "f1": 0.978,
+        "p": 0.961,
+        "r": 0.995,
+        "gold": 200,
+        "chars_found": 0.996
+       },
+       "PHONE": {
+        "f1": 0.979,
+        "p": 0.994,
+        "r": 0.964,
+        "gold": 168,
+        "chars_found": 0.966
+       },
+       "URL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 6,
+        "chars_found": 1.0
+       }
+      }
+     },
+     "first": {
+      "p": 0.9194,
+      "r": 0.9391,
+      "f1": 0.9292,
+      "word_f1": 0.9303,
+      "overlap_f1": 0.9498,
+      "chars_found": 0.9746,
+      "chars_right": 0.9638,
+      "gold": 838,
+      "pred": 856,
+      "texts_with_nothing_to_mark": 16,
+      "false_alarms_per_1000_words": 3.15,
+      "share_of_them_marked": 0.062,
+      "interval": [
+       0.908,
+       0.949
+      ]
+     },
+     "names": {
+      "p": 0.9158,
+      "r": 0.9393,
+      "f1": 0.9274,
+      "word_f1": 0.9292,
+      "overlap_f1": 0.9519,
+      "chars_found": 0.9751,
+      "chars_right": 0.9607,
+      "gold": 544,
+      "pred": 558,
+      "texts_with_nothing_to_mark": 19,
+      "false_alarms_per_1000_words": 0.0,
+      "share_of_them_marked": 0.0,
+      "interval": [
+       0.902,
+       0.948
+      ]
+     },
+     "fine": {
+      "p": 0.9346,
+      "r": 0.9401,
+      "f1": 0.9373,
+      "word_f1": 0.9397,
+      "overlap_f1": 0.9578,
+      "chars_found": 0.9747,
+      "chars_right": 0.9698,
+      "gold": 851,
+      "pred": 856,
+      "texts_with_nothing_to_mark": 10,
+      "false_alarms_per_1000_words": 5.19,
+      "share_of_them_marked": 0.1,
+      "per_label": {
+       "DATE": {
+        "f1": 0.909,
+        "p": 0.909,
+        "r": 0.909,
+        "gold": 66,
+        "chars_found": 0.986
+       },
+       "DIGITAL_SECRET": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "gold": 0,
+        "chars_found": 0.0
+       },
+       "EMAIL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 59,
+        "chars_found": 1.0
+       },
+       "ID_NUMBER": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "gold": 5,
+        "chars_found": 0.0
+       },
+       "LOCATION": {
+        "f1": 0.932,
+        "p": 0.932,
+        "r": 0.932,
+        "gold": 206,
+        "chars_found": 0.982
+       },
+       "ORGANIZATION": {
+        "f1": 0.848,
+        "p": 0.828,
+        "r": 0.87,
+        "gold": 138,
+        "chars_found": 0.955
+       },
+       "PERSON": {
+        "f1": 0.978,
+        "p": 0.961,
+        "r": 0.995,
+        "gold": 200,
+        "chars_found": 0.996
+       },
+       "PHONE": {
+        "f1": 0.979,
+        "p": 0.994,
         "r": 0.964,
         "gold": 168,
         "chars_found": 0.966
@@ -8707,6 +9063,192 @@
       }
      }
     },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.9327,
+      "r": 0.9561,
+      "f1": 0.9443,
+      "word_f1": 0.9628,
+      "overlap_f1": 0.9737,
+      "chars_found": 0.995,
+      "chars_right": 0.9768,
+      "gold": 319,
+      "pred": 327,
+      "texts_with_nothing_to_mark": 4,
+      "false_alarms_per_1000_words": 8.26,
+      "share_of_them_marked": 0.25,
+      "interval": [
+       0.912,
+       0.97
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 0.986,
+        "p": 0.986,
+        "r": 0.986,
+        "gold": 70,
+        "chars_found": 0.997
+       },
+       "DIGITAL_SECRET": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "EMAIL": {
+        "f1": 0.962,
+        "p": 0.974,
+        "r": 0.95,
+        "gold": 40,
+        "chars_found": 0.99
+       },
+       "LOCATION": {
+        "f1": 0.755,
+        "p": 0.667,
+        "r": 0.87,
+        "gold": 23,
+        "chars_found": 0.956
+       },
+       "ORGANIZATION": {
+        "f1": 0.867,
+        "p": 0.837,
+        "r": 0.9,
+        "gold": 40,
+        "chars_found": 1.0
+       },
+       "PERSON": {
+        "f1": 0.974,
+        "p": 0.974,
+        "r": 0.974,
+        "gold": 76,
+        "chars_found": 1.0
+       },
+       "PHONE": {
+        "f1": 0.977,
+        "p": 0.985,
+        "r": 0.97,
+        "gold": 67,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 2,
+        "chars_found": 1.0
+       }
+      }
+     },
+     "first": {
+      "p": 0.9113,
+      "r": 0.949,
+      "f1": 0.9298,
+      "word_f1": 0.9485,
+      "overlap_f1": 0.9625,
+      "chars_found": 0.995,
+      "chars_right": 0.9666,
+      "gold": 314,
+      "pred": 327,
+      "texts_with_nothing_to_mark": 4,
+      "false_alarms_per_1000_words": 8.26,
+      "share_of_them_marked": 0.25,
+      "interval": [
+       0.897,
+       0.957
+      ]
+     },
+     "names": {
+      "p": 0.8725,
+      "r": 0.9353,
+      "f1": 0.9028,
+      "word_f1": 0.9236,
+      "overlap_f1": 0.9411,
+      "chars_found": 0.995,
+      "chars_right": 0.9502,
+      "gold": 139,
+      "pred": 149,
+      "texts_with_nothing_to_mark": 11,
+      "false_alarms_per_1000_words": 2.93,
+      "share_of_them_marked": 0.091,
+      "interval": [
+       0.847,
+       0.951
+      ]
+     },
+     "fine": {
+      "p": 0.9327,
+      "r": 0.9561,
+      "f1": 0.9443,
+      "word_f1": 0.9628,
+      "overlap_f1": 0.9737,
+      "chars_found": 0.995,
+      "chars_right": 0.9768,
+      "gold": 319,
+      "pred": 327,
+      "texts_with_nothing_to_mark": 4,
+      "false_alarms_per_1000_words": 8.26,
+      "share_of_them_marked": 0.25,
+      "per_label": {
+       "DATE": {
+        "f1": 0.986,
+        "p": 0.986,
+        "r": 0.986,
+        "gold": 70,
+        "chars_found": 0.997
+       },
+       "DIGITAL_SECRET": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "EMAIL": {
+        "f1": 0.962,
+        "p": 0.974,
+        "r": 0.95,
+        "gold": 40,
+        "chars_found": 0.99
+       },
+       "LOCATION": {
+        "f1": 0.755,
+        "p": 0.667,
+        "r": 0.87,
+        "gold": 23,
+        "chars_found": 0.956
+       },
+       "ORGANIZATION": {
+        "f1": 0.867,
+        "p": 0.837,
+        "r": 0.9,
+        "gold": 40,
+        "chars_found": 1.0
+       },
+       "PERSON": {
+        "f1": 0.974,
+        "p": 0.974,
+        "r": 0.974,
+        "gold": 76,
+        "chars_found": 1.0
+       },
+       "PHONE": {
+        "f1": 0.977,
+        "p": 0.985,
+        "r": 0.97,
+        "gold": 67,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 2,
+        "chars_found": 1.0
+       }
+      }
+     }
+    },
     "EU PII anonymisation": {
      "reading": "per token",
      "all": {
@@ -12941,6 +13483,150 @@
       }
      }
     },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.8619,
+      "r": 0.866,
+      "f1": 0.864,
+      "word_f1": 0.864,
+      "overlap_f1": 0.8831,
+      "chars_found": 0.891,
+      "chars_right": 0.8891,
+      "gold": 209,
+      "pred": 210,
+      "texts_with_nothing_to_mark": 153,
+      "false_alarms_per_1000_words": 2.34,
+      "share_of_them_marked": 0.026,
+      "interval": [
+       0.82,
+       0.907
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 0.968,
+        "p": 1.0,
+        "r": 0.938,
+        "gold": 16,
+        "chars_found": 0.928
+       },
+       "DIGITAL_SECRET": {
+        "f1": 0.667,
+        "p": 0.5,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.852,
+        "p": 0.821,
+        "r": 0.885,
+        "gold": 52,
+        "chars_found": 0.856
+       },
+       "ORGANIZATION": {
+        "f1": 0.737,
+        "p": 0.875,
+        "r": 0.636,
+        "gold": 11,
+        "chars_found": 0.605
+       },
+       "PERSON": {
+        "f1": 0.868,
+        "p": 0.868,
+        "r": 0.868,
+        "gold": 129,
+        "chars_found": 0.925
+       }
+      }
+     },
+     "first": {
+      "p": 0.8476,
+      "r": 0.8558,
+      "f1": 0.8517,
+      "word_f1": 0.8517,
+      "overlap_f1": 0.8804,
+      "chars_found": 0.8855,
+      "chars_right": 0.8849,
+      "gold": 208,
+      "pred": 210,
+      "texts_with_nothing_to_mark": 155,
+      "false_alarms_per_1000_words": 3.48,
+      "share_of_them_marked": 0.039,
+      "interval": [
+       0.805,
+       0.896
+      ]
+     },
+     "names": {
+      "p": 0.8549,
+      "r": 0.8594,
+      "f1": 0.8571,
+      "word_f1": 0.8571,
+      "overlap_f1": 0.8779,
+      "chars_found": 0.885,
+      "chars_right": 0.8802,
+      "gold": 192,
+      "pred": 193,
+      "texts_with_nothing_to_mark": 166,
+      "false_alarms_per_1000_words": 2.18,
+      "share_of_them_marked": 0.024,
+      "interval": [
+       0.809,
+       0.902
+      ]
+     },
+     "fine": {
+      "p": 0.8619,
+      "r": 0.866,
+      "f1": 0.864,
+      "word_f1": 0.864,
+      "overlap_f1": 0.8831,
+      "chars_found": 0.891,
+      "chars_right": 0.8891,
+      "gold": 209,
+      "pred": 210,
+      "texts_with_nothing_to_mark": 153,
+      "false_alarms_per_1000_words": 2.34,
+      "share_of_them_marked": 0.026,
+      "per_label": {
+       "DATE": {
+        "f1": 0.968,
+        "p": 1.0,
+        "r": 0.938,
+        "gold": 16,
+        "chars_found": 0.928
+       },
+       "DIGITAL_SECRET": {
+        "f1": 0.667,
+        "p": 0.5,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.852,
+        "p": 0.821,
+        "r": 0.885,
+        "gold": 52,
+        "chars_found": 0.856
+       },
+       "ORGANIZATION": {
+        "f1": 0.737,
+        "p": 0.875,
+        "r": 0.636,
+        "gold": 11,
+        "chars_found": 0.605
+       },
+       "PERSON": {
+        "f1": 0.868,
+        "p": 0.868,
+        "r": 0.868,
+        "gold": 129,
+        "chars_found": 0.925
+       }
+      }
+     }
+    },
     "EU PII anonymisation": {
      "reading": "per word",
      "all": {
@@ -16562,6 +17248,150 @@
         "r": 0.973,
         "gold": 73,
         "chars_found": 0.992
+       },
+       "URL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       }
+      }
+     }
+    },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.9279,
+      "r": 0.9402,
+      "f1": 0.934,
+      "word_f1": 0.9406,
+      "overlap_f1": 0.9456,
+      "chars_found": 0.9814,
+      "chars_right": 0.9571,
+      "gold": 301,
+      "pred": 305,
+      "texts_with_nothing_to_mark": 41,
+      "false_alarms_per_1000_words": 0.0,
+      "share_of_them_marked": 0.0,
+      "interval": [
+       0.889,
+       0.968
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 0.963,
+        "p": 1.0,
+        "r": 0.929,
+        "gold": 28,
+        "chars_found": 0.963
+       },
+       "LOCATION": {
+        "f1": 0.936,
+        "p": 0.906,
+        "r": 0.969,
+        "gold": 129,
+        "chars_found": 0.983
+       },
+       "ORGANIZATION": {
+        "f1": 0.881,
+        "p": 0.922,
+        "r": 0.843,
+        "gold": 70,
+        "chars_found": 0.97
+       },
+       "PERSON": {
+        "f1": 0.966,
+        "p": 0.947,
+        "r": 0.986,
+        "gold": 73,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       }
+      }
+     },
+     "first": {
+      "p": 0.9148,
+      "r": 0.9269,
+      "f1": 0.9208,
+      "word_f1": 0.9274,
+      "overlap_f1": 0.9423,
+      "chars_found": 0.9775,
+      "chars_right": 0.9533,
+      "gold": 301,
+      "pred": 305,
+      "texts_with_nothing_to_mark": 41,
+      "false_alarms_per_1000_words": 0.0,
+      "share_of_them_marked": 0.0,
+      "interval": [
+       0.875,
+       0.958
+      ]
+     },
+     "names": {
+      "p": 0.9209,
+      "r": 0.9412,
+      "f1": 0.9309,
+      "word_f1": 0.9382,
+      "overlap_f1": 0.9437,
+      "chars_found": 0.983,
+      "chars_right": 0.9535,
+      "gold": 272,
+      "pred": 278,
+      "texts_with_nothing_to_mark": 44,
+      "false_alarms_per_1000_words": 1.22,
+      "share_of_them_marked": 0.023,
+      "interval": [
+       0.884,
+       0.966
+      ]
+     },
+     "fine": {
+      "p": 0.9279,
+      "r": 0.9402,
+      "f1": 0.934,
+      "word_f1": 0.9406,
+      "overlap_f1": 0.9456,
+      "chars_found": 0.9814,
+      "chars_right": 0.9571,
+      "gold": 301,
+      "pred": 305,
+      "texts_with_nothing_to_mark": 41,
+      "false_alarms_per_1000_words": 0.0,
+      "share_of_them_marked": 0.0,
+      "per_label": {
+       "DATE": {
+        "f1": 0.963,
+        "p": 1.0,
+        "r": 0.929,
+        "gold": 28,
+        "chars_found": 0.963
+       },
+       "LOCATION": {
+        "f1": 0.936,
+        "p": 0.906,
+        "r": 0.969,
+        "gold": 129,
+        "chars_found": 0.983
+       },
+       "ORGANIZATION": {
+        "f1": 0.881,
+        "p": 0.922,
+        "r": 0.843,
+        "gold": 70,
+        "chars_found": 0.97
+       },
+       "PERSON": {
+        "f1": 0.966,
+        "p": 0.947,
+        "r": 0.986,
+        "gold": 73,
+        "chars_found": 1.0
        },
        "URL": {
         "f1": 1.0,
@@ -20341,6 +21171,213 @@
         "r": 0.0,
         "gold": 0,
         "chars_found": 0.0
+       }
+      }
+     }
+    },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.9184,
+      "r": 0.9489,
+      "f1": 0.9334,
+      "word_f1": 0.9359,
+      "overlap_f1": 0.9585,
+      "chars_found": 0.9734,
+      "chars_right": 0.9662,
+      "gold": 783,
+      "pred": 809,
+      "texts_with_nothing_to_mark": 14,
+      "false_alarms_per_1000_words": 36.59,
+      "share_of_them_marked": 0.214,
+      "interval": [
+       0.9,
+       0.961
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 0.98,
+        "p": 0.98,
+        "r": 0.98,
+        "gold": 50,
+        "chars_found": 0.989
+       },
+       "DIGITAL_SECRET": {
+        "f1": 0.222,
+        "p": 0.125,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "EMAIL": {
+        "f1": 0.986,
+        "p": 0.986,
+        "r": 0.986,
+        "gold": 69,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.933,
+        "p": 0.906,
+        "r": 0.96,
+        "gold": 252,
+        "chars_found": 0.983
+       },
+       "NUMBER": {
+        "f1": 0.545,
+        "p": 0.375,
+        "r": 1.0,
+        "gold": 3,
+        "chars_found": 1.0
+       },
+       "ORGANIZATION": {
+        "f1": 0.855,
+        "p": 0.861,
+        "r": 0.849,
+        "gold": 146,
+        "chars_found": 0.932
+       },
+       "PERSON": {
+        "f1": 0.96,
+        "p": 0.941,
+        "r": 0.98,
+        "gold": 98,
+        "chars_found": 0.983
+       },
+       "PHONE": {
+        "f1": 0.983,
+        "p": 0.993,
+        "r": 0.974,
+        "gold": 152,
+        "chars_found": 0.989
+       },
+       "URL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 12,
+        "chars_found": 1.0
+       }
+      }
+     },
+     "first": {
+      "p": 0.8962,
+      "r": 0.9416,
+      "f1": 0.9183,
+      "word_f1": 0.9208,
+      "overlap_f1": 0.9481,
+      "chars_found": 0.9716,
+      "chars_right": 0.9468,
+      "gold": 770,
+      "pred": 809,
+      "texts_with_nothing_to_mark": 19,
+      "false_alarms_per_1000_words": 30.3,
+      "share_of_them_marked": 0.263,
+      "interval": [
+       0.885,
+       0.948
+      ]
+     },
+     "names": {
+      "p": 0.9006,
+      "r": 0.9315,
+      "f1": 0.9158,
+      "word_f1": 0.9158,
+      "overlap_f1": 0.9475,
+      "chars_found": 0.9594,
+      "chars_right": 0.962,
+      "gold": 496,
+      "pred": 513,
+      "texts_with_nothing_to_mark": 21,
+      "false_alarms_per_1000_words": 17.18,
+      "share_of_them_marked": 0.095,
+      "interval": [
+       0.871,
+       0.954
+      ]
+     },
+     "fine": {
+      "p": 0.9159,
+      "r": 0.9464,
+      "f1": 0.9309,
+      "word_f1": 0.9334,
+      "overlap_f1": 0.956,
+      "chars_found": 0.9734,
+      "chars_right": 0.9662,
+      "gold": 783,
+      "pred": 809,
+      "texts_with_nothing_to_mark": 14,
+      "false_alarms_per_1000_words": 36.59,
+      "share_of_them_marked": 0.214,
+      "per_label": {
+       "DATE": {
+        "f1": 0.98,
+        "p": 0.98,
+        "r": 0.98,
+        "gold": 50,
+        "chars_found": 0.989
+       },
+       "DIGITAL_SECRET": {
+        "f1": 0.222,
+        "p": 0.125,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "EMAIL": {
+        "f1": 0.986,
+        "p": 0.986,
+        "r": 0.986,
+        "gold": 69,
+        "chars_found": 1.0
+       },
+       "ID_NUMBER": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "gold": 2,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.933,
+        "p": 0.906,
+        "r": 0.96,
+        "gold": 252,
+        "chars_found": 0.983
+       },
+       "ORGANIZATION": {
+        "f1": 0.855,
+        "p": 0.861,
+        "r": 0.849,
+        "gold": 146,
+        "chars_found": 0.932
+       },
+       "PERSON": {
+        "f1": 0.96,
+        "p": 0.941,
+        "r": 0.98,
+        "gold": 98,
+        "chars_found": 0.983
+       },
+       "PHONE": {
+        "f1": 0.983,
+        "p": 0.993,
+        "r": 0.974,
+        "gold": 152,
+        "chars_found": 0.989
+       },
+       "TAX_ID": {
+        "f1": 0.5,
+        "p": 0.333,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 12,
+        "chars_found": 1.0
        }
       }
      }
@@ -24628,6 +25665,150 @@
       }
      }
     },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.8538,
+      "r": 0.8473,
+      "f1": 0.8506,
+      "word_f1": 0.8582,
+      "overlap_f1": 0.9042,
+      "chars_found": 0.9144,
+      "chars_right": 0.921,
+      "gold": 131,
+      "pred": 130,
+      "texts_with_nothing_to_mark": 44,
+      "false_alarms_per_1000_words": 5.13,
+      "share_of_them_marked": 0.068,
+      "interval": [
+       0.784,
+       0.917
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 0.917,
+        "p": 0.917,
+        "r": 0.917,
+        "gold": 12,
+        "chars_found": 1.0
+       },
+       "DIGITAL_SECRET": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.912,
+        "p": 0.929,
+        "r": 0.897,
+        "gold": 58,
+        "chars_found": 0.938
+       },
+       "ORGANIZATION": {
+        "f1": 0.645,
+        "p": 0.645,
+        "r": 0.645,
+        "gold": 31,
+        "chars_found": 0.815
+       },
+       "PERSON": {
+        "f1": 0.915,
+        "p": 0.9,
+        "r": 0.931,
+        "gold": 29,
+        "chars_found": 0.982
+       }
+      }
+     },
+     "first": {
+      "p": 0.8231,
+      "r": 0.8106,
+      "f1": 0.8168,
+      "word_f1": 0.8244,
+      "overlap_f1": 0.9008,
+      "chars_found": 0.9106,
+      "chars_right": 0.9147,
+      "gold": 132,
+      "pred": 130,
+      "texts_with_nothing_to_mark": 45,
+      "false_alarms_per_1000_words": 6.3,
+      "share_of_them_marked": 0.089,
+      "interval": [
+       0.747,
+       0.882
+      ]
+     },
+     "names": {
+      "p": 0.8462,
+      "r": 0.839,
+      "f1": 0.8426,
+      "word_f1": 0.8426,
+      "overlap_f1": 0.8936,
+      "chars_found": 0.9081,
+      "chars_right": 0.916,
+      "gold": 118,
+      "pred": 117,
+      "texts_with_nothing_to_mark": 49,
+      "false_alarms_per_1000_words": 4.72,
+      "share_of_them_marked": 0.061,
+      "interval": [
+       0.773,
+       0.916
+      ]
+     },
+     "fine": {
+      "p": 0.8538,
+      "r": 0.8473,
+      "f1": 0.8506,
+      "word_f1": 0.8582,
+      "overlap_f1": 0.9042,
+      "chars_found": 0.9144,
+      "chars_right": 0.921,
+      "gold": 131,
+      "pred": 130,
+      "texts_with_nothing_to_mark": 44,
+      "false_alarms_per_1000_words": 5.13,
+      "share_of_them_marked": 0.068,
+      "per_label": {
+       "DATE": {
+        "f1": 0.917,
+        "p": 0.917,
+        "r": 0.917,
+        "gold": 12,
+        "chars_found": 1.0
+       },
+       "DIGITAL_SECRET": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.912,
+        "p": 0.929,
+        "r": 0.897,
+        "gold": 58,
+        "chars_found": 0.938
+       },
+       "ORGANIZATION": {
+        "f1": 0.645,
+        "p": 0.645,
+        "r": 0.645,
+        "gold": 31,
+        "chars_found": 0.815
+       },
+       "PERSON": {
+        "f1": 0.915,
+        "p": 0.9,
+        "r": 0.931,
+        "gold": 29,
+        "chars_found": 0.982
+       }
+      }
+     }
+    },
     "EU PII anonymisation": {
      "reading": "per token",
      "all": {
@@ -28190,6 +29371,136 @@
       }
      }
     },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.9196,
+      "r": 0.9228,
+      "f1": 0.9212,
+      "word_f1": 0.9317,
+      "overlap_f1": 0.944,
+      "chars_found": 0.9585,
+      "chars_right": 0.9638,
+      "gold": 285,
+      "pred": 286,
+      "texts_with_nothing_to_mark": 54,
+      "false_alarms_per_1000_words": 1.15,
+      "share_of_them_marked": 0.019,
+      "interval": [
+       0.885,
+       0.954
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 0.978,
+        "p": 1.0,
+        "r": 0.957,
+        "gold": 23,
+        "chars_found": 0.969
+       },
+       "LOCATION": {
+        "f1": 0.962,
+        "p": 0.935,
+        "r": 0.99,
+        "gold": 102,
+        "chars_found": 0.993
+       },
+       "ORGANIZATION": {
+        "f1": 0.854,
+        "p": 0.875,
+        "r": 0.835,
+        "gold": 109,
+        "chars_found": 0.934
+       },
+       "PERSON": {
+        "f1": 0.951,
+        "p": 0.942,
+        "r": 0.961,
+        "gold": 51,
+        "chars_found": 0.978
+       }
+      }
+     },
+     "first": {
+      "p": 0.9126,
+      "r": 0.9223,
+      "f1": 0.9174,
+      "word_f1": 0.9279,
+      "overlap_f1": 0.9402,
+      "chars_found": 0.9583,
+      "chars_right": 0.9599,
+      "gold": 283,
+      "pred": 286,
+      "texts_with_nothing_to_mark": 55,
+      "false_alarms_per_1000_words": 2.27,
+      "share_of_them_marked": 0.036,
+      "interval": [
+       0.882,
+       0.95
+      ]
+     },
+     "names": {
+      "p": 0.9129,
+      "r": 0.9198,
+      "f1": 0.9163,
+      "word_f1": 0.9278,
+      "overlap_f1": 0.9411,
+      "chars_found": 0.958,
+      "chars_right": 0.9619,
+      "gold": 262,
+      "pred": 264,
+      "texts_with_nothing_to_mark": 60,
+      "false_alarms_per_1000_words": 1.03,
+      "share_of_them_marked": 0.017,
+      "interval": [
+       0.876,
+       0.953
+      ]
+     },
+     "fine": {
+      "p": 0.9196,
+      "r": 0.9228,
+      "f1": 0.9212,
+      "word_f1": 0.9317,
+      "overlap_f1": 0.944,
+      "chars_found": 0.9585,
+      "chars_right": 0.9638,
+      "gold": 285,
+      "pred": 286,
+      "texts_with_nothing_to_mark": 54,
+      "false_alarms_per_1000_words": 1.15,
+      "share_of_them_marked": 0.019,
+      "per_label": {
+       "DATE": {
+        "f1": 0.978,
+        "p": 1.0,
+        "r": 0.957,
+        "gold": 23,
+        "chars_found": 0.969
+       },
+       "LOCATION": {
+        "f1": 0.962,
+        "p": 0.935,
+        "r": 0.99,
+        "gold": 102,
+        "chars_found": 0.993
+       },
+       "ORGANIZATION": {
+        "f1": 0.854,
+        "p": 0.875,
+        "r": 0.835,
+        "gold": 109,
+        "chars_found": 0.934
+       },
+       "PERSON": {
+        "f1": 0.951,
+        "p": 0.942,
+        "r": 0.961,
+        "gold": 51,
+        "chars_found": 0.978
+       }
+      }
+     }
+    },
     "EU PII anonymisation": {
      "reading": "per token",
      "all": {
@@ -31689,6 +33000,206 @@
        "PERSON": {
         "f1": 0.963,
         "p": 0.94,
+        "r": 0.988,
+        "gold": 80,
+        "chars_found": 1.0
+       },
+       "PHONE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 76,
+        "chars_found": 1.0
+       },
+       "TAX_ID": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 0.769,
+        "p": 0.714,
+        "r": 0.833,
+        "gold": 6,
+        "chars_found": 1.0
+       }
+      }
+     }
+    },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.9201,
+      "r": 0.9281,
+      "f1": 0.9241,
+      "word_f1": 0.9328,
+      "overlap_f1": 0.9544,
+      "chars_found": 0.9668,
+      "chars_right": 0.9691,
+      "gold": 459,
+      "pred": 463,
+      "texts_with_nothing_to_mark": 15,
+      "false_alarms_per_1000_words": 3.03,
+      "share_of_them_marked": 0.133,
+      "interval": [
+       0.896,
+       0.95
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 40,
+        "chars_found": 1.0
+       },
+       "DIGITAL_SECRET": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "EMAIL": {
+        "f1": 0.974,
+        "p": 1.0,
+        "r": 0.95,
+        "gold": 20,
+        "chars_found": 0.982
+       },
+       "LOCATION": {
+        "f1": 0.9,
+        "p": 0.885,
+        "r": 0.916,
+        "gold": 143,
+        "chars_found": 0.954
+       },
+       "NUMBER": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "ORGANIZATION": {
+        "f1": 0.822,
+        "p": 0.841,
+        "r": 0.804,
+        "gold": 92,
+        "chars_found": 0.928
+       },
+       "PERSON": {
+        "f1": 0.969,
+        "p": 0.952,
+        "r": 0.988,
+        "gold": 80,
+        "chars_found": 1.0
+       },
+       "PHONE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 76,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 0.769,
+        "p": 0.714,
+        "r": 0.833,
+        "gold": 6,
+        "chars_found": 1.0
+       }
+      }
+     },
+     "first": {
+      "p": 0.9201,
+      "r": 0.9281,
+      "f1": 0.9241,
+      "word_f1": 0.9328,
+      "overlap_f1": 0.9544,
+      "chars_found": 0.9668,
+      "chars_right": 0.9691,
+      "gold": 459,
+      "pred": 463,
+      "texts_with_nothing_to_mark": 15,
+      "false_alarms_per_1000_words": 3.03,
+      "share_of_them_marked": 0.133,
+      "interval": [
+       0.896,
+       0.95
+      ]
+     },
+     "names": {
+      "p": 0.8903,
+      "r": 0.9016,
+      "f1": 0.8959,
+      "word_f1": 0.9054,
+      "overlap_f1": 0.9369,
+      "chars_found": 0.9522,
+      "chars_right": 0.955,
+      "gold": 315,
+      "pred": 319,
+      "texts_with_nothing_to_mark": 25,
+      "false_alarms_per_1000_words": 2.84,
+      "share_of_them_marked": 0.12,
+      "interval": [
+       0.854,
+       0.932
+      ]
+     },
+     "fine": {
+      "p": 0.9201,
+      "r": 0.9281,
+      "f1": 0.9241,
+      "word_f1": 0.9328,
+      "overlap_f1": 0.9544,
+      "chars_found": 0.9668,
+      "chars_right": 0.9691,
+      "gold": 459,
+      "pred": 463,
+      "texts_with_nothing_to_mark": 15,
+      "false_alarms_per_1000_words": 3.03,
+      "share_of_them_marked": 0.133,
+      "per_label": {
+       "DATE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 40,
+        "chars_found": 1.0
+       },
+       "DIGITAL_SECRET": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "EMAIL": {
+        "f1": 0.974,
+        "p": 1.0,
+        "r": 0.95,
+        "gold": 20,
+        "chars_found": 0.982
+       },
+       "LOCATION": {
+        "f1": 0.9,
+        "p": 0.885,
+        "r": 0.916,
+        "gold": 143,
+        "chars_found": 0.954
+       },
+       "ORGANIZATION": {
+        "f1": 0.822,
+        "p": 0.841,
+        "r": 0.804,
+        "gold": 92,
+        "chars_found": 0.928
+       },
+       "PERSON": {
+        "f1": 0.969,
+        "p": 0.952,
         "r": 0.988,
         "gold": 80,
         "chars_found": 1.0
@@ -36070,6 +37581,199 @@
       }
      }
     },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.9048,
+      "r": 0.9466,
+      "f1": 0.9252,
+      "word_f1": 0.9426,
+      "overlap_f1": 0.9617,
+      "chars_found": 0.9946,
+      "chars_right": 0.9373,
+      "gold": 281,
+      "pred": 294,
+      "texts_with_nothing_to_mark": 5,
+      "false_alarms_per_1000_words": 0.0,
+      "share_of_them_marked": 0.0,
+      "interval": [
+       0.894,
+       0.956
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 0.977,
+        "p": 0.955,
+        "r": 1.0,
+        "gold": 42,
+        "chars_found": 1.0
+       },
+       "EMAIL": {
+        "f1": 0.906,
+        "p": 0.935,
+        "r": 0.879,
+        "gold": 33,
+        "chars_found": 0.977
+       },
+       "LOCATION": {
+        "f1": 0.852,
+        "p": 0.867,
+        "r": 0.839,
+        "gold": 31,
+        "chars_found": 0.974
+       },
+       "NUMBER": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "gold": 0,
+        "chars_found": 0.0
+       },
+       "ORGANIZATION": {
+        "f1": 0.892,
+        "p": 0.841,
+        "r": 0.949,
+        "gold": 39,
+        "chars_found": 1.0
+       },
+       "PERSON": {
+        "f1": 0.923,
+        "p": 0.885,
+        "r": 0.964,
+        "gold": 56,
+        "chars_found": 1.0
+       },
+       "PHONE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 65,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 0.812,
+        "p": 0.765,
+        "r": 0.867,
+        "gold": 15,
+        "chars_found": 1.0
+       }
+      }
+     },
+     "first": {
+      "p": 0.9014,
+      "r": 0.9464,
+      "f1": 0.9233,
+      "word_f1": 0.9408,
+      "overlap_f1": 0.9599,
+      "chars_found": 0.9946,
+      "chars_right": 0.9364,
+      "gold": 280,
+      "pred": 294,
+      "texts_with_nothing_to_mark": 5,
+      "false_alarms_per_1000_words": 0.0,
+      "share_of_them_marked": 0.0,
+      "interval": [
+       0.891,
+       0.954
+      ]
+     },
+     "names": {
+      "p": 0.8667,
+      "r": 0.9286,
+      "f1": 0.8966,
+      "word_f1": 0.9042,
+      "overlap_f1": 0.9425,
+      "chars_found": 0.9964,
+      "chars_right": 0.9034,
+      "gold": 126,
+      "pred": 135,
+      "texts_with_nothing_to_mark": 23,
+      "false_alarms_per_1000_words": 4.72,
+      "share_of_them_marked": 0.13,
+      "interval": [
+       0.849,
+       0.937
+      ]
+     },
+     "fine": {
+      "p": 0.9048,
+      "r": 0.9466,
+      "f1": 0.9252,
+      "word_f1": 0.9426,
+      "overlap_f1": 0.9617,
+      "chars_found": 0.9946,
+      "chars_right": 0.9373,
+      "gold": 281,
+      "pred": 294,
+      "texts_with_nothing_to_mark": 5,
+      "false_alarms_per_1000_words": 0.0,
+      "share_of_them_marked": 0.0,
+      "per_label": {
+       "CREDIT_CARD": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "gold": 0,
+        "chars_found": 0.0
+       },
+       "DATE": {
+        "f1": 0.977,
+        "p": 0.955,
+        "r": 1.0,
+        "gold": 42,
+        "chars_found": 1.0
+       },
+       "EMAIL": {
+        "f1": 0.906,
+        "p": 0.935,
+        "r": 0.879,
+        "gold": 33,
+        "chars_found": 0.977
+       },
+       "LOCATION": {
+        "f1": 0.852,
+        "p": 0.867,
+        "r": 0.839,
+        "gold": 31,
+        "chars_found": 0.974
+       },
+       "ORGANIZATION": {
+        "f1": 0.892,
+        "p": 0.841,
+        "r": 0.949,
+        "gold": 39,
+        "chars_found": 1.0
+       },
+       "PAYMENT_ID": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "gold": 0,
+        "chars_found": 0.0
+       },
+       "PERSON": {
+        "f1": 0.923,
+        "p": 0.885,
+        "r": 0.964,
+        "gold": 56,
+        "chars_found": 1.0
+       },
+       "PHONE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 65,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 0.812,
+        "p": 0.765,
+        "r": 0.867,
+        "gold": 15,
+        "chars_found": 1.0
+       }
+      }
+     }
+    },
     "EU PII anonymisation": {
      "reading": "per token",
      "all": {
@@ -40164,6 +41868,136 @@
       }
      }
     },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.7644,
+      "r": 0.7824,
+      "f1": 0.7733,
+      "word_f1": 0.7791,
+      "overlap_f1": 0.8197,
+      "chars_found": 0.8461,
+      "chars_right": 0.8454,
+      "gold": 170,
+      "pred": 174,
+      "texts_with_nothing_to_mark": 167,
+      "false_alarms_per_1000_words": 9.53,
+      "share_of_them_marked": 0.078,
+      "interval": [
+       0.712,
+       0.838
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 3,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.812,
+        "p": 0.891,
+        "r": 0.745,
+        "gold": 55,
+        "chars_found": 0.864
+       },
+       "ORGANIZATION": {
+        "f1": 0.75,
+        "p": 0.75,
+        "r": 0.75,
+        "gold": 12,
+        "chars_found": 0.843
+       },
+       "PERSON": {
+        "f1": 0.751,
+        "p": 0.708,
+        "r": 0.8,
+        "gold": 100,
+        "chars_found": 0.834
+       }
+      }
+     },
+     "first": {
+      "p": 0.7586,
+      "r": 0.7765,
+      "f1": 0.7674,
+      "word_f1": 0.7733,
+      "overlap_f1": 0.8197,
+      "chars_found": 0.8456,
+      "chars_right": 0.842,
+      "gold": 170,
+      "pred": 174,
+      "texts_with_nothing_to_mark": 167,
+      "false_alarms_per_1000_words": 9.53,
+      "share_of_them_marked": 0.078,
+      "interval": [
+       0.705,
+       0.832
+      ]
+     },
+     "names": {
+      "p": 0.7602,
+      "r": 0.7784,
+      "f1": 0.7692,
+      "word_f1": 0.7751,
+      "overlap_f1": 0.8165,
+      "chars_found": 0.844,
+      "chars_right": 0.8432,
+      "gold": 167,
+      "pred": 171,
+      "texts_with_nothing_to_mark": 169,
+      "false_alarms_per_1000_words": 9.38,
+      "share_of_them_marked": 0.077,
+      "interval": [
+       0.706,
+       0.833
+      ]
+     },
+     "fine": {
+      "p": 0.7644,
+      "r": 0.7824,
+      "f1": 0.7733,
+      "word_f1": 0.7791,
+      "overlap_f1": 0.8197,
+      "chars_found": 0.8461,
+      "chars_right": 0.8454,
+      "gold": 170,
+      "pred": 174,
+      "texts_with_nothing_to_mark": 167,
+      "false_alarms_per_1000_words": 9.53,
+      "share_of_them_marked": 0.078,
+      "per_label": {
+       "DATE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 3,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.812,
+        "p": 0.891,
+        "r": 0.745,
+        "gold": 55,
+        "chars_found": 0.864
+       },
+       "ORGANIZATION": {
+        "f1": 0.75,
+        "p": 0.75,
+        "r": 0.75,
+        "gold": 12,
+        "chars_found": 0.843
+       },
+       "PERSON": {
+        "f1": 0.751,
+        "p": 0.708,
+        "r": 0.8,
+        "gold": 100,
+        "chars_found": 0.834
+       }
+      }
+     }
+    },
     "EU PII anonymisation": {
      "reading": "per word",
      "all": {
@@ -43631,6 +45465,150 @@
         "r": 0.0,
         "gold": 0,
         "chars_found": 0.0
+       },
+       "VEHICLE_ID": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 2,
+        "chars_found": 1.0
+       }
+      }
+     }
+    },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.9079,
+      "r": 0.9324,
+      "f1": 0.92,
+      "word_f1": 0.92,
+      "overlap_f1": 0.9489,
+      "chars_found": 0.9802,
+      "chars_right": 0.934,
+      "gold": 222,
+      "pred": 228,
+      "texts_with_nothing_to_mark": 36,
+      "false_alarms_per_1000_words": 8.37,
+      "share_of_them_marked": 0.111,
+      "interval": [
+       0.863,
+       0.964
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 14,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.913,
+        "p": 0.913,
+        "r": 0.913,
+        "gold": 103,
+        "chars_found": 0.983
+       },
+       "NUMBER": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 2,
+        "chars_found": 1.0
+       },
+       "ORGANIZATION": {
+        "f1": 0.909,
+        "p": 0.917,
+        "r": 0.902,
+        "gold": 61,
+        "chars_found": 0.967
+       },
+       "PERSON": {
+        "f1": 0.923,
+        "p": 0.857,
+        "r": 1.0,
+        "gold": 42,
+        "chars_found": 1.0
+       }
+      }
+     },
+     "first": {
+      "p": 0.9035,
+      "r": 0.9321,
+      "f1": 0.9176,
+      "word_f1": 0.9176,
+      "overlap_f1": 0.9465,
+      "chars_found": 0.9801,
+      "chars_right": 0.9273,
+      "gold": 221,
+      "pred": 228,
+      "texts_with_nothing_to_mark": 36,
+      "false_alarms_per_1000_words": 8.37,
+      "share_of_them_marked": 0.111,
+      "interval": [
+       0.863,
+       0.959
+      ]
+     },
+     "names": {
+      "p": 0.9009,
+      "r": 0.9272,
+      "f1": 0.9139,
+      "word_f1": 0.9139,
+      "overlap_f1": 0.9449,
+      "chars_found": 0.9793,
+      "chars_right": 0.931,
+      "gold": 206,
+      "pred": 212,
+      "texts_with_nothing_to_mark": 40,
+      "false_alarms_per_1000_words": 7.62,
+      "share_of_them_marked": 0.1,
+      "interval": [
+       0.854,
+       0.959
+      ]
+     },
+     "fine": {
+      "p": 0.9079,
+      "r": 0.9324,
+      "f1": 0.92,
+      "word_f1": 0.92,
+      "overlap_f1": 0.9489,
+      "chars_found": 0.9802,
+      "chars_right": 0.934,
+      "gold": 222,
+      "pred": 228,
+      "texts_with_nothing_to_mark": 36,
+      "false_alarms_per_1000_words": 8.37,
+      "share_of_them_marked": 0.111,
+      "per_label": {
+       "DATE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 14,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.913,
+        "p": 0.913,
+        "r": 0.913,
+        "gold": 103,
+        "chars_found": 0.983
+       },
+       "ORGANIZATION": {
+        "f1": 0.909,
+        "p": 0.917,
+        "r": 0.902,
+        "gold": 61,
+        "chars_found": 0.967
+       },
+       "PERSON": {
+        "f1": 0.923,
+        "p": 0.857,
+        "r": 1.0,
+        "gold": 42,
+        "chars_found": 1.0
        },
        "VEHICLE_ID": {
         "f1": 1.0,
@@ -47326,6 +49304,199 @@
         "r": 1.0,
         "gold": 4,
         "chars_found": 1.0
+       }
+      }
+     }
+    },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.8963,
+      "r": 0.9234,
+      "f1": 0.9096,
+      "word_f1": 0.9374,
+      "overlap_f1": 0.9504,
+      "chars_found": 0.9834,
+      "chars_right": 0.9608,
+      "gold": 496,
+      "pred": 511,
+      "texts_with_nothing_to_mark": 10,
+      "false_alarms_per_1000_words": 4.58,
+      "share_of_them_marked": 0.1,
+      "interval": [
+       0.854,
+       0.948
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 0.96,
+        "p": 1.0,
+        "r": 0.923,
+        "gold": 13,
+        "chars_found": 0.921
+       },
+       "EMAIL": {
+        "f1": 0.977,
+        "p": 0.977,
+        "r": 0.977,
+        "gold": 44,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.961,
+        "p": 0.958,
+        "r": 0.964,
+        "gold": 165,
+        "chars_found": 0.985
+       },
+       "NUMBER": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "ORGANIZATION": {
+        "f1": 0.673,
+        "p": 0.63,
+        "r": 0.723,
+        "gold": 94,
+        "chars_found": 0.953
+       },
+       "PERSON": {
+        "f1": 0.961,
+        "p": 0.949,
+        "r": 0.974,
+        "gold": 76,
+        "chars_found": 1.0
+       },
+       "PHONE": {
+        "f1": 0.995,
+        "p": 1.0,
+        "r": 0.99,
+        "gold": 99,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 4,
+        "chars_found": 1.0
+       }
+      }
+     },
+     "first": {
+      "p": 0.8806,
+      "r": 0.9184,
+      "f1": 0.8991,
+      "word_f1": 0.9071,
+      "overlap_f1": 0.9441,
+      "chars_found": 0.985,
+      "chars_right": 0.9462,
+      "gold": 490,
+      "pred": 511,
+      "texts_with_nothing_to_mark": 10,
+      "false_alarms_per_1000_words": 4.58,
+      "share_of_them_marked": 0.1,
+      "interval": [
+       0.837,
+       0.942
+      ]
+     },
+     "names": {
+      "p": 0.8551,
+      "r": 0.8985,
+      "f1": 0.8763,
+      "word_f1": 0.9141,
+      "overlap_f1": 0.9302,
+      "chars_found": 0.9752,
+      "chars_right": 0.9395,
+      "gold": 335,
+      "pred": 352,
+      "texts_with_nothing_to_mark": 16,
+      "false_alarms_per_1000_words": 3.19,
+      "share_of_them_marked": 0.062,
+      "interval": [
+       0.803,
+       0.929
+      ]
+     },
+     "fine": {
+      "p": 0.8963,
+      "r": 0.9234,
+      "f1": 0.9096,
+      "word_f1": 0.9374,
+      "overlap_f1": 0.9484,
+      "chars_found": 0.9834,
+      "chars_right": 0.9608,
+      "gold": 496,
+      "pred": 511,
+      "texts_with_nothing_to_mark": 10,
+      "false_alarms_per_1000_words": 4.58,
+      "share_of_them_marked": 0.1,
+      "per_label": {
+       "DATE": {
+        "f1": 0.96,
+        "p": 1.0,
+        "r": 0.923,
+        "gold": 13,
+        "chars_found": 0.921
+       },
+       "EMAIL": {
+        "f1": 0.977,
+        "p": 0.977,
+        "r": 0.977,
+        "gold": 44,
+        "chars_found": 1.0
+       },
+       "ID_NUMBER": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "gold": 1,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.961,
+        "p": 0.958,
+        "r": 0.964,
+        "gold": 165,
+        "chars_found": 0.985
+       },
+       "ORGANIZATION": {
+        "f1": 0.673,
+        "p": 0.63,
+        "r": 0.723,
+        "gold": 94,
+        "chars_found": 0.953
+       },
+       "PERSON": {
+        "f1": 0.961,
+        "p": 0.949,
+        "r": 0.974,
+        "gold": 76,
+        "chars_found": 1.0
+       },
+       "PHONE": {
+        "f1": 0.995,
+        "p": 1.0,
+        "r": 0.99,
+        "gold": 99,
+        "chars_found": 1.0
+       },
+       "URL": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 4,
+        "chars_found": 1.0
+       },
+       "VOTER_ID": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "gold": 0,
+        "chars_found": 0.0
        }
       }
      }
@@ -51459,6 +53630,136 @@
       }
      }
     },
+    "Rakshya 1.1": {
+     "all": {
+      "p": 0.8913,
+      "r": 0.9061,
+      "f1": 0.8986,
+      "word_f1": 0.8986,
+      "overlap_f1": 0.9343,
+      "chars_found": 0.9586,
+      "chars_right": 0.9632,
+      "gold": 181,
+      "pred": 184,
+      "texts_with_nothing_to_mark": 51,
+      "false_alarms_per_1000_words": 2.99,
+      "share_of_them_marked": 0.059,
+      "interval": [
+       0.862,
+       0.932
+      ],
+      "per_label": {
+       "DATE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 9,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.908,
+        "p": 0.881,
+        "r": 0.937,
+        "gold": 63,
+        "chars_found": 0.966
+       },
+       "ORGANIZATION": {
+        "f1": 0.814,
+        "p": 0.842,
+        "r": 0.787,
+        "gold": 61,
+        "chars_found": 0.924
+       },
+       "PERSON": {
+        "f1": 0.97,
+        "p": 0.941,
+        "r": 1.0,
+        "gold": 48,
+        "chars_found": 1.0
+       }
+      }
+     },
+     "first": {
+      "p": 0.8913,
+      "r": 0.9061,
+      "f1": 0.8986,
+      "word_f1": 0.8986,
+      "overlap_f1": 0.9343,
+      "chars_found": 0.9586,
+      "chars_right": 0.9632,
+      "gold": 181,
+      "pred": 184,
+      "texts_with_nothing_to_mark": 51,
+      "false_alarms_per_1000_words": 2.99,
+      "share_of_them_marked": 0.059,
+      "interval": [
+       0.862,
+       0.932
+      ]
+     },
+     "names": {
+      "p": 0.8857,
+      "r": 0.9012,
+      "f1": 0.8934,
+      "word_f1": 0.8934,
+      "overlap_f1": 0.9309,
+      "chars_found": 0.9567,
+      "chars_right": 0.9614,
+      "gold": 172,
+      "pred": 175,
+      "texts_with_nothing_to_mark": 54,
+      "false_alarms_per_1000_words": 2.89,
+      "share_of_them_marked": 0.056,
+      "interval": [
+       0.854,
+       0.929
+      ]
+     },
+     "fine": {
+      "p": 0.8913,
+      "r": 0.9061,
+      "f1": 0.8986,
+      "word_f1": 0.8986,
+      "overlap_f1": 0.9343,
+      "chars_found": 0.9586,
+      "chars_right": 0.9632,
+      "gold": 181,
+      "pred": 184,
+      "texts_with_nothing_to_mark": 51,
+      "false_alarms_per_1000_words": 2.99,
+      "share_of_them_marked": 0.059,
+      "per_label": {
+       "DATE": {
+        "f1": 1.0,
+        "p": 1.0,
+        "r": 1.0,
+        "gold": 9,
+        "chars_found": 1.0
+       },
+       "LOCATION": {
+        "f1": 0.908,
+        "p": 0.881,
+        "r": 0.937,
+        "gold": 63,
+        "chars_found": 0.966
+       },
+       "ORGANIZATION": {
+        "f1": 0.814,
+        "p": 0.842,
+        "r": 0.787,
+        "gold": 61,
+        "chars_found": 0.924
+       },
+       "PERSON": {
+        "f1": 0.97,
+        "p": 0.941,
+        "r": 1.0,
+        "gold": 48,
+        "chars_found": 1.0
+       }
+      }
+     }
+    },
     "EU PII anonymisation": {
      "reading": "per token",
      "all": {
@@ -54665,282 +56966,6 @@
   "rows": 578,
   "profile": "personal",
   "systems": {
-   "Rakshya 0.2, its weights with the code of 1.0": {
-    "all": {
-     "with label": {
-      "p": 0.8316,
-      "r": 0.7699,
-      "f1": 0.7995
-     },
-     "without label": {
-      "p": 0.8908,
-      "r": 0.8247,
-      "f1": 0.8565
-     },
-     "touching": {
-      "p": 0.9262,
-      "r": 0.8539,
-      "f1": 0.8868
-     },
-     "characters found": 0.6661,
-     "strings to leave alone that are covered": 0.1971,
-     "rows without personal data that get a mark": "8 of 36",
-     "rows": 578,
-     "spans": 3572
-    },
-    "languages": {
-     "en": {
-      "with label": {
-       "p": 0.8059,
-       "r": 0.7584,
-       "f1": 0.7814
-      },
-      "without label": {
-       "p": 0.8801,
-       "r": 0.8283,
-       "f1": 0.8534
-      },
-      "touching": {
-       "p": 0.9231,
-       "r": 0.8645,
-       "f1": 0.8907
-      },
-      "characters found": 0.6754,
-      "strings to leave alone that are covered": 0.2286,
-      "rows without personal data that get a mark": "4 of 12",
-      "rows": null,
-      "spans": 1188
-     },
-     "hi": {
-      "with label": {
-       "p": 0.8435,
-       "r": 0.7757,
-       "f1": 0.8082
-      },
-      "without label": {
-       "p": 0.8954,
-       "r": 0.8234,
-       "f1": 0.8579
-      },
-      "touching": {
-       "p": 0.9236,
-       "r": 0.8477,
-       "f1": 0.8832
-      },
-      "characters found": 0.6562,
-      "strings to leave alone that are covered": 0.2102,
-      "rows without personal data that get a mark": "3 of 12",
-      "rows": null,
-      "spans": 1195
-     },
-     "ne": {
-      "with label": {
-       "p": 0.8459,
-       "r": 0.7754,
-       "f1": 0.8091
-      },
-      "without label": {
-       "p": 0.8972,
-       "r": 0.8225,
-       "f1": 0.8583
-      },
-      "touching": {
-       "p": 0.9321,
-       "r": 0.8495,
-       "f1": 0.8864
-      },
-      "characters found": 0.6664,
-      "strings to leave alone that are covered": 0.1475,
-      "rows without personal data that get a mark": "1 of 12",
-      "rows": null,
-      "spans": 1189
-     }
-    },
-    "batches": {
-     "batch-01": {
-      "with label": {
-       "p": 0.7979,
-       "r": 0.7442,
-       "f1": 0.7701
-      },
-      "without label": {
-       "p": 0.8777,
-       "r": 0.8186,
-       "f1": 0.8471
-      },
-      "touching": {
-       "p": 0.9172,
-       "r": 0.8526,
-       "f1": 0.8823
-      },
-      "characters found": 0.6509,
-      "strings to leave alone that are covered": 0.1019,
-      "rows without personal data that get a mark": "7 of 15",
-      "rows": null,
-      "spans": 1411
-     },
-     "batch-02": {
-      "with label": {
-       "p": 0.8549,
-       "r": 0.793,
-       "f1": 0.8228
-      },
-      "without label": {
-       "p": 0.8927,
-       "r": 0.828,
-       "f1": 0.8591
-      },
-      "touching": {
-       "p": 0.9253,
-       "r": 0.8535,
-       "f1": 0.8856
-      },
-      "characters found": 0.6825,
-      "strings to leave alone that are covered": 0.4857,
-      "rows without personal data that get a mark": "0 of 0",
-      "rows": null,
-      "spans": 1256
-     },
-     "batch-03": {
-      "with label": {
-       "p": 0.8523,
-       "r": 0.7779,
-       "f1": 0.8134
-      },
-      "without label": {
-       "p": 0.9092,
-       "r": 0.8298,
-       "f1": 0.8677
-      },
-      "touching": {
-       "p": 0.9419,
-       "r": 0.8564,
-       "f1": 0.8954
-      },
-      "characters found": 0.6708,
-      "strings to leave alone that are covered": 0.7059,
-      "rows without personal data that get a mark": "1 of 21",
-      "rows": null,
-      "spans": 905
-     }
-    },
-    "labels": {
-     "ADDRESS": {
-      "p": 0.0,
-      "r": 0.0,
-      "f1": 0.0,
-      "spans": 356
-     },
-     "BANK_ACCOUNT": {
-      "p": 0.8684,
-      "r": 0.9231,
-      "f1": 0.8949,
-      "spans": 143
-     },
-     "CREDIT_CARD": {
-      "p": 0.7419,
-      "r": 1.0,
-      "f1": 0.8519,
-      "spans": 23
-     },
-     "DIGITAL_SECRET": {
-      "p": 0.8472,
-      "r": 0.5648,
-      "f1": 0.6778,
-      "spans": 216
-     },
-     "DOB": {
-      "p": 1.0,
-      "r": 0.9627,
-      "f1": 0.981,
-      "spans": 161
-     },
-     "DRIVER_LICENSE": {
-      "p": 0.8462,
-      "r": 0.7674,
-      "f1": 0.8049,
-      "spans": 43
-     },
-     "EMAIL": {
-      "p": 0.9405,
-      "r": 0.9476,
-      "f1": 0.944,
-      "spans": 267
-     },
-     "EMPLOYEE_STUDENT_ID": {
-      "p": 0.9016,
-      "r": 0.55,
-      "f1": 0.6832,
-      "spans": 100
-     },
-     "ID_NUMBER": {
-      "p": 0.1736,
-      "r": 0.7353,
-      "f1": 0.2809,
-      "spans": 68
-     },
-     "MEDICAL_ID": {
-      "p": 0.9688,
-      "r": 0.3196,
-      "f1": 0.4806,
-      "spans": 97
-     },
-     "NATIONAL_ID": {
-      "p": 0.8263,
-      "r": 0.8415,
-      "f1": 0.8338,
-      "spans": 164
-     },
-     "PASSPORT": {
-      "p": 0.94,
-      "r": 1.0,
-      "f1": 0.9691,
-      "spans": 47
-     },
-     "PAYMENT_ID": {
-      "p": 1.0,
-      "r": 0.6129,
-      "f1": 0.76,
-      "spans": 31
-     },
-     "PERSON": {
-      "p": 0.9183,
-      "r": 0.9394,
-      "f1": 0.9287,
-      "spans": 1172
-     },
-     "PHONE": {
-      "p": 0.8984,
-      "r": 0.9783,
-      "f1": 0.9367,
-      "spans": 461
-     },
-     "PROPERTY_UTILITY_ID": {
-      "p": 0.8333,
-      "r": 0.0794,
-      "f1": 0.1449,
-      "spans": 63
-     },
-     "TAX_ID": {
-      "p": 0.7172,
-      "r": 0.8765,
-      "f1": 0.7889,
-      "spans": 81
-     },
-     "VEHICLE_ID": {
-      "p": 0.6143,
-      "r": 0.7818,
-      "f1": 0.688,
-      "spans": 55
-     },
-     "VOTER_ID": {
-      "p": 0.875,
-      "r": 0.875,
-      "f1": 0.875,
-      "spans": 24
-     }
-    }
-   },
    "Rakshya 1.0": {
     "all": {
      "with label": {
@@ -55216,6 +57241,558 @@
       "spans": 24
      }
     }
+   },
+   "Rakshya 1.1": {
+    "all": {
+     "with label": {
+      "p": 0.9509,
+      "r": 0.9605,
+      "f1": 0.9557
+     },
+     "without label": {
+      "p": 0.9667,
+      "r": 0.9765,
+      "f1": 0.9716
+     },
+     "touching": {
+      "p": 0.9792,
+      "r": 0.988,
+      "f1": 0.983
+     },
+     "characters found": 0.9839,
+     "strings to leave alone that are covered": 0.0552,
+     "rows without personal data that get a mark": "2 of 36",
+     "rows": 578,
+     "spans": 3572
+    },
+    "languages": {
+     "en": {
+      "with label": {
+       "p": 0.9432,
+       "r": 0.9512,
+       "f1": 0.9472
+      },
+      "without label": {
+       "p": 0.9633,
+       "r": 0.9714,
+       "f1": 0.9673
+      },
+      "touching": {
+       "p": 0.9766,
+       "r": 0.9848,
+       "f1": 0.9807
+      },
+      "characters found": 0.9758,
+      "strings to leave alone that are covered": 0.0698,
+      "rows without personal data that get a mark": "2 of 12",
+      "rows": null,
+      "spans": 1188
+     },
+     "hi": {
+      "with label": {
+       "p": 0.9496,
+       "r": 0.9623,
+       "f1": 0.9559
+      },
+      "without label": {
+       "p": 0.9637,
+       "r": 0.9766,
+       "f1": 0.9701
+      },
+      "touching": {
+       "p": 0.9777,
+       "r": 0.9874,
+       "f1": 0.9809
+      },
+      "characters found": 0.9889,
+      "strings to leave alone that are covered": 0.061,
+      "rows without personal data that get a mark": "0 of 12",
+      "rows": null,
+      "spans": 1195
+     },
+     "ne": {
+      "with label": {
+       "p": 0.96,
+       "r": 0.968,
+       "f1": 0.964
+      },
+      "without label": {
+       "p": 0.9733,
+       "r": 0.9815,
+       "f1": 0.9774
+      },
+      "touching": {
+       "p": 0.9833,
+       "r": 0.9916,
+       "f1": 0.9874
+      },
+      "characters found": 0.9875,
+      "strings to leave alone that are covered": 0.0324,
+      "rows without personal data that get a mark": "0 of 12",
+      "rows": null,
+      "spans": 1189
+     }
+    },
+    "batches": {
+     "batch-01": {
+      "with label": {
+       "p": 0.9691,
+       "r": 0.9766,
+       "f1": 0.9728
+      },
+      "without label": {
+       "p": 0.981,
+       "r": 0.9887,
+       "f1": 0.9848
+      },
+      "touching": {
+       "p": 0.9909,
+       "r": 0.9979,
+       "f1": 0.994
+      },
+      "characters found": 0.9926,
+      "strings to leave alone that are covered": 0.01,
+      "rows without personal data that get a mark": "2 of 15",
+      "rows": null,
+      "spans": 1411
+     },
+     "batch-02": {
+      "with label": {
+       "p": 0.9287,
+       "r": 0.9435,
+       "f1": 0.936
+      },
+      "without label": {
+       "p": 0.9467,
+       "r": 0.9618,
+       "f1": 0.9542
+      },
+      "touching": {
+       "p": 0.9608,
+       "r": 0.9753,
+       "f1": 0.9676
+      },
+      "characters found": 0.9743,
+      "strings to leave alone that are covered": 0.2643,
+      "rows without personal data that get a mark": "0 of 0",
+      "rows": null,
+      "spans": 1256
+     },
+     "batch-03": {
+      "with label": {
+       "p": 0.9538,
+       "r": 0.9591,
+       "f1": 0.9565
+      },
+      "without label": {
+       "p": 0.9725,
+       "r": 0.9779,
+       "f1": 0.9752
+      },
+      "touching": {
+       "p": 0.9868,
+       "r": 0.9901,
+       "f1": 0.9873
+      },
+      "characters found": 0.9816,
+      "strings to leave alone that are covered": 0.098,
+      "rows without personal data that get a mark": "0 of 21",
+      "rows": null,
+      "spans": 905
+     }
+    },
+    "labels": {
+     "ADDRESS": {
+      "p": 0.9449,
+      "r": 0.9635,
+      "f1": 0.9541,
+      "spans": 356
+     },
+     "BANK_ACCOUNT": {
+      "p": 0.9524,
+      "r": 0.979,
+      "f1": 0.9655,
+      "spans": 143
+     },
+     "CREDIT_CARD": {
+      "p": 0.8846,
+      "r": 1.0,
+      "f1": 0.9388,
+      "spans": 23
+     },
+     "DIGITAL_SECRET": {
+      "p": 0.8986,
+      "r": 0.9028,
+      "f1": 0.9007,
+      "spans": 216
+     },
+     "DOB": {
+      "p": 1.0,
+      "r": 0.9938,
+      "f1": 0.9969,
+      "spans": 161
+     },
+     "DRIVER_LICENSE": {
+      "p": 0.9318,
+      "r": 0.9535,
+      "f1": 0.9425,
+      "spans": 43
+     },
+     "EMAIL": {
+      "p": 0.9562,
+      "r": 0.9813,
+      "f1": 0.9686,
+      "spans": 267
+     },
+     "EMPLOYEE_STUDENT_ID": {
+      "p": 0.8598,
+      "r": 0.92,
+      "f1": 0.8889,
+      "spans": 100
+     },
+     "ID_NUMBER": {
+      "p": 0.7361,
+      "r": 0.7794,
+      "f1": 0.7571,
+      "spans": 68
+     },
+     "MEDICAL_ID": {
+      "p": 0.9082,
+      "r": 0.9175,
+      "f1": 0.9128,
+      "spans": 97
+     },
+     "NATIONAL_ID": {
+      "p": 0.9625,
+      "r": 0.939,
+      "f1": 0.9506,
+      "spans": 164
+     },
+     "PASSPORT": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 47
+     },
+     "PAYMENT_ID": {
+      "p": 0.9667,
+      "r": 0.9355,
+      "f1": 0.9508,
+      "spans": 31
+     },
+     "PERSON": {
+      "p": 0.9695,
+      "r": 0.9778,
+      "f1": 0.9737,
+      "spans": 1172
+     },
+     "PHONE": {
+      "p": 0.9703,
+      "r": 0.9913,
+      "f1": 0.9807,
+      "spans": 461
+     },
+     "PROPERTY_UTILITY_ID": {
+      "p": 0.875,
+      "r": 0.7778,
+      "f1": 0.8235,
+      "spans": 63
+     },
+     "TAX_ID": {
+      "p": 0.9625,
+      "r": 0.9506,
+      "f1": 0.9565,
+      "spans": 81
+     },
+     "VEHICLE_ID": {
+      "p": 1.0,
+      "r": 0.9091,
+      "f1": 0.9524,
+      "spans": 55
+     },
+     "VOTER_ID": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 24
+     }
+    }
+   },
+   "Rakshya 0.2, its weights with the code of 1.0": {
+    "all": {
+     "with label": {
+      "p": 0.8316,
+      "r": 0.7699,
+      "f1": 0.7995
+     },
+     "without label": {
+      "p": 0.8908,
+      "r": 0.8247,
+      "f1": 0.8565
+     },
+     "touching": {
+      "p": 0.9262,
+      "r": 0.8539,
+      "f1": 0.8868
+     },
+     "characters found": 0.6661,
+     "strings to leave alone that are covered": 0.1971,
+     "rows without personal data that get a mark": "8 of 36",
+     "rows": 578,
+     "spans": 3572
+    },
+    "languages": {
+     "en": {
+      "with label": {
+       "p": 0.8059,
+       "r": 0.7584,
+       "f1": 0.7814
+      },
+      "without label": {
+       "p": 0.8801,
+       "r": 0.8283,
+       "f1": 0.8534
+      },
+      "touching": {
+       "p": 0.9231,
+       "r": 0.8645,
+       "f1": 0.8907
+      },
+      "characters found": 0.6754,
+      "strings to leave alone that are covered": 0.2286,
+      "rows without personal data that get a mark": "4 of 12",
+      "rows": null,
+      "spans": 1188
+     },
+     "hi": {
+      "with label": {
+       "p": 0.8435,
+       "r": 0.7757,
+       "f1": 0.8082
+      },
+      "without label": {
+       "p": 0.8954,
+       "r": 0.8234,
+       "f1": 0.8579
+      },
+      "touching": {
+       "p": 0.9236,
+       "r": 0.8477,
+       "f1": 0.8832
+      },
+      "characters found": 0.6562,
+      "strings to leave alone that are covered": 0.2102,
+      "rows without personal data that get a mark": "3 of 12",
+      "rows": null,
+      "spans": 1195
+     },
+     "ne": {
+      "with label": {
+       "p": 0.8459,
+       "r": 0.7754,
+       "f1": 0.8091
+      },
+      "without label": {
+       "p": 0.8972,
+       "r": 0.8225,
+       "f1": 0.8583
+      },
+      "touching": {
+       "p": 0.9321,
+       "r": 0.8495,
+       "f1": 0.8864
+      },
+      "characters found": 0.6664,
+      "strings to leave alone that are covered": 0.1475,
+      "rows without personal data that get a mark": "1 of 12",
+      "rows": null,
+      "spans": 1189
+     }
+    },
+    "batches": {
+     "batch-01": {
+      "with label": {
+       "p": 0.7979,
+       "r": 0.7442,
+       "f1": 0.7701
+      },
+      "without label": {
+       "p": 0.8777,
+       "r": 0.8186,
+       "f1": 0.8471
+      },
+      "touching": {
+       "p": 0.9172,
+       "r": 0.8526,
+       "f1": 0.8823
+      },
+      "characters found": 0.6509,
+      "strings to leave alone that are covered": 0.1019,
+      "rows without personal data that get a mark": "7 of 15",
+      "rows": null,
+      "spans": 1411
+     },
+     "batch-02": {
+      "with label": {
+       "p": 0.8549,
+       "r": 0.793,
+       "f1": 0.8228
+      },
+      "without label": {
+       "p": 0.8927,
+       "r": 0.828,
+       "f1": 0.8591
+      },
+      "touching": {
+       "p": 0.9253,
+       "r": 0.8535,
+       "f1": 0.8856
+      },
+      "characters found": 0.6825,
+      "strings to leave alone that are covered": 0.4857,
+      "rows without personal data that get a mark": "0 of 0",
+      "rows": null,
+      "spans": 1256
+     },
+     "batch-03": {
+      "with label": {
+       "p": 0.8523,
+       "r": 0.7779,
+       "f1": 0.8134
+      },
+      "without label": {
+       "p": 0.9092,
+       "r": 0.8298,
+       "f1": 0.8677
+      },
+      "touching": {
+       "p": 0.9419,
+       "r": 0.8564,
+       "f1": 0.8954
+      },
+      "characters found": 0.6708,
+      "strings to leave alone that are covered": 0.7059,
+      "rows without personal data that get a mark": "1 of 21",
+      "rows": null,
+      "spans": 905
+     }
+    },
+    "labels": {
+     "ADDRESS": {
+      "p": 0.0,
+      "r": 0.0,
+      "f1": 0.0,
+      "spans": 356
+     },
+     "BANK_ACCOUNT": {
+      "p": 0.8684,
+      "r": 0.9231,
+      "f1": 0.8949,
+      "spans": 143
+     },
+     "CREDIT_CARD": {
+      "p": 0.7419,
+      "r": 1.0,
+      "f1": 0.8519,
+      "spans": 23
+     },
+     "DIGITAL_SECRET": {
+      "p": 0.8472,
+      "r": 0.5648,
+      "f1": 0.6778,
+      "spans": 216
+     },
+     "DOB": {
+      "p": 1.0,
+      "r": 0.9627,
+      "f1": 0.981,
+      "spans": 161
+     },
+     "DRIVER_LICENSE": {
+      "p": 0.8462,
+      "r": 0.7674,
+      "f1": 0.8049,
+      "spans": 43
+     },
+     "EMAIL": {
+      "p": 0.9405,
+      "r": 0.9476,
+      "f1": 0.944,
+      "spans": 267
+     },
+     "EMPLOYEE_STUDENT_ID": {
+      "p": 0.9016,
+      "r": 0.55,
+      "f1": 0.6832,
+      "spans": 100
+     },
+     "ID_NUMBER": {
+      "p": 0.1736,
+      "r": 0.7353,
+      "f1": 0.2809,
+      "spans": 68
+     },
+     "MEDICAL_ID": {
+      "p": 0.9688,
+      "r": 0.3196,
+      "f1": 0.4806,
+      "spans": 97
+     },
+     "NATIONAL_ID": {
+      "p": 0.8263,
+      "r": 0.8415,
+      "f1": 0.8338,
+      "spans": 164
+     },
+     "PASSPORT": {
+      "p": 0.94,
+      "r": 1.0,
+      "f1": 0.9691,
+      "spans": 47
+     },
+     "PAYMENT_ID": {
+      "p": 1.0,
+      "r": 0.6129,
+      "f1": 0.76,
+      "spans": 31
+     },
+     "PERSON": {
+      "p": 0.9183,
+      "r": 0.9394,
+      "f1": 0.9287,
+      "spans": 1172
+     },
+     "PHONE": {
+      "p": 0.8984,
+      "r": 0.9783,
+      "f1": 0.9367,
+      "spans": 461
+     },
+     "PROPERTY_UTILITY_ID": {
+      "p": 0.8333,
+      "r": 0.0794,
+      "f1": 0.1449,
+      "spans": 63
+     },
+     "TAX_ID": {
+      "p": 0.7172,
+      "r": 0.8765,
+      "f1": 0.7889,
+      "spans": 81
+     },
+     "VEHICLE_ID": {
+      "p": 0.6143,
+      "r": 0.7818,
+      "f1": 0.688,
+      "spans": 55
+     },
+     "VOTER_ID": {
+      "p": 0.875,
+      "r": 0.875,
+      "f1": 0.875,
+      "spans": 24
+     }
+    }
    }
   }
  },
@@ -55236,218 +57813,6 @@
    "TAX_ID"
   ],
   "systems": {
-   "Rakshya 0.2, its weights with the code of 1.0": {
-    "all": {
-     "with label": {
-      "p": 0.9842,
-      "r": 0.8521,
-      "f1": 0.9134
-     },
-     "without label": {
-      "p": 0.9937,
-      "r": 0.8603,
-      "f1": 0.9222
-     },
-     "touching": {
-      "p": 0.9968,
-      "r": 0.863,
-      "f1": 0.9251
-     },
-     "characters found": 0.7309,
-     "strings to leave alone that are covered": null,
-     "rows without personal data that get a mark": "0 of 15",
-     "rows": 180,
-     "spans": 365
-    },
-    "languages": {
-     "en": {
-      "with label": {
-       "p": 1.0,
-       "r": 0.8512,
-       "f1": 0.9196
-      },
-      "without label": {
-       "p": 1.0,
-       "r": 0.8512,
-       "f1": 0.9196
-      },
-      "touching": {
-       "p": 1.0,
-       "r": 0.8512,
-       "f1": 0.9196
-      },
-      "characters found": 0.7017,
-      "strings to leave alone that are covered": null,
-      "rows without personal data that get a mark": "0 of 5",
-      "rows": null,
-      "spans": 121
-     },
-     "hi": {
-      "with label": {
-       "p": 0.9813,
-       "r": 0.8607,
-       "f1": 0.917
-      },
-      "without label": {
-       "p": 0.9813,
-       "r": 0.8607,
-       "f1": 0.917
-      },
-      "touching": {
-       "p": 0.9907,
-       "r": 0.8689,
-       "f1": 0.9258
-      },
-      "characters found": 0.7453,
-      "strings to leave alone that are covered": null,
-      "rows without personal data that get a mark": "0 of 5",
-      "rows": null,
-      "spans": 122
-     },
-     "ne": {
-      "with label": {
-       "p": 0.9717,
-       "r": 0.8443,
-       "f1": 0.9035
-      },
-      "without label": {
-       "p": 1.0,
-       "r": 0.8689,
-       "f1": 0.9298
-      },
-      "touching": {
-       "p": 1.0,
-       "r": 0.8689,
-       "f1": 0.9298
-      },
-      "characters found": 0.7482,
-      "strings to leave alone that are covered": null,
-      "rows without personal data that get a mark": "0 of 5",
-      "rows": null,
-      "spans": 122
-     }
-    },
-    "batches": {
-     "bench-180": {
-      "with label": {
-       "p": 0.9842,
-       "r": 0.8521,
-       "f1": 0.9134
-      },
-      "without label": {
-       "p": 0.9937,
-       "r": 0.8603,
-       "f1": 0.9222
-      },
-      "touching": {
-       "p": 0.9968,
-       "r": 0.863,
-       "f1": 0.9251
-      },
-      "characters found": 0.7309,
-      "strings to leave alone that are covered": null,
-      "rows without personal data that get a mark": "0 of 15",
-      "rows": null,
-      "spans": 365
-     }
-    },
-    "labels": {
-     "ADDRESS": {
-      "p": 0.0,
-      "r": 0.0,
-      "f1": 0.0,
-      "spans": 26
-     },
-     "BANK_ACCOUNT": {
-      "p": 1.0,
-      "r": 0.8333,
-      "f1": 0.9091,
-      "spans": 12
-     },
-     "CREDIT_CARD": {
-      "p": 1.0,
-      "r": 1.0,
-      "f1": 1.0,
-      "spans": 12
-     },
-     "DIGITAL_SECRET": {
-      "p": 0.9375,
-      "r": 1.0,
-      "f1": 0.9677,
-      "spans": 30
-     },
-     "DOB": {
-      "p": 1.0,
-      "r": 1.0,
-      "f1": 1.0,
-      "spans": 15
-     },
-     "EMAIL": {
-      "p": 1.0,
-      "r": 0.6923,
-      "f1": 0.8182,
-      "spans": 39
-     },
-     "MEDICAL_ID": {
-      "p": 1.0,
-      "r": 0.5714,
-      "f1": 0.7273,
-      "spans": 14
-     },
-     "NATIONAL_ID": {
-      "p": 1.0,
-      "r": 0.8333,
-      "f1": 0.9091,
-      "spans": 18
-     },
-     "PASSPORT": {
-      "p": 1.0,
-      "r": 1.0,
-      "f1": 1.0,
-      "spans": 18
-     },
-     "PERSON": {
-      "p": 0.9833,
-      "r": 0.9916,
-      "f1": 0.9874,
-      "spans": 119
-     },
-     "PHONE": {
-      "p": 0.9778,
-      "r": 0.9565,
-      "f1": 0.967,
-      "spans": 46
-     },
-     "TAX_ID": {
-      "p": 1.0,
-      "r": 0.875,
-      "f1": 0.9333,
-      "spans": 16
-     }
-    },
-    "every span counted": {
-     "with label": {
-      "p": 0.9599,
-      "r": 0.8521,
-      "f1": 0.9028
-     },
-     "without label": {
-      "p": 0.9938,
-      "r": 0.8822,
-      "f1": 0.9347
-     },
-     "touching": {
-      "p": 0.9969,
-      "r": 0.8849,
-      "f1": 0.9376
-     },
-     "characters found": 0.7502,
-     "strings to leave alone that are covered": null,
-     "rows without personal data that get a mark": "0 of 15",
-     "rows": 180,
-     "spans": 365
-    }
-   },
    "Rakshya 1.0": {
     "all": {
      "with label": {
@@ -55659,6 +58024,430 @@
      "rows": 180,
      "spans": 365
     }
+   },
+   "Rakshya 1.1": {
+    "all": {
+     "with label": {
+      "p": 0.9641,
+      "r": 0.9562,
+      "f1": 0.9601
+     },
+     "without label": {
+      "p": 0.9669,
+      "r": 0.9589,
+      "f1": 0.9629
+     },
+     "touching": {
+      "p": 0.989,
+      "r": 0.9726,
+      "f1": 0.9766
+     },
+     "characters found": 0.9625,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 15",
+     "rows": 180,
+     "spans": 365
+    },
+    "languages": {
+     "en": {
+      "with label": {
+       "p": 0.975,
+       "r": 0.9669,
+       "f1": 0.971
+      },
+      "without label": {
+       "p": 0.9833,
+       "r": 0.9752,
+       "f1": 0.9793
+      },
+      "touching": {
+       "p": 0.9917,
+       "r": 0.9835,
+       "f1": 0.9876
+      },
+      "characters found": 0.9817,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 5",
+      "rows": null,
+      "spans": 121
+     },
+     "hi": {
+      "with label": {
+       "p": 0.9365,
+       "r": 0.9672,
+       "f1": 0.9516
+      },
+      "without label": {
+       "p": 0.9365,
+       "r": 0.9672,
+       "f1": 0.9516
+      },
+      "touching": {
+       "p": 0.9841,
+       "r": 0.9918,
+       "f1": 0.9758
+      },
+      "characters found": 0.9833,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 5",
+      "rows": null,
+      "spans": 122
+     },
+     "ne": {
+      "with label": {
+       "p": 0.9828,
+       "r": 0.9344,
+       "f1": 0.958
+      },
+      "without label": {
+       "p": 0.9828,
+       "r": 0.9344,
+       "f1": 0.958
+      },
+      "touching": {
+       "p": 0.9914,
+       "r": 0.9426,
+       "f1": 0.9664
+      },
+      "characters found": 0.9214,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 5",
+      "rows": null,
+      "spans": 122
+     }
+    },
+    "batches": {
+     "bench-180": {
+      "with label": {
+       "p": 0.9641,
+       "r": 0.9562,
+       "f1": 0.9601
+      },
+      "without label": {
+       "p": 0.9669,
+       "r": 0.9589,
+       "f1": 0.9629
+      },
+      "touching": {
+       "p": 0.989,
+       "r": 0.9726,
+       "f1": 0.9766
+      },
+      "characters found": 0.9625,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 15",
+      "rows": null,
+      "spans": 365
+     }
+    },
+    "labels": {
+     "ADDRESS": {
+      "p": 0.9259,
+      "r": 0.9615,
+      "f1": 0.9434,
+      "spans": 26
+     },
+     "BANK_ACCOUNT": {
+      "p": 1.0,
+      "r": 0.75,
+      "f1": 0.8571,
+      "spans": 12
+     },
+     "CREDIT_CARD": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 12
+     },
+     "DIGITAL_SECRET": {
+      "p": 0.9091,
+      "r": 1.0,
+      "f1": 0.9524,
+      "spans": 30
+     },
+     "DOB": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 15
+     },
+     "EMAIL": {
+      "p": 0.8974,
+      "r": 0.8974,
+      "f1": 0.8974,
+      "spans": 39
+     },
+     "MEDICAL_ID": {
+      "p": 1.0,
+      "r": 0.9286,
+      "f1": 0.963,
+      "spans": 14
+     },
+     "NATIONAL_ID": {
+      "p": 1.0,
+      "r": 0.8889,
+      "f1": 0.9412,
+      "spans": 18
+     },
+     "PASSPORT": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 18
+     },
+     "PERSON": {
+      "p": 0.9669,
+      "r": 0.9832,
+      "f1": 0.975,
+      "spans": 119
+     },
+     "PHONE": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 46
+     },
+     "TAX_ID": {
+      "p": 1.0,
+      "r": 0.8125,
+      "f1": 0.8966,
+      "spans": 16
+     }
+    },
+    "every span counted": {
+     "with label": {
+      "p": 0.951,
+      "r": 0.9562,
+      "f1": 0.9536
+     },
+     "without label": {
+      "p": 0.9619,
+      "r": 0.9671,
+      "f1": 0.9645
+     },
+     "touching": {
+      "p": 0.9864,
+      "r": 0.9836,
+      "f1": 0.9809
+     },
+     "characters found": 0.9709,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 15",
+     "rows": 180,
+     "spans": 365
+    }
+   },
+   "Rakshya 0.2, its weights with the code of 1.0": {
+    "all": {
+     "with label": {
+      "p": 0.9842,
+      "r": 0.8521,
+      "f1": 0.9134
+     },
+     "without label": {
+      "p": 0.9937,
+      "r": 0.8603,
+      "f1": 0.9222
+     },
+     "touching": {
+      "p": 0.9968,
+      "r": 0.863,
+      "f1": 0.9251
+     },
+     "characters found": 0.7309,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 15",
+     "rows": 180,
+     "spans": 365
+    },
+    "languages": {
+     "en": {
+      "with label": {
+       "p": 1.0,
+       "r": 0.8512,
+       "f1": 0.9196
+      },
+      "without label": {
+       "p": 1.0,
+       "r": 0.8512,
+       "f1": 0.9196
+      },
+      "touching": {
+       "p": 1.0,
+       "r": 0.8512,
+       "f1": 0.9196
+      },
+      "characters found": 0.7017,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 5",
+      "rows": null,
+      "spans": 121
+     },
+     "hi": {
+      "with label": {
+       "p": 0.9813,
+       "r": 0.8607,
+       "f1": 0.917
+      },
+      "without label": {
+       "p": 0.9813,
+       "r": 0.8607,
+       "f1": 0.917
+      },
+      "touching": {
+       "p": 0.9907,
+       "r": 0.8689,
+       "f1": 0.9258
+      },
+      "characters found": 0.7453,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 5",
+      "rows": null,
+      "spans": 122
+     },
+     "ne": {
+      "with label": {
+       "p": 0.9717,
+       "r": 0.8443,
+       "f1": 0.9035
+      },
+      "without label": {
+       "p": 1.0,
+       "r": 0.8689,
+       "f1": 0.9298
+      },
+      "touching": {
+       "p": 1.0,
+       "r": 0.8689,
+       "f1": 0.9298
+      },
+      "characters found": 0.7482,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 5",
+      "rows": null,
+      "spans": 122
+     }
+    },
+    "batches": {
+     "bench-180": {
+      "with label": {
+       "p": 0.9842,
+       "r": 0.8521,
+       "f1": 0.9134
+      },
+      "without label": {
+       "p": 0.9937,
+       "r": 0.8603,
+       "f1": 0.9222
+      },
+      "touching": {
+       "p": 0.9968,
+       "r": 0.863,
+       "f1": 0.9251
+      },
+      "characters found": 0.7309,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 15",
+      "rows": null,
+      "spans": 365
+     }
+    },
+    "labels": {
+     "ADDRESS": {
+      "p": 0.0,
+      "r": 0.0,
+      "f1": 0.0,
+      "spans": 26
+     },
+     "BANK_ACCOUNT": {
+      "p": 1.0,
+      "r": 0.8333,
+      "f1": 0.9091,
+      "spans": 12
+     },
+     "CREDIT_CARD": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 12
+     },
+     "DIGITAL_SECRET": {
+      "p": 0.9375,
+      "r": 1.0,
+      "f1": 0.9677,
+      "spans": 30
+     },
+     "DOB": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 15
+     },
+     "EMAIL": {
+      "p": 1.0,
+      "r": 0.6923,
+      "f1": 0.8182,
+      "spans": 39
+     },
+     "MEDICAL_ID": {
+      "p": 1.0,
+      "r": 0.5714,
+      "f1": 0.7273,
+      "spans": 14
+     },
+     "NATIONAL_ID": {
+      "p": 1.0,
+      "r": 0.8333,
+      "f1": 0.9091,
+      "spans": 18
+     },
+     "PASSPORT": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 18
+     },
+     "PERSON": {
+      "p": 0.9833,
+      "r": 0.9916,
+      "f1": 0.9874,
+      "spans": 119
+     },
+     "PHONE": {
+      "p": 0.9778,
+      "r": 0.9565,
+      "f1": 0.967,
+      "spans": 46
+     },
+     "TAX_ID": {
+      "p": 1.0,
+      "r": 0.875,
+      "f1": 0.9333,
+      "spans": 16
+     }
+    },
+    "every span counted": {
+     "with label": {
+      "p": 0.9599,
+      "r": 0.8521,
+      "f1": 0.9028
+     },
+     "without label": {
+      "p": 0.9938,
+      "r": 0.8822,
+      "f1": 0.9347
+     },
+     "touching": {
+      "p": 0.9969,
+      "r": 0.8849,
+      "f1": 0.9376
+     },
+     "characters found": 0.7502,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 15",
+     "rows": 180,
+     "spans": 365
+    }
    }
   }
  },
@@ -55675,6 +58464,211 @@
    "SECRET"
   ],
   "systems": {
+   "Rakshya 1.1": {
+    "all": {
+     "with label": {
+      "p": 0.9629,
+      "r": 0.9726,
+      "f1": 0.9677
+     },
+     "without label": {
+      "p": 0.9667,
+      "r": 0.9765,
+      "f1": 0.9716
+     },
+     "touching": {
+      "p": 0.9792,
+      "r": 0.988,
+      "f1": 0.983
+     },
+     "characters found": 0.9839,
+     "strings to leave alone that are covered": 0.0552,
+     "rows without personal data that get a mark": "2 of 36",
+     "rows": 578,
+     "spans": 3572
+    },
+    "languages": {
+     "en": {
+      "with label": {
+       "p": 0.9574,
+       "r": 0.9655,
+       "f1": 0.9614
+      },
+      "without label": {
+       "p": 0.9633,
+       "r": 0.9714,
+       "f1": 0.9673
+      },
+      "touching": {
+       "p": 0.9766,
+       "r": 0.9848,
+       "f1": 0.9807
+      },
+      "characters found": 0.9758,
+      "strings to leave alone that are covered": 0.0698,
+      "rows without personal data that get a mark": "2 of 12",
+      "rows": null,
+      "spans": 1188
+     },
+     "hi": {
+      "with label": {
+       "p": 0.962,
+       "r": 0.9749,
+       "f1": 0.9684
+      },
+      "without label": {
+       "p": 0.9637,
+       "r": 0.9766,
+       "f1": 0.9701
+      },
+      "touching": {
+       "p": 0.9777,
+       "r": 0.9874,
+       "f1": 0.9809
+      },
+      "characters found": 0.9889,
+      "strings to leave alone that are covered": 0.061,
+      "rows without personal data that get a mark": "0 of 12",
+      "rows": null,
+      "spans": 1195
+     },
+     "ne": {
+      "with label": {
+       "p": 0.9691,
+       "r": 0.9773,
+       "f1": 0.9732
+      },
+      "without label": {
+       "p": 0.9733,
+       "r": 0.9815,
+       "f1": 0.9774
+      },
+      "touching": {
+       "p": 0.9833,
+       "r": 0.9916,
+       "f1": 0.9874
+      },
+      "characters found": 0.9875,
+      "strings to leave alone that are covered": 0.0324,
+      "rows without personal data that get a mark": "0 of 12",
+      "rows": null,
+      "spans": 1189
+     }
+    },
+    "batches": {
+     "batch-01": {
+      "with label": {
+       "p": 0.9796,
+       "r": 0.9872,
+       "f1": 0.9834
+      },
+      "without label": {
+       "p": 0.981,
+       "r": 0.9887,
+       "f1": 0.9848
+      },
+      "touching": {
+       "p": 0.9909,
+       "r": 0.9979,
+       "f1": 0.994
+      },
+      "characters found": 0.9926,
+      "strings to leave alone that are covered": 0.01,
+      "rows without personal data that get a mark": "2 of 15",
+      "rows": null,
+      "spans": 1411
+     },
+     "batch-02": {
+      "with label": {
+       "p": 0.9397,
+       "r": 0.9546,
+       "f1": 0.9471
+      },
+      "without label": {
+       "p": 0.9467,
+       "r": 0.9618,
+       "f1": 0.9542
+      },
+      "touching": {
+       "p": 0.9608,
+       "r": 0.9753,
+       "f1": 0.9676
+      },
+      "characters found": 0.9743,
+      "strings to leave alone that are covered": 0.2643,
+      "rows without personal data that get a mark": "0 of 0",
+      "rows": null,
+      "spans": 1256
+     },
+     "batch-03": {
+      "with label": {
+       "p": 0.9692,
+       "r": 0.9746,
+       "f1": 0.9719
+      },
+      "without label": {
+       "p": 0.9725,
+       "r": 0.9779,
+       "f1": 0.9752
+      },
+      "touching": {
+       "p": 0.9868,
+       "r": 0.9901,
+       "f1": 0.9873
+      },
+      "characters found": 0.9816,
+      "strings to leave alone that are covered": 0.098,
+      "rows without personal data that get a mark": "0 of 21",
+      "rows": null,
+      "spans": 905
+     }
+    },
+    "labels": {
+     "ADDRESS": {
+      "p": 0.9449,
+      "r": 0.9635,
+      "f1": 0.9541,
+      "spans": 356
+     },
+     "DOB": {
+      "p": 1.0,
+      "r": 0.9938,
+      "f1": 0.9969,
+      "spans": 161
+     },
+     "EMAIL": {
+      "p": 0.9562,
+      "r": 0.9813,
+      "f1": 0.9686,
+      "spans": 267
+     },
+     "NUMBER": {
+      "p": 0.9681,
+      "r": 0.9702,
+      "f1": 0.9691,
+      "spans": 939
+     },
+     "PERSON": {
+      "p": 0.9695,
+      "r": 0.9778,
+      "f1": 0.9737,
+      "spans": 1172
+     },
+     "PHONE": {
+      "p": 0.9703,
+      "r": 0.9913,
+      "f1": 0.9807,
+      "spans": 461
+     },
+     "SECRET": {
+      "p": 0.8986,
+      "r": 0.9028,
+      "f1": 0.9007,
+      "spans": 216
+     }
+    },
+    "reading": ""
+   },
    "Rakshya 1.0": {
     "all": {
      "with label": {
@@ -61853,6 +64847,167 @@
    "TAX_ID"
   ],
   "systems": {
+   "Rakshya 1.1": {
+    "all": {
+     "with label": {
+      "p": 0.9643,
+      "r": 0.9616,
+      "f1": 0.963
+     },
+     "without label": {
+      "p": 0.967,
+      "r": 0.9644,
+      "f1": 0.9657
+     },
+     "touching": {
+      "p": 0.989,
+      "r": 0.9781,
+      "f1": 0.9794
+     },
+     "characters found": 0.9678,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 15",
+     "rows": 180,
+     "spans": 365
+    },
+    "languages": {
+     "en": {
+      "with label": {
+       "p": 0.975,
+       "r": 0.9669,
+       "f1": 0.971
+      },
+      "without label": {
+       "p": 0.9833,
+       "r": 0.9752,
+       "f1": 0.9793
+      },
+      "touching": {
+       "p": 0.9917,
+       "r": 0.9835,
+       "f1": 0.9876
+      },
+      "characters found": 0.9817,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 5",
+      "rows": null,
+      "spans": 121
+     },
+     "hi": {
+      "with label": {
+       "p": 0.937,
+       "r": 0.9754,
+       "f1": 0.9558
+      },
+      "without label": {
+       "p": 0.937,
+       "r": 0.9754,
+       "f1": 0.9558
+      },
+      "touching": {
+       "p": 0.9843,
+       "r": 1.0,
+       "f1": 0.9799
+      },
+      "characters found": 0.9922,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 5",
+      "rows": null,
+      "spans": 122
+     },
+     "ne": {
+      "with label": {
+       "p": 0.9829,
+       "r": 0.9426,
+       "f1": 0.9623
+      },
+      "without label": {
+       "p": 0.9829,
+       "r": 0.9426,
+       "f1": 0.9623
+      },
+      "touching": {
+       "p": 0.9915,
+       "r": 0.9508,
+       "f1": 0.9707
+      },
+      "characters found": 0.929,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 5",
+      "rows": null,
+      "spans": 122
+     }
+    },
+    "batches": {
+     "bench-180": {
+      "with label": {
+       "p": 0.9643,
+       "r": 0.9616,
+       "f1": 0.963
+      },
+      "without label": {
+       "p": 0.967,
+       "r": 0.9644,
+       "f1": 0.9657
+      },
+      "touching": {
+       "p": 0.989,
+       "r": 0.9781,
+       "f1": 0.9794
+      },
+      "characters found": 0.9678,
+      "strings to leave alone that are covered": null,
+      "rows without personal data that get a mark": "0 of 15",
+      "rows": null,
+      "spans": 365
+     }
+    },
+    "labels": {
+     "ADDRESS": {
+      "p": 0.9259,
+      "r": 0.9615,
+      "f1": 0.9434,
+      "spans": 26
+     },
+     "DOB": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 15
+     },
+     "EMAIL": {
+      "p": 0.8974,
+      "r": 0.8974,
+      "f1": 0.8974,
+      "spans": 39
+     },
+     "NUMBER": {
+      "p": 1.0,
+      "r": 0.9222,
+      "f1": 0.9595,
+      "spans": 90
+     },
+     "PERSON": {
+      "p": 0.9669,
+      "r": 0.9832,
+      "f1": 0.975,
+      "spans": 119
+     },
+     "PHONE": {
+      "p": 1.0,
+      "r": 1.0,
+      "f1": 1.0,
+      "spans": 46
+     },
+     "SECRET": {
+      "p": 0.9091,
+      "r": 1.0,
+      "f1": 0.9524,
+      "spans": 30
+     }
+    },
+    "reading": ""
+   },
    "Rakshya 1.0": {
     "all": {
      "with label": {
@@ -66700,20 +69855,20 @@
   "processor": "13th Gen Intel(R) Core(TM) i5-13420H",
   "milliseconds_per_sentence": {
    "onnx, 1 thread(s)": {
-    "median": 12.4,
-    "p95": 35.31
+    "median": 11.55,
+    "p95": 17.59
    },
    "onnx, 8-bit, 1 thread(s)": {
-    "median": 12.67,
-    "p95": 32.95
+    "median": 11.47,
+    "p95": 17.61
    },
    "onnx, 4 thread(s)": {
-    "median": 6.2,
-    "p95": 23.08
+    "median": 5.05,
+    "p95": 8.05
    },
    "onnx, 8-bit, 4 thread(s)": {
-    "median": 6.47,
-    "p95": 23.44
+    "median": 5.24,
+    "p95": 8.41
    }
   },
   "tokens_per_sentence": 21.1
@@ -66721,29 +69876,29 @@
  "browser": {
   "real/real-news-v2.jsonl": {
    "texts": 175,
-   "python_f1": 0.8912,
-   "empty_tab_megabytes": 153,
+   "python_f1": 0.88,
+   "empty_tab_megabytes": 151,
    "threads": {
     "1": {
-     "f1": 0.8912,
-     "characters_found": 0.9716,
+     "f1": 0.88,
+     "characters_found": 0.9925,
      "same_spans_as_python": 175,
-     "median_ms": 46.51,
-     "p95_ms": 102.97,
-     "tab_megabytes": 538,
-     "session_ms": 772,
-     "tokenizer_ms": 122,
+     "median_ms": 46.3,
+     "p95_ms": 78.14,
+     "tab_megabytes": 571,
+     "session_ms": 1055,
+     "tokenizer_ms": 151,
      "model_megabytes": 40.8
     },
     "4": {
-     "f1": 0.8912,
-     "characters_found": 0.9716,
+     "f1": 0.88,
+     "characters_found": 0.9925,
      "same_spans_as_python": 175,
-     "median_ms": 14.19,
-     "p95_ms": 25.96,
-     "tab_megabytes": 586,
-     "session_ms": 550,
-     "tokenizer_ms": 91,
+     "median_ms": 30.66,
+     "p95_ms": 66.95,
+     "tab_megabytes": 578,
+     "session_ms": 866,
+     "tokenizer_ms": 95,
      "model_megabytes": 40.8
     }
    },
@@ -66751,29 +69906,29 @@
   },
   "real/real-web-v0-reviewed.jsonl": {
    "texts": 88,
-   "python_f1": 0.908,
-   "empty_tab_megabytes": 151,
+   "python_f1": 0.9205,
+   "empty_tab_megabytes": 154,
    "threads": {
     "1": {
-     "f1": 0.908,
-     "characters_found": 0.9558,
+     "f1": 0.9205,
+     "characters_found": 0.9718,
      "same_spans_as_python": 88,
-     "median_ms": 118.8,
-     "p95_ms": 151.02,
-     "tab_megabytes": 560,
-     "session_ms": 589,
-     "tokenizer_ms": 85,
+     "median_ms": 137.91,
+     "p95_ms": 192.47,
+     "tab_megabytes": 558,
+     "session_ms": 996,
+     "tokenizer_ms": 136,
      "model_megabytes": 40.8
     },
     "4": {
-     "f1": 0.908,
-     "characters_found": 0.9558,
+     "f1": 0.9205,
+     "characters_found": 0.9718,
      "same_spans_as_python": 88,
-     "median_ms": 39.78,
-     "p95_ms": 73.8,
-     "tab_megabytes": 568,
-     "session_ms": 583,
-     "tokenizer_ms": 90,
+     "median_ms": 103.85,
+     "p95_ms": 180.76,
+     "tab_megabytes": 570,
+     "session_ms": 778,
+     "tokenizer_ms": 130,
      "model_megabytes": 40.8
     }
    },
@@ -66781,29 +69936,29 @@
   },
   "real/real-roman-v0-reviewed.jsonl": {
    "texts": 300,
-   "python_f1": 0.8536,
-   "empty_tab_megabytes": 151,
+   "python_f1": 0.8408,
+   "empty_tab_megabytes": 152,
    "threads": {
     "1": {
-     "f1": 0.8536,
-     "characters_found": 0.8894,
+     "f1": 0.8408,
+     "characters_found": 0.8811,
      "same_spans_as_python": 300,
-     "median_ms": 26.0,
-     "p95_ms": 61.73,
-     "tab_megabytes": 564,
-     "session_ms": 563,
-     "tokenizer_ms": 85,
+     "median_ms": 33.13,
+     "p95_ms": 77.28,
+     "tab_megabytes": 571,
+     "session_ms": 770,
+     "tokenizer_ms": 114,
      "model_megabytes": 40.8
     },
     "4": {
-     "f1": 0.8536,
-     "characters_found": 0.8894,
+     "f1": 0.8408,
+     "characters_found": 0.8811,
      "same_spans_as_python": 300,
-     "median_ms": 9.38,
-     "p95_ms": 19.25,
-     "tab_megabytes": 569,
-     "session_ms": 624,
-     "tokenizer_ms": 87,
+     "median_ms": 15.82,
+     "p95_ms": 61.47,
+     "tab_megabytes": 575,
+     "session_ms": 811,
+     "tokenizer_ms": 110,
      "model_megabytes": 40.8
     }
    },
@@ -66811,29 +69966,29 @@
   },
   "real/real-en-v0-reviewed.jsonl": {
    "texts": 108,
-   "python_f1": 0.9048,
+   "python_f1": 0.9193,
    "empty_tab_megabytes": 151,
    "threads": {
     "1": {
-     "f1": 0.9048,
-     "characters_found": 0.9883,
+     "f1": 0.9193,
+     "characters_found": 0.9831,
      "same_spans_as_python": 108,
-     "median_ms": 52.28,
-     "p95_ms": 96.9,
-     "tab_megabytes": 498,
-     "session_ms": 900,
-     "tokenizer_ms": 147,
+     "median_ms": 69.9,
+     "p95_ms": 148.75,
+     "tab_megabytes": 550,
+     "session_ms": 939,
+     "tokenizer_ms": 128,
      "model_megabytes": 40.8
     },
     "4": {
-     "f1": 0.9048,
-     "characters_found": 0.9883,
+     "f1": 0.9193,
+     "characters_found": 0.9831,
      "same_spans_as_python": 108,
-     "median_ms": 29.06,
-     "p95_ms": 55.08,
-     "tab_megabytes": 591,
-     "session_ms": 722,
-     "tokenizer_ms": 103,
+     "median_ms": 34.81,
+     "p95_ms": 79.32,
+     "tab_megabytes": 566,
+     "session_ms": 858,
+     "tokenizer_ms": 141,
      "model_megabytes": 40.8
     }
    },
@@ -66902,33 +70057,33 @@
  "eight_bit_against_32_bit": {
   "closeness": {
    "tokens": 5589,
-   "tokens_with_the_same_tag": 5589,
-   "largest_difference_in_a_score": 0.9535,
+   "tokens_with_the_same_tag": 5582,
+   "largest_difference_in_a_score": 1.2629,
    "largest_difference_alone_and_in_a_batch": 0.0
   },
   "scores": {
    "benchmark/hard-v0.jsonl": {
     "pytorch": {
      "exact_f1": 0.8586,
-     "word_f1": 0.8619,
-     "characters_found": 0.986
+     "word_f1": 0.8687,
+     "characters_found": 0.9693
     },
     "onnx, 8-bit": {
      "exact_f1": 0.8586,
-     "word_f1": 0.8619,
-     "characters_found": 0.986
+     "word_f1": 0.8687,
+     "characters_found": 0.9724
     }
    },
    "benchmark/hard-v1.jsonl": {
     "pytorch": {
-     "exact_f1": 0.8753,
-     "word_f1": 0.8753,
-     "characters_found": 0.9707
+     "exact_f1": 0.876,
+     "word_f1": 0.876,
+     "characters_found": 0.9794
     },
     "onnx, 8-bit": {
-     "exact_f1": 0.8753,
-     "word_f1": 0.8753,
-     "characters_found": 0.9707
+     "exact_f1": 0.876,
+     "word_f1": 0.876,
+     "characters_found": 0.9794
     }
    }
   }

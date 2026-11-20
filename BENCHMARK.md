@@ -1,6 +1,18 @@
 # Benchmark
 
-Every number here was measured with the released files of Rakshya 1.0 (2026-11-18). The test set was fixed and locked before any model of this version read it: the texts, their labels and the sha256 of both were written down, and the models were chosen without reading the seven sets below.
+Every number here was measured with the released files of Rakshya 1.1 (2026-11-20). The test sets are those of release 1.0. They were fixed and locked before any model of 1.0 read them: the texts, their labels and the sha256 of both were written down. The models of 1.0 were chosen without reading them and were then scored on them once. Rakshya 1.1 was trained and chosen without reading them either, by a rule written down before its training, and was then scored on them once. Nothing was chosen after either reading.
+
+## What changed since 1.0
+
+The training, and with it the licence. Release 1.0 learned from EverestNER and DanfeNER, which are for non-commercial use, and from CoNLL-2003, which is for research use. Version 1.1 was trained without the three: they are in none of its training rows, its teacher was trained without them, that teacher labelled the unlabelled text again, the rows that decide when training stops hold none of them, and the vocabulary was chosen by a count without them. The labels, the rules, the code after the model and the size are those of 1.0, and the recipe was not tuned again.
+
+| Test | Rakshya 1.1 | Rakshya 1.0 | 1.1 ahead by, with its 95 percent interval |
+|---|---:|---:|---|
+| The seven test sets, mean exact F1 | 0.913 | 0.906 | 0.0072 (-0.0049 to 0.0202) |
+| The practical test, exact F1 with label | 0.956 | 0.952 | 0.0042 (-0.0005 to 0.0093) |
+| The 180 cases, exact F1 with label | 0.960 | 0.948 | 0.0122 (-0.0056 to 0.0362) |
+
+The interval comes from drawing the test texts again, the same ones for both versions. Each of the three reaches below zero, so these tests do not tell the two versions apart: 1.1 is not behind 1.0, and it is not shown to be better. The two also differ in more than the three sets, because the teacher of 1.1 was trained later and labelled more of the unlabelled text, so the table does not say what the three sets were worth.
 
 ## What is measured
 
@@ -28,12 +40,13 @@ A second reading is accepted where the guide accepts two cuts of one text, such 
 
 ## Results
 
-The released model, its rules alone, the two releases before it and the 25 published systems we ran, on the seven sets. Best in each column in bold.
+The released model, its rules alone, the three releases before it and the 25 published systems we ran, on the seven sets. Best in each column in bold.
 
 | System | News (ne) | Web (ne) | Government (ne) | Comments (ne, Latin) | News (en) | Web (en) | News (hi) | Mean |
 |---|---|---|---|---|---|---|---|---|
-| **[Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya)** | **0.914** | **0.933** | **0.943** | **0.858** | **0.924** | **0.915** | **0.855** | **0.906** |
+| **[Rakshya 1.1](https://huggingface.co/fiste-ai/rakshya)** | **0.930** | **0.937** | **0.944** | **0.864** | **0.934** | **0.933** | 0.851 | **0.913** |
 | the rules of Rakshya alone | 0.105 | 0.484 | 0.662 | 0.047 | 0.089 | 0.501 | 0.087 | 0.282 |
+| [Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya/tree/v1.0) | 0.914 | 0.933 | 0.943 | 0.858 | 0.924 | 0.915 | **0.855** | 0.906 |
 | [Rakshya 0.2](https://huggingface.co/fiste-ai/rakshya/tree/v0.2) | 0.889 | 0.816 | 0.863 | 0.524 | 0.892 | 0.790 | 0.797 | 0.796 |
 | [Gopya 0.1](https://huggingface.co/fiste-ai/rakshya/tree/v0.1) | 0.849 | 0.727 | 0.704 | 0.218 | 0.724 | 0.638 | 0.789 | 0.664 |
 | [EU PII anonymisation](https://huggingface.co/bardsai/eu-pii-anonimization-multilang) (bards.ai) | 0.718 | 0.597 | 0.506 | 0.264 | 0.817 | 0.460 | 0.757 | 0.588 |
@@ -62,7 +75,7 @@ The released model, its rules alone, the two releases before it and the 25 publi
 | [mmBERT-small PII redaction](https://huggingface.co/balticml/mmbert-small-pii-redaction) (BalticML) | 0.000 | 0.102 | 0.021 | 0.053 | 0.131 | 0.195 | 0.015 | 0.074 |
 | [DistilBERT Nepali NER](https://huggingface.co/Saugatkafley/distilbert-Nepali-NER) (Saugatkafley) | 0.059 | 0.036 | 0.030 | 0.028 | 0.092 | 0.042 | 0.104 | 0.056 |
 
-None of the 25 published systems we ran scores higher than Rakshya 1.0 on any of the seven sets.
+None of the 25 published systems we ran scores higher than Rakshya 1.1 on any of the seven sets.
 
 The published systems include general named-entity models that mark no identity numbers; the score counts that against them. Sizes and links are in `benchmark/results.json`.
 
@@ -70,7 +83,8 @@ Names only (people, places and organisations):
 
 | System | News (ne) | Web (ne) | Government (ne) | Comments (ne, Latin) | News (en) | Web (en) | News (hi) | Mean |
 |---|---|---|---|---|---|---|---|---|
-| **[Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya)** | **0.912** | **0.920** | **0.903** | **0.851** | **0.922** | **0.896** | **0.855** | **0.894** |
+| **[Rakshya 1.1](https://huggingface.co/fiste-ai/rakshya)** | **0.927** | **0.927** | 0.903 | **0.857** | **0.931** | **0.916** | 0.843 | **0.900** |
+| [Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya/tree/v1.0) | 0.912 | 0.920 | **0.903** | 0.851 | 0.922 | 0.896 | **0.855** | 0.894 |
 | [Rakshya 0.2](https://huggingface.co/fiste-ai/rakshya/tree/v0.2) | 0.887 | 0.794 | 0.838 | 0.496 | 0.902 | 0.744 | 0.795 | 0.779 |
 | [Gopya 0.1](https://huggingface.co/fiste-ai/rakshya/tree/v0.1) | 0.847 | 0.672 | 0.662 | 0.189 | 0.739 | 0.537 | 0.800 | 0.635 |
 | [EU PII anonymisation](https://huggingface.co/bardsai/eu-pii-anonimization-multilang) (bards.ai) | 0.740 | 0.605 | 0.671 | 0.275 | 0.859 | 0.502 | 0.797 | 0.636 |
@@ -105,15 +119,15 @@ Exact F1, with the number of gold spans in the set in brackets. A blank cell mea
 
 | Kind | News (ne) | Web (ne) | Government (ne) | Comments (ne, Latin) | News (en) | Web (en) | News (hi) |
 |---|---|---|---|---|---|---|---|
-| Places | 0.902 (127) | 0.919 (205) | 0.847 (27) | 0.844 (52) | 0.951 (130) | 0.914 (257) | 0.922 (58) |
-| People | 0.923 (72) | 0.975 (200) | 0.942 (76) | 0.875 (128) | 0.953 (73) | 0.937 (98) | 0.947 (29) |
-| Organisations | 0.918 (71) | 0.842 (138) | 0.868 (38) | 0.609 (12) | 0.835 (69) | 0.836 (146) | 0.645 (31) |
-| Phone numbers | 1.000 (1) | 0.982 (168) | 0.970 (67) |  |  | 0.964 (152) |  |
-| Dates | 0.941 (18) | 0.931 (66) | 0.986 (71) | 0.968 (16) | 0.945 (28) | 0.961 (50) | 0.923 (13) |
-| E-mail addresses |  | 0.967 (59) | 0.962 (40) |  |  | 0.986 (69) |  |
+| Places | 0.951 (130) | 0.932 (206) | 0.755 (23) | 0.852 (52) | 0.936 (129) | 0.933 (252) | 0.912 (58) |
+| People | 0.951 (72) | 0.978 (200) | 0.974 (76) | 0.868 (129) | 0.966 (73) | 0.960 (98) | 0.915 (29) |
+| Organisations | 0.855 (68) | 0.848 (138) | 0.867 (40) | 0.737 (11) | 0.881 (70) | 0.855 (146) | 0.645 (31) |
+| Phone numbers | 1.000 (1) | 0.979 (168) | 0.977 (67) |  |  | 0.983 (152) |  |
+| Dates | 0.971 (18) | 0.909 (66) | 0.986 (70) | 0.968 (16) | 0.963 (28) | 0.980 (50) | 0.917 (12) |
+| E-mail addresses |  | 1.000 (59) | 0.962 (40) |  |  | 0.986 (69) |  |
 | Web addresses |  | 1.000 (6) | 1.000 (2) |  | 1.000 (1) | 1.000 (12) |  |
-| Identifying numbers |  | 0.545 (8) |  |  |  | 0.429 (3) |  |
-| Passwords, keys and device identifiers |  |  | 1.000 (1) | 0.667 (1) |  | 0.250 (1) | 0.000 (1) |
+| Identifying numbers |  | 0.400 (8) |  |  |  | 0.545 (3) |  |
+| Passwords, keys and device identifiers |  |  | 1.000 (1) | 0.667 (1) |  | 0.222 (1) | 1.000 (1) |
 
 ### Confidence
 
@@ -121,7 +135,7 @@ A 95 percent interval from drawing the articles of each set again, for the relea
 
 | System | News (ne) | Web (ne) | Government (ne) | Comments (ne, Latin) | News (en) | Web (en) | News (hi) |
 |---|---|---|---|---|---|---|---|
-| **[Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya)** | 0.914 (0.88 to 0.95) | 0.933 (0.91 to 0.95) | 0.943 (0.91 to 0.97) | 0.858 (0.81 to 0.90) | 0.924 (0.89 to 0.95) | 0.915 (0.88 to 0.95) | 0.855 (0.78 to 0.92) |
+| **[Rakshya 1.1](https://huggingface.co/fiste-ai/rakshya)** | 0.930 (0.89 to 0.96) | 0.937 (0.92 to 0.95) | 0.944 (0.91 to 0.97) | 0.864 (0.82 to 0.91) | 0.934 (0.89 to 0.97) | 0.933 (0.90 to 0.96) | 0.851 (0.78 to 0.92) |
 
 ### False alarms
 
@@ -129,7 +143,8 @@ Texts that hold no personal data are the test of over-redaction. The table count
 
 | System | News (ne), 55 | Web (ne), 10 | Government (ne), 4 | Comments (ne, Latin), 153 | News (en), 41 | Web (en), 14 | News (hi), 44 |
 |---|---|---|---|---|---|---|---|
-| **[Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya)** | 3.39 | 5.19 | 0.0 | 6.45 | 1.36 | 31.36 | 6.41 |
+| **[Rakshya 1.1](https://huggingface.co/fiste-ai/rakshya)** | 4.52 | 5.19 | 8.26 | 2.34 | 0.0 | 36.59 | 5.13 |
+| [Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya/tree/v1.0) | 3.39 | 5.19 | 0.0 | 6.45 | 1.36 | 31.36 | 6.41 |
 | [Rakshya 0.2](https://huggingface.co/fiste-ai/rakshya/tree/v0.2) | 3.39 | 7.79 | 0.0 | 34.0 | 1.36 | 24.39 | 8.97 |
 | [Gopya 0.1](https://huggingface.co/fiste-ai/rakshya/tree/v0.1) | 5.66 | 36.36 | 8.26 | 104.34 | 4.09 | 33.1 | 2.56 |
 | [EU PII anonymisation](https://huggingface.co/bardsai/eu-pii-anonimization-multilang) (bards.ai) | 13.57 | 20.78 | 0.0 | 36.34 | 0.0 | 101.05 | 2.56 |
@@ -140,25 +155,27 @@ Texts that hold no personal data are the test of over-redaction. The table count
 
 ## The older test sets
 
-Seven older sets of the same kinds, 939 texts, labelled under the same guide. Their scores were read while this version was built, so they are not a held-out test of 1.0; the seven sets above are. They are a second draw of texts of the same kinds.
+Seven older sets of the same kinds, 939 texts, labelled under the same guide. Their scores were read while 1.0 and 1.1 were built, so they are not a held-out test; the seven sets above are. They are a second draw of texts of the same kinds.
 
 | System | News (ne) | Web (ne) | Government (ne) | Comments (ne, Latin) | News (en) | Web (en) | News (hi) | Mean |
 |---|---|---|---|---|---|---|---|---|
-| **[Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya)** | 0.930 | 0.891 | 0.904 | 0.778 | 0.925 | 0.878 | 0.892 | 0.886 |
+| **[Rakshya 1.1](https://huggingface.co/fiste-ai/rakshya)** | 0.921 | 0.924 | 0.925 | 0.773 | 0.920 | 0.910 | 0.899 | 0.896 |
+| [Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya/tree/v1.0) | 0.930 | 0.891 | 0.904 | 0.778 | 0.925 | 0.878 | 0.892 | 0.886 |
 | [Rakshya 0.2](https://huggingface.co/fiste-ai/rakshya/tree/v0.2) | 0.894 | 0.743 | 0.847 | 0.467 | 0.847 | 0.767 | 0.817 | 0.769 |
 | [Gopya 0.1](https://huggingface.co/fiste-ai/rakshya/tree/v0.1) | 0.846 | 0.661 | 0.589 | 0.199 | 0.737 | 0.561 | 0.836 | 0.633 |
 
 ## The practical test
 
-578 short institutional texts in Nepali, Hindi and English, such as letters of ward and land offices, bank and payment records, complaints, court papers, hospital summaries and support tickets, with 3,572 marked items of personal data. The people, addresses and numbers in them are fictional. They were kept back while the models of 1.0 were built and were read once, under `labels="personal"`, the profile a redaction uses. NepPIIBench publishes 380 of them; the scores here are over all of them.
+578 short institutional texts in Nepali, Hindi and English, such as letters of ward and land offices, bank and payment records, complaints, court papers, hospital summaries and support tickets, with 3,572 marked items of personal data. The people, addresses and numbers in them are fictional. They were kept back while the models of 1.0 and 1.1 were built, and each release was scored on them once, under `labels="personal"`, the profile a redaction uses. NepPIIBench publishes 380 of them; the scores here are over all of them.
 
-Rakshya 1.0 learned from the training part of the same collection: 2,087 other paragraphs, of which 1,394 are published in [NepPIICorpus](https://huggingface.co/datasets/fiste-ai/nepiicorpus). No other system in the table did. So the table says what each system does on records of this kind, and the lead of Rakshya 1.0 in it is that of a model on the kind of text it was trained for. The 180 cases below are a set apart.
+Rakshya 1.1 and 1.0 learned from the training part of the same collection: 2,087 other paragraphs, of which 1,394 are published in [NepPIICorpus](https://huggingface.co/datasets/fiste-ai/nepiicorpus). No other system in the table did. So the table says what each system does on records of this kind, and the lead of Rakshya in it is that of a model on the kind of text it was trained for. The 180 cases below are a set apart.
 
 Every system at the level of seven kinds, where all of them can stand: a person, an address, a date of birth, a phone number, an e-mail address, an identifying number, a secret. Each published system is read in the way that scores best for it on this set.
 
 | System | Exact F1 with kind | Precision | Recall | Characters found | Nepali | Hindi | English |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| **[Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya)** | **0.967** | 0.961 | 0.973 | 0.983 | 0.967 | 0.972 | 0.963 |
+| **[Rakshya 1.1](https://huggingface.co/fiste-ai/rakshya)** | **0.968** | 0.963 | 0.973 | 0.984 | 0.973 | 0.968 | 0.961 |
+| [Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya/tree/v1.0) | 0.967 | 0.961 | 0.973 | 0.983 | 0.967 | 0.972 | 0.963 |
 | [Rakshya 0.2](https://huggingface.co/fiste-ai/rakshya/tree/v0.2) | 0.816 | 0.817 | 0.816 | 0.701 | 0.816 | 0.815 | 0.817 |
 | [Chitragupta](https://huggingface.co/LatentAILabs/chitragupta-pii-indic) (Latent AI Labs) | 0.733 | 0.744 | 0.721 | 0.830 | 0.681 | 0.804 | 0.710 |
 | [EU PII anonymisation](https://huggingface.co/bardsai/eu-pii-anonimization-multilang) (bards.ai) | 0.674 | 0.597 | 0.773 | 0.923 | 0.688 | 0.679 | 0.654 |
@@ -193,18 +210,20 @@ Rakshya on its own 19 labels of personal data. `with label` requires the label t
 
 | System | With label | Without label | Touching | Characters found | Keep-out strings covered | Rows without personal data that got a mark |
 |---|---:|---:|---:|---:|---:|---:|
+| Rakshya 1.1 | 0.956 | 0.972 | 0.983 | 0.984 | 0.055 | 2 of 36 |
 | Rakshya 1.0 | 0.952 | 0.970 | 0.981 | 0.983 | 0.060 | 3 of 36 |
 | Rakshya 0.2, its weights with the code of 1.0 | 0.799 | 0.857 | 0.887 | 0.666 | 0.197 | 8 of 36 |
 
 ## The 180 cases
 
-180 further cases of our own, 60 in each of the three languages, with 365 marked items of 12 kinds. They are a separate set, made apart from the practical paragraphs and in another format, and no version of Rakshya learned from them. They were read once.
+180 further cases of our own, 60 in each of the three languages, with 365 marked items of 12 kinds. They are a separate set, made apart from the practical paragraphs and in another format, and no version of Rakshya learned from them. Each release was scored on them once.
 
 Every system at the level of seven kinds, each published system read in the way that scores best for it on this set:
 
 | System | Exact F1 with kind | Precision | Recall | Characters found | Nepali | Hindi | English |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| **[Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya)** | **0.951** | 0.948 | 0.953 | 0.980 | 0.954 | 0.936 | 0.963 |
+| **[Rakshya 1.1](https://huggingface.co/fiste-ai/rakshya)** | **0.963** | 0.964 | 0.962 | 0.968 | 0.962 | 0.956 | 0.971 |
+| [Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya/tree/v1.0) | 0.951 | 0.948 | 0.953 | 0.980 | 0.954 | 0.936 | 0.963 |
 | [Rakshya 0.2](https://huggingface.co/fiste-ai/rakshya/tree/v0.2) | 0.921 | 0.930 | 0.912 | 0.894 | 0.864 | 0.943 | 0.958 |
 | [Gopya 0.1](https://huggingface.co/fiste-ai/rakshya/tree/v0.1) | 0.753 | 0.836 | 0.685 | 0.639 | 0.786 | 0.746 | 0.727 |
 | [EU PII anonymisation v3](https://huggingface.co/bardsai/eu-pii-anonimization-multilang-v3) (bards.ai) | 0.727 | 0.809 | 0.660 | 0.723 | 0.660 | 0.700 | 0.816 |
@@ -239,27 +258,28 @@ Rakshya on the 12 labels the cases mark. Characters found is the share of gold c
 
 | System | With label | Without label | Touching | Characters found |
 |---|---:|---:|---:|---:|
+| Rakshya 1.1 | 0.960 | 0.963 | 0.977 | 0.963 |
 | Rakshya 1.0 | 0.948 | 0.951 | 0.970 | 0.976 |
 | Rakshya 0.2, its weights with the code of 1.0 | 0.913 | 0.922 | 0.925 | 0.731 |
 
 ## NepPIIBench
 
-[NepPIIBench](https://huggingface.co/datasets/fiste-ai/nepiibench) is the public benchmark released beside this model: 380 paragraphs in Nepali, Hindi and English, with character offsets for 19 kinds of personal data and 837 strings that look like personal data and must be left alone. Rakshya 1.0 learned from the training part of the collection these rows are cut from, most of which is published as [NepPIICorpus](https://huggingface.co/datasets/fiste-ai/nepiicorpus); the rows themselves were not used in training or in model selection. The score below was made with the scorer that ships in the package, over every label it marks.
+[NepPIIBench](https://huggingface.co/datasets/fiste-ai/nepiibench) is the public benchmark released beside this model: 380 paragraphs in Nepali, Hindi and English, with character offsets for 19 kinds of personal data and 837 strings that look like personal data and must be left alone. Rakshya 1.1 learned from the training part of the collection these rows are cut from, most of which is published as [NepPIICorpus](https://huggingface.co/datasets/fiste-ai/nepiicorpus); the rows themselves were not used in training or in model selection. The score below was made with the scorer that ships in the package, over every label it marks.
 
 | Language | Rows | Character precision | Character recall | Character F1 | Exact F1 | Keep-out strings touched |
 |---|---:|---:|---:|---:|---:|---:|
-| Nepali | 130 | 0.990 | 0.984 | 0.987 | 0.968 | 3.1 percent |
-| Hindi | 127 | 0.975 | 0.994 | 0.984 | 0.959 | 6.1 percent |
-| English | 123 | 0.979 | 0.975 | 0.977 | 0.930 | 6.7 percent |
-| **All** | **380** | **0.981** | **0.984** | **0.983** | **0.953** | **5.4 percent** |
+| Nepali | 130 | 0.988 | 0.989 | 0.989 | 0.966 | 3.1 percent |
+| Hindi | 127 | 0.976 | 0.993 | 0.984 | 0.958 | 6.1 percent |
+| English | 123 | 0.976 | 0.972 | 0.974 | 0.942 | 6.4 percent |
+| **All** | **380** | **0.980** | **0.985** | **0.982** | **0.956** | **5.3 percent** |
 
-Character F1 counts overlapping characters; exact F1 counts spans with the same start, end and label. On the whole set, 5.4 percent of the 837 keep-out strings were covered.
+Character F1 counts overlapping characters; exact F1 counts spans with the same start, end and label. On the whole set, 5.3 percent of the 837 keep-out strings were covered.
 
 ## How the systems were run
 
-The published systems were run the way their authors publish them: the weights and the tokenizer from the Hub, at the revision named in `benchmark/results.json`, on a processor where that is how they are published, otherwise on the graphics card. Where the tags of a model can be read in more than one way, the reading that scores best on its own labels is used. Their makers did not tune them on these sets.
+The published systems were run the way their authors publish them: the weights and the tokenizer from the Hub, at the revision named in `benchmark/results.json`, on a processor where that is how they are published, otherwise on the graphics card. Where the tags of a model can be read in more than one way, the reading that scores best on its own labels is used. Their makers did not tune them on these sets. They were run once, when release 1.0 was measured. What they and the earlier releases of Rakshya marked then was kept, and it is scored here again beside 1.1; none of them was run a second time.
 
-Rakshya 1.0 is one set of weights with the rules of this repository, scored as the 8-bit file that is released. The same weights with the rounding of that file, read in full precision, give one tag on 10,260 of 10,260 tokens and the same scores. The rules alone have a mean of 0.282 on the seven sets.
+Rakshya 1.1 is one set of weights with the rules of this repository, scored as the 8-bit file that is released. The same weights with the rounding of that file, read in full precision, give one tag on 10,260 of 10,260 tokens and the same scores. The rules alone have a mean of 0.282 on the seven sets.
 
 ## Size, speed and the browser
 
@@ -269,12 +289,12 @@ Rakshya 1.0 is one set of weights with the rules of this repository, scored as t
 | 32-bit weights | 40 million parameters |
 | Vocabulary | 48,000 pieces, cut from the base model |
 | Browser module | 2.3 MB, 0.8 MB compressed |
-| Median per sentence, 4 threads | 6 ms |
-| Median per sentence, 1 thread | 13 ms |
+| Median per sentence, 4 threads | 5 ms |
+| Median per sentence, 1 thread | 11 ms |
 | Median per sentence in a browser, 1 thread | 50 ms |
 | Tokens per sentence | 21 |
 
-Measured on Intel Core i5-13420H with ONNX Runtime. The 8-bit file and the 32-bit file gave the same tag on 5,589 of 5,589 tokens, alone and in a batch. The packaged Python files gave the same spans as the repository code on 9,546 texts under both profiles, and the Rust build gave what Python gives on 9,681 texts. In a browser the 8-bit file gave the spans of Python on each of the 1,792 texts of the 9 test files, with one thread and with four.
+Measured on Intel Core i5-13420H with ONNX Runtime. The 8-bit file gave the tag of the 32-bit file on 5,582 of 5,589 tokens of two sets of hard cases, with the same exact F1 on both sets, and the same output alone and in a batch. The packaged Python files gave the same spans as the repository code on 9,546 texts under both profiles, and the Rust build gave what Python gives on 9,681 texts. In a browser the 8-bit file gave the spans of Python on each of the 1,792 texts of the 9 test files, with one thread and with four.
 
 ## The label files
 
@@ -301,4 +321,5 @@ python benchmark/rebuild.py benchmark/labels/real-roman-v2.json --parquet nepali
 - Identity numbers are tested mostly on paragraphs of fictional records. Public pages print phone numbers, e-mail addresses and the bank accounts of offices; they do not print citizenship, passport or licence numbers.
 - The label set is this model's own. A system that marks a slightly different thing, such as the parts of an address instead of the address, loses on the boundary and not necessarily on the task.
 - The 180 cases are few, 60 in each language, and mark 12 kinds of personal data. A score on them moves by a few points with another draw of cases.
+- The test sets have now been scored for two releases. Nothing was chosen on them either time, but a version after this one needs test sets of its own.
 - A score is not a promise. Read the output before relying on a redaction.

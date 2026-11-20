@@ -7,7 +7,9 @@
 - **Exact.** Nepali writes case markers against a name, as in सीतालाई. Rakshya ends each span inside the word, so it takes out the name and leaves the grammar.
 - **Made for Nepal.** Citizenship, national identity, PAN, passport, licence and voter numbers, bank accounts, number plates and phone numbers, with dates in both calendars and both scripts. Beside them the kinds that are standard everywhere: cards, IP addresses, web addresses, user names, passwords and keys. 25 labels in all.
 
-The model is at [fiste-ai/rakshya](https://huggingface.co/fiste-ai/rakshya) under the tag `v1.0`. This repository holds the code that runs it, the demo page and the labels of the test sets.
+The model is at [fiste-ai/rakshya](https://huggingface.co/fiste-ai/rakshya) under the tag `v1.1`. This repository holds the code that runs it, the demo page and the labels of the test sets.
+
+**New in 1.1: the weights are under Apache-2.0.** Release 1.0 was for non-commercial use, because three of its training sets were. Version 1.1 has the same labels, rules, code and size, and was trained again without those three sets: EverestNER, DanfeNER and CoNLL-2003. It scores as 1.0 does or a little higher on every test, within what another draw of test texts would move ([BENCHMARK.md](BENCHMARK.md)). Release 1.0 stays at the tag `v1.0`.
 
 ## Benchmark
 
@@ -15,7 +17,8 @@ The model is at [fiste-ai/rakshya](https://huggingface.co/fiste-ai/rakshya) unde
 
 | System | News (ne) | Web (ne) | Government (ne) | Comments (ne, Latin) | News (en) | Web (en) | News (hi) | Mean |
 |---|---|---|---|---|---|---|---|---|
-| **[Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya)** | **0.914** | **0.933** | **0.943** | **0.858** | **0.924** | **0.915** | **0.855** | **0.906** |
+| **[Rakshya 1.1](https://huggingface.co/fiste-ai/rakshya)** | **0.930** | **0.937** | **0.944** | **0.864** | **0.934** | **0.933** | 0.851 | **0.913** |
+| [Rakshya 1.0](https://huggingface.co/fiste-ai/rakshya/tree/v1.0) | 0.914 | 0.933 | 0.943 | 0.858 | 0.924 | 0.915 | **0.855** | 0.906 |
 | [Rakshya 0.2](https://huggingface.co/fiste-ai/rakshya/tree/v0.2) | 0.889 | 0.816 | 0.863 | 0.524 | 0.892 | 0.790 | 0.797 | 0.796 |
 | [Gopya 0.1](https://huggingface.co/fiste-ai/rakshya/tree/v0.1) | 0.849 | 0.727 | 0.704 | 0.218 | 0.724 | 0.638 | 0.789 | 0.664 |
 | [EU PII anonymisation](https://huggingface.co/bardsai/eu-pii-anonimization-multilang) (bards.ai) | 0.718 | 0.597 | 0.506 | 0.264 | 0.817 | 0.460 | 0.757 | 0.588 |
@@ -24,13 +27,13 @@ The model is at [fiste-ai/rakshya](https://huggingface.co/fiste-ai/rakshya) unde
 | [MeridianPII Hindi v2](https://huggingface.co/plingampally/meridianpii-hi-v2) (plingampally) | 0.601 | 0.494 | 0.272 | 0.203 | 0.635 | 0.430 | 0.631 | 0.467 |
 | [Nym PII multilingual](https://huggingface.co/Wismut/nym-pii-multilingual) (Wismut) | 0.390 | 0.452 | 0.336 | 0.274 | 0.672 | 0.519 | 0.578 | 0.460 |
 
-None of the 25 published systems we ran scores higher than Rakshya 1.0 on any of the seven sets.
+None of the 25 published systems we ran scores higher than Rakshya 1.1 on any of the seven sets.
 
-Exact means that start, end and label are all right. The table has Rakshya, the two releases before it and the 5 published systems with the highest mean. All 25 published systems, the scores by kind, the false alarms and the method are in [BENCHMARK.md](BENCHMARK.md).
+Exact means that start, end and label are all right. The table has Rakshya, the three releases before it and the 5 published systems with the highest mean. The sets were scored once for release 1.0 and once more for this one, after its model was fixed. All 25 published systems, the scores by kind, the false alarms and the method are in [BENCHMARK.md](BENCHMARK.md).
 
-On [NepPIIBench](https://huggingface.co/datasets/fiste-ai/nepiibench), 380 held-out paragraphs with character offsets for 19 kinds of personal data, Rakshya 1.0 has a character F1 of 0.983 and an F1 of exact spans of 0.953. It learned from the training part of the same collection, most of which is published as [NepPIICorpus](https://huggingface.co/datasets/fiste-ai/nepiicorpus), and no other system did, so this is a score on the kind of text it was trained for.
+On [NepPIIBench](https://huggingface.co/datasets/fiste-ai/nepiibench), 380 held-out paragraphs with character offsets for 19 kinds of personal data, Rakshya 1.1 has a character F1 of 0.982 and an F1 of exact spans of 0.956. It learned from the training part of the same collection, most of which is published as [NepPIICorpus](https://huggingface.co/datasets/fiste-ai/nepiicorpus), as release 1.0 did and no system of others did, so this is a score on the kind of text it was trained for.
 
-On 180 further cases of our own, a separate set that no version of Rakshya learned from, it gets 0.951 at the level of seven kinds that every system can be scored on. Rakshya 0.2 gets 0.921 there, and the best of the other published systems, EU PII anonymisation v3 of bards.ai, 0.727.
+On 180 further cases of our own, a separate set that no version of Rakshya learned from, it gets 0.963 at the level of seven kinds that every system can be scored on. Rakshya 1.0 gets 0.951 there, Rakshya 0.2 0.921, and the best of the other published systems, EU PII anonymisation v3 of bards.ai, 0.727.
 
 ## Use it
 
@@ -53,8 +56,8 @@ In a web page:
 ```js
 const dist = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/";
 const ort = await import(dist + "ort.wasm.min.mjs");
-const { load } = await import("https://cdn.jsdelivr.net/gh/fiste-ai/rakshya@v1.0/docs/rakshya.js");
-const rakshya = await load({ ort, model: "https://huggingface.co/fiste-ai/rakshya/resolve/v1.0", runtime: dist });
+const { load } = await import("https://cdn.jsdelivr.net/gh/fiste-ai/rakshya@v1.1/docs/rakshya.js");
+const rakshya = await load({ ort, model: "https://huggingface.co/fiste-ai/rakshya/resolve/v1.1", runtime: dist });
 const { spans, redacted } = await rakshya.detect("मेरो नाम सीता थापा हो, फोन ९८४१२३४५६७।");
 ```
 
@@ -77,11 +80,11 @@ To build the browser module again: `cd rust && cargo build --release --target wa
 
 ## Limits
 
-- It is a helper and not a guarantee. The model finds 96 in 100 characters of personal data in Nepali news it had not seen, 98 on web pages, 98 in English news and 90 in comments written in Latin letters. Read the result before you rely on it.
-- Nepali in Latin letters is the hardest of the four: 0.858 exact on real comments. People spell as they like there.
+- It is a helper and not a guarantee. The model finds 98 in 100 characters of personal data in Nepali news it had not seen, 97 on web pages, 98 in English news and 89 in comments written in Latin letters. Read the result before you rely on it.
+- Nepali in Latin letters is the hardest of the four: 0.864 exact on real comments. People spell as they like there.
 - Text copied out of tables is cut badly. Where one cell runs into the next, a date or a name is marked with the wrong start or end, and a row of figures can be taken for an address.
-- On 104 texts of Hindi news the model scores 0.855. Hindi is the newest of the languages and has the fewest test texts.
+- On 104 texts of Hindi news the model scores 0.851. Hindi is the newest of the languages and has the fewest test texts.
 - Identity numbers are tested mostly on paragraphs of fictional records. Public pages print phone numbers, e-mail addresses and the bank accounts of offices; they do not print citizenship, passport or licence numbers.
 - The test sets are small, and each comes from one kind of source.
 
-Code MIT, weights CC BY-NC 4.0, test labels CC BY 4.0; see `LICENSE` and `NOTICE.md`. Part of the training data is for non-commercial use, so there is no commercial licence for this version. Questions: [contact us](https://fiste-ai.github.io/contact/) or open an issue.
+Code MIT, weights Apache-2.0, test labels CC BY 4.0; see `LICENSE` and `NOTICE.md`, which names the training sets and their terms. Release 1.0, at the tag `v1.0`, stays under CC BY-NC 4.0. Questions: [contact us](https://fiste-ai.github.io/contact/) or open an issue.

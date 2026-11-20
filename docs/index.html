@@ -105,13 +105,13 @@
           </div>
         </div>
         <div class="plate">
-          <p class="state"><span class="dot" aria-hidden="true"></span>Version 1.0, 18 November 2026</p>
+          <p class="state"><span class="dot" aria-hidden="true"></span>Version 1.1, 20 November 2026</p>
           <dl class="glance">
             <div><dt>41 MB</dt><dd>the whole model, small enough for a web page</dd></div>
-            <div><dt>96%</dt><dd>of the personal data in Nepali news it had not seen, counted in characters</dd></div>
+            <div><dt>98%</dt><dd>of the personal data in Nepali news it had not seen, counted in characters</dd></div>
             <div><dt>25</dt><dd>labels, from names to number plates</dd></div>
           </dl>
-          <p class="fine">Free for research and other non-commercial use. It misses some personal data, so read the result before you rely on it.</p>
+          <p class="fine">Free to use, also commercially: the weights are under Apache-2.0. It misses some personal data, so read the result before you rely on it.</p>
         </div>
       </div>
       <div class="range" aria-hidden="true"></div>
@@ -171,7 +171,8 @@
 <div class="scroll"><table class="scores">
 <thead><tr><th>System</th><th>News (ne)</th><th>Web (ne)</th><th>Government (ne)</th><th>Comments (ne, Latin)</th><th>News (en)</th><th>Web (en)</th><th>News (hi)</th><th>Mean</th></tr></thead>
 <tbody>
-<tr class="ours"><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya" rel="noopener">Rakshya 1.0</a></th><td><b>0.914</b></td><td><b>0.933</b></td><td><b>0.943</b></td><td><b>0.858</b></td><td><b>0.924</b></td><td><b>0.915</b></td><td><b>0.855</b></td><td><b>0.906</b></td></tr>
+<tr class="ours"><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya" rel="noopener">Rakshya 1.1</a></th><td><b>0.930</b></td><td><b>0.937</b></td><td><b>0.944</b></td><td><b>0.864</b></td><td><b>0.934</b></td><td><b>0.933</b></td><td>0.851</td><td><b>0.913</b></td></tr>
+<tr><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya/tree/v1.0" rel="noopener">Rakshya 1.0</a></th><td>0.914</td><td>0.933</td><td>0.943</td><td>0.858</td><td>0.924</td><td>0.915</td><td><b>0.855</b></td><td>0.906</td></tr>
 <tr><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya/tree/v0.2" rel="noopener">Rakshya 0.2</a></th><td>0.889</td><td>0.816</td><td>0.863</td><td>0.524</td><td>0.892</td><td>0.790</td><td>0.797</td><td>0.796</td></tr>
 <tr><th scope="row"><a href="https://huggingface.co/fiste-ai/rakshya/tree/v0.1" rel="noopener">Gopya 0.1</a></th><td>0.849</td><td>0.727</td><td>0.704</td><td>0.218</td><td>0.724</td><td>0.638</td><td>0.789</td><td>0.664</td></tr>
 <tr><th scope="row"><a href="https://huggingface.co/bardsai/eu-pii-anonimization-multilang" rel="noopener">EU PII anonymisation</a> <small>bards.ai</small></th><td>0.718</td><td>0.597</td><td>0.506</td><td>0.264</td><td>0.817</td><td>0.460</td><td>0.757</td><td>0.588</td></tr>
@@ -181,8 +182,8 @@
 <tr><th scope="row"><a href="https://huggingface.co/Wismut/nym-pii-multilingual" rel="noopener">Nym PII multilingual</a> <small>Wismut</small></th><td>0.390</td><td>0.452</td><td>0.336</td><td>0.274</td><td>0.672</td><td>0.519</td><td>0.578</td><td>0.460</td></tr>
 </tbody>
 </table></div>
-        <p class="note">None of the 25 published systems we ran scores higher than Rakshya 1.0 on any of the seven sets.</p>
-        <p class="note">Exact means that start, end and label are all right. The table has Rakshya, the two releases before it and the 5 published systems with the highest mean. All 25 published systems, the scores by kind and the method are in the <a href="https://github.com/fiste-ai/rakshya/blob/main/BENCHMARK.md" rel="noopener">full benchmark</a>.</p>
+        <p class="note">None of the 25 published systems we ran scores higher than Rakshya 1.1 on any of the seven sets.</p>
+        <p class="note">Exact means that start, end and label are all right. The table has Rakshya, the three releases before it and the 5 published systems with the highest mean. All 25 published systems, the scores by kind and the method are in the <a href="https://github.com/fiste-ai/rakshya/blob/main/BENCHMARK.md" rel="noopener">full benchmark</a>.</p>
       </section>
 
       <section class="section" id="use" aria-labelledby="use-title">
@@ -197,7 +198,7 @@ pii = Rakshya()
 pii.redact("मेरो नाम सीता थापा हो, फोन ९८४१२३४५६७।")
 # मेरो नाम [PERSON_1] हो, फोन [PHONE_1]।</code></pre>
         </div>
-        <p class="note">From a shell, <code>rakshya "some text"</code> does the same. In a web page, load <code>rakshya.js</code> as the <a href="https://github.com/fiste-ai/rakshya#use-it" rel="noopener">README</a> shows; this page is the example. Weights CC BY-NC 4.0, code MIT. It is a helper and not a guarantee: in Nepali news it misses about 4 in 100 characters of personal data, and more on text that is unlike news.</p>
+        <p class="note">From a shell, <code>rakshya "some text"</code> does the same. In a web page, load <code>rakshya.js</code> as the <a href="https://github.com/fiste-ai/rakshya#use-it" rel="noopener">README</a> shows; this page is the example. Weights Apache-2.0, code MIT. It is a helper and not a guarantee: in Nepali news it misses about 2 in 100 characters of personal data, and more on text that is unlike news.</p>
       </section>
     </div>
   </main>
@@ -220,11 +221,11 @@ pii.redact("मेरो नाम सीता थापा हो, फोन �
   <script type="module">
     const RUNTIME = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/";
     const query = new URLSearchParams(location.search);
-    const model = query.get("model") || "https://huggingface.co/fiste-ai/rakshya/resolve/v1.0";
+    const model = query.get("model") || "https://huggingface.co/fiste-ai/rakshya/resolve/v1.1";
     const WEIGHTS = model + "/onnx/model_quantized.onnx";
     // The size of the published file. A model named in the address has another size, which a trial may give.
     const BYTES = query.get("model") ? Number(query.get("bytes")) || 0 : 40755973;
-    const STORE = "rakshya-model-v1.0";
+    const STORE = "rakshya-model-v1.1";
     const $ = (id) => document.getElementById(id);
     const go = $("go"), label = $("go-label");
     const samples = [
