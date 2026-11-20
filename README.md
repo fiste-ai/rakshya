@@ -29,11 +29,24 @@ The model is at [fiste-ai/rakshya](https://huggingface.co/fiste-ai/rakshya) unde
 
 None of the 25 published systems we ran scores higher than Rakshya 1.1 on any of the seven sets.
 
-Exact means that start, end and label are all right. The table has Rakshya, the three releases before it and the 5 published systems with the highest mean. The sets were scored once for release 1.0 and once more for this one, after its model was fixed. All 25 published systems, the scores by kind, the false alarms and the method are in [BENCHMARK.md](BENCHMARK.md).
+Exact means that start, end and label are all right. The table has Rakshya, the three releases before it and the 5 published systems with the highest mean. The sets were scored once for release 1.0, once more for this one after its model was fixed, and a third time for the lighter model below. All 25 published systems, the scores by kind, the false alarms and the method are in [BENCHMARK.md](BENCHMARK.md).
 
 On [NepPIIBench](https://huggingface.co/datasets/fiste-ai/nepiibench), 380 held-out paragraphs with character offsets for 19 kinds of personal data, Rakshya 1.1 has a character F1 of 0.982 and an F1 of exact spans of 0.956. It learned from the training part of the same collection, most of which is published as [NepPIICorpus](https://huggingface.co/datasets/fiste-ai/nepiicorpus), as release 1.0 did and no system of others did, so this is a score on the kind of text it was trained for.
 
 On 180 further cases of our own, a separate set that no version of Rakshya learned from, it gets 0.963 at the level of seven kinds that every system can be scored on. Rakshya 1.0 gets 0.951 there, Rakshya 0.2 0.921, and the best of the other published systems, EU PII anonymisation v3 of bards.ai, 0.727.
+
+## A lighter model
+
+[Rakshya 1.1 Lite](https://huggingface.co/fiste-ai/rakshya-lite) is the same detector with a network of 6 layers instead of 12: 30 MB instead of 41, and 46 percent of the time per text in a browser. It has the labels, the rules and the code of Rakshya 1.1, and its weights are under Apache-2.0 too. On the seven test sets it has a mean of 0.903 where Rakshya 1.1 has 0.913, on the practical test 0.948 against 0.956, and on the 180 cases 0.919 against 0.960. The table is in [BENCHMARK.md](BENCHMARK.md#rakshya-11-lite).
+
+```python
+from huggingface_hub import snapshot_download
+from rakshya import Rakshya
+
+pii = Rakshya(snapshot_download("fiste-ai/rakshya-lite", revision="v1.1"))
+```
+
+In a web page, give `load` the address `https://huggingface.co/fiste-ai/rakshya-lite/resolve/v1.1` as its `model`.
 
 ## Use it
 

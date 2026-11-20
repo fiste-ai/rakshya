@@ -275,6 +275,26 @@ Rakshya on the 12 labels the cases mark. Characters found is the share of gold c
 
 Character F1 counts overlapping characters; exact F1 counts spans with the same start, end and label. On the whole set, 5.3 percent of the 837 keep-out strings were covered.
 
+## Rakshya 1.1 Lite
+
+[Rakshya 1.1 Lite](https://huggingface.co/fiste-ai/rakshya-lite) is a second, lighter model. Its network has 6 layers instead of 12, and its 8-bit file 29.8 MB instead of 40.8. It has the labels, the rules and the code of Rakshya 1.1, it learned from the same rows, and it followed the tag probabilities of Rakshya 1.1 as its teacher. It was fixed by a rule on development data and then scored once on the test sets of this page. For those sets that was the third scoring, after the models of 1.0 and Rakshya 1.1. Nothing was chosen after it.
+
+| System | News (ne) | Web (ne) | Government (ne) | Comments (ne, Latin) | News (en) | Web (en) | News (hi) | Mean |
+|---|---|---|---|---|---|---|---|---|
+| [Rakshya 1.1 Lite](https://huggingface.co/fiste-ai/rakshya-lite) | 0.928 | 0.923 | 0.937 | 0.841 | 0.920 | 0.932 | 0.841 | 0.903 |
+| [Rakshya 1.1](https://huggingface.co/fiste-ai/rakshya) | 0.930 | 0.937 | 0.944 | 0.864 | 0.934 | 0.933 | 0.851 | 0.913 |
+
+| Test | Lite | Rakshya 1.1 | Rakshya 1.1 ahead by, with its 95 percent interval |
+|---|---:|---:|---|
+| The seven test sets, mean exact F1 | 0.903 | 0.913 | 0.0102 (0.0005 to 0.0207) |
+| The practical test, exact F1 with label | 0.948 | 0.956 | 0.0073 (0.0020 to 0.0119) |
+| The 180 cases, exact F1 with label | 0.919 | 0.960 | 0.0412 (0.0168 to 0.0705) |
+| NepPIIBench, exact F1 | 0.9468 | 0.9555 | |
+
+The interval comes from drawing the test texts again, the same ones for both models. At the level of seven kinds the Lite model has 0.965 on the practical test and 0.922 on the 180 cases.
+
+The two models were timed one after the other, twice each. In headless Chromium on one thread the Lite model takes 23 ms for a text of news where Rakshya 1.1 takes 50 ms, which is 46 percent of the time. Its 8-bit file gave the tag of its 32-bit file on 5,579 of 5,589 tokens of the two sets of hard cases, and the same output alone and in a batch. The packaged model files gave the same spans as the repository code on 9,546 texts under both profiles, the Rust build gave what Python gives on 9,681 texts, and in a browser the file gave the spans of Python on each of the 1,792 texts of the 9 test files.
+
 ## How the systems were run
 
 The published systems were run the way their authors publish them: the weights and the tokenizer from the Hub, at the revision named in `benchmark/results.json`, on a processor where that is how they are published, otherwise on the graphics card. Where the tags of a model can be read in more than one way, the reading that scores best on its own labels is used. Their makers did not tune them on these sets. They were run once, when release 1.0 was measured. What they and the earlier releases of Rakshya marked then was kept, and it is scored here again beside 1.1; none of them was run a second time.
@@ -321,5 +341,5 @@ python benchmark/rebuild.py benchmark/labels/real-roman-v2.json --parquet nepali
 - Identity numbers are tested mostly on paragraphs of fictional records. Public pages print phone numbers, e-mail addresses and the bank accounts of offices; they do not print citizenship, passport or licence numbers.
 - The label set is this model's own. A system that marks a slightly different thing, such as the parts of an address instead of the address, loses on the boundary and not necessarily on the task.
 - The 180 cases are few, 60 in each language, and mark 12 kinds of personal data. A score on them moves by a few points with another draw of cases.
-- The test sets have now been scored for two releases. Nothing was chosen on them either time, but a version after this one needs test sets of its own.
+- The test sets have now been scored three times: for release 1.0, for Rakshya 1.1 and for Rakshya 1.1 Lite. Nothing was chosen on them at any time, but a version after this one needs test sets of its own.
 - A score is not a promise. Read the output before relying on a redaction.

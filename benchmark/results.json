@@ -70087,5 +70087,3451 @@
     }
    }
   }
+ },
+ "lite": {
+  "name": "Rakshya 1.1 Lite",
+  "model": "https://huggingface.co/fiste-ai/rakshya-lite",
+  "tag": "v1.1",
+  "layers": 6,
+  "size": {
+   "megabytes": 29.8,
+   "megabytes_32_bit": 117.3,
+   "weights_millions": 29.4,
+   "base": "nreimers/mMiniLMv2-L6-H384-distilled-from-XLMR-Large",
+   "vocabulary": 48000,
+   "vocabulary_before": 250002,
+   "labels": 25,
+   "wasm_megabytes": 2.3,
+   "wasm_megabytes_compressed": 0.75
+  },
+  "note": "A second, lighter model of version 1.1. It was fixed on development data and then scored once on the test sets; for those sets that was the third scoring, after the models of 1.0 and Rakshya 1.1.",
+  "files": {
+   "real/real-news-v4.jsonl": {
+    "all": {
+     "p": 0.9186,
+     "r": 0.9377,
+     "f1": 0.9281,
+     "word_f1": 0.9281,
+     "overlap_f1": 0.9589,
+     "chars_found": 0.9852,
+     "chars_right": 0.9683,
+     "gold": 289,
+     "pred": 295,
+     "texts_with_nothing_to_mark": 55,
+     "false_alarms_per_1000_words": 3.39,
+     "share_of_them_marked": 0.055,
+     "interval": [
+      0.891,
+      0.962
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.971,
+       "p": 1.0,
+       "r": 0.944,
+       "gold": 18,
+       "chars_found": 0.955
+      },
+      "LOCATION": {
+       "f1": 0.955,
+       "p": 0.928,
+       "r": 0.985,
+       "gold": 130,
+       "chars_found": 0.988
+      },
+      "ORGANIZATION": {
+       "f1": 0.851,
+       "p": 0.864,
+       "r": 0.838,
+       "gold": 68,
+       "chars_found": 0.978
+      },
+      "PERSON": {
+       "f1": 0.938,
+       "p": 0.932,
+       "r": 0.944,
+       "gold": 72,
+       "chars_found": 1.0
+      },
+      "PHONE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.9014,
+     "r": 0.917,
+     "f1": 0.9091,
+     "word_f1": 0.9091,
+     "overlap_f1": 0.9485,
+     "chars_found": 0.9851,
+     "chars_right": 0.9645,
+     "gold": 289,
+     "pred": 294,
+     "texts_with_nothing_to_mark": 55,
+     "false_alarms_per_1000_words": 3.39,
+     "share_of_them_marked": 0.055,
+     "interval": [
+      0.871,
+      0.948
+     ]
+    },
+    "names": {
+     "p": 0.9134,
+     "r": 0.937,
+     "f1": 0.925,
+     "word_f1": 0.925,
+     "overlap_f1": 0.958,
+     "chars_found": 0.9866,
+     "chars_right": 0.9667,
+     "gold": 270,
+     "pred": 277,
+     "texts_with_nothing_to_mark": 60,
+     "false_alarms_per_1000_words": 3.03,
+     "share_of_them_marked": 0.05,
+     "interval": [
+      0.886,
+      0.959
+     ]
+    },
+    "fine": {
+     "p": 0.9186,
+     "r": 0.9377,
+     "f1": 0.9281,
+     "word_f1": 0.9281,
+     "overlap_f1": 0.9589,
+     "chars_found": 0.9852,
+     "chars_right": 0.9683,
+     "gold": 289,
+     "pred": 295,
+     "texts_with_nothing_to_mark": 55,
+     "false_alarms_per_1000_words": 3.39,
+     "share_of_them_marked": 0.055,
+     "per_label": {
+      "DATE": {
+       "f1": 0.971,
+       "p": 1.0,
+       "r": 0.944,
+       "gold": 18,
+       "chars_found": 0.955
+      },
+      "LOCATION": {
+       "f1": 0.955,
+       "p": 0.928,
+       "r": 0.985,
+       "gold": 130,
+       "chars_found": 0.988
+      },
+      "ORGANIZATION": {
+       "f1": 0.851,
+       "p": 0.864,
+       "r": 0.838,
+       "gold": 68,
+       "chars_found": 0.978
+      },
+      "PERSON": {
+       "f1": 0.938,
+       "p": 0.932,
+       "r": 0.944,
+       "gold": 72,
+       "chars_found": 1.0
+      },
+      "PHONE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      }
+     }
+    }
+   },
+   "real/real-web-v2.jsonl": {
+    "all": {
+     "p": 0.9166,
+     "r": 0.9295,
+     "f1": 0.923,
+     "word_f1": 0.9265,
+     "overlap_f1": 0.9493,
+     "chars_found": 0.9732,
+     "chars_right": 0.9655,
+     "gold": 851,
+     "pred": 863,
+     "texts_with_nothing_to_mark": 10,
+     "false_alarms_per_1000_words": 7.79,
+     "share_of_them_marked": 0.2,
+     "interval": [
+      0.901,
+      0.943
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.947,
+       "p": 0.954,
+       "r": 0.939,
+       "gold": 66,
+       "chars_found": 1.0
+      },
+      "DIGITAL_SECRET": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 0,
+       "chars_found": 0.0
+      },
+      "EMAIL": {
+       "f1": 0.991,
+       "p": 1.0,
+       "r": 0.983,
+       "gold": 59,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.918,
+       "p": 0.929,
+       "r": 0.906,
+       "gold": 203,
+       "chars_found": 0.977
+      },
+      "NUMBER": {
+       "f1": 0.545,
+       "p": 1.0,
+       "r": 0.375,
+       "gold": 8,
+       "chars_found": 0.403
+      },
+      "ORGANIZATION": {
+       "f1": 0.792,
+       "p": 0.747,
+       "r": 0.843,
+       "gold": 140,
+       "chars_found": 0.95
+      },
+      "PERSON": {
+       "f1": 0.964,
+       "p": 0.943,
+       "r": 0.985,
+       "gold": 201,
+       "chars_found": 0.996
+      },
+      "PHONE": {
+       "f1": 0.982,
+       "p": 1.0,
+       "r": 0.964,
+       "gold": 168,
+       "chars_found": 0.966
+      },
+      "URL": {
+       "f1": 0.923,
+       "p": 0.857,
+       "r": 1.0,
+       "gold": 6,
+       "chars_found": 1.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.898,
+     "r": 0.9248,
+     "f1": 0.9112,
+     "word_f1": 0.9148,
+     "overlap_f1": 0.9412,
+     "chars_found": 0.9729,
+     "chars_right": 0.9561,
+     "gold": 838,
+     "pred": 863,
+     "texts_with_nothing_to_mark": 16,
+     "false_alarms_per_1000_words": 6.31,
+     "share_of_them_marked": 0.188,
+     "interval": [
+      0.886,
+      0.933
+     ]
+    },
+    "names": {
+     "p": 0.8834,
+     "r": 0.9191,
+     "f1": 0.9009,
+     "word_f1": 0.9045,
+     "overlap_f1": 0.9352,
+     "chars_found": 0.9729,
+     "chars_right": 0.9535,
+     "gold": 544,
+     "pred": 566,
+     "texts_with_nothing_to_mark": 19,
+     "false_alarms_per_1000_words": 1.29,
+     "share_of_them_marked": 0.053,
+     "interval": [
+      0.869,
+      0.928
+     ]
+    },
+    "fine": {
+     "p": 0.9154,
+     "r": 0.9283,
+     "f1": 0.9218,
+     "word_f1": 0.9253,
+     "overlap_f1": 0.9481,
+     "chars_found": 0.9732,
+     "chars_right": 0.9655,
+     "gold": 851,
+     "pred": 863,
+     "texts_with_nothing_to_mark": 10,
+     "false_alarms_per_1000_words": 7.79,
+     "share_of_them_marked": 0.2,
+     "per_label": {
+      "DATE": {
+       "f1": 0.947,
+       "p": 0.954,
+       "r": 0.939,
+       "gold": 66,
+       "chars_found": 1.0
+      },
+      "DIGITAL_SECRET": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 0,
+       "chars_found": 0.0
+      },
+      "EMAIL": {
+       "f1": 0.991,
+       "p": 1.0,
+       "r": 0.983,
+       "gold": 59,
+       "chars_found": 1.0
+      },
+      "ID_NUMBER": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 5,
+       "chars_found": 0.0
+      },
+      "LOCATION": {
+       "f1": 0.918,
+       "p": 0.929,
+       "r": 0.906,
+       "gold": 203,
+       "chars_found": 0.977
+      },
+      "NATIONAL_ID": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 0,
+       "chars_found": 0.0
+      },
+      "ORGANIZATION": {
+       "f1": 0.792,
+       "p": 0.747,
+       "r": 0.843,
+       "gold": 140,
+       "chars_found": 0.95
+      },
+      "PERSON": {
+       "f1": 0.964,
+       "p": 0.943,
+       "r": 0.985,
+       "gold": 201,
+       "chars_found": 0.996
+      },
+      "PHONE": {
+       "f1": 0.982,
+       "p": 1.0,
+       "r": 0.964,
+       "gold": 168,
+       "chars_found": 0.966
+      },
+      "TAX_ID": {
+       "f1": 0.8,
+       "p": 1.0,
+       "r": 0.667,
+       "gold": 3,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 0.923,
+       "p": 0.857,
+       "r": 1.0,
+       "gold": 6,
+       "chars_found": 1.0
+      }
+     }
+    }
+   },
+   "real/real-gov-v3.jsonl": {
+    "all": {
+     "p": 0.9266,
+     "r": 0.9469,
+     "f1": 0.9366,
+     "word_f1": 0.9614,
+     "overlap_f1": 0.9768,
+     "chars_found": 0.9855,
+     "chars_right": 0.9699,
+     "gold": 320,
+     "pred": 327,
+     "texts_with_nothing_to_mark": 4,
+     "false_alarms_per_1000_words": 0.0,
+     "share_of_them_marked": 0.0,
+     "interval": [
+      0.903,
+      0.968
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.929,
+       "p": 0.929,
+       "r": 0.929,
+       "gold": 70,
+       "chars_found": 0.997
+      },
+      "DIGITAL_SECRET": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "EMAIL": {
+       "f1": 0.962,
+       "p": 0.974,
+       "r": 0.95,
+       "gold": 40,
+       "chars_found": 0.99
+      },
+      "LOCATION": {
+       "f1": 0.735,
+       "p": 0.72,
+       "r": 0.75,
+       "gold": 24,
+       "chars_found": 0.867
+      },
+      "ORGANIZATION": {
+       "f1": 0.881,
+       "p": 0.841,
+       "r": 0.925,
+       "gold": 40,
+       "chars_found": 0.975
+      },
+      "PERSON": {
+       "f1": 0.968,
+       "p": 0.949,
+       "r": 0.987,
+       "gold": 76,
+       "chars_found": 1.0
+      },
+      "PHONE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 67,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 2,
+       "chars_found": 1.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.9021,
+     "r": 0.9395,
+     "f1": 0.9204,
+     "word_f1": 0.9454,
+     "overlap_f1": 0.9641,
+     "chars_found": 0.9853,
+     "chars_right": 0.9585,
+     "gold": 314,
+     "pred": 327,
+     "texts_with_nothing_to_mark": 4,
+     "false_alarms_per_1000_words": 0.0,
+     "share_of_them_marked": 0.0,
+     "interval": [
+      0.881,
+      0.96
+     ]
+    },
+    "names": {
+     "p": 0.8784,
+     "r": 0.9286,
+     "f1": 0.9028,
+     "word_f1": 0.9167,
+     "overlap_f1": 0.948,
+     "chars_found": 0.974,
+     "chars_right": 0.9369,
+     "gold": 140,
+     "pred": 148,
+     "texts_with_nothing_to_mark": 11,
+     "false_alarms_per_1000_words": 0.0,
+     "share_of_them_marked": 0.0,
+     "interval": [
+      0.854,
+      0.952
+     ]
+    },
+    "fine": {
+     "p": 0.9266,
+     "r": 0.9469,
+     "f1": 0.9366,
+     "word_f1": 0.9614,
+     "overlap_f1": 0.9768,
+     "chars_found": 0.9855,
+     "chars_right": 0.9699,
+     "gold": 320,
+     "pred": 327,
+     "texts_with_nothing_to_mark": 4,
+     "false_alarms_per_1000_words": 0.0,
+     "share_of_them_marked": 0.0,
+     "per_label": {
+      "DATE": {
+       "f1": 0.929,
+       "p": 0.929,
+       "r": 0.929,
+       "gold": 70,
+       "chars_found": 0.997
+      },
+      "DIGITAL_SECRET": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "EMAIL": {
+       "f1": 0.962,
+       "p": 0.974,
+       "r": 0.95,
+       "gold": 40,
+       "chars_found": 0.99
+      },
+      "LOCATION": {
+       "f1": 0.735,
+       "p": 0.72,
+       "r": 0.75,
+       "gold": 24,
+       "chars_found": 0.867
+      },
+      "ORGANIZATION": {
+       "f1": 0.881,
+       "p": 0.841,
+       "r": 0.925,
+       "gold": 40,
+       "chars_found": 0.975
+      },
+      "PERSON": {
+       "f1": 0.968,
+       "p": 0.949,
+       "r": 0.987,
+       "gold": 76,
+       "chars_found": 1.0
+      },
+      "PHONE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 67,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 2,
+       "chars_found": 1.0
+      }
+     }
+    }
+   },
+   "real/real-roman-v2.jsonl": {
+    "all": {
+     "p": 0.8488,
+     "r": 0.8325,
+     "f1": 0.8406,
+     "word_f1": 0.8454,
+     "overlap_f1": 0.8792,
+     "chars_found": 0.8896,
+     "chars_right": 0.9018,
+     "gold": 209,
+     "pred": 205,
+     "texts_with_nothing_to_mark": 153,
+     "false_alarms_per_1000_words": 2.34,
+     "share_of_them_marked": 0.026,
+     "interval": [
+      0.79,
+      0.891
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 16,
+       "chars_found": 1.0
+      },
+      "DIGITAL_SECRET": {
+       "f1": 0.667,
+       "p": 0.5,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.818,
+       "p": 0.776,
+       "r": 0.865,
+       "gold": 52,
+       "chars_found": 0.839
+      },
+      "ORGANIZATION": {
+       "f1": 0.737,
+       "p": 0.875,
+       "r": 0.636,
+       "gold": 11,
+       "chars_found": 0.756
+      },
+      "PERSON": {
+       "f1": 0.84,
+       "p": 0.868,
+       "r": 0.814,
+       "gold": 129,
+       "chars_found": 0.905
+      }
+     }
+    },
+    "first": {
+     "p": 0.8341,
+     "r": 0.8221,
+     "f1": 0.8281,
+     "word_f1": 0.8329,
+     "overlap_f1": 0.8765,
+     "chars_found": 0.8841,
+     "chars_right": 0.8975,
+     "gold": 208,
+     "pred": 205,
+     "texts_with_nothing_to_mark": 155,
+     "false_alarms_per_1000_words": 2.9,
+     "share_of_them_marked": 0.032,
+     "interval": [
+      0.773,
+      0.882
+     ]
+    },
+    "names": {
+     "p": 0.8396,
+     "r": 0.8177,
+     "f1": 0.8285,
+     "word_f1": 0.8338,
+     "overlap_f1": 0.8708,
+     "chars_found": 0.8772,
+     "chars_right": 0.8932,
+     "gold": 192,
+     "pred": 187,
+     "texts_with_nothing_to_mark": 166,
+     "false_alarms_per_1000_words": 2.73,
+     "share_of_them_marked": 0.03,
+     "interval": [
+      0.771,
+      0.884
+     ]
+    },
+    "fine": {
+     "p": 0.8488,
+     "r": 0.8325,
+     "f1": 0.8406,
+     "word_f1": 0.8454,
+     "overlap_f1": 0.8792,
+     "chars_found": 0.8896,
+     "chars_right": 0.9018,
+     "gold": 209,
+     "pred": 205,
+     "texts_with_nothing_to_mark": 153,
+     "false_alarms_per_1000_words": 2.34,
+     "share_of_them_marked": 0.026,
+     "per_label": {
+      "DATE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 16,
+       "chars_found": 1.0
+      },
+      "DIGITAL_SECRET": {
+       "f1": 0.667,
+       "p": 0.5,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.818,
+       "p": 0.776,
+       "r": 0.865,
+       "gold": 52,
+       "chars_found": 0.839
+      },
+      "ORGANIZATION": {
+       "f1": 0.737,
+       "p": 0.875,
+       "r": 0.636,
+       "gold": 11,
+       "chars_found": 0.756
+      },
+      "PERSON": {
+       "f1": 0.84,
+       "p": 0.868,
+       "r": 0.814,
+       "gold": 129,
+       "chars_found": 0.905
+      }
+     }
+    }
+   },
+   "real/real-en-v2.jsonl": {
+    "all": {
+     "p": 0.9175,
+     "r": 0.9236,
+     "f1": 0.9205,
+     "word_f1": 0.9205,
+     "overlap_f1": 0.9205,
+     "chars_found": 0.9785,
+     "chars_right": 0.9561,
+     "gold": 301,
+     "pred": 303,
+     "texts_with_nothing_to_mark": 41,
+     "false_alarms_per_1000_words": 2.72,
+     "share_of_them_marked": 0.049,
+     "interval": [
+      0.886,
+      0.952
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.88,
+       "p": 1.0,
+       "r": 0.786,
+       "gold": 28,
+       "chars_found": 0.913
+      },
+      "LOCATION": {
+       "f1": 0.933,
+       "p": 0.899,
+       "r": 0.969,
+       "gold": 129,
+       "chars_found": 0.972
+      },
+      "ORGANIZATION": {
+       "f1": 0.864,
+       "p": 0.919,
+       "r": 0.814,
+       "gold": 70,
+       "chars_found": 0.984
+      },
+      "PERSON": {
+       "f1": 0.961,
+       "p": 0.924,
+       "r": 1.0,
+       "gold": 73,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.9043,
+     "r": 0.9103,
+     "f1": 0.9073,
+     "word_f1": 0.9073,
+     "overlap_f1": 0.9172,
+     "chars_found": 0.9746,
+     "chars_right": 0.9523,
+     "gold": 301,
+     "pred": 303,
+     "texts_with_nothing_to_mark": 41,
+     "false_alarms_per_1000_words": 2.72,
+     "share_of_them_marked": 0.049,
+     "interval": [
+      0.871,
+      0.942
+     ]
+    },
+    "names": {
+     "p": 0.9107,
+     "r": 0.9375,
+     "f1": 0.9239,
+     "word_f1": 0.9239,
+     "overlap_f1": 0.9239,
+     "chars_found": 0.984,
+     "chars_right": 0.9484,
+     "gold": 272,
+     "pred": 280,
+     "texts_with_nothing_to_mark": 44,
+     "false_alarms_per_1000_words": 3.66,
+     "share_of_them_marked": 0.068,
+     "interval": [
+      0.887,
+      0.955
+     ]
+    },
+    "fine": {
+     "p": 0.9175,
+     "r": 0.9236,
+     "f1": 0.9205,
+     "word_f1": 0.9205,
+     "overlap_f1": 0.9205,
+     "chars_found": 0.9785,
+     "chars_right": 0.9561,
+     "gold": 301,
+     "pred": 303,
+     "texts_with_nothing_to_mark": 41,
+     "false_alarms_per_1000_words": 2.72,
+     "share_of_them_marked": 0.049,
+     "per_label": {
+      "DATE": {
+       "f1": 0.88,
+       "p": 1.0,
+       "r": 0.786,
+       "gold": 28,
+       "chars_found": 0.913
+      },
+      "LOCATION": {
+       "f1": 0.933,
+       "p": 0.899,
+       "r": 0.969,
+       "gold": 129,
+       "chars_found": 0.972
+      },
+      "ORGANIZATION": {
+       "f1": 0.864,
+       "p": 0.919,
+       "r": 0.814,
+       "gold": 70,
+       "chars_found": 0.984
+      },
+      "PERSON": {
+       "f1": 0.961,
+       "p": 0.924,
+       "r": 1.0,
+       "gold": 73,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      }
+     }
+    }
+   },
+   "real/real-enweb-v2.jsonl": {
+    "all": {
+     "p": 0.9122,
+     "r": 0.9529,
+     "f1": 0.9321,
+     "word_f1": 0.9383,
+     "overlap_f1": 0.9533,
+     "chars_found": 0.9765,
+     "chars_right": 0.9587,
+     "gold": 785,
+     "pred": 820,
+     "texts_with_nothing_to_mark": 14,
+     "false_alarms_per_1000_words": 27.87,
+     "share_of_them_marked": 0.214,
+     "interval": [
+      0.906,
+      0.954
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.942,
+       "p": 0.907,
+       "r": 0.98,
+       "gold": 50,
+       "chars_found": 0.989
+      },
+      "DIGITAL_SECRET": {
+       "f1": 0.25,
+       "p": 0.143,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "EMAIL": {
+       "f1": 0.986,
+       "p": 0.986,
+       "r": 0.986,
+       "gold": 69,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.946,
+       "p": 0.925,
+       "r": 0.969,
+       "gold": 254,
+       "chars_found": 0.989
+      },
+      "NUMBER": {
+       "f1": 0.4,
+       "p": 0.286,
+       "r": 0.667,
+       "gold": 3,
+       "chars_found": 1.0
+      },
+      "ORGANIZATION": {
+       "f1": 0.862,
+       "p": 0.868,
+       "r": 0.856,
+       "gold": 146,
+       "chars_found": 0.927
+      },
+      "PERSON": {
+       "f1": 0.937,
+       "p": 0.89,
+       "r": 0.99,
+       "gold": 98,
+       "chars_found": 0.995
+      },
+      "PHONE": {
+       "f1": 0.974,
+       "p": 0.974,
+       "r": 0.974,
+       "gold": 152,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 12,
+       "chars_found": 1.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.8878,
+     "r": 0.9455,
+     "f1": 0.9157,
+     "word_f1": 0.922,
+     "overlap_f1": 0.9415,
+     "chars_found": 0.9747,
+     "chars_right": 0.9381,
+     "gold": 770,
+     "pred": 820,
+     "texts_with_nothing_to_mark": 19,
+     "false_alarms_per_1000_words": 25.25,
+     "share_of_them_marked": 0.316,
+     "interval": [
+      0.89,
+      0.937
+     ]
+    },
+    "names": {
+     "p": 0.9017,
+     "r": 0.9398,
+     "f1": 0.9204,
+     "word_f1": 0.9223,
+     "overlap_f1": 0.943,
+     "chars_found": 0.9615,
+     "chars_right": 0.9524,
+     "gold": 498,
+     "pred": 519,
+     "texts_with_nothing_to_mark": 21,
+     "false_alarms_per_1000_words": 11.45,
+     "share_of_them_marked": 0.095,
+     "interval": [
+      0.894,
+      0.945
+     ]
+    },
+    "fine": {
+     "p": 0.911,
+     "r": 0.9516,
+     "f1": 0.9308,
+     "word_f1": 0.9371,
+     "overlap_f1": 0.952,
+     "chars_found": 0.9765,
+     "chars_right": 0.9587,
+     "gold": 785,
+     "pred": 820,
+     "texts_with_nothing_to_mark": 14,
+     "false_alarms_per_1000_words": 27.87,
+     "share_of_them_marked": 0.214,
+     "per_label": {
+      "DATE": {
+       "f1": 0.942,
+       "p": 0.907,
+       "r": 0.98,
+       "gold": 50,
+       "chars_found": 0.989
+      },
+      "DIGITAL_SECRET": {
+       "f1": 0.25,
+       "p": 0.143,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "EMAIL": {
+       "f1": 0.986,
+       "p": 0.986,
+       "r": 0.986,
+       "gold": 69,
+       "chars_found": 1.0
+      },
+      "ID_NUMBER": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 2,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.946,
+       "p": 0.925,
+       "r": 0.969,
+       "gold": 254,
+       "chars_found": 0.989
+      },
+      "NATIONAL_ID": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 0,
+       "chars_found": 0.0
+      },
+      "ORGANIZATION": {
+       "f1": 0.862,
+       "p": 0.868,
+       "r": 0.856,
+       "gold": 146,
+       "chars_found": 0.927
+      },
+      "PERSON": {
+       "f1": 0.937,
+       "p": 0.89,
+       "r": 0.99,
+       "gold": 98,
+       "chars_found": 0.995
+      },
+      "PHONE": {
+       "f1": 0.974,
+       "p": 0.974,
+       "r": 0.974,
+       "gold": 152,
+       "chars_found": 1.0
+      },
+      "TAX_ID": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 12,
+       "chars_found": 1.0
+      }
+     }
+    }
+   },
+   "real/real-hi-v2.jsonl": {
+    "all": {
+     "p": 0.8409,
+     "r": 0.8409,
+     "f1": 0.8409,
+     "word_f1": 0.8485,
+     "overlap_f1": 0.8864,
+     "chars_found": 0.9085,
+     "chars_right": 0.9013,
+     "gold": 132,
+     "pred": 132,
+     "texts_with_nothing_to_mark": 44,
+     "false_alarms_per_1000_words": 6.41,
+     "share_of_them_marked": 0.091,
+     "interval": [
+      0.769,
+      0.907
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.923,
+       "p": 0.923,
+       "r": 0.923,
+       "gold": 13,
+       "chars_found": 1.0
+      },
+      "DIGITAL_SECRET": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.92,
+       "p": 0.945,
+       "r": 0.897,
+       "gold": 58,
+       "chars_found": 0.929
+      },
+      "ORGANIZATION": {
+       "f1": 0.594,
+       "p": 0.576,
+       "r": 0.613,
+       "gold": 31,
+       "chars_found": 0.793
+      },
+      "PERSON": {
+       "f1": 0.915,
+       "p": 0.9,
+       "r": 0.931,
+       "gold": 29,
+       "chars_found": 1.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.803,
+     "r": 0.803,
+     "f1": 0.803,
+     "word_f1": 0.8106,
+     "overlap_f1": 0.8787,
+     "chars_found": 0.9044,
+     "chars_right": 0.8916,
+     "gold": 132,
+     "pred": 132,
+     "texts_with_nothing_to_mark": 45,
+     "false_alarms_per_1000_words": 7.56,
+     "share_of_them_marked": 0.111,
+     "interval": [
+      0.729,
+      0.867
+     ]
+    },
+    "names": {
+     "p": 0.8305,
+     "r": 0.8305,
+     "f1": 0.8305,
+     "word_f1": 0.8305,
+     "overlap_f1": 0.8729,
+     "chars_found": 0.9014,
+     "chars_right": 0.8946,
+     "gold": 118,
+     "pred": 118,
+     "texts_with_nothing_to_mark": 49,
+     "false_alarms_per_1000_words": 7.08,
+     "share_of_them_marked": 0.102,
+     "interval": [
+      0.757,
+      0.902
+     ]
+    },
+    "fine": {
+     "p": 0.8409,
+     "r": 0.8409,
+     "f1": 0.8409,
+     "word_f1": 0.8485,
+     "overlap_f1": 0.8864,
+     "chars_found": 0.9085,
+     "chars_right": 0.9013,
+     "gold": 132,
+     "pred": 132,
+     "texts_with_nothing_to_mark": 44,
+     "false_alarms_per_1000_words": 6.41,
+     "share_of_them_marked": 0.091,
+     "per_label": {
+      "DATE": {
+       "f1": 0.923,
+       "p": 0.923,
+       "r": 0.923,
+       "gold": 13,
+       "chars_found": 1.0
+      },
+      "DIGITAL_SECRET": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.92,
+       "p": 0.945,
+       "r": 0.897,
+       "gold": 58,
+       "chars_found": 0.929
+      },
+      "ORGANIZATION": {
+       "f1": 0.594,
+       "p": 0.576,
+       "r": 0.613,
+       "gold": 31,
+       "chars_found": 0.793
+      },
+      "PERSON": {
+       "f1": 0.915,
+       "p": 0.9,
+       "r": 0.931,
+       "gold": 29,
+       "chars_found": 1.0
+      }
+     }
+    }
+   },
+   "real/real-news-v3.jsonl": {
+    "all": {
+     "p": 0.9401,
+     "r": 0.9368,
+     "f1": 0.9385,
+     "word_f1": 0.949,
+     "overlap_f1": 0.9578,
+     "chars_found": 0.9633,
+     "chars_right": 0.9699,
+     "gold": 285,
+     "pred": 284,
+     "texts_with_nothing_to_mark": 54,
+     "false_alarms_per_1000_words": 1.15,
+     "share_of_them_marked": 0.019,
+     "interval": [
+      0.911,
+      0.968
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.978,
+       "p": 1.0,
+       "r": 0.957,
+       "gold": 23,
+       "chars_found": 0.969
+      },
+      "LOCATION": {
+       "f1": 0.967,
+       "p": 0.944,
+       "r": 0.99,
+       "gold": 102,
+       "chars_found": 0.993
+      },
+      "ORGANIZATION": {
+       "f1": 0.887,
+       "p": 0.913,
+       "r": 0.862,
+       "gold": 109,
+       "chars_found": 0.944
+      },
+      "PERSON": {
+       "f1": 0.971,
+       "p": 0.962,
+       "r": 0.98,
+       "gold": 51,
+       "chars_found": 0.978
+      }
+     }
+    },
+    "first": {
+     "p": 0.9331,
+     "r": 0.9364,
+     "f1": 0.9347,
+     "word_f1": 0.9453,
+     "overlap_f1": 0.9541,
+     "chars_found": 0.9632,
+     "chars_right": 0.966,
+     "gold": 283,
+     "pred": 284,
+     "texts_with_nothing_to_mark": 55,
+     "false_alarms_per_1000_words": 2.27,
+     "share_of_them_marked": 0.036,
+     "interval": [
+      0.907,
+      0.964
+     ]
+    },
+    "names": {
+     "p": 0.9351,
+     "r": 0.9351,
+     "f1": 0.9351,
+     "word_f1": 0.9466,
+     "overlap_f1": 0.9561,
+     "chars_found": 0.963,
+     "chars_right": 0.9683,
+     "gold": 262,
+     "pred": 262,
+     "texts_with_nothing_to_mark": 60,
+     "false_alarms_per_1000_words": 2.05,
+     "share_of_them_marked": 0.033,
+     "interval": [
+      0.905,
+      0.967
+     ]
+    },
+    "fine": {
+     "p": 0.9401,
+     "r": 0.9368,
+     "f1": 0.9385,
+     "word_f1": 0.949,
+     "overlap_f1": 0.9578,
+     "chars_found": 0.9633,
+     "chars_right": 0.9699,
+     "gold": 285,
+     "pred": 284,
+     "texts_with_nothing_to_mark": 54,
+     "false_alarms_per_1000_words": 1.15,
+     "share_of_them_marked": 0.019,
+     "per_label": {
+      "DATE": {
+       "f1": 0.978,
+       "p": 1.0,
+       "r": 0.957,
+       "gold": 23,
+       "chars_found": 0.969
+      },
+      "LOCATION": {
+       "f1": 0.967,
+       "p": 0.944,
+       "r": 0.99,
+       "gold": 102,
+       "chars_found": 0.993
+      },
+      "ORGANIZATION": {
+       "f1": 0.887,
+       "p": 0.913,
+       "r": 0.862,
+       "gold": 109,
+       "chars_found": 0.944
+      },
+      "PERSON": {
+       "f1": 0.971,
+       "p": 0.962,
+       "r": 0.98,
+       "gold": 51,
+       "chars_found": 0.978
+      }
+     }
+    }
+   },
+   "real/real-web-v1.jsonl": {
+    "all": {
+     "p": 0.9106,
+     "r": 0.9325,
+     "f1": 0.9214,
+     "word_f1": 0.93,
+     "overlap_f1": 0.9483,
+     "chars_found": 0.971,
+     "chars_right": 0.9584,
+     "gold": 459,
+     "pred": 470,
+     "texts_with_nothing_to_mark": 15,
+     "false_alarms_per_1000_words": 9.1,
+     "share_of_them_marked": 0.2,
+     "interval": [
+      0.893,
+      0.947
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.976,
+       "p": 0.952,
+       "r": 1.0,
+       "gold": 40,
+       "chars_found": 1.0
+      },
+      "DIGITAL_SECRET": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "EMAIL": {
+       "f1": 0.974,
+       "p": 1.0,
+       "r": 0.95,
+       "gold": 20,
+       "chars_found": 0.982
+      },
+      "LOCATION": {
+       "f1": 0.908,
+       "p": 0.887,
+       "r": 0.93,
+       "gold": 143,
+       "chars_found": 0.967
+      },
+      "NUMBER": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "ORGANIZATION": {
+       "f1": 0.822,
+       "p": 0.841,
+       "r": 0.804,
+       "gold": 92,
+       "chars_found": 0.933
+      },
+      "PERSON": {
+       "f1": 0.952,
+       "p": 0.919,
+       "r": 0.988,
+       "gold": 80,
+       "chars_found": 1.0
+      },
+      "PHONE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 76,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 0.769,
+       "p": 0.714,
+       "r": 0.833,
+       "gold": 6,
+       "chars_found": 1.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.9106,
+     "r": 0.9325,
+     "f1": 0.9214,
+     "word_f1": 0.93,
+     "overlap_f1": 0.9483,
+     "chars_found": 0.971,
+     "chars_right": 0.9584,
+     "gold": 459,
+     "pred": 470,
+     "texts_with_nothing_to_mark": 15,
+     "false_alarms_per_1000_words": 9.1,
+     "share_of_them_marked": 0.2,
+     "interval": [
+      0.893,
+      0.947
+     ]
+    },
+    "names": {
+     "p": 0.8827,
+     "r": 0.9079,
+     "f1": 0.8951,
+     "word_f1": 0.9045,
+     "overlap_f1": 0.9311,
+     "chars_found": 0.9584,
+     "chars_right": 0.9422,
+     "gold": 315,
+     "pred": 324,
+     "texts_with_nothing_to_mark": 25,
+     "false_alarms_per_1000_words": 4.73,
+     "share_of_them_marked": 0.12,
+     "interval": [
+      0.855,
+      0.929
+     ]
+    },
+    "fine": {
+     "p": 0.9106,
+     "r": 0.9325,
+     "f1": 0.9214,
+     "word_f1": 0.93,
+     "overlap_f1": 0.9483,
+     "chars_found": 0.971,
+     "chars_right": 0.9584,
+     "gold": 459,
+     "pred": 470,
+     "texts_with_nothing_to_mark": 15,
+     "false_alarms_per_1000_words": 9.1,
+     "share_of_them_marked": 0.2,
+     "per_label": {
+      "DATE": {
+       "f1": 0.976,
+       "p": 0.952,
+       "r": 1.0,
+       "gold": 40,
+       "chars_found": 1.0
+      },
+      "DIGITAL_SECRET": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "EMAIL": {
+       "f1": 0.974,
+       "p": 1.0,
+       "r": 0.95,
+       "gold": 20,
+       "chars_found": 0.982
+      },
+      "LOCATION": {
+       "f1": 0.908,
+       "p": 0.887,
+       "r": 0.93,
+       "gold": 143,
+       "chars_found": 0.967
+      },
+      "ORGANIZATION": {
+       "f1": 0.822,
+       "p": 0.841,
+       "r": 0.804,
+       "gold": 92,
+       "chars_found": 0.933
+      },
+      "PERSON": {
+       "f1": 0.952,
+       "p": 0.919,
+       "r": 0.988,
+       "gold": 80,
+       "chars_found": 1.0
+      },
+      "PHONE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 76,
+       "chars_found": 1.0
+      },
+      "TAX_ID": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 0.769,
+       "p": 0.714,
+       "r": 0.833,
+       "gold": 6,
+       "chars_found": 1.0
+      }
+     }
+    }
+   },
+   "real/real-gov-v2.jsonl": {
+    "all": {
+     "p": 0.8953,
+     "r": 0.9431,
+     "f1": 0.9185,
+     "word_f1": 0.9428,
+     "overlap_f1": 0.9601,
+     "chars_found": 0.9935,
+     "chars_right": 0.9361,
+     "gold": 281,
+     "pred": 296,
+     "texts_with_nothing_to_mark": 5,
+     "false_alarms_per_1000_words": 0.0,
+     "share_of_them_marked": 0.0,
+     "interval": [
+      0.881,
+      0.954
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.988,
+       "p": 0.977,
+       "r": 1.0,
+       "gold": 42,
+       "chars_found": 1.0
+      },
+      "EMAIL": {
+       "f1": 0.906,
+       "p": 0.935,
+       "r": 0.879,
+       "gold": 33,
+       "chars_found": 0.977
+      },
+      "LOCATION": {
+       "f1": 0.839,
+       "p": 0.839,
+       "r": 0.839,
+       "gold": 31,
+       "chars_found": 0.974
+      },
+      "NUMBER": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 0,
+       "chars_found": 0.0
+      },
+      "ORGANIZATION": {
+       "f1": 0.881,
+       "p": 0.822,
+       "r": 0.949,
+       "gold": 39,
+       "chars_found": 1.0
+      },
+      "PERSON": {
+       "f1": 0.898,
+       "p": 0.855,
+       "r": 0.946,
+       "gold": 56,
+       "chars_found": 0.993
+      },
+      "PHONE": {
+       "f1": 0.992,
+       "p": 0.985,
+       "r": 1.0,
+       "gold": 65,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 0.812,
+       "p": 0.765,
+       "r": 0.867,
+       "gold": 15,
+       "chars_found": 1.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.8919,
+     "r": 0.9429,
+     "f1": 0.9167,
+     "word_f1": 0.941,
+     "overlap_f1": 0.9583,
+     "chars_found": 0.9935,
+     "chars_right": 0.9352,
+     "gold": 280,
+     "pred": 296,
+     "texts_with_nothing_to_mark": 5,
+     "false_alarms_per_1000_words": 0.0,
+     "share_of_them_marked": 0.0,
+     "interval": [
+      0.879,
+      0.952
+     ]
+    },
+    "names": {
+     "p": 0.8406,
+     "r": 0.9206,
+     "f1": 0.8788,
+     "word_f1": 0.9015,
+     "overlap_f1": 0.9358,
+     "chars_found": 0.9938,
+     "chars_right": 0.8972,
+     "gold": 126,
+     "pred": 138,
+     "texts_with_nothing_to_mark": 23,
+     "false_alarms_per_1000_words": 6.3,
+     "share_of_them_marked": 0.13,
+     "interval": [
+      0.816,
+      0.935
+     ]
+    },
+    "fine": {
+     "p": 0.8953,
+     "r": 0.9431,
+     "f1": 0.9185,
+     "word_f1": 0.9428,
+     "overlap_f1": 0.9601,
+     "chars_found": 0.9935,
+     "chars_right": 0.9361,
+     "gold": 281,
+     "pred": 296,
+     "texts_with_nothing_to_mark": 5,
+     "false_alarms_per_1000_words": 0.0,
+     "share_of_them_marked": 0.0,
+     "per_label": {
+      "DATE": {
+       "f1": 0.988,
+       "p": 0.977,
+       "r": 1.0,
+       "gold": 42,
+       "chars_found": 1.0
+      },
+      "EMAIL": {
+       "f1": 0.906,
+       "p": 0.935,
+       "r": 0.879,
+       "gold": 33,
+       "chars_found": 0.977
+      },
+      "LOCATION": {
+       "f1": 0.839,
+       "p": 0.839,
+       "r": 0.839,
+       "gold": 31,
+       "chars_found": 0.974
+      },
+      "ORGANIZATION": {
+       "f1": 0.881,
+       "p": 0.822,
+       "r": 0.949,
+       "gold": 39,
+       "chars_found": 1.0
+      },
+      "PAYMENT_ID": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 0,
+       "chars_found": 0.0
+      },
+      "PERSON": {
+       "f1": 0.898,
+       "p": 0.855,
+       "r": 0.946,
+       "gold": 56,
+       "chars_found": 0.993
+      },
+      "PHONE": {
+       "f1": 0.992,
+       "p": 0.985,
+       "r": 1.0,
+       "gold": 65,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 0.812,
+       "p": 0.765,
+       "r": 0.867,
+       "gold": 15,
+       "chars_found": 1.0
+      }
+     }
+    }
+   },
+   "real/real-roman-v1.jsonl": {
+    "all": {
+     "p": 0.7471,
+     "r": 0.7471,
+     "f1": 0.7471,
+     "word_f1": 0.7529,
+     "overlap_f1": 0.8147,
+     "chars_found": 0.8123,
+     "chars_right": 0.8221,
+     "gold": 170,
+     "pred": 170,
+     "texts_with_nothing_to_mark": 167,
+     "false_alarms_per_1000_words": 9.53,
+     "share_of_them_marked": 0.072,
+     "interval": [
+      0.684,
+      0.81
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 3,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.763,
+       "p": 0.881,
+       "r": 0.673,
+       "gold": 55,
+       "chars_found": 0.798
+      },
+      "ORGANIZATION": {
+       "f1": 0.636,
+       "p": 0.7,
+       "r": 0.583,
+       "gold": 12,
+       "chars_found": 0.52
+      },
+      "PERSON": {
+       "f1": 0.744,
+       "p": 0.696,
+       "r": 0.8,
+       "gold": 100,
+       "chars_found": 0.858
+      }
+     }
+    },
+    "first": {
+     "p": 0.7471,
+     "r": 0.7471,
+     "f1": 0.7471,
+     "word_f1": 0.7529,
+     "overlap_f1": 0.8147,
+     "chars_found": 0.8123,
+     "chars_right": 0.8221,
+     "gold": 170,
+     "pred": 170,
+     "texts_with_nothing_to_mark": 167,
+     "false_alarms_per_1000_words": 9.53,
+     "share_of_them_marked": 0.072,
+     "interval": [
+      0.684,
+      0.81
+     ]
+    },
+    "names": {
+     "p": 0.7425,
+     "r": 0.7425,
+     "f1": 0.7425,
+     "word_f1": 0.7485,
+     "overlap_f1": 0.8114,
+     "chars_found": 0.8097,
+     "chars_right": 0.8196,
+     "gold": 167,
+     "pred": 167,
+     "texts_with_nothing_to_mark": 169,
+     "false_alarms_per_1000_words": 9.38,
+     "share_of_them_marked": 0.071,
+     "interval": [
+      0.679,
+      0.806
+     ]
+    },
+    "fine": {
+     "p": 0.7471,
+     "r": 0.7471,
+     "f1": 0.7471,
+     "word_f1": 0.7529,
+     "overlap_f1": 0.8147,
+     "chars_found": 0.8123,
+     "chars_right": 0.8221,
+     "gold": 170,
+     "pred": 170,
+     "texts_with_nothing_to_mark": 167,
+     "false_alarms_per_1000_words": 9.53,
+     "share_of_them_marked": 0.072,
+     "per_label": {
+      "DATE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 3,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.763,
+       "p": 0.881,
+       "r": 0.673,
+       "gold": 55,
+       "chars_found": 0.798
+      },
+      "ORGANIZATION": {
+       "f1": 0.636,
+       "p": 0.7,
+       "r": 0.583,
+       "gold": 12,
+       "chars_found": 0.52
+      },
+      "PERSON": {
+       "f1": 0.744,
+       "p": 0.696,
+       "r": 0.8,
+       "gold": 100,
+       "chars_found": 0.858
+      }
+     }
+    }
+   },
+   "real/real-en-v1.jsonl": {
+    "all": {
+     "p": 0.8793,
+     "r": 0.9189,
+     "f1": 0.8987,
+     "word_f1": 0.8987,
+     "overlap_f1": 0.9251,
+     "chars_found": 0.9866,
+     "chars_right": 0.9254,
+     "gold": 222,
+     "pred": 232,
+     "texts_with_nothing_to_mark": 36,
+     "false_alarms_per_1000_words": 8.37,
+     "share_of_them_marked": 0.111,
+     "interval": [
+      0.843,
+      0.94
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.923,
+       "p": 1.0,
+       "r": 0.857,
+       "gold": 14,
+       "chars_found": 0.927
+      },
+      "LOCATION": {
+       "f1": 0.9,
+       "p": 0.887,
+       "r": 0.913,
+       "gold": 103,
+       "chars_found": 0.986
+      },
+      "NUMBER": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 2,
+       "chars_found": 1.0
+      },
+      "ORGANIZATION": {
+       "f1": 0.902,
+       "p": 0.902,
+       "r": 0.902,
+       "gold": 61,
+       "chars_found": 0.995
+      },
+      "PERSON": {
+       "f1": 0.891,
+       "p": 0.82,
+       "r": 0.976,
+       "gold": 42,
+       "chars_found": 0.979
+      },
+      "URL": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 0,
+       "chars_found": 0.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.875,
+     "r": 0.9186,
+     "f1": 0.8962,
+     "word_f1": 0.8962,
+     "overlap_f1": 0.9227,
+     "chars_found": 0.9865,
+     "chars_right": 0.9188,
+     "gold": 221,
+     "pred": 232,
+     "texts_with_nothing_to_mark": 36,
+     "false_alarms_per_1000_words": 8.37,
+     "share_of_them_marked": 0.111,
+     "interval": [
+      0.843,
+      0.937
+     ]
+    },
+    "names": {
+     "p": 0.8756,
+     "r": 0.9223,
+     "f1": 0.8983,
+     "word_f1": 0.8983,
+     "overlap_f1": 0.9267,
+     "chars_found": 0.9889,
+     "chars_right": 0.9255,
+     "gold": 206,
+     "pred": 217,
+     "texts_with_nothing_to_mark": 40,
+     "false_alarms_per_1000_words": 7.62,
+     "share_of_them_marked": 0.1,
+     "interval": [
+      0.84,
+      0.941
+     ]
+    },
+    "fine": {
+     "p": 0.8793,
+     "r": 0.9189,
+     "f1": 0.8987,
+     "word_f1": 0.8987,
+     "overlap_f1": 0.9251,
+     "chars_found": 0.9866,
+     "chars_right": 0.9254,
+     "gold": 222,
+     "pred": 232,
+     "texts_with_nothing_to_mark": 36,
+     "false_alarms_per_1000_words": 8.37,
+     "share_of_them_marked": 0.111,
+     "per_label": {
+      "DATE": {
+       "f1": 0.923,
+       "p": 1.0,
+       "r": 0.857,
+       "gold": 14,
+       "chars_found": 0.927
+      },
+      "LOCATION": {
+       "f1": 0.9,
+       "p": 0.887,
+       "r": 0.913,
+       "gold": 103,
+       "chars_found": 0.986
+      },
+      "ORGANIZATION": {
+       "f1": 0.902,
+       "p": 0.902,
+       "r": 0.902,
+       "gold": 61,
+       "chars_found": 0.995
+      },
+      "PERSON": {
+       "f1": 0.891,
+       "p": 0.82,
+       "r": 0.976,
+       "gold": 42,
+       "chars_found": 0.979
+      },
+      "URL": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 0,
+       "chars_found": 0.0
+      },
+      "VEHICLE_ID": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 2,
+       "chars_found": 1.0
+      }
+     }
+    }
+   },
+   "real/real-enweb-v1.jsonl": {
+    "all": {
+     "p": 0.9147,
+     "r": 0.9276,
+     "f1": 0.9211,
+     "word_f1": 0.9331,
+     "overlap_f1": 0.9551,
+     "chars_found": 0.981,
+     "chars_right": 0.982,
+     "gold": 497,
+     "pred": 504,
+     "texts_with_nothing_to_mark": 10,
+     "false_alarms_per_1000_words": 2.29,
+     "share_of_them_marked": 0.1,
+     "interval": [
+      0.889,
+      0.948
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 0.917,
+       "p": 1.0,
+       "r": 0.846,
+       "gold": 13,
+       "chars_found": 0.842
+      },
+      "EMAIL": {
+       "f1": 0.977,
+       "p": 0.977,
+       "r": 0.977,
+       "gold": 44,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.94,
+       "p": 0.934,
+       "r": 0.945,
+       "gold": 165,
+       "chars_found": 0.98
+      },
+      "NUMBER": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "ORGANIZATION": {
+       "f1": 0.769,
+       "p": 0.75,
+       "r": 0.789,
+       "gold": 95,
+       "chars_found": 0.953
+      },
+      "PERSON": {
+       "f1": 0.955,
+       "p": 0.937,
+       "r": 0.974,
+       "gold": 76,
+       "chars_found": 1.0
+      },
+      "PHONE": {
+       "f1": 0.995,
+       "p": 1.0,
+       "r": 0.99,
+       "gold": 99,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 4,
+       "chars_found": 1.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.8829,
+     "r": 0.9082,
+     "f1": 0.8954,
+     "word_f1": 0.9014,
+     "overlap_f1": 0.9477,
+     "chars_found": 0.9813,
+     "chars_right": 0.9638,
+     "gold": 490,
+     "pred": 504,
+     "texts_with_nothing_to_mark": 10,
+     "false_alarms_per_1000_words": 2.29,
+     "share_of_them_marked": 0.1,
+     "interval": [
+      0.83,
+      0.937
+     ]
+    },
+    "names": {
+     "p": 0.8815,
+     "r": 0.9077,
+     "f1": 0.8944,
+     "word_f1": 0.9091,
+     "overlap_f1": 0.9385,
+     "chars_found": 0.9736,
+     "chars_right": 0.9721,
+     "gold": 336,
+     "pred": 346,
+     "texts_with_nothing_to_mark": 16,
+     "false_alarms_per_1000_words": 1.59,
+     "share_of_them_marked": 0.062,
+     "interval": [
+      0.855,
+      0.929
+     ]
+    },
+    "fine": {
+     "p": 0.9147,
+     "r": 0.9276,
+     "f1": 0.9211,
+     "word_f1": 0.9331,
+     "overlap_f1": 0.9551,
+     "chars_found": 0.981,
+     "chars_right": 0.982,
+     "gold": 497,
+     "pred": 504,
+     "texts_with_nothing_to_mark": 10,
+     "false_alarms_per_1000_words": 2.29,
+     "share_of_them_marked": 0.1,
+     "per_label": {
+      "DATE": {
+       "f1": 0.917,
+       "p": 1.0,
+       "r": 0.846,
+       "gold": 13,
+       "chars_found": 0.842
+      },
+      "EMAIL": {
+       "f1": 0.977,
+       "p": 0.977,
+       "r": 0.977,
+       "gold": 44,
+       "chars_found": 1.0
+      },
+      "ID_NUMBER": {
+       "f1": 0.0,
+       "p": 0.0,
+       "r": 0.0,
+       "gold": 1,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.94,
+       "p": 0.934,
+       "r": 0.945,
+       "gold": 165,
+       "chars_found": 0.98
+      },
+      "ORGANIZATION": {
+       "f1": 0.769,
+       "p": 0.75,
+       "r": 0.789,
+       "gold": 95,
+       "chars_found": 0.953
+      },
+      "PERSON": {
+       "f1": 0.955,
+       "p": 0.937,
+       "r": 0.974,
+       "gold": 76,
+       "chars_found": 1.0
+      },
+      "PHONE": {
+       "f1": 0.995,
+       "p": 1.0,
+       "r": 0.99,
+       "gold": 99,
+       "chars_found": 1.0
+      },
+      "URL": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 4,
+       "chars_found": 1.0
+      }
+     }
+    }
+   },
+   "real/real-hi-v1.jsonl": {
+    "all": {
+     "p": 0.8883,
+     "r": 0.9227,
+     "f1": 0.9051,
+     "word_f1": 0.9051,
+     "overlap_f1": 0.9431,
+     "chars_found": 0.9758,
+     "chars_right": 0.9677,
+     "gold": 181,
+     "pred": 188,
+     "texts_with_nothing_to_mark": 51,
+     "false_alarms_per_1000_words": 2.99,
+     "share_of_them_marked": 0.059,
+     "interval": [
+      0.872,
+      0.938
+     ],
+     "per_label": {
+      "DATE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 9,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.909,
+       "p": 0.87,
+       "r": 0.952,
+       "gold": 63,
+       "chars_found": 0.974
+      },
+      "ORGANIZATION": {
+       "f1": 0.852,
+       "p": 0.852,
+       "r": 0.852,
+       "gold": 61,
+       "chars_found": 0.959
+      },
+      "PERSON": {
+       "f1": 0.948,
+       "p": 0.939,
+       "r": 0.958,
+       "gold": 48,
+       "chars_found": 1.0
+      }
+     }
+    },
+    "first": {
+     "p": 0.8883,
+     "r": 0.9227,
+     "f1": 0.9051,
+     "word_f1": 0.9051,
+     "overlap_f1": 0.9431,
+     "chars_found": 0.9758,
+     "chars_right": 0.9677,
+     "gold": 181,
+     "pred": 188,
+     "texts_with_nothing_to_mark": 51,
+     "false_alarms_per_1000_words": 2.99,
+     "share_of_them_marked": 0.059,
+     "interval": [
+      0.872,
+      0.938
+     ]
+    },
+    "names": {
+     "p": 0.8827,
+     "r": 0.9186,
+     "f1": 0.9003,
+     "word_f1": 0.9003,
+     "overlap_f1": 0.9402,
+     "chars_found": 0.9746,
+     "chars_right": 0.9662,
+     "gold": 172,
+     "pred": 179,
+     "texts_with_nothing_to_mark": 54,
+     "false_alarms_per_1000_words": 2.89,
+     "share_of_them_marked": 0.056,
+     "interval": [
+      0.864,
+      0.936
+     ]
+    },
+    "fine": {
+     "p": 0.8883,
+     "r": 0.9227,
+     "f1": 0.9051,
+     "word_f1": 0.9051,
+     "overlap_f1": 0.9431,
+     "chars_found": 0.9758,
+     "chars_right": 0.9677,
+     "gold": 181,
+     "pred": 188,
+     "texts_with_nothing_to_mark": 51,
+     "false_alarms_per_1000_words": 2.99,
+     "share_of_them_marked": 0.059,
+     "per_label": {
+      "DATE": {
+       "f1": 1.0,
+       "p": 1.0,
+       "r": 1.0,
+       "gold": 9,
+       "chars_found": 1.0
+      },
+      "LOCATION": {
+       "f1": 0.909,
+       "p": 0.87,
+       "r": 0.952,
+       "gold": 63,
+       "chars_found": 0.974
+      },
+      "ORGANIZATION": {
+       "f1": 0.852,
+       "p": 0.852,
+       "r": 0.852,
+       "gold": 61,
+       "chars_found": 0.959
+      },
+      "PERSON": {
+       "f1": 0.948,
+       "p": 0.939,
+       "r": 0.958,
+       "gold": 48,
+       "chars_found": 1.0
+      }
+     }
+    }
+   }
+  },
+  "practical": {
+   "all": {
+    "with label": {
+     "p": 0.94,
+     "r": 0.9569,
+     "f1": 0.9484
+    },
+    "without label": {
+     "p": 0.9612,
+     "r": 0.9784,
+     "f1": 0.9698
+    },
+    "touching": {
+     "p": 0.9733,
+     "r": 0.9896,
+     "f1": 0.9809
+    },
+    "characters found": 0.9849,
+    "strings to leave alone that are covered": 0.0721,
+    "rows without personal data that get a mark": "2 of 36",
+    "rows": 578,
+    "spans": 3572
+   },
+   "languages": {
+    "en": {
+     "with label": {
+      "p": 0.9337,
+      "r": 0.9487,
+      "f1": 0.9411
+     },
+     "without label": {
+      "p": 0.9594,
+      "r": 0.9747,
+      "f1": 0.967
+     },
+     "touching": {
+      "p": 0.9718,
+      "r": 0.9865,
+      "f1": 0.9787
+     },
+     "characters found": 0.9772,
+     "strings to leave alone that are covered": 0.0762,
+     "rows without personal data that get a mark": "2 of 12",
+     "rows": null,
+     "spans": 1188
+    },
+    "hi": {
+     "with label": {
+      "p": 0.9385,
+      "r": 0.9573,
+      "f1": 0.9478
+     },
+     "without label": {
+      "p": 0.9606,
+      "r": 0.9799,
+      "f1": 0.9702
+     },
+     "touching": {
+      "p": 0.9713,
+      "r": 0.99,
+      "f1": 0.9801
+     },
+     "characters found": 0.991,
+     "strings to leave alone that are covered": 0.0847,
+     "rows without personal data that get a mark": "0 of 12",
+     "rows": null,
+     "spans": 1195
+    },
+    "ne": {
+     "with label": {
+      "p": 0.9479,
+      "r": 0.9647,
+      "f1": 0.9562
+     },
+     "without label": {
+      "p": 0.9636,
+      "r": 0.9807,
+      "f1": 0.9721
+     },
+     "touching": {
+      "p": 0.9769,
+      "r": 0.9924,
+      "f1": 0.9837
+     },
+     "characters found": 0.9869,
+     "strings to leave alone that are covered": 0.054,
+     "rows without personal data that get a mark": "0 of 12",
+     "rows": null,
+     "spans": 1189
+    }
+   },
+   "batches": {
+    "batch-01": {
+     "with label": {
+      "p": 0.9614,
+      "r": 0.9717,
+      "f1": 0.9665
+     },
+     "without label": {
+      "p": 0.9797,
+      "r": 0.9901,
+      "f1": 0.9848
+     },
+     "touching": {
+      "p": 0.9895,
+      "r": 0.9993,
+      "f1": 0.994
+     },
+     "characters found": 0.9922,
+     "strings to leave alone that are covered": 0.01,
+     "rows without personal data that get a mark": "2 of 15",
+     "rows": null,
+     "spans": 1411
+    },
+    "batch-02": {
+     "with label": {
+      "p": 0.9086,
+      "r": 0.9419,
+      "f1": 0.9249
+     },
+     "without label": {
+      "p": 0.9332,
+      "r": 0.9674,
+      "f1": 0.95
+     },
+     "touching": {
+      "p": 0.9478,
+      "r": 0.9809,
+      "f1": 0.9633
+     },
+     "characters found": 0.9812,
+     "strings to leave alone that are covered": 0.3714,
+     "rows without personal data that get a mark": "0 of 0",
+     "rows": null,
+     "spans": 1256
+    },
+    "batch-03": {
+     "with label": {
+      "p": 0.9515,
+      "r": 0.9547,
+      "f1": 0.9531
+     },
+     "without label": {
+      "p": 0.9725,
+      "r": 0.9757,
+      "f1": 0.9741
+     },
+     "touching": {
+      "p": 0.9846,
+      "r": 0.9867,
+      "f1": 0.9851
+     },
+     "characters found": 0.9774,
+     "strings to leave alone that are covered": 0.098,
+     "rows without personal data that get a mark": "0 of 21",
+     "rows": null,
+     "spans": 905
+    }
+   },
+   "labels": {
+    "ADDRESS": {
+     "p": 0.9507,
+     "r": 0.9747,
+     "f1": 0.9626,
+     "spans": 356
+    },
+    "BANK_ACCOUNT": {
+     "p": 0.9276,
+     "r": 0.986,
+     "f1": 0.9559,
+     "spans": 143
+    },
+    "CREDIT_CARD": {
+     "p": 0.8519,
+     "r": 1.0,
+     "f1": 0.92,
+     "spans": 23
+    },
+    "DIGITAL_SECRET": {
+     "p": 0.8711,
+     "r": 0.9074,
+     "f1": 0.8889,
+     "spans": 216
+    },
+    "DOB": {
+     "p": 0.9938,
+     "r": 0.9938,
+     "f1": 0.9938,
+     "spans": 161
+    },
+    "DRIVER_LICENSE": {
+     "p": 0.8723,
+     "r": 0.9535,
+     "f1": 0.9111,
+     "spans": 43
+    },
+    "EMAIL": {
+     "p": 0.956,
+     "r": 0.9775,
+     "f1": 0.9667,
+     "spans": 267
+    },
+    "EMPLOYEE_STUDENT_ID": {
+     "p": 0.8454,
+     "r": 0.82,
+     "f1": 0.8325,
+     "spans": 100
+    },
+    "ID_NUMBER": {
+     "p": 0.6538,
+     "r": 0.75,
+     "f1": 0.6986,
+     "spans": 68
+    },
+    "MEDICAL_ID": {
+     "p": 0.8776,
+     "r": 0.8866,
+     "f1": 0.8821,
+     "spans": 97
+    },
+    "NATIONAL_ID": {
+     "p": 0.9268,
+     "r": 0.9268,
+     "f1": 0.9268,
+     "spans": 164
+    },
+    "PASSPORT": {
+     "p": 0.9792,
+     "r": 1.0,
+     "f1": 0.9895,
+     "spans": 47
+    },
+    "PAYMENT_ID": {
+     "p": 0.8846,
+     "r": 0.7419,
+     "f1": 0.807,
+     "spans": 31
+    },
+    "PERSON": {
+     "p": 0.9664,
+     "r": 0.9821,
+     "f1": 0.9742,
+     "spans": 1172
+    },
+    "PHONE": {
+     "p": 0.9623,
+     "r": 0.9978,
+     "f1": 0.9798,
+     "spans": 461
+    },
+    "PROPERTY_UTILITY_ID": {
+     "p": 0.8947,
+     "r": 0.8095,
+     "f1": 0.85,
+     "spans": 63
+    },
+    "TAX_ID": {
+     "p": 0.961,
+     "r": 0.9136,
+     "f1": 0.9367,
+     "spans": 81
+    },
+    "VEHICLE_ID": {
+     "p": 1.0,
+     "r": 0.9091,
+     "f1": 0.9524,
+     "spans": 55
+    },
+    "VOTER_ID": {
+     "p": 1.0,
+     "r": 0.9167,
+     "f1": 0.9565,
+     "spans": 24
+    }
+   }
+  },
+  "cases": {
+   "all": {
+    "with label": {
+     "p": 0.9067,
+     "r": 0.9315,
+     "f1": 0.9189
+    },
+    "without label": {
+     "p": 0.92,
+     "r": 0.9452,
+     "f1": 0.9324
+    },
+    "touching": {
+     "p": 0.9867,
+     "r": 0.9781,
+     "f1": 0.9649
+    },
+    "characters found": 0.978,
+    "strings to leave alone that are covered": null,
+    "rows without personal data that get a mark": "0 of 15",
+    "rows": 180,
+    "spans": 365
+   },
+   "languages": {
+    "en": {
+     "with label": {
+      "p": 0.9339,
+      "r": 0.9339,
+      "f1": 0.9339
+     },
+     "without label": {
+      "p": 0.9504,
+      "r": 0.9504,
+      "f1": 0.9504
+     },
+     "touching": {
+      "p": 1.0,
+      "r": 0.9752,
+      "f1": 0.9752
+     },
+     "characters found": 0.9746,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 5",
+     "rows": null,
+     "spans": 121
+    },
+    "hi": {
+     "with label": {
+      "p": 0.8779,
+      "r": 0.9426,
+      "f1": 0.9091
+     },
+     "without label": {
+      "p": 0.8931,
+      "r": 0.959,
+      "f1": 0.9249
+     },
+     "touching": {
+      "p": 0.9771,
+      "r": 1.0,
+      "f1": 0.9644
+     },
+     "characters found": 0.9956,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 5",
+     "rows": null,
+     "spans": 122
+    },
+    "ne": {
+     "with label": {
+      "p": 0.9106,
+      "r": 0.918,
+      "f1": 0.9143
+     },
+     "without label": {
+      "p": 0.9187,
+      "r": 0.9262,
+      "f1": 0.9224
+     },
+     "touching": {
+      "p": 0.9837,
+      "r": 0.959,
+      "f1": 0.9551
+     },
+     "characters found": 0.9645,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 5",
+     "rows": null,
+     "spans": 122
+    }
+   },
+   "batches": {
+    "bench-180": {
+     "with label": {
+      "p": 0.9067,
+      "r": 0.9315,
+      "f1": 0.9189
+     },
+     "without label": {
+      "p": 0.92,
+      "r": 0.9452,
+      "f1": 0.9324
+     },
+     "touching": {
+      "p": 0.9867,
+      "r": 0.9781,
+      "f1": 0.9649
+     },
+     "characters found": 0.978,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 15",
+     "rows": null,
+     "spans": 365
+    }
+   },
+   "labels": {
+    "ADDRESS": {
+     "p": 0.8621,
+     "r": 0.9615,
+     "f1": 0.9091,
+     "spans": 26
+    },
+    "BANK_ACCOUNT": {
+     "p": 1.0,
+     "r": 0.8333,
+     "f1": 0.9091,
+     "spans": 12
+    },
+    "CREDIT_CARD": {
+     "p": 1.0,
+     "r": 1.0,
+     "f1": 1.0,
+     "spans": 12
+    },
+    "DIGITAL_SECRET": {
+     "p": 0.8824,
+     "r": 1.0,
+     "f1": 0.9375,
+     "spans": 30
+    },
+    "DOB": {
+     "p": 0.8824,
+     "r": 1.0,
+     "f1": 0.9375,
+     "spans": 15
+    },
+    "EMAIL": {
+     "p": 0.56,
+     "r": 0.7179,
+     "f1": 0.6292,
+     "spans": 39
+    },
+    "MEDICAL_ID": {
+     "p": 1.0,
+     "r": 0.9286,
+     "f1": 0.963,
+     "spans": 14
+    },
+    "NATIONAL_ID": {
+     "p": 1.0,
+     "r": 0.8889,
+     "f1": 0.9412,
+     "spans": 18
+    },
+    "PASSPORT": {
+     "p": 1.0,
+     "r": 0.9444,
+     "f1": 0.9714,
+     "spans": 18
+    },
+    "PERSON": {
+     "p": 0.9916,
+     "r": 0.9916,
+     "f1": 0.9916,
+     "spans": 119
+    },
+    "PHONE": {
+     "p": 0.9773,
+     "r": 0.9348,
+     "f1": 0.9556,
+     "spans": 46
+    },
+    "TAX_ID": {
+     "p": 0.9286,
+     "r": 0.8125,
+     "f1": 0.8667,
+     "spans": 16
+    }
+   },
+   "every span counted": {
+    "with label": {
+     "p": 0.8971,
+     "r": 0.9315,
+     "f1": 0.914
+    },
+    "without label": {
+     "p": 0.9182,
+     "r": 0.9534,
+     "f1": 0.9355
+    },
+    "touching": {
+     "p": 0.9842,
+     "r": 0.9863,
+     "f1": 0.9677
+    },
+    "characters found": 0.9841,
+    "strings to leave alone that are covered": null,
+    "rows without personal data that get a mark": "0 of 15",
+    "rows": 180,
+    "spans": 365
+   }
+  },
+  "practical_at_seven_kinds": {
+   "all": {
+    "with label": {
+     "p": 0.9568,
+     "r": 0.974,
+     "f1": 0.9653
+    },
+    "without label": {
+     "p": 0.9612,
+     "r": 0.9784,
+     "f1": 0.9698
+    },
+    "touching": {
+     "p": 0.9733,
+     "r": 0.9896,
+     "f1": 0.9809
+    },
+    "characters found": 0.9849,
+    "strings to leave alone that are covered": 0.0721,
+    "rows without personal data that get a mark": "2 of 36",
+    "rows": 578,
+    "spans": 3572
+   },
+   "languages": {
+    "en": {
+     "with label": {
+      "p": 0.9544,
+      "r": 0.9697,
+      "f1": 0.962
+     },
+     "without label": {
+      "p": 0.9594,
+      "r": 0.9747,
+      "f1": 0.967
+     },
+     "touching": {
+      "p": 0.9718,
+      "r": 0.9865,
+      "f1": 0.9787
+     },
+     "characters found": 0.9772,
+     "strings to leave alone that are covered": 0.0762,
+     "rows without personal data that get a mark": "2 of 12",
+     "rows": null,
+     "spans": 1188
+    },
+    "hi": {
+     "with label": {
+      "p": 0.959,
+      "r": 0.9782,
+      "f1": 0.9685
+     },
+     "without label": {
+      "p": 0.9606,
+      "r": 0.9799,
+      "f1": 0.9702
+     },
+     "touching": {
+      "p": 0.9713,
+      "r": 0.99,
+      "f1": 0.9801
+     },
+     "characters found": 0.991,
+     "strings to leave alone that are covered": 0.0847,
+     "rows without personal data that get a mark": "0 of 12",
+     "rows": null,
+     "spans": 1195
+    },
+    "ne": {
+     "with label": {
+      "p": 0.957,
+      "r": 0.9739,
+      "f1": 0.9654
+     },
+     "without label": {
+      "p": 0.9636,
+      "r": 0.9807,
+      "f1": 0.9721
+     },
+     "touching": {
+      "p": 0.9769,
+      "r": 0.9924,
+      "f1": 0.9837
+     },
+     "characters found": 0.9869,
+     "strings to leave alone that are covered": 0.054,
+     "rows without personal data that get a mark": "0 of 12",
+     "rows": null,
+     "spans": 1189
+    }
+   },
+   "batches": {
+    "batch-01": {
+     "with label": {
+      "p": 0.9755,
+      "r": 0.9858,
+      "f1": 0.9806
+     },
+     "without label": {
+      "p": 0.9797,
+      "r": 0.9901,
+      "f1": 0.9848
+     },
+     "touching": {
+      "p": 0.9895,
+      "r": 0.9993,
+      "f1": 0.994
+     },
+     "characters found": 0.9922,
+     "strings to leave alone that are covered": 0.01,
+     "rows without personal data that get a mark": "2 of 15",
+     "rows": null,
+     "spans": 1411
+    },
+    "batch-02": {
+     "with label": {
+      "p": 0.9263,
+      "r": 0.9602,
+      "f1": 0.9429
+     },
+     "without label": {
+      "p": 0.9332,
+      "r": 0.9674,
+      "f1": 0.95
+     },
+     "touching": {
+      "p": 0.9478,
+      "r": 0.9809,
+      "f1": 0.9633
+     },
+     "characters found": 0.9812,
+     "strings to leave alone that are covered": 0.3714,
+     "rows without personal data that get a mark": "0 of 0",
+     "rows": null,
+     "spans": 1256
+    },
+    "batch-03": {
+     "with label": {
+      "p": 0.9714,
+      "r": 0.9746,
+      "f1": 0.973
+     },
+     "without label": {
+      "p": 0.9725,
+      "r": 0.9757,
+      "f1": 0.9741
+     },
+     "touching": {
+      "p": 0.9846,
+      "r": 0.9867,
+      "f1": 0.9851
+     },
+     "characters found": 0.9774,
+     "strings to leave alone that are covered": 0.098,
+     "rows without personal data that get a mark": "0 of 21",
+     "rows": null,
+     "spans": 905
+    }
+   },
+   "labels": {
+    "ADDRESS": {
+     "p": 0.9507,
+     "r": 0.9747,
+     "f1": 0.9626,
+     "spans": 356
+    },
+    "DOB": {
+     "p": 0.9938,
+     "r": 0.9938,
+     "f1": 0.9938,
+     "spans": 161
+    },
+    "EMAIL": {
+     "p": 0.956,
+     "r": 0.9775,
+     "f1": 0.9667,
+     "spans": 267
+    },
+    "NUMBER": {
+     "p": 0.9586,
+     "r": 0.9627,
+     "f1": 0.9607,
+     "spans": 939
+    },
+    "PERSON": {
+     "p": 0.9664,
+     "r": 0.9821,
+     "f1": 0.9742,
+     "spans": 1172
+    },
+    "PHONE": {
+     "p": 0.9623,
+     "r": 0.9978,
+     "f1": 0.9798,
+     "spans": 461
+    },
+    "SECRET": {
+     "p": 0.8711,
+     "r": 0.9074,
+     "f1": 0.8889,
+     "spans": 216
+    }
+   },
+   "reading": ""
+  },
+  "cases_at_seven_kinds": {
+   "all": {
+    "with label": {
+     "p": 0.9093,
+     "r": 0.9342,
+     "f1": 0.9216
+    },
+    "without label": {
+     "p": 0.92,
+     "r": 0.9452,
+     "f1": 0.9324
+    },
+    "touching": {
+     "p": 0.9867,
+     "r": 0.9781,
+     "f1": 0.9649
+    },
+    "characters found": 0.978,
+    "strings to leave alone that are covered": null,
+    "rows without personal data that get a mark": "0 of 15",
+    "rows": 180,
+    "spans": 365
+   },
+   "languages": {
+    "en": {
+     "with label": {
+      "p": 0.9421,
+      "r": 0.9421,
+      "f1": 0.9421
+     },
+     "without label": {
+      "p": 0.9504,
+      "r": 0.9504,
+      "f1": 0.9504
+     },
+     "touching": {
+      "p": 1.0,
+      "r": 0.9752,
+      "f1": 0.9752
+     },
+     "characters found": 0.9746,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 5",
+     "rows": null,
+     "spans": 121
+    },
+    "hi": {
+     "with label": {
+      "p": 0.8779,
+      "r": 0.9426,
+      "f1": 0.9091
+     },
+     "without label": {
+      "p": 0.8931,
+      "r": 0.959,
+      "f1": 0.9249
+     },
+     "touching": {
+      "p": 0.9771,
+      "r": 1.0,
+      "f1": 0.9644
+     },
+     "characters found": 0.9956,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 5",
+     "rows": null,
+     "spans": 122
+    },
+    "ne": {
+     "with label": {
+      "p": 0.9106,
+      "r": 0.918,
+      "f1": 0.9143
+     },
+     "without label": {
+      "p": 0.9187,
+      "r": 0.9262,
+      "f1": 0.9224
+     },
+     "touching": {
+      "p": 0.9837,
+      "r": 0.959,
+      "f1": 0.9551
+     },
+     "characters found": 0.9645,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 5",
+     "rows": null,
+     "spans": 122
+    }
+   },
+   "batches": {
+    "bench-180": {
+     "with label": {
+      "p": 0.9093,
+      "r": 0.9342,
+      "f1": 0.9216
+     },
+     "without label": {
+      "p": 0.92,
+      "r": 0.9452,
+      "f1": 0.9324
+     },
+     "touching": {
+      "p": 0.9867,
+      "r": 0.9781,
+      "f1": 0.9649
+     },
+     "characters found": 0.978,
+     "strings to leave alone that are covered": null,
+     "rows without personal data that get a mark": "0 of 15",
+     "rows": null,
+     "spans": 365
+    }
+   },
+   "labels": {
+    "ADDRESS": {
+     "p": 0.8621,
+     "r": 0.9615,
+     "f1": 0.9091,
+     "spans": 26
+    },
+    "DOB": {
+     "p": 0.8824,
+     "r": 1.0,
+     "f1": 0.9375,
+     "spans": 15
+    },
+    "EMAIL": {
+     "p": 0.56,
+     "r": 0.7179,
+     "f1": 0.6292,
+     "spans": 39
+    },
+    "NUMBER": {
+     "p": 1.0,
+     "r": 0.9111,
+     "f1": 0.9535,
+     "spans": 90
+    },
+    "PERSON": {
+     "p": 0.9916,
+     "r": 0.9916,
+     "f1": 0.9916,
+     "spans": 119
+    },
+    "PHONE": {
+     "p": 0.9773,
+     "r": 0.9348,
+     "f1": 0.9556,
+     "spans": 46
+    },
+    "SECRET": {
+     "p": 0.8824,
+     "r": 1.0,
+     "f1": 0.9375,
+     "spans": 30
+    }
+   },
+   "reading": ""
+  },
+  "nepiibench": {
+   "rows": 380,
+   "missing": 0,
+   "extra": 0,
+   "languages": {
+    "ne": {
+     "rows": 130,
+     "gold_spans": 888,
+     "pred_spans": 908,
+     "char_precision": 0.9823,
+     "char_recall": 0.991,
+     "char_f1": 0.9867,
+     "exact_precision": 0.9438,
+     "exact_recall": 0.9651,
+     "exact_f1": 0.9543,
+     "keep_out_false_positive_rate": 0.0536
+    },
+    "hi": {
+     "rows": 127,
+     "gold_spans": 890,
+     "pred_spans": 915,
+     "char_precision": 0.9698,
+     "char_recall": 0.9954,
+     "char_f1": 0.9825,
+     "exact_precision": 0.9355,
+     "exact_recall": 0.9618,
+     "exact_f1": 0.9485,
+     "keep_out_false_positive_rate": 0.0863
+    },
+    "en": {
+     "rows": 123,
+     "gold_spans": 889,
+     "pred_spans": 905,
+     "char_precision": 0.979,
+     "char_recall": 0.9762,
+     "char_f1": 0.9776,
+     "exact_precision": 0.9293,
+     "exact_recall": 0.946,
+     "exact_f1": 0.9376,
+     "keep_out_false_positive_rate": 0.0705
+    }
+   },
+   "labels": {
+    "en/ADDRESS": 0.9787,
+    "en/BANK_ACCOUNT": 0.95,
+    "en/CREDIT_CARD": 1.0,
+    "en/DIGITAL_SECRET": 0.8182,
+    "en/DOB": 0.9811,
+    "en/DRIVER_LICENSE": 0.8667,
+    "en/EMAIL": 0.9859,
+    "en/EMPLOYEE_STUDENT_ID": 0.8824,
+    "en/ID_NUMBER": 0.6667,
+    "en/MEDICAL_ID": 0.72,
+    "en/NATIONAL_ID": 0.88,
+    "en/PASSPORT": 1.0,
+    "en/PAYMENT_ID": 0.6,
+    "en/PERSON": 0.9838,
+    "en/PHONE": 1.0,
+    "en/PROPERTY_UTILITY_ID": 0.6364,
+    "en/TAX_ID": 0.7778,
+    "en/VEHICLE_ID": 1.0,
+    "en/VOTER_ID": 1.0,
+    "hi/ADDRESS": 0.9789,
+    "hi/BANK_ACCOUNT": 1.0,
+    "hi/CREDIT_CARD": 1.0,
+    "hi/DIGITAL_SECRET": 0.9474,
+    "hi/DOB": 1.0,
+    "hi/DRIVER_LICENSE": 1.0,
+    "hi/EMAIL": 1.0,
+    "hi/EMPLOYEE_STUDENT_ID": 0.7241,
+    "hi/ID_NUMBER": 0.75,
+    "hi/MEDICAL_ID": 0.9375,
+    "hi/NATIONAL_ID": 0.9524,
+    "hi/PASSPORT": 1.0,
+    "hi/PAYMENT_ID": 1.0,
+    "hi/PERSON": 0.9667,
+    "hi/PHONE": 1.0,
+    "hi/PROPERTY_UTILITY_ID": 0.7368,
+    "hi/TAX_ID": 1.0,
+    "hi/VEHICLE_ID": 1.0,
+    "hi/VOTER_ID": 0.8571,
+    "ne/ADDRESS": 0.9619,
+    "ne/BANK_ACCOUNT": 1.0,
+    "ne/CREDIT_CARD": 1.0,
+    "ne/DIGITAL_SECRET": 0.9032,
+    "ne/DOB": 1.0,
+    "ne/DRIVER_LICENSE": 1.0,
+    "ne/EMAIL": 1.0,
+    "ne/EMPLOYEE_STUDENT_ID": 0.8095,
+    "ne/ID_NUMBER": 0.7273,
+    "ne/MEDICAL_ID": 1.0,
+    "ne/NATIONAL_ID": 0.9649,
+    "ne/PASSPORT": 1.0,
+    "ne/PAYMENT_ID": 0.4,
+    "ne/PERSON": 0.9839,
+    "ne/PHONE": 1.0,
+    "ne/PROPERTY_UTILITY_ID": 0.9474,
+    "ne/TAX_ID": 0.8125,
+    "ne/VEHICLE_ID": 1.0,
+    "ne/VOTER_ID": 1.0
+   },
+   "overall": {
+    "rows": 380,
+    "gold_spans": 2667,
+    "pred_spans": 2728,
+    "char_precision": 0.9769,
+    "char_recall": 0.9875,
+    "char_f1": 0.9822,
+    "exact_precision": 0.9362,
+    "exact_recall": 0.9576,
+    "exact_f1": 0.9468,
+    "exact_match": "start, end and label",
+    "keep_out_spans_touched": 59,
+    "keep_out_spans": 837,
+    "keep_out_false_positive_rate": 0.0705,
+    "zero_pii_rows_with_prediction": 2,
+    "zero_pii_rows": 15
+   }
+  },
+  "ahead_of_it": {
+   "what": "how far Rakshya 1.1 is ahead in exact F1, with the middle 95 percent of that when the texts are drawn again",
+   "seven_test_sets": {
+    "difference": 0.0102,
+    "interval": [
+     0.0005,
+     0.0207
+    ],
+    "share_of_redraws_ahead": 0.978
+   },
+   "practical_test": {
+    "level": "labels",
+    "difference": 0.0073,
+    "interval": [
+     0.002,
+     0.0119
+    ],
+    "share_of_redraws_ahead": 0.999
+   },
+   "cases": {
+    "level": "labels",
+    "difference": 0.0412,
+    "interval": [
+     0.0168,
+     0.0705
+    ],
+    "share_of_redraws_ahead": 1.0
+   }
+  },
+  "speed_beside": {
+   "processor": "13th Gen Intel(R) Core(TM) i5-13420H",
+   "rounds": 2,
+   "news": "real/real-news-v2.jsonl",
+   "news_texts": 175,
+   "sentences": 265,
+   "tokens_per_sentence": 21.1,
+   "lowest_median_ms": {
+    "Rakshya 1.1 Lite": {
+     "onnx_ms_1_thread": 6.28,
+     "browser_ms_1_thread": 22.84,
+     "browser_ms_4_threads": 13.74
+    },
+    "Rakshya 1.1": {
+     "onnx_ms_1_thread": 13.38,
+     "browser_ms_1_thread": 49.54,
+     "browser_ms_4_threads": 25.41
+    }
+   },
+   "share_of_time": {
+    "onnx_ms_1_thread": 0.469,
+    "browser_ms_1_thread": 0.461,
+    "browser_ms_4_threads": 0.541
+   }
+  },
+  "browser_on_the_test_sets": {
+   "files": 9,
+   "texts": 1792,
+   "texts_with_the_spans_of_python": 1792
+  },
+  "package_against_the_repository_code": {
+   "texts": 9546,
+   "profiles": [
+    "all",
+    "personal"
+   ]
+  },
+  "rust_against_python": {
+   "texts": 9681,
+   "pieces": 12960,
+   "tags_that_fit": true,
+   "equal_of": {
+    "rules": [
+     9681,
+     9681
+    ],
+    "pieces": [
+     9681,
+     9681
+    ],
+    "given, rules": [
+     9681,
+     9681
+    ],
+    "given, answers": [
+     5054,
+     5054
+    ],
+    "tokens": [
+     12960,
+     12960
+    ],
+    "spans": [
+     12960,
+     12960
+    ],
+    "scores": [
+     12960,
+     12960
+    ],
+    "given, model": [
+     12960,
+     12960
+    ],
+    "made": [
+     12,
+     12
+    ]
+   }
+  },
+  "eight_bit_against_32_bit": {
+   "closeness": {
+    "tokens": 5589,
+    "tokens_with_the_same_tag": 5579,
+    "largest_difference_in_a_score": 1.147,
+    "largest_difference_alone_and_in_a_batch": 0.0
+   },
+   "scores": {
+    "benchmark/hard-v0.jsonl": {
+     "pytorch": {
+      "exact_f1": 0.848,
+      "word_f1": 0.8581,
+      "characters_found": 0.9745
+     },
+     "onnx, 8-bit": {
+      "exact_f1": 0.8432,
+      "word_f1": 0.8567,
+      "characters_found": 0.9745
+     }
+    },
+    "benchmark/hard-v1.jsonl": {
+     "pytorch": {
+      "exact_f1": 0.864,
+      "word_f1": 0.8693,
+      "characters_found": 0.9847
+     },
+     "onnx, 8-bit": {
+      "exact_f1": 0.8587,
+      "word_f1": 0.8693,
+      "characters_found": 0.9842
+     }
+    }
+   }
+  }
  }
 }
