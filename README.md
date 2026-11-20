@@ -40,12 +40,9 @@ On 180 further cases of our own, a separate set that no version of Rakshya learn
 [Rakshya 1.1 Lite](https://huggingface.co/fiste-ai/rakshya-lite) is the same detector with a network of 6 layers instead of 12: 30 MB instead of 41, and 46 percent of the time per text in a browser. It has the labels, the rules and the code of Rakshya 1.1, and its weights are under Apache-2.0 too. On the seven test sets it has a mean of 0.903 where Rakshya 1.1 has 0.913, on the practical test 0.948 against 0.956, and on the 180 cases 0.919 against 0.960. The table is in [BENCHMARK.md](BENCHMARK.md#rakshya-11-lite).
 
 ```python
-from huggingface_hub import snapshot_download
 from rakshya import Rakshya
 
-folder = snapshot_download("fiste-ai/rakshya-lite", revision="v1.1",
-                           allow_patterns=["tagger.json", "tokenizer.json", "onnx/*"])
-pii = Rakshya(folder)
+pii = Rakshya(model="lite")   # fetches the three files that run, 33 MB
 ```
 
 In a web page, give `load` the address `https://huggingface.co/fiste-ai/rakshya-lite/resolve/v1.1` as its `model`.
@@ -92,6 +89,14 @@ Two profiles decide what is returned. `labels="all"` returns every label; `label
 | `benchmark/labels/`, `benchmark/rebuild.py` | The labels of the seven test sets as character ranges, without the text, and a script that puts them back on texts you have obtained. Two of the sets come back exactly from public datasets |
 
 To build the browser module again: `cd rust && cargo build --release --target wasm32-unknown-unknown --lib`, then `wasm-bindgen --target web --out-dir ../docs/pkg target/wasm32-unknown-unknown/release/rakshya.wasm` with wasm-bindgen 0.2.130.
+
+## Changes
+
+**Code 1.1.1, 20 November 2026.** The models are those of 1.1, file for file, and so are the Rust source and the browser module. The Python package changed, and it gave what the code of 1.1 gave on each of 9,546 texts, with either model and under both profiles.
+
+- New: `Rakshya(model="lite")` and `rakshya --lite` fetch the Lite model.
+- Fixed: `Rakshya(model="server")` asked the Hub for a model that this version does not have, and failed. It now says that the large model of release 0.2 was not trained again for these labels.
+- Fixed: `rust/kinds.json`, which the Rust source reads when it is built, was missing from this repository.
 
 ## Limits
 

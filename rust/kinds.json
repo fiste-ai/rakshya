@@ -1,0 +1,211 @@
+{
+ "cues": [
+  [
+   "EMPLOYEE_STUDENT_ID",
+   [
+    "employee",
+    "emp id",
+    "emp. id",
+    "emp code",
+    "staff id",
+    "staff no",
+    "payroll",
+    "badge",
+    "uan",
+    "epf",
+    "pf no",
+    "pf number",
+    "ppo",
+    "provident",
+    "student",
+    "roll no",
+    "roll number",
+    "symbol no",
+    "symbol number",
+    "admission no",
+    "कर्मचारी",
+    "विद्यार्थी",
+    "छात्र",
+    "रोल नं",
+    "सिम्बोल",
+    "अनुक्रमांक",
+    "भविष्य निधि",
+    "संचय कोष",
+    "सञ्चय कोष",
+    "श्रम स्वीकृति",
+    "यूएएन",
+    "पीएफ",
+    "पीपीओ"
+   ]
+  ],
+  [
+   "PROPERTY_UTILITY_ID",
+   [
+    "ration",
+    "consumer",
+    "meter no",
+    "meter number",
+    "kitta",
+    "khasra",
+    "khatauni",
+    "lalpurja",
+    "sheet no",
+    "उपभोक्ता",
+    "मिटर",
+    "मीटर",
+    "कित्ता",
+    "खसरा",
+    "राशन",
+    "लालपुर्जा",
+    "सिट नं"
+   ]
+  ],
+  [
+   "MEDICAL_ID",
+   [
+    "health insurance",
+    "patient",
+    "mrn",
+    "uhid",
+    "abha",
+    "स्वास्थ्य बीमा",
+    "स्वास्थ्य बिमा",
+    "बिरामी",
+    "मरीज",
+    "रोगी"
+   ]
+  ],
+  [
+   "DIGITAL_SECRET",
+   [
+    "imei",
+    "mac address",
+    "device id",
+    "आईएमईआई"
+   ]
+  ]
+ ],
+ "own": [
+  "OWN_PHONE",
+  "OWN_EMAIL"
+ ],
+ "mac": "(?i)[0-9a-f]{2}(?:[:-][0-9a-f]{2}){5}",
+ "sentence_end": "।?!",
+ "figures": "[0-9०-९]+",
+ "month": "(?i)(?:बैशाख|बैसाख|वैशाख|वैसाख|जेठ|जेष्ठ|ज्येष्ठ|असार|आषाढ|अषाढ|साउन|श्रावण|सावन|भदौ|भाद्र|असोज|आश्विन|अश्विन|कात्तिक|कार्तिक|मंसिर|मंसीर|मङ्सिर|मङ्सीर|पुष|पुस|पौष|माघ|फागुन|फाल्गुन|चैत्र|चैत|जनवरी|फेब्रुअरी|फेब्रुवरी|मार्च|अप्रिल|अप्रील|जुलाई|अगस्ट|अगष्ट|अगस्त|सेप्टेम्बर|सेप्टेम्वर|अक्टोबर|अक्टोवर|नोभेम्बर|नोभेम्वर|डिसेम्बर|डिसेम्वर|फरवरी|फ़रवरी|अप्रैल|सितंबर|सितम्बर|अक्टूबर|अक्तूबर|नवंबर|नवम्बर|दिसंबर|दिसम्बर|जुन|जून|मे|मई|मार्ग|january|february|march|april|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec|baishakh|baisakh|jestha|jeth|ashadh|ashad|asar|shrawan|sawan|saun|bhadra|bhadau|ashwin|ashoj|asoj|kartik|mangshir|mangsir|poush|push|magh|falgun|fagun|phagun|chaitra|chait)|January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec",
+ "birth": "(?i)(?P<plain>date[ \\t\\n\\r\\u00a0]*of[ \\t\\n\\r\\u00a0]*birth|birth[ \\t\\n\\r\\u00a0]*date|birthdate|birthday|जन्म[ \\t\\n\\r\\u00a0]*मित[िी]|जन्ममित[िी]|जन्म[ \\t\\n\\r\\u00a0]*तिथि|जन्मतिथि|जन्म[ \\t\\n\\r\\u00a0]*दिन|जन्मदिन|janma[ \\t\\n\\r\\u00a0]*miti|janmamiti|janma[ \\t\\n\\r\\u00a0]*din|janmadin)|(?P<word>d\\.?[ \\t\\n\\r\\u00a0]?o\\.?[ \\t\\n\\r\\u00a0]?b|born|janma)|(?P<stem>जन्म(?:ेक[ोाी]|िएक[ोाी]|[ेी])?)",
+ "born_after": "(?i)[ \\t\\n\\r\\u00a0]*(?:(?:गते|तारिख|तारीख|का[ \\t\\n\\r\\u00a0]+दिन|को[ \\t\\n\\r\\u00a0]+दिन|के[ \\t\\n\\r\\u00a0]+दिन|मा|में|को|,|ma|ko)[ \\t\\n\\r\\u00a0]*){0,3}(?:जन्म|पैदा|janm)",
+ "not_birth": "(?i)दर्ता|प्रमाण|regist|certificate",
+ "stars": "[*\\u2022\\u25cf]{2,}",
+ "crosses": "[Xx]{2,}",
+ "other_letter": "[A-WYZa-wyz\\u0904-\\u0939\\u0958-\\u0961\\u0972-\\u097f]",
+ "maskable": [
+  "PHONE",
+  "EMAIL",
+  "NATIONAL_ID",
+  "TAX_ID",
+  "PASSPORT",
+  "DRIVER_LICENSE",
+  "VOTER_ID",
+  "MEDICAL_ID",
+  "EMPLOYEE_STUDENT_ID",
+  "PROPERTY_UTILITY_ID",
+  "ID_NUMBER",
+  "BANK_ACCOUNT",
+  "CREDIT_CARD",
+  "PAYMENT_ID",
+  "VEHICLE_ID"
+ ],
+ "aliases": {
+  "PAN": "TAX_ID",
+  "CITIZENSHIP_NO": "NATIONAL_ID",
+  "PASSPORT_NO": "PASSPORT",
+  "LICENSE_NO": "DRIVER_LICENSE",
+  "CARD_NUMBER": "CREDIT_CARD",
+  "UPI_ID": "PAYMENT_ID",
+  "VEHICLE_PLATE": "VEHICLE_ID",
+  "USERNAME": "DIGITAL_SECRET",
+  "IP_ADDRESS": "DIGITAL_SECRET",
+  "SECRET": "DIGITAL_SECRET",
+  "DEVICE_ID": "DIGITAL_SECRET",
+  "DRIVING_LICENSE": "DRIVER_LICENSE",
+  "HEALTH_ID": "MEDICAL_ID",
+  "PAYMENT_CARD": "CREDIT_CARD",
+  "AADHAAR": "NATIONAL_ID",
+  "CITIZENSHIP_ID": "NATIONAL_ID",
+  "OFFICE_PHONE": "PHONE",
+  "OFFICE_EMAIL": "EMAIL",
+  "OWN_PHONE": "PHONE",
+  "OWN_EMAIL": "EMAIL"
+ },
+ "office": [
+  "OFFICE_PHONE",
+  "OFFICE_EMAIL"
+ ],
+ "personal": [
+  "PERSON",
+  "ADDRESS",
+  "DOB",
+  "PHONE",
+  "EMAIL",
+  "DIGITAL_SECRET",
+  "NATIONAL_ID",
+  "TAX_ID",
+  "PASSPORT",
+  "DRIVER_LICENSE",
+  "VOTER_ID",
+  "MEDICAL_ID",
+  "EMPLOYEE_STUDENT_ID",
+  "PROPERTY_UTILITY_ID",
+  "ID_NUMBER",
+  "BANK_ACCOUNT",
+  "CREDIT_CARD",
+  "PAYMENT_ID",
+  "VEHICLE_ID"
+ ],
+ "finer": {
+  "DOB": [
+   "DATE"
+  ],
+  "MEDICAL_ID": [
+   "ID_NUMBER"
+  ],
+  "EMPLOYEE_STUDENT_ID": [
+   "ID_NUMBER"
+  ],
+  "PROPERTY_UTILITY_ID": [
+   "ID_NUMBER"
+  ],
+  "OFFICE_PHONE": [
+   "PHONE"
+  ],
+  "OFFICE_EMAIL": [
+   "EMAIL"
+  ],
+  "DIGITAL_SECRET": [
+   "URL"
+  ],
+  "PAYMENT_ID": [
+   "PHONE",
+   "EMAIL",
+   "URL"
+  ]
+ },
+ "whole": {
+  "ADDRESS": [
+   "DATE",
+   "ID_NUMBER"
+  ],
+  "DIGITAL_SECRET": [
+   "URL"
+  ],
+  "EMAIL": [
+   "URL"
+  ],
+  "PAYMENT_ID": [
+   "PHONE",
+   "EMAIL",
+   "URL"
+  ]
+ }
+}

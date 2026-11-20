@@ -3,7 +3,7 @@
     from rakshya import Rakshya            # in the development repository: from rakshya.runtime import Rakshya
 
     pii = Rakshya()                      # fetches the released model from the Hugging Face Hub, once
-    pii = Rakshya(model="server")        # the large model for servers instead of the small one for browsers
+    pii = Rakshya(model="lite")          # the lighter model of the same version: 6 layers, smaller and faster
     pii = Rakshya("folder")              # or a folder with tokenizer.json, tagger.json and the ONNX file
     pii.find("मेरो नाम सीता थापा हो")    # [(start, end, label), ...] in characters of the text
     pii.redact("मेरो नाम सीता थापा हो")  # the text with a placeholder such as [PERSON_1] for each one
@@ -16,10 +16,9 @@ numbers, e-mail addresses, dates, number plates and the numbers that a keyword n
 tagger finds people, places and organisations, and the numbers the rules do not reach.
 Where the two overlap, the rule is kept.
 
-The two models share the rules and this code. The small one is an 8-bit file of about 35 MB; the
-server model is about 1.1 GB and reads a sentence on a processor in a few tens of milliseconds.
-With `onnxruntime-gpu` installed, `Rakshya(model="server", providers=["CUDAExecutionProvider"])`
-runs it on a graphics card.
+The two models share the rules and this code. Both are 8-bit files, of about 41 MB and about 30 MB.
+Release 0.2 had a large model for servers (`fiste-ai/rakshya-server`, about 1.1 GB). It was not trained again
+for the labels of 1.0, so `model="server"` is not offered here; that model runs with the code of release 0.2.
 """
 import json
 from pathlib import Path
@@ -35,21 +34,26 @@ from .spans import merge, predict_spans, redact, tag_names
 
 
 # model -> (repository on the Hugging Face Hub, the ONNX file in it)
-RELEASED = {"small": ("fiste-ai/rakshya", "onnx/model_quantized.onnx"), "server": ("fiste-ai/rakshya-server", "onnx/model.onnx")}
+RELEASED = {"small": ("fiste-ai/rakshya", "onnx/model_quantized.onnx"), "lite": ("fiste-ai/rakshya-lite", "onnx/model_quantized.onnx")}
+NO_SERVER = ("there is no server model of this version: the large model of release 0.2 (fiste-ai/rakshya-server) was not trained again "
+             "for the labels of 1.0. Use the default model; the model of 0.2 runs with the code of release 0.2 "
+             "(https://huggingface.co/fiste-ai/rakshya/tree/v0.2)")
 
 
 def released(model="small"):
     """The folder of a released model: fetched from the Hub the first time and read from its cache after that.
 
-    An installed release fetches the model of its own version; the development code fetches the newest.
+    An installed release fetches the models it was released with: `__model__` of the package names their version,
+    which is older than `__version__` where only the code changed. The development code fetches the newest.
     """
     from huggingface_hub import snapshot_download
+    if model == "server":
+        raise ValueError(NO_SERVER)
     if model not in RELEASED:
         raise ValueError(f"model is one of {sorted(RELEASED)}, not {model!r}")
-    try:
-        from . import __version__ as version
-    except ImportError:
-        version = None
+    import importlib
+    package = importlib.import_module(__package__)
+    version = getattr(package, "__model__", None) or getattr(package, "__version__", None)
     repository, weights = RELEASED[model]
     return snapshot_download(repository, revision=f"v{version}" if version else None,
                              allow_patterns=["tokenizer.json", "tagger.json", weights])
@@ -57,7 +61,7 @@ def released(model="small"):
 
 class Rakshya:
     def __init__(self, folder=None, threads=0, model="small", providers=("CPUExecutionProvider",)):
-        """Load the model in `folder`, or a released model when no folder is given: "small" or "server".
+        """Load the model in `folder`, or a released model when no folder is given: "small", the default, or "lite".
 
         `threads` is the number of CPU threads; 0 leaves the choice to ONNX Runtime. `providers` are
         those of ONNX Runtime, in order of preference.

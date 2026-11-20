@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rakshya"
-version = "1.1"
+version = "1.1.1"
 description = "Find personal information in Nepali, romanised Nepali and English text: rules and a small tagger, no PyTorch needed."
 readme = "README.md"
 requires-python = ">=3.9"

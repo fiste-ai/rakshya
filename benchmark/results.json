@@ -70088,6 +70088,33 @@
    }
   }
  },
+ "code": {
+  "version": "1.1.1",
+  "date": "2026-11-20",
+  "what": "A release of the code alone. The model files are those of 1.1, byte for byte, and so are the Rust source and the browser module; the check of the Python package was run again with this code.",
+  "new": [
+   "Rakshya(model=\"lite\") and rakshya --lite fetch the Lite model"
+  ],
+  "fixed": [
+   "Rakshya(model=\"server\") asked for a model that this version does not have",
+   "rust/kinds.json, which the Rust source reads when it is built, was missing from the repository"
+  ],
+  "unchanged_since_the_version": [
+   "the Rust source",
+   "the browser module"
+  ],
+  "newer_code_against_the_released_code": {
+   "what": "the two packages on the same texts with the same model files",
+   "released_code": "1.1",
+   "newer_code": "1.1.1",
+   "profiles": [
+    "all",
+    "personal"
+   ],
+   "texts": 9546,
+   "texts_that_differ": 0
+  }
+ },
  "lite": {
   "name": "Rakshya 1.1 Lite",
   "model": "https://huggingface.co/fiste-ai/rakshya-lite",
@@ -73532,6 +73559,17 @@
      }
     }
    }
+  },
+  "newer_code_against_the_released_code": {
+   "what": "the two packages on the same texts with the same model files",
+   "released_code": "1.1",
+   "newer_code": "1.1.1",
+   "profiles": [
+    "all",
+    "personal"
+   ],
+   "texts": 9546,
+   "texts_that_differ": 0
   }
  }
 }

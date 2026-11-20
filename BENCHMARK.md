@@ -293,7 +293,7 @@ Character F1 counts overlapping characters; exact F1 counts spans with the same 
 
 The interval comes from drawing the test texts again, the same ones for both models. At the level of seven kinds the Lite model has 0.965 on the practical test and 0.922 on the 180 cases.
 
-The two models were timed one after the other, twice each. In headless Chromium on one thread the Lite model takes 23 ms for a text of news where Rakshya 1.1 takes 50 ms, which is 46 percent of the time. Its 8-bit file gave the tag of its 32-bit file on 5,579 of 5,589 tokens of the two sets of hard cases, and the same output alone and in a batch. The packaged model files gave the same spans as the repository code on 9,546 texts under both profiles, the Rust build gave what Python gives on 9,681 texts, and in a browser the file gave the spans of Python on each of the 1,792 texts of the 9 test files.
+The two models were timed one after the other, twice each. In headless Chromium on one thread the Lite model takes 23 ms for a text of news where Rakshya 1.1 takes 50 ms, which is 46 percent of the time. Its 8-bit file gave the tag of its 32-bit file on 5,579 of 5,589 tokens of the two sets of hard cases, and the same output alone and in a batch. The packaged model files gave the same spans as the repository code on 9,546 texts under both profiles, the Rust build gave what Python gives on 9,681 texts, and in a browser the file gave the spans of Python on each of the 1,792 texts of the 9 test files. With the Python package of 1.1.1 the packaged files were checked again on the same texts.
 
 ## How the systems were run
 
@@ -314,7 +314,7 @@ Rakshya 1.1 is one set of weights with the rules of this repository, scored as t
 | Median per sentence in a browser, 1 thread | 50 ms |
 | Tokens per sentence | 21 |
 
-Measured on Intel Core i5-13420H with ONNX Runtime. The 8-bit file gave the tag of the 32-bit file on 5,582 of 5,589 tokens of two sets of hard cases, with the same exact F1 on both sets, and the same output alone and in a batch. The packaged Python files gave the same spans as the repository code on 9,546 texts under both profiles, and the Rust build gave what Python gives on 9,681 texts. In a browser the 8-bit file gave the spans of Python on each of the 1,792 texts of the 9 test files, with one thread and with four.
+Measured on Intel Core i5-13420H with ONNX Runtime. The 8-bit file gave the tag of the 32-bit file on 5,582 of 5,589 tokens of two sets of hard cases, with the same exact F1 on both sets, and the same output alone and in a batch. The packaged Python files gave the same spans as the repository code on 9,546 texts under both profiles, and the Rust build gave what Python gives on 9,681 texts. In a browser the 8-bit file gave the spans of Python on each of the 1,792 texts of the 9 test files, with one thread and with four. The code of 1.1.1 changes the Python package alone: its packaged files were checked the same way on the same texts, and they gave what the code of 1.1 gave on each of 9,546 texts under both profiles. The Rust source and the browser module are those of 1.1.
 
 ## The label files
 
